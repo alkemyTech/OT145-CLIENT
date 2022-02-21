@@ -22,7 +22,13 @@ export const useStyles = makeStyles((theme) => ({
       },
     
     logo: {
-        maxWidth: '40%',         
+        [useTheme().breakpoints.down('sm')]: {
+            maxWidth: '40%',
+            paddingTop:15,
+        },
+        [useTheme().breakpoints.up('sm')]: {
+            maxWidth: '40%',
+        },        
     },
     a_Home: {
         [useTheme().breakpoints.down('sm')]: {
