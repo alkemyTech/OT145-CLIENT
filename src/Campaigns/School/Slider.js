@@ -1,76 +1,158 @@
-import styled from "@emotion/styled";
 import React from "react";
 import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
+
+// MUI
 import Button from "@mui/material/Button";
+import MobileStepper from "@mui/material/MobileStepper";
+import { useTheme } from "@mui/material/styles";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
-const slidesContent = [{}];
+// Images
+import Foto1 from "./schoolCampaing/Foto1.jpg";
+import Foto6 from "./schoolCampaing/Foto6.jpg";
+import Foto7 from "./schoolCampaing/Foto7.jpg";
+import Manos10 from "./schoolCampaing/Manos10.jpg";
 
-const SliderContainer = styled.div`
-	display: flex;
-	/* min-height: 250px;
-	max-height: 330px; */
-	height: 250px;
-	color: #fff;
-	/* background: #FEA900; */
-	background: ${(props) => (props.background ? props.background : '#FEA900')};
-	/* max-height: 400; */
-`;
+// Styles
+import { SliderContainer, TextContainer, SliderImage } from "./styles/Slider";
 
-const TextContainer = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-`;
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const SliderImage = styled.img`
-	object-fit: cover;
-	max-width: 40%;
-	max-height: 100%;
-`;
 
 const Slide = ({
 	description = "slide description",
 	title = "title",
 	buttonText = "ver más",
-	img = null,
-	backgroundColor = null
+	img = '',
+	backgroundColor = null,
 }) => {
 	return (
-		<SliderContainer background={backgroundColor} >
+		<SliderContainer background={backgroundColor}>
 			<SliderImage
 				// style={Object.assign({}, styles.img)}
 				src={img}
 				alt=""
 			/>
 			<TextContainer>
-				<h1>{title}</h1>
-				<p>{description}</p>
-				<Button variant="contained">{buttonText}</Button>
+				<h1> {title} </h1> <p> {description} </p>
+				<Button variant="contained"> {buttonText} </Button>
 			</TextContainer>
 		</SliderContainer>
 	);
 };
 
-const Slider = ({
-	slidersData = [
-		{ id: 1, name: "test2", description: "test description2", backgroundColor: '#12579d', image: 'https://www.rover.com/blog/wp-content/uploads/2019/04/cute-big-eyes-960x540-1.jpg' },
-		{ id: 2, name: "test3", description: "test description3", backgroundColor: '#12579d', image: 'https://p4.wallpaperbetter.com/wallpaper/181/205/221/cats-love-wallpaper-preview.jpg' },
-		{ id: 3, name: "test3", description: "test description3", image: 'http://cdn26.us1.fansshare.com/photo/animalwallpapers/baby-animals-kittens-kitten-cats-cute-cat-picture-photo-animal-wallpapers-1049853647.jpg' },
-		// { name: "test", description: "test description" },
-		// { name: "test2", description: "test description2" },
-		// { name: "test2", description: "test description2" },
-	],
-}) => {
+// const SlideImage = ({
+// 	description = "slide description",
+// 	title = "title",
+// 	buttonText = "ver más",
+// 	img = null,
+// 	backgroundColor = null,
+// }) => {
+// 	return (
+// 		<div>
+// 			<img src={img} alt="" />
+// 		</div>
+// 	);
+// };
+
+const defaultSliderData = [
+	{
+		id: 1,
+		name: "test1",
+		description: "test description1",
+		backgroundColor: "#12579d",
+		image: Foto1,
+	},
+	{
+		id: 2,
+		name: "test2",
+		description: "test description2",
+		backgroundColor: "#d32848",
+		image: Foto6,
+	},
+	{
+		id: 3,
+		name: "test3",
+		description: "test description3",
+		image: Foto7,
+	},
+	{
+		id: 4,
+		name: "test4",
+		description: "test description4",
+		image: Manos10,
+	},
+];
+
+// Principal component
+const Slider = ({ slidersData = defaultSliderData }) => {
+	const theme = useTheme();
+	const [activeStep, setActiveStep] = React.useState(0);
+	const maxSteps = slidersData.length;
+
+	const handleNext = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	};
+
+	const handleBack = () => {
+		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+	};
+
+	const handleStepChange = (step) => {
+		setActiveStep(step);
+	};
+
 	return (
-		<SwipeableViews enableMouseEvents>
-			{slidersData.map((slideData) => {
-				return (
-					<Slide key={slideData.id} title={slideData.name} description={slideData.description} backgroundColor={slideData.backgroundColor} img={slideData.image} />
-				);
-			})}
-		</SwipeableViews>
+		<>
+			<AutoPlaySwipeableViews
+				enableMouseEvents
+				onChangeIndex={handleStepChange}
+				index={activeStep}
+				axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+				interval={5000}>
+				{slidersData.map((slideData) => {
+					return (
+						<Slide
+							key={slideData.id}
+							title={slideData.name}
+							description={slideData.description}
+							backgroundColor={slideData.backgroundColor}
+							img={slideData.image}
+						/>
+					);
+				})}
+			</AutoPlaySwipeableViews>
+			<MobileStepper
+				steps={maxSteps}
+				position="static"
+				activeStep={activeStep}
+				nextButton={
+					<Button
+						size="small"
+						onClick={handleNext}
+						disabled={activeStep === maxSteps - 1}>
+						
+						{theme.direction === "rtl" ? (
+							<KeyboardArrowLeft />
+						) : (
+							<KeyboardArrowRight />
+						)}
+					</Button>
+				}
+				backButton={
+					<Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+						
+						{theme.direction === "rtl" ? (
+							<KeyboardArrowRight />
+						) : (
+							<KeyboardArrowLeft />
+						)}
+					</Button>
+				}
+			/>
+		</>
 	);
 };
 
