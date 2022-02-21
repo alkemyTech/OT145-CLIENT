@@ -1,108 +1,46 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
+import { useStyles } from './Styles/FooterStyles'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Typography } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-
-
-const Root = styled('div')(({ theme }) => ({
-    [theme.breakpoints.down('md')]: {
-        display:'flex',
-        position:'fixed',
-        left:0,
-        bottom:'0px',
-        zIndex:'99',
-        border:'0',
-    },
-    [theme.breakpoints.up('md')]: {
-        display:'flex',
-        position:'fixed',
-        left:0,
-        bottom:'0px',
-        zIndex:'99',
-        border:'0',
-    },
-  }));
-
-  const Logo = styled('img')(({theme}) => ({
-    [theme.breakpoints.down('md')]: {
-        maxWidth: '40%',
-      },
-    [theme.breakpoints.up('md')]:{
-        maxWidth: '40%',
-    }
-  }));
-
-  const AHome = styled('a')(({theme}) => ({
-    [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
-    [theme.breakpoints.up('sm')]:{
-        maxWidth: '40%',
-    }
-  }));
-
-  const ARedes = styled('a')(({theme}) => ({
-    [theme.breakpoints.down('md')]: {
-        display: 'none',
-      },
-    [theme.breakpoints.up('md')]:{
-        maxWidth: '40%',
-    }
-  }));
-
-  const ACampaings = styled('a')(({theme}) => ({
-    [theme.breakpoints.down('lg')]: {
-        display: 'none',
-      },
-    [theme.breakpoints.up('lg')]:{
-        maxWidth: '40%',
-    }
-
-
-  }));
-
-
-
-
-
-
-
 const LandingFooter = () => {
+    const classes = useStyles();
     return (
-        <Root>
-            <div>
-                <Logo src="/Images/LOGO-SOMOS MAS.png"/>
-            </div>
-            <AHome href="/Home" >
-                <Typography style={{fontSize: '15px',paddingTop:28, paddingRight:20}}>Somos más</Typography>
-            </AHome>
-            <div style={{display:'flex'}}>
-                <a href="https://es-la.facebook.com">
-                    <FacebookIcon style={{fontSize: '40px',paddingTop:20,color: '#3b5998'}}/>
+        <div className={classes.container}>
+            <div className={classes.styleFlex}>
+                <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logo}/>
+                <a href="/Home" className={classes.a_Home}>
+                    <Typography className={classes.typographyHom}>Somos más</Typography>
                 </a>
-                <ARedes href="https://es-la.facebook.com" >
-                    <Typography style={{fontSize: '15px',paddingRight:20,paddingTop:28}}>Facebook</Typography>
-                </ARedes>
-                
             </div>
-            <div style={{display:'flex'}}>
-                <a href="https://www.instagram.com">
-                    <InstagramIcon style={{fontSize: '40px',paddingTop:20,color: '#bc2a8d'}}/>
-                </a>
-                <ARedes href="https://www.instagram.com" >
-                    <Typography style={{fontSize: '15px',paddingTop:28}}>Instagram</Typography>
-                </ARedes>
-            </div>
-            <ACampaings href="/toys-campaign">
-                <Typography  style={{fontSize: '15px',paddingTop:28, paddingRight:20,paddingLeft:20}}> Toys Campaign </Typography>
-            </ACampaings>
-            <ACampaings href="/school-campaign">
-                <Typography style={{fontSize: '15px',paddingTop:28, paddingRight:20,paddingLeft:20}}> School Campaign </Typography> 
-            </ACampaings>
 
-        </Root>
+            <div className={classes.styleFlex}>
+                <a href="https://es-la.facebook.com">
+                    <FacebookIcon style={{fontSize: '40px',paddingTop:35,color: '#3b5998'}}/>
+                </a>
+                <a href="https://es-la.facebook.com" className={classes.a_Redes}>
+                    <Typography className={classes.typographyFb}>Facebook</Typography>
+                </a>    
+            </div>
+
+            <div className={classes.styleFlex}>
+                <a href="https://www.instagram.com">
+                    <InstagramIcon style={{fontSize: '40px',paddingTop:35,color: '#bc2a8d'}}/>
+                </a>
+                <a href="https://www.instagram.com" className={classes.a_Redes}>
+                    <Typography className={classes.typographyIg}>Instagram</Typography>
+                </a>
+            </div>
+
+            <a href="/toys-campaign" className={classes.a_Campaings}>
+                <Typography className={classes.typographyRedes}> Toys Campaign </Typography>
+            </a>
+            <a href="/school-campaign" className={classes.a_Campaings}>
+                <Typography className={classes.typographyRedes}> School Campaign </Typography> 
+            </a>
+
+        </div>
     );
 }
  
