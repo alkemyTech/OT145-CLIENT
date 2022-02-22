@@ -33,9 +33,6 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
-    <div className="App">
-        <Header />
-    </div>
     </ThemeProvider>
   );
 }
