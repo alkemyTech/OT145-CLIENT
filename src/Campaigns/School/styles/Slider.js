@@ -1,29 +1,38 @@
 import { makeStyles } from "@mui/styles";
 
 // Styles
-const useStyles = makeStyles((theme) => (
-	{
-		sliderContainer: (props) => ({
+const useStyles = makeStyles((theme) => ({
+	sliderContainer: {
+		display: "flex",
+		height: "500px",
+		color: "#fff",
+		flexDirection: "column",
+		width: "100%",
+		background: "#323232",
+	},
+	text: {
+		width: "100%",
+		alignItems: "center",
+		// maxHeight: "40px",
+		height: "40px",
+		display: "none",
+		[theme.breakpoints.up("md")]: {
 			display: "flex",
-			height: "450px",
-			color: "#fff",
-			flexDirection: "column",
-			width: "100%",
-			background: props.background ? props.background : "#FEA900",
-		}),
-		textContainer: {
-			width: '100%',
-			display: 'flex',
-			alignItems: 'center',
-			maxHeight: '40px',
-			height: '100%',
-			display: 'none',
 		},
-		sliderImage : {
-			objectFit: 'cover',
-			height: '100%',
-		}
-	}
-));
+	},
+	sliderImage: {
+		objectFit: "contain",
+		height: "100%",
+		[theme.breakpoints.up("md")]: {
+			height: "90%",
+		},
+	},
+	centerItem: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		width: "100px",
+	},
+}));
 
 export default useStyles;

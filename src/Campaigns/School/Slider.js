@@ -4,7 +4,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 
 // MUI
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { Container, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useTheme } from "@mui/material/styles";
@@ -22,27 +22,21 @@ import useStyles from "./styles/Slider";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-
 const Slide = ({
 	description = "slide description",
 	imgLabel = "imageLabel",
-	img = '',
-	backgroundColor = null,
+	imgSrc = null,
 }) => {
-
-	const classes = useStyles({background: backgroundColor});
+	const classes = useStyles();
 
 	return (
 		<Box className={classes.sliderContainer}>
-			<img className={classes.sliderImage}
-				src={img}
-				alt={imgLabel}
-			/>
-				<Typography className={classes.textContainer} > 
-					{description} 
-				</Typography>
-			{/* <TextContainer>
-			</TextContainer> */}
+			{imgSrc ? (
+				<img className={classes.sliderImage} src={imgSrc} alt={imgLabel} />
+			) : null}
+			<Container>
+				<Typography className={classes.text}>{description}</Typography>
+			</Container>
 		</Box>
 	);
 };
@@ -50,26 +44,18 @@ const Slide = ({
 const defaultSliderData = [
 	{
 		id: 1,
-		name: "test1",
-		description: "test description1",
-		backgroundColor: "#12579d",
-		image: Foto1,
-	},
-	{
-		id: 2,
 		name: "test2",
 		description: "test description2",
-		backgroundColor: "#d32848",
 		image: Foto6,
 	},
 	{
-		id: 3,
+		id: 2,
 		name: "test3",
 		description: "test description3",
 		image: Foto7,
 	},
 	{
-		id: 4,
+		id: 3,
 		name: "test4",
 		description: "test description4",
 		image: Manos10,
@@ -81,6 +67,8 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 	const theme = useTheme();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const maxSteps = slidersData.length;
+
+	const classes = useStyles();
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -101,47 +89,49 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 				onChangeIndex={handleStepChange}
 				index={activeStep}
 				axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-				interval={155555000}>
+				interval={5000}>
 				{slidersData.map((slideData) => {
 					return (
 						<Slide
 							key={slideData.id}
-							title={slideData.name}
+							imgLabel={slideData.name}
 							description={slideData.description}
-							backgroundColor={slideData.backgroundColor}
-							img={slideData.image}
+							imgSrc={slideData.image}
 						/>
 					);
 				})}
 			</AutoPlaySwipeableViews>
-			<MobileStepper
-				steps={maxSteps}
-				position="static"
-				activeStep={activeStep}
-				nextButton={
-					<Button
-						size="small"
-						onClick={handleNext}
-						disabled={activeStep === maxSteps - 1}>
-						
-						{theme.direction === "rtl" ? (
-							<KeyboardArrowLeft />
-						) : (
-							<KeyboardArrowRight />
-						)}
-					</Button>
-				}
-				backButton={
-					<Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-						
-						{theme.direction === "rtl" ? (
-							<KeyboardArrowRight />
-						) : (
-							<KeyboardArrowLeft />
-						)}
-					</Button>
-				}
-			/>
+			<Container>
+				<MobileStepper
+					steps={maxSteps}
+					position="static"
+					activeStep={activeStep}
+					nextButton={
+						<Button
+							size="small"
+							onClick={handleNext}
+							disabled={activeStep === maxSteps - 1}>
+							{theme.direction === "rtl" ? (
+								<KeyboardArrowLeft />
+							) : (
+								<KeyboardArrowRight />
+							)}
+						</Button>
+					}
+					backButton={
+						<Button
+							size="small"
+							onClick={handleBack}
+							disabled={activeStep === 0}>
+							{theme.direction === "rtl" ? (
+								<KeyboardArrowRight />
+							) : (
+								<KeyboardArrowLeft />
+							)}
+						</Button>
+					}
+				/>
+			</Container>
 		</>
 	);
 };
