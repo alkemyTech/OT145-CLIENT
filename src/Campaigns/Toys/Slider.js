@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from '@mui/material/styles'
+import { useTheme, ThemeProvider } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import MobileStepper from '@mui/material/MobileStepper'
 import Paper from '@mui/material/Paper'
@@ -48,108 +48,75 @@ const Slider = () => {
     setActiveStep(step)
   }
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-      }}
-    >
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                /* className={classes.sliderImage} */
-                component="img"
-                sx={{
-                  display: 'block',
-                  overflow: 'hidden',
-                  objectFit: 'cover',
+    <ThemeProvider theme={theme}>
+      <Box>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {images.map((step, index) => (
+            <div key={step.label}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Box
+                  className={classes.sliderImage}
+                  component="img"
+                  sx={{
+                    objectFit: 'cover',
+                  }}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
 
-                  [theme.breakpoints.down('sm')]: {
-                    height: 400,
-                    marginLeft: -20,
-                  },
-                  [theme.breakpoints.up('sm')]: {
-                    height: 400,
-                    width: '100%',
-                  },
-                  [theme.breakpoints.up('md')]: {
-                    height: 450,
-                    width: '100%',
-                  },
-                  [theme.breakpoints.up('lg')]: {
-                    height: 550,
-                    width: '100%',
-                  },
+              <MobileStepper
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                className={classes.sliderArrows}
+                sx={{
+                  background: 'none',
                 }}
-                src={step.imgPath}
-                alt={step.label}
+                nextButton={
+                  <Button
+                    size="small"
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                  >
+                    Next
+                    {theme.direction === 'rtl' ? (
+                      <KeyboardArrowLeft />
+                    ) : (
+                      <KeyboardArrowRight />
+                    )}
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    size="small"
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                  >
+                    {theme.direction === 'rtl' ? (
+                      <KeyboardArrowRight />
+                    ) : (
+                      <KeyboardArrowLeft />
+                    )}
+                    Back
+                  </Button>
+                }
               />
-            ) : null}
-
-            <MobileStepper
-              steps={maxSteps}
-              position="static"
-              activeStep={activeStep}
-              className={classes.sliderArrows}
-              /*   sx={{
-                position: 'relative',
-                marginTop: -5,
-                background: 'none',
-              }} */
-              nextButton={
-                <Button
-                  size="small"
-                  onClick={handleNext}
-                  disabled={activeStep === maxSteps - 1}
-                >
-                  Next
-                  {theme.direction === 'rtl' ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                >
-                  {theme.direction === 'rtl' ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                  Back
-                </Button>
-              }
-            />
-            <Hidden smDown>
-              <Paper
-                square
-                elevation={0}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: 50,
-                  pl: 2,
-                  bgcolor: 'background.default',
-                }}
-              >
-                <Typography>{images[activeStep].label}</Typography>
-              </Paper>
-            </Hidden>
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-    </Box>
+              <Hidden smDown>
+                <Paper className={classes.text} square elevation={0}>
+                  <Typography>{images[activeStep].label}</Typography>
+                </Paper>
+              </Hidden>
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+      </Box>
+    </ThemeProvider>
   )
 }
 
