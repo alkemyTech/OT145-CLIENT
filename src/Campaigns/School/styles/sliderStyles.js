@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 	text: {
 		width: "100%",
 		alignItems: "center",
-		// maxHeight: "40px",
 		height: "40px",
 		display: "none",
 		[theme.breakpoints.up("md")]: {
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	sliderImage: {
-		objectFit: "contain",
+		objectFit: "cover",
 		height: "100%",
 		[theme.breakpoints.up("md")]: {
 			height: "90%",

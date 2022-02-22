@@ -12,13 +12,12 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 // Images
-import Foto1 from "./schoolCampaing/Foto1.jpg";
-import Foto6 from "./schoolCampaing/Foto6.jpg";
-import Foto7 from "./schoolCampaing/Foto7.jpg";
-import Manos10 from "./schoolCampaing/Manos10.jpg";
+import Foto6 from "./images/Foto6.jpg";
+import Foto7 from "./images/Foto7.jpg";
+import Manos10 from "./images/Manos10.jpg";
 
 // Styles
-import useStyles from "./styles/Slider";
+import useStyles from "./styles/sliderStyles.js";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
