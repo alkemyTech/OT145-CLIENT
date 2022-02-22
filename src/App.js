@@ -1,7 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
@@ -13,8 +10,10 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from "./theme";
+import Header from './Campaigns/Toys/Header';
+import { theme } from './theme';
+import { ThemeProvider } from '@mui/material';
+
 
 function App() {
   return (
