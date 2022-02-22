@@ -4,7 +4,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 
 // MUI
 import Button from "@mui/material/Button";
-import { Container, Paper, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useTheme } from "@mui/material/styles";
@@ -40,6 +40,7 @@ const Slide = ({
 	);
 };
 
+// Data to get from anyplace
 const defaultSliderData = [
 	{
 		id: 1,
@@ -66,8 +67,6 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 	const theme = useTheme();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const maxSteps = slidersData.length;
-
-	const classes = useStyles();
 
 	const handleNext = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
