@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
@@ -11,11 +10,13 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import LandingFooter from './Landing-Footer/LandingFooter';
+import { theme } from './theme';
+import { ThemeProvider } from '@mui/material';
+
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
@@ -31,10 +32,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
-    <div className="App">
-      <LandingFooter/>
-    </div>
-    </>
+    </ThemeProvider>
   );
 }
 

@@ -5,11 +5,16 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+<<<<<<< HEAD
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "@mui/styled-engine": "^5.4.2",
     "@mui/styles": "^5.4.2",
     "@mui/system": "^5.4.2",
+=======
+    "@mui/material": "^5.4.2",
+    "@mui/styles": "^5.4.2",
+>>>>>>> 3c8d3319a50bf776ebc80d26f599c15f3104d72c
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -21,7 +26,8 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
