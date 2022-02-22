@@ -4,6 +4,8 @@ import { autoPlay } from "react-swipeable-views-utils";
 
 // MUI
 import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useTheme } from "@mui/material/styles";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
@@ -16,46 +18,34 @@ import Foto7 from "./schoolCampaing/Foto7.jpg";
 import Manos10 from "./schoolCampaing/Manos10.jpg";
 
 // Styles
-import { SliderContainer, TextContainer, SliderImage } from "./styles/Slider";
+import useStyles from "./styles/Slider";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 
 const Slide = ({
 	description = "slide description",
-	title = "title",
-	buttonText = "ver más",
+	imgLabel = "imageLabel",
 	img = '',
 	backgroundColor = null,
 }) => {
+
+	const classes = useStyles({background: backgroundColor});
+
 	return (
-		<SliderContainer background={backgroundColor}>
-			<SliderImage
-				// style={Object.assign({}, styles.img)}
+		<Box className={classes.sliderContainer}>
+			<img className={classes.sliderImage}
 				src={img}
-				alt=""
+				alt={imgLabel}
 			/>
-			<TextContainer>
-				<h1> {title} </h1> <p> {description} </p>
-				<Button variant="contained"> {buttonText} </Button>
-			</TextContainer>
-		</SliderContainer>
+				<Typography className={classes.textContainer} > 
+					{description} 
+				</Typography>
+			{/* <TextContainer>
+			</TextContainer> */}
+		</Box>
 	);
 };
-
-// const SlideImage = ({
-// 	description = "slide description",
-// 	title = "title",
-// 	buttonText = "ver más",
-// 	img = null,
-// 	backgroundColor = null,
-// }) => {
-// 	return (
-// 		<div>
-// 			<img src={img} alt="" />
-// 		</div>
-// 	);
-// };
 
 const defaultSliderData = [
 	{
@@ -111,7 +101,7 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 				onChangeIndex={handleStepChange}
 				index={activeStep}
 				axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-				interval={5000}>
+				interval={155555000}>
 				{slidersData.map((slideData) => {
 					return (
 						<Slide
