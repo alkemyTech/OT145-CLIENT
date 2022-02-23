@@ -40,6 +40,8 @@ export const useStyles = makeStyles((theme) => ({
         },
         [useTheme().breakpoints.up('sm')]:{
             maxWidth: '40%',
+            color:"inherit",
+            textDecoration: 'none'
         },
     },
     
@@ -50,6 +52,8 @@ export const useStyles = makeStyles((theme) => ({
         [useTheme().breakpoints.up('md')]:{
             paddingLeft:'5px',
             maxWidth: '40%',
+            color:'inherit',
+            textDecoration: 'none'
         },
     },
     
@@ -59,6 +63,8 @@ export const useStyles = makeStyles((theme) => ({
         },
         [useTheme().breakpoints.up('lg')]:{
             maxWidth: '40%',
+            color:'inherit',
+            textDecoration: 'none'
         },
     },
     typographyFb:{
