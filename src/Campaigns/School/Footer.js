@@ -16,7 +16,6 @@ const Footer = () => {
                   <Typography variant='subtitle1' className={classes.typographyHom}>Somos más</Typography>
               </Link>
           </div>
-
           <div className={classes.styleFlex}>
               <a href="https://es-la.facebook.com" target='_blank' rel="noreferrer">
                   <FacebookIcon color= 'secondary' fontSize='large' className={classes.icon}/>
