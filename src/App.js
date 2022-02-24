@@ -12,6 +12,8 @@ import MembersForm from './Components/Members/MembersForm'
 import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
+import Nosotros from './Components/About/Nosotros'
+import Contacto from './Components/Contact/Contacto'
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/nosotros" component={Nosotros} />
+          <Route path="/contacto" component={Contacto} />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>
