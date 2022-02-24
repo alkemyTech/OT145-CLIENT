@@ -12,6 +12,8 @@ import MembersForm from './Components/Members/MembersForm'
 import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
+// Eliminar componente. Solo fue añadido para visualizar mientras se desarrolla
+import Title from './Components/Title/Title'
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
+
+      {/* Eliminar componente. Solo fue añadido para visualizar mientras se desarrolla */}
+      <Title 
+        imgSrc={'https://www.thesprucepets.com/thmb/9oFMwEfwmmp6us5uIZ1Nfz8z_70=/2121x1193/smart/filters:no_upscale()/GettyImages-1144157924-52f5bd679db74abfb01615715e68e63c.jpg'} 
+        title={'Soy un titulo'} 
+      />
     </ThemeProvider>
   )
 }
