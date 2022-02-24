@@ -35,10 +35,18 @@ function App() {
       </BrowserRouter>
 
       {/* Eliminar componente. Solo fue añadido para visualizar mientras se desarrolla */}
-      <Title 
+      {/* <Title 
         imgSrc={'https://www.thesprucepets.com/thmb/9oFMwEfwmmp6us5uIZ1Nfz8z_70=/2121x1193/smart/filters:no_upscale()/GettyImages-1144157924-52f5bd679db74abfb01615715e68e63c.jpg'} 
         title={'Soy un titulo'} 
+      /> */}
+      <Title 
+        imgSrc={'https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'} 
+        title={'Muestra uno'} 
       />
+      {/* <Title 
+        imgSrc={'https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'} 
+        title={'Muestra dos'} 
+      /> */}
     </ThemeProvider>
   )
 }
