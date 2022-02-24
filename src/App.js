@@ -47,10 +47,12 @@ function App() {
         {
           loading ? (
             <>
-              <SkeletonLayout>
+              <SkeletonLayout  >
                 <h1>Contenido titulo</h1>
                 <p>lorem ipsum</p>
-                <img style={{width: 200}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+                <img style={{width: 200, height: 200}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+                <img style={{width: 500, height: 500}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+                <img src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
               </SkeletonLayout>
               {/* <SkeletonLayout>
               </SkeletonLayout> */}
@@ -59,6 +61,9 @@ function App() {
             <>
               <h1>Contenido titulo</h1>
               <p>lorem ipsum</p>
+            <img style={{width: 200, height: 200}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+            <img style={{width: 500, height: 500}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+            <img src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
             </>
           )
         }
