@@ -24,7 +24,6 @@ const Footer = () => {
                   <Typography variant='subtitle1' className={classes.typographyFb}>Facebook</Typography>
               </a>    
           </div>
-
           <div className={classes.styleFlex}>
               <a href="https://www.instagram.com" target='_blank' rel="noreferrer">
                   <InstagramIcon fontSize='large' color='primary'className={classes.icon}/>
@@ -36,7 +35,6 @@ const Footer = () => {
           <Link to='/school-campaign' className={classes.a_Campaings}>
               <Typography variant='subtitle1' className={classes.typographyRedes}> School Campaign </Typography> 
           </Link>
-
       </div>
   );
 }
