@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ActivitiesForm from './Components/Activities/ActivitiesForm'
 import CategoriesForm from './Components/Categories/CategoriesForm'
@@ -11,9 +11,19 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign'
 import MembersForm from './Components/Members/MembersForm'
 import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
-import { ThemeProvider } from '@mui/material'
+import { Button, Container, ThemeProvider } from '@mui/material'
+
+// Eliminar componente. Colocación momentanea para desarrollar
+import SkeletonLayout from './Components/Skeleton/Skeleton'
 
 function App() {
+
+  // Eliminar una ves terminado Skeleton.js
+
+  const [loading, setLoading] = useState(false);
+
+  // Eliminar una ves terminado Skeleton.js
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -31,6 +41,34 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
+
+      {/* Eliminar componente. Colocación momentanea para desarrollar */}
+      <Container>
+        {
+          loading ? (
+            <>
+              <SkeletonLayout>
+                <h1>Contenido titulo</h1>
+                <p>lorem ipsum</p>
+                <img style={{width: 200}} src="https://images.pexels.com/photos/7130560/pexels-photo-7130560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+              </SkeletonLayout>
+              {/* <SkeletonLayout>
+              </SkeletonLayout> */}
+            </>
+          ) : (
+            <>
+              <h1>Contenido titulo</h1>
+              <p>lorem ipsum</p>
+            </>
+          )
+        }
+
+        <Button variant='contained' onClick={() => loading ? setLoading(false) : setLoading(true)} >
+          Cambiar estado
+        </Button>
+        {loading ? <p>cargando...</p> : null}
+      </Container>
+
     </ThemeProvider>
   )
 }
