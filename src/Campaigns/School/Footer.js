@@ -5,7 +5,6 @@ import { Typography } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Link } from 'react-router-dom';
 
-
 const Footer = () => {
   const classes = useStyles();
   return (
