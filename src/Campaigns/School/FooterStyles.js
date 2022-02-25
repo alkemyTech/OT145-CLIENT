@@ -1,44 +1,28 @@
 import { makeStyles } from "@mui/styles";
-import { useTheme } from "@mui/material"
 
 export const useStyles = makeStyles((theme) => ({
     container: {
-        [useTheme().breakpoints.down('md')]: {
-            display:'flex',
-            position:'fixed',
-            width:'100%',
-            left:0,
-            bottom:'0px',
-            zIndex:'99',
-            border:'0',
-            backgroundColor:'#cfcccc'
-        },
-        [useTheme().breakpoints.up('md')]: {
-            display:'flex',
-            position:'fixed',
-            left:0,
-            bottom:'0px',
-            zIndex:'99',
-            border:'0',
-            backgroundColor:'#cfcccc',
-            width:'100%',
-        }
+        display:'flex',
+        width:'100%',
+        position: 'absolute',
+        bottom: 0,
+        backgroundColor:'#cfcccc'
       },
     
     logo: {
-        [useTheme().breakpoints.down('sm')]: {
+        [theme.breakpoints.down('sm')]: {
             maxWidth: '40%',
             paddingTop:15,
         },
-        [useTheme().breakpoints.up('sm')]: {
+        [theme.breakpoints.up('sm')]: {
             maxWidth: '40%',
         },        
     },
     a_Home: {
-        [useTheme().breakpoints.down('sm')]: {
+        [theme.breakpoints.down('sm')]: {
             display: 'none',
         },
-        [useTheme().breakpoints.up('sm')]:{
+        [theme.breakpoints.up('sm')]:{
             maxWidth: '40%',
             color:"inherit",
             textDecoration: 'none'
@@ -46,10 +30,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     
     a_Redes: {
-        [useTheme().breakpoints.down('md')]: {
+        [theme.breakpoints.down('md')]: {
             display: 'none',
         },
-        [useTheme().breakpoints.up('md')]:{
+        [theme.breakpoints.up('md')]:{
             paddingLeft:'5px',
             maxWidth: '40%',
             color:'inherit',
@@ -58,10 +42,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     
     a_Campaings:{
-        [useTheme().breakpoints.down('lg')]: {
+        [theme.breakpoints.down('lg')]: {
             display: 'none',
         },
-        [useTheme().breakpoints.up('lg')]:{
+        [theme.breakpoints.up('lg')]:{
             maxWidth: '40%',
             color:'inherit',
             textDecoration: 'none'

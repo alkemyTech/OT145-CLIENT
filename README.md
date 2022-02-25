@@ -11,6 +11,8 @@ Un ejemplo de uso es el siguiente:
 ~~~
 
 ##### props #####
-| Nombre | Tipo | Valor por defecto | Opciones | Obligatorio* |
-| children | node | | | true
-| animation | string | pulse | wave, false | false
+| Nombre    | Tipo   | Valor por defecto | Opciones    | Obligatorio* |
+|-----------|--------|-------------------|-------------|--------------|
+| children  | node   |                   |             | true         |
+| animation | string | pulse             | wave, false | false        |
+|           |        |                   |             |              |

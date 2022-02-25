@@ -13,6 +13,7 @@ const ToysCampaign = () => {
       <CountDown />
       <Content />
       <Footer />
+      
     </>
   );
 }
