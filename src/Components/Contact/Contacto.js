@@ -15,20 +15,20 @@ const contactoText = {
 const Contacto = () => {
   const classes = useStyles()
   return (
-    <div>
+    <>
       <Container>
         <Typography variant="h2">Contacto</Typography>
-        <Typography variant="h5" className={classes.subtitle}>
-          Comunicarte con nosotros para colaborar, y obtener información.
+        <Typography variant="h6" className={classes.subtitle}>
+          Comunicate con nosotros para colaborar, y obtener información.
         </Typography>
         <Typography
-          variant="h5"
+          variant="h6"
           className={classes.mail}
           sx={{ fontWeight: '800' }}
         >
           {contactoText.email}
         </Typography>
-        <Typography variant="h5" className={classes.subtitle}>
+        <Typography variant="h6" className={classes.subtitle}>
           Nuestras redes sociales:
         </Typography>
         <div className={classes.redes}>
@@ -63,7 +63,7 @@ const Contacto = () => {
           Llamanos de lunes a viernes de 8:00 a 18:00 al:
         </Typography>
         <Typography
-          variant="h5"
+          variant="h6"
           className={classes.mail}
           sx={{ fontWeight: '800' }}
         >
@@ -72,7 +72,7 @@ const Contacto = () => {
 
         <DecorativeLine />
       </Container>
-    </div>
+    </>
   )
 }
 export default Contacto

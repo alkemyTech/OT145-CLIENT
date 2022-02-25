@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end',
   },
   subtitle: {
-    paddingTop: '30px',
+    paddingTop: '20px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '0.8rem !important',
+      paddingTop: '13px',
+    },
   },
   icon: {
     paddingRight: '30px',
