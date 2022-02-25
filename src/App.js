@@ -13,12 +13,13 @@ import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          {/* <Route path="/" exact component={} /> */}
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
