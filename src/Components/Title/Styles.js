@@ -1,11 +1,11 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-    backgroundImage: {
+    backgroundImage: (props) => ({
         width: '100%',
-        height: '50vh',
-        objectFit: 'cover'
-    },
+        height: '40vh',
+        objectFit: props.isLogo ? 'contain' : 'cover',
+    }),
     title: {
         textTransform: 'uppercase',
         fontWeight: '600',
