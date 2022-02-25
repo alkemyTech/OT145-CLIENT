@@ -28,3 +28,21 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+# Implementacion Spinner
+**Instalacion:**
+
+Instalar el paquete react-loader-spinner:
+Ejecutar en la terminal el comando **npm install react-loader-spinner --save**
+
+**Implementacion:**
+- Importar el componente **Spinner** dentro de su componente.
+- El mismo debera contener 3 parametros por defecto en sus props
+
+1. Color: Ej. color="#F00F00"
+2. Height: Ej. height={80}
+3. Width: Ej. width={80}
+
+
+
+para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.com/package/react-loader-spinner "aqui")
