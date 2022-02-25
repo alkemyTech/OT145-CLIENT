@@ -15,12 +15,13 @@ import { ThemeProvider } from '@mui/material'
 import BackOffice from '../src/backOffice/Backoffice'
 
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          {/* <Route path="/" exact component={} /> */}
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
