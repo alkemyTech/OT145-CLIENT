@@ -4,7 +4,13 @@ import { autoPlay } from "react-swipeable-views-utils";
 
 // MUI
 import Button from "@mui/material/Button";
-import { Container, Paper, Typography } from "@mui/material";
+import {
+	Container,
+	IconButton,
+	Paper,
+	Stepper,
+	Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useTheme } from "@mui/material/styles";
@@ -22,19 +28,17 @@ import useStyles from "./styles";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Slide = ({
-    title = 'title',
+	title = "title",
 	description = "slide description",
 	imgLabel = "imageLabel",
-	imgSrc = 'images/logoSomosMas.png',
+	imgSrc = "images/logoSomosMas.png",
 }) => {
 	const classes = useStyles();
 
 	return (
 		<Box className={classes.sliderContainer}>
-			{imgSrc ? (
-				<img className={classes.sliderImage} src={imgSrc} alt={imgLabel} />
-			) : null}
-			<Box className={classes.textContainer} >
+			<img className={classes.sliderImage} src={imgSrc} alt={imgLabel} />
+			<Box className={classes.textContainer}>
 				<Typography className={classes.text}>{title}</Typography>
 				<Typography className={classes.text}>{description}</Typography>
 			</Box>
@@ -82,6 +86,8 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 		setActiveStep(step);
 	};
 
+	const classes = useStyles();
+
 	return (
 		<>
 			<AutoPlaySwipeableViews
@@ -101,37 +107,45 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 					);
 				})}
 			</AutoPlaySwipeableViews>
-			<Container>
-				<MobileStepper
-					steps={maxSteps}
-					position="static"
-					activeStep={activeStep}
-					nextButton={
-						<Button
-							size="small"
-							onClick={handleNext}
-							disabled={activeStep === maxSteps - 1}>
-							{theme.direction === "rtl" ? (
-								<KeyboardArrowLeft />
-							) : (
-								<KeyboardArrowRight />
-							)}
-						</Button>
-					}
-					backButton={
-						<Button
-							size="small"
-							onClick={handleBack}
-							disabled={activeStep === 0}>
-							{theme.direction === "rtl" ? (
-								<KeyboardArrowRight />
-							) : (
-								<KeyboardArrowLeft />
-							)}
-						</Button>
-					}
-				/>
-			</Container>
+
+			{/* Slider buttons */}
+			{/* <Box className={classes.buttonContainer}> */}
+				<IconButton
+                    className={classes.slideButtonLeft}
+					sx={{ color: "#fff", position: 'absolute' }}
+					size="medium"
+					onClick={handleBack}
+					disabled={activeStep === 0}>
+					{theme.direction === "rtl" ? (
+						<KeyboardArrowRight />
+					) : (
+						<KeyboardArrowLeft />
+					)}
+				</IconButton>
+				<IconButton
+                    className={classes.slideButtonRight}
+					sx={{ color: "#fff", position: 'absolute' }}
+					size="medium"
+					onClick={handleNext}
+					disabled={activeStep === maxSteps - 1}>
+					{theme.direction === "rtl" ? (
+						<KeyboardArrowLeft />
+					) : (
+						<KeyboardArrowRight />
+					)}
+				</IconButton>
+			{/* </Box> */}
+
+			{/* Slider dots */}
+			<MobileStepper
+                className={classes.sliderDots}
+                sx={{
+                    justifyContent: 'center'
+                }}
+				steps={maxSteps}
+				position="static"
+				activeStep={activeStep}
+			/>
 		</>
 	);
 };

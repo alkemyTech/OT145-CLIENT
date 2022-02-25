@@ -49,6 +49,30 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		width: "100px",
 	},
+    // buttonContainer: {
+    //     position: 'absolute',
+    //     top: '250px',
+    //     width: '100%',
+    //     display: 'flex',
+    //     justifyContent: 'space-between',
+    // },
+    // '$slideButtonLeft, $slideButtonRight': {
+    //     position: 'absolute',
+    //     top: '250px',
+    // },
+    slideButtonLeft: {
+        left: '0px',
+        position: 'absolute',
+        top: '250px',
+    },
+    slideButtonRight: {
+        right: '0px',
+        position: 'absolute',
+        top: '250px',
+    },
+    sliderDots: {
+        marginTop: '10px',
+    }
 }));
 
 export default useStyles;
