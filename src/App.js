@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
@@ -13,22 +12,6 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material';
-=======
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import ActivitiesForm from './Components/Activities/ActivitiesForm'
-import CategoriesForm from './Components/Categories/CategoriesForm'
-import NewsForm from './Components/News/NewsForm'
-import SlidesForm from './Components/Slides/SlidesForm'
-import TestimonialForm from './Components/Testimonials/TestimonialsForm'
-import UserForm from './Components/Users/UsersForm'
-import SchoolCampaign from './Campaigns/School/SchoolCampaign'
-import ToysCampaign from './Campaigns/Toys/ToysCampaign'
-import MembersForm from './Components/Members/MembersForm'
-import ProjectsForm from './Components/Projects/ProjectsForm'
-import { theme } from './theme'
-import { ThemeProvider } from '@mui/material'
->>>>>>> 4ce951050dcea5516d322fee06244f6b43ebdfea
 
 
 function App() {
