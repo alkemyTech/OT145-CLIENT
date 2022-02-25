@@ -4,20 +4,24 @@ import DecorativeLine from './../DecorativeLine/DecorativeLine'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import useStyles from './contactoStyles'
+import Title from './../Title/Title'
 
-const contactoText = {
+const contactoInfo = {
+  title: 'Contacto',
   email: 'somosfundacionmas@gmail.com',
   instagram: '@SomosMás',
   facebook: 'Somos_Mas',
   teléfono: '+54 11 60112988',
+  image:
+    'https://res.cloudinary.com/danb0chax/image/upload/v1645799960/SomosMas/AdobeStock_232928548_Preview_gzxhsz.jpg',
 }
 
 const Contacto = () => {
   const classes = useStyles()
   return (
     <>
+      <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
       <Container>
-        <Typography variant="h2">Contacto</Typography>
         <Typography variant="h6" className={classes.subtitle}>
           Comunicate con nosotros para colaborar, y obtener información.
         </Typography>
@@ -26,7 +30,7 @@ const Contacto = () => {
           className={classes.mail}
           sx={{ fontWeight: '800' }}
         >
-          {contactoText.email}
+          {contactoInfo.email}
         </Typography>
         <Typography variant="h6" className={classes.subtitle}>
           Nuestras redes sociales:
@@ -42,7 +46,7 @@ const Contacto = () => {
             className={classes.icon}
           >
             <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-              {contactoText.instagram}
+              {contactoInfo.instagram}
             </Typography>
           </a>
           <a href="https://es-la.facebook.com" target="_blank" rel="noreferrer">
@@ -55,7 +59,7 @@ const Contacto = () => {
             className={classes.icon}
           >
             <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-              {contactoText.facebook}
+              {contactoInfo.facebook}
             </Typography>
           </a>
         </div>
@@ -67,7 +71,7 @@ const Contacto = () => {
           className={classes.mail}
           sx={{ fontWeight: '800' }}
         >
-          {contactoText.teléfono}
+          {contactoInfo.teléfono}
         </Typography>
 
         <DecorativeLine />
