@@ -11,6 +11,7 @@ const showModal = (props) => {
             'You clicked the button!',
             'success'
         )
+        
     */
   return Modal.fire({
     ...props,
