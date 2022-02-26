@@ -12,4 +12,13 @@ const Get = () => {
     .catch(err => console.log(err))
 }
 
-export default Get
+export default Get;
+
+
+const getService = (URL, Id) => {
+    if(Id != null){
+        return axios.get(URL + `/${Id}`)
+    }
+    return axios.get(URL)
+}
+export default getService;
