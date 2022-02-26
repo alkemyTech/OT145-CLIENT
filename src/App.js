@@ -13,8 +13,6 @@ import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
-import Slider from './Components/Slider/Slider'
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -33,10 +31,6 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
-
-    {/* Eliminar componente cuando se termina el desarrollo de Slider */}
-    <Slider />
-
     </ThemeProvider>
   )
 }

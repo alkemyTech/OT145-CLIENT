@@ -3,24 +3,12 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
 // MUI
-import Button from "@mui/material/Button";
-import {
-	Container,
-	IconButton,
-	Paper,
-	Stepper,
-	Typography,
-} from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MobileStepper from "@mui/material/MobileStepper";
 import { useTheme } from "@mui/material/styles";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-
-// Images
-// import Foto6 from "images/Foto6.jpg";
-// import Foto7 from "images/Foto7.jpg";
-// import Manos10 from "images/Manos10.jpg";
 
 // Styles
 import useStyles from "./styles";
@@ -45,9 +33,15 @@ const Slide = ({
 				src={imgSrc}
 				alt={imgLabel}
 			/>
-			<Box className={classes.textContainer}>
-				<Typography className={classes.text}>{title}</Typography>
-				<Typography className={classes.text}>{description}</Typography>
+			<Box className={classes.textBoxContainer}>
+				<Box className={classes.textContainer}>
+					<Typography variant="h3" className={classes.text}>
+						{title}
+					</Typography>
+					<Typography variant="p" className={classes.text}>
+						{description}
+					</Typography>
+				</Box>
 			</Box>
 		</Box>
 	);
@@ -59,13 +53,15 @@ const defaultSliderData = [
 		id: 1,
 		name: "test2",
 		description: "test description2",
+		image: "images/campaign-recent-02.jpg",
 		title: "title test 2",
 		// image: Foto6,
 	},
 	{
 		id: 2,
 		name: "test3",
-		description: "test description3",
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
 		image: "images/campaign-recent-03.jpg",
 		title: "title test 3",
 	},
@@ -119,16 +115,15 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 			</AutoPlaySwipeableViews>
 
 			{/* Slider buttons */}
-			{/* <Box className={classes.buttonContainer}> */}
 			<IconButton
 				className={classes.slideButtonLeft}
 				sx={{
 					color: "#919191",
 					backgroundColor: "#fff",
 					position: "absolute",
-					":hover": { 
-						backgroundColor: "#efefef", 
-						color: "#818181", 
+					":hover": {
+						backgroundColor: "#efefef",
+						color: "#818181",
 					},
 				}}
 				size="medium"
@@ -146,9 +141,9 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 					color: "#919191",
 					backgroundColor: "#fff",
 					position: "absolute",
-					":hover": { 
-						backgroundColor: "#efefef", 
-						color: "#818181", 
+					":hover": {
+						backgroundColor: "#efefef",
+						color: "#818181",
 					},
 				}}
 				size="medium"
@@ -160,7 +155,6 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 					<KeyboardArrowRight />
 				)}
 			</IconButton>
-			{/* </Box> */}
 
 			{/* Slider dots */}
 			<MobileStepper

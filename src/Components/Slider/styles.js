@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
 	sliderContainer: {
 		display: "flex",
-		height: "500px",
+		height: "550px",
 		color: "#fff",
 		flexDirection: "column",
 		width: "100%",
@@ -16,35 +16,32 @@ const useStyles = makeStyles((theme) => ({
 	text: {
 		width: "100%",
 		alignItems: "center",
-		height: "20%",
-		// display: "none",
         display: "flex",
         color: '#000',
 		[theme.breakpoints.up("md")]: {
-		    height: "40px",
+		    height: "fit-content",
             justifyContent: 'center',
 		},
 	},
     textContainer: {
         display: 'flex',
-        height: '100%',
-        position: 'relative',
-        background: '#fff',
         justifyContent: 'center',
         flexDirection: 'column',
-        [theme.breakpoints.up("md")]: {
+        padding: '0 15px',
+        height: '100%',
+    },
+    textBoxContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#fff',
+        height: '100%',
+        [theme.breakpoints.up('md')]: {
             width: '30%',
-            // alignItems: 'center'
-            // position: 'absolute',
-            // top: '50vh',
-            // left: '70%',
-            // height: 'fit-content',
-            // padding: '15px',
-		},
+        }
     },
 	sliderImage: (props) => ({
 		objectFit: props.isLogo ? "contain" :"cover",
-        height: "80%",
+        height: "65%",
 		[theme.breakpoints.up("md")]: {
             height: "100%",
             width: '70%'
@@ -56,17 +53,6 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		width: "100px",
 	},
-    // buttonContainer: {
-    //     position: 'absolute',
-    //     top: '250px',
-    //     width: '100%',
-    //     display: 'flex',
-    //     justifyContent: 'space-between',
-    // },
-    // '$slideButtonLeft, $slideButtonRight': {
-    //     position: 'absolute',
-    //     top: '250px',
-    // },
     slideButtonLeft: {
         left: '10px',
         position: 'absolute',
