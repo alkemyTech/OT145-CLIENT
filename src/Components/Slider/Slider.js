@@ -33,11 +33,18 @@ const Slide = ({
 	imgLabel = "imageLabel",
 	imgSrc = "images/logoSomosMas.png",
 }) => {
-	const classes = useStyles();
+	const isLogo = imgSrc === "images/logoSomosMas.png" ? true : false;
+
+	const classes = useStyles({ isLogo: isLogo });
 
 	return (
 		<Box className={classes.sliderContainer}>
-			<img className={classes.sliderImage} src={imgSrc} alt={imgLabel} />
+			<Box
+				component="img"
+				className={classes.sliderImage}
+				src={imgSrc}
+				alt={imgLabel}
+			/>
 			<Box className={classes.textContainer}>
 				<Typography className={classes.text}>{title}</Typography>
 				<Typography className={classes.text}>{description}</Typography>
@@ -52,13 +59,15 @@ const defaultSliderData = [
 		id: 1,
 		name: "test2",
 		description: "test description2",
+		title: "title test 2",
 		// image: Foto6,
 	},
 	{
 		id: 2,
 		name: "test3",
 		description: "test description3",
-		// image: Foto7,
+		image: "images/campaign-recent-03.jpg",
+		title: "title test 3",
 	},
 	{
 		id: 3,
@@ -95,13 +104,14 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 				onChangeIndex={handleStepChange}
 				index={activeStep}
 				axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-				interval={5000}>
+				interval={50000000000000000}>
 				{slidersData.map((slideData) => {
 					return (
 						<Slide
 							key={slideData.id}
 							imgLabel={slideData.name}
 							description={slideData.description}
+							title={slideData.title}
 							imgSrc={slideData.image}
 						/>
 					);
@@ -110,38 +120,54 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 
 			{/* Slider buttons */}
 			{/* <Box className={classes.buttonContainer}> */}
-				<IconButton
-                    className={classes.slideButtonLeft}
-					sx={{ color: "#fff", position: 'absolute' }}
-					size="medium"
-					onClick={handleBack}
-					disabled={activeStep === 0}>
-					{theme.direction === "rtl" ? (
-						<KeyboardArrowRight />
-					) : (
-						<KeyboardArrowLeft />
-					)}
-				</IconButton>
-				<IconButton
-                    className={classes.slideButtonRight}
-					sx={{ color: "#fff", position: 'absolute' }}
-					size="medium"
-					onClick={handleNext}
-					disabled={activeStep === maxSteps - 1}>
-					{theme.direction === "rtl" ? (
-						<KeyboardArrowLeft />
-					) : (
-						<KeyboardArrowRight />
-					)}
-				</IconButton>
+			<IconButton
+				className={classes.slideButtonLeft}
+				sx={{
+					color: "#919191",
+					backgroundColor: "#fff",
+					position: "absolute",
+					":hover": { 
+						backgroundColor: "#efefef", 
+						color: "#818181", 
+					},
+				}}
+				size="medium"
+				onClick={handleBack}
+				disabled={activeStep === 0}>
+				{theme.direction === "rtl" ? (
+					<KeyboardArrowRight />
+				) : (
+					<KeyboardArrowLeft />
+				)}
+			</IconButton>
+			<IconButton
+				className={classes.slideButtonRight}
+				sx={{
+					color: "#919191",
+					backgroundColor: "#fff",
+					position: "absolute",
+					":hover": { 
+						backgroundColor: "#efefef", 
+						color: "#818181", 
+					},
+				}}
+				size="medium"
+				onClick={handleNext}
+				disabled={activeStep === maxSteps - 1}>
+				{theme.direction === "rtl" ? (
+					<KeyboardArrowLeft />
+				) : (
+					<KeyboardArrowRight />
+				)}
+			</IconButton>
 			{/* </Box> */}
 
 			{/* Slider dots */}
 			<MobileStepper
-                className={classes.sliderDots}
-                sx={{
-                    justifyContent: 'center'
-                }}
+				className={classes.sliderDots}
+				sx={{
+					justifyContent: "center",
+				}}
 				steps={maxSteps}
 				position="static"
 				activeStep={activeStep}

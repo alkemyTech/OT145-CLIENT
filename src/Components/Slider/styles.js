@@ -8,7 +8,10 @@ const useStyles = makeStyles((theme) => ({
 		color: "#fff",
 		flexDirection: "column",
 		width: "100%",
-		background: "#323232",
+		background: "#919191",
+        [theme.breakpoints.up("md")]: {
+            flexDirection: "row"
+		},
 	},
 	text: {
 		width: "100%",
@@ -19,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#000',
 		[theme.breakpoints.up("md")]: {
 		    height: "40px",
+            justifyContent: 'center',
 		},
 	},
     textContainer: {
@@ -29,20 +33,23 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         flexDirection: 'column',
         [theme.breakpoints.up("md")]: {
-            position: 'absolute',
-            top: '50vh',
-            left: '70%',
-            height: 'fit-content',
-            padding: '15px',
+            width: '30%',
+            // alignItems: 'center'
+            // position: 'absolute',
+            // top: '50vh',
+            // left: '70%',
+            // height: 'fit-content',
+            // padding: '15px',
 		},
     },
-	sliderImage: {
-		objectFit: "cover",
+	sliderImage: (props) => ({
+		objectFit: props.isLogo ? "contain" :"cover",
         height: "80%",
 		[theme.breakpoints.up("md")]: {
             height: "100%",
+            width: '70%'
 		},
-	},
+	}),
 	centerItem: {
 		display: "flex",
 		alignItems: "center",
@@ -61,12 +68,12 @@ const useStyles = makeStyles((theme) => ({
     //     top: '250px',
     // },
     slideButtonLeft: {
-        left: '0px',
+        left: '10px',
         position: 'absolute',
         top: '250px',
     },
     slideButtonRight: {
-        right: '0px',
+        right: '10px',
         position: 'absolute',
         top: '250px',
     },
