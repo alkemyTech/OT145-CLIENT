@@ -13,13 +13,16 @@ import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
+import Footer from './Components/Home/Footer'
+{/* Eliminar una vez finalizado el desarrollo */}
+
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} /> */}
+          <Route path="/" exact component={Footer} />
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
@@ -32,6 +35,9 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
+
+      {/* Eliminar una vez finalizado el desarrollo */}
+
     </ThemeProvider>
   )
 }
