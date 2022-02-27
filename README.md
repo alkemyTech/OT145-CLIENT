@@ -46,3 +46,16 @@ Ejecutar en la terminal el comando **npm install react-loader-spinner --save**
 
 
 para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.com/package/react-loader-spinner "aqui")
+
+
+**Implementacion Progress:**
+- Importar el componente **Progress** dentro de su componente.
+- El mismo puede contener 3/4 parametros por defecto en sus props
+
+1. Color: Ej. color="primary"
+2. Size: Ej. size=40
+3. Variant: Ej. variant="indeterminate" **Si no hay valor de progreso** 
+4. Valor: Ej. value={25} variant="determinate" 
+
+
+para mas informacion puede acceder a su documentacion (https://mui.com/api/circular-progress)
