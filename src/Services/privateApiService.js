@@ -38,3 +38,18 @@ export const privatePUT = async (path, id, body) => {
   };
 
 export default Get
+
+const privateGet = async (path, id) => {
+  try{
+    if(id != null){
+      const response = await axios.get(`${path}/${id}`, config);
+      return response.data;
+    }else{
+      const response = await axios.get(`${path}`, config);
+      return response.data;
+    }
+  } catch (error){
+    console.error(error);
+  }
+};
+export default privateGet;
