@@ -2,7 +2,8 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
 	footerContainer: {
-		backgroundColor: "#fff",
+		backgroundColor: "#f5f5f5",
+    	borderTop: 'solid 1px #dfdfdf',
 	},
 	footer: {
 		display: "flex",

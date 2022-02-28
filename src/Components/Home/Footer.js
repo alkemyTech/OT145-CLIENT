@@ -43,7 +43,7 @@ export default function Footer() {
 					</Box>
 					<Box>
 						<Typography className={classes.footerListTitle} variant="p">
-							Nuestas redes
+							Nuestras redes
 						</Typography>
 						<ul className={classes.footerList}>
 							<li>
