@@ -37,4 +37,15 @@ export const privatePUT = async (path, id, body) => {
     }
   };
 
+export const privatePOST = async (path, body) => {
+  try {
+    const response = await axios.post(path, body, config)
+    return response
+    
+  } catch (error) {
+    console.error('Hubo un error al hacer la petición');
+    console.log(error);
+  }
+}
+
 export default Get
