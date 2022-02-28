@@ -6,6 +6,31 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+# Alert Props Sweet Alert
+
+  Recibe props para cambiar el tipo de alerta que deben ser pasados al ser llamado
+  
+        Ejemplo #1 Boton de aceptacion
+        
+
+        Modal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+
+        Ejemplo #2 Boton de rechazo 
+
+        Modal.fire({
+             icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why do I have this issue?</a>'
+        })
+
+        Para mas ejemplos de uso visitar https://sweetalert2.github.io/#examples
+        
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
