@@ -17,34 +17,52 @@ export default function Footer() {
 	return (
 		<Container className={classes.footerContainer}>
 			<Box className={classes.footer}>
-				<Box>
+				<Box className={classes.logoContainer}>
 					<Box component="img" src="images/logoSomosMas.png" alt="" />
-					<Typography>Nombre de la ong</Typography>
+					<Typography variant="p" className={classes.logoText}>
+						Somos más
+					</Typography>
 				</Box>
-				<Box>
-					<Typography>title</Typography>
-					<ul>
-						<li>
-							<NavLink to="/">Actividades</NavLink>
-						</li>
-						<li>
-							<NavLink to="/">Novedades</NavLink>
-						</li>
-					</ul>
-				</Box>
-				<Box>
-					<Typography>Nuestas redes</Typography>
-					<ul>
-						<li>
-							<a href="">Facebook</a>
-						</li>
-						<li>
-							<a href="">LinkedIn</a>
-						</li>
-						<li>
-							<a href="">Instagram</a>
-						</li>
-					</ul>
+				<Box className={classes.itemsContainer}>
+					<Box>
+						<Typography className={classes.footerListTitle} variant="p">
+							Navegación
+						</Typography>
+						<ul className={classes.footerList}>
+							<li>
+								<NavLink className={classes.linkItemFooterList} to="/">
+									Actividades
+								</NavLink>
+							</li>
+							<li>
+								<NavLink className={classes.linkItemFooterList} to="/">
+									Novedades
+								</NavLink>
+							</li>
+						</ul>
+					</Box>
+					<Box>
+						<Typography className={classes.footerListTitle} variant="p">
+							Nuestas redes
+						</Typography>
+						<ul className={classes.footerList}>
+							<li>
+								<a className={classes.linkItemFooterList} href="">
+									Facebook
+								</a>
+							</li>
+							<li>
+								<a className={classes.linkItemFooterList} href="">
+									LinkedIn
+								</a>
+							</li>
+							<li>
+								<a className={classes.linkItemFooterList} href="">
+									Instagram
+								</a>
+							</li>
+						</ul>
+					</Box>
 				</Box>
 			</Box>
 		</Container>
