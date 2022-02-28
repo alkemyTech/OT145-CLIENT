@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+        Group: 145                //Aqui va el ID del equipo!!
     }
 }
 
@@ -15,10 +15,15 @@ const Get = () => {
 export default Get;
 
 
-const getService = (URL, Id) => {
-    if(Id != null){
-        return axios.get(URL + `/${Id}`)
+export const getService = async (URL, Id) => {
+    try{
+        if(!Id){
+            const response = await axios.get(URL + "/users");
+            return response.data;
+        }
+        const response = await axios.get(URL + "/users/" + Id);
+        return response.data;
+    }catch (error){
+        console.error(error);
     }
-    return axios.get(URL)
 }
-export default getService;
