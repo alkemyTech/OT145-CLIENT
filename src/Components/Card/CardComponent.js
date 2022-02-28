@@ -39,11 +39,12 @@ const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink
             <a href={secondLink}  className={classes.styleLink}>{textSecondLink}</a>
           </div>
         </div>     
-        <div onClick={leerMasLink} className={classes.leerMas}>
+        { leerMasLink &&
+          <div onClick={leerMasLink} className={classes.leerMas}>
             <Typography variant="subtitle2" color="secondary">
               Leer más
             </Typography>
-        </div>
+        </div>}
       </CardActions>
     </Card>
   );
