@@ -14,7 +14,7 @@ const Get = () => {
 
 export const privatePOST = async (path, body) => {
     try {
-      const response = await axios.post(path, body, config)
+      const response = await axios.post(path, body)
       return response
       
     } catch (error) {
