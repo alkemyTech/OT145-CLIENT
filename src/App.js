@@ -15,6 +15,7 @@ const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'));
 const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'));
 const MembersForm = lazy(() => import('./Components/Members/MembersForm'));
 const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'));
+const Actividades = lazy (() => import('../src/Components/Activities/Actividades'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/school-campaign" component={SchoolCampaign} />
             <Route path="/toys-campaign" component={ToysCampaign} />
+            <Route path="/Actividades" component={Actividades} />
             <Route path="/backoffice" component={BackOficce} />
           </Switch>
         </Suspense>
