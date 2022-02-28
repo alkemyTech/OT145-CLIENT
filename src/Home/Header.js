@@ -24,6 +24,8 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
+  let loggeado=false;
+
   const headerData = [
     {
       name: "School-Campaign",
@@ -103,27 +105,28 @@ const Header = () => {
 
 
             <Box className={classes.styledBoxMd}>
-              <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm}/>
-              <NavLink to='/Home' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks} >
-                  Inicio
-                </Typography>
-              </NavLink>
-              <NavLink to='/Nosotros' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
-                  Nosotros
-                </Typography>
-              </NavLink>
-              <NavLink to='/Contacto' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
-                  Contacto
-                </Typography>
-              </NavLink>
-              {headerData.map((value,i) => (
-                <NavLink key={i} to={value.url} className={classes.links} activeClassName={classes.active}>
-                  <Typography variant='subtitle1' className={classes.typographyLinks}>{value.name}</Typography>
+                <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm}/>
+                <NavLink to='/Home' className={classes.links} activeClassName={classes.active}>
+                  <Typography variant='subtitle1' className={classes.typographyLinks} >
+                    Inicio
+                  </Typography>
                 </NavLink>
-              ))}
+                <NavLink to='/Nosotros' className={classes.links} activeClassName={classes.active}>
+                  <Typography variant='subtitle1' className={classes.typographyLinks}>
+                    Nosotros
+                  </Typography>
+                </NavLink>
+                {loggeado &&
+                <NavLink to='/Contacto' className={classes.links} activeClassName={classes.active}>
+                  <Typography variant='subtitle1' className={classes.typographyLinks}>
+                    Contacto
+                  </Typography>
+                </NavLink>}
+                {headerData.map((value,i) => (
+                  <NavLink key={i} to={value.url} className={classes.links} activeClassName={classes.active}>
+                    <Typography variant='subtitle1' className={classes.typographyLinks}>{value.name}</Typography>
+                  </NavLink>
+                ))}
             </Box>
           </Toolbar>
       </AppBar>
