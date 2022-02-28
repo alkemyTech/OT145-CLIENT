@@ -27,5 +27,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     paddingBetweenLink: {
         paddingLeft:20
-    }
+        
+    },
+    leerMas: {
+        marginRight:'10px'
+    },
 }))
