@@ -3,8 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
-<<<<<<< HEAD
-=======
 
 
 const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'));
@@ -20,7 +18,6 @@ const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'));
 const Actividades = lazy (() => import('../src/Components/Activities/Actividades'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 
->>>>>>> 0a6e628ad46c6c62e884d9afaa13b34f42899590
 function App() {
   return (
     <ThemeProvider theme={theme}>
