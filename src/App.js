@@ -2,8 +2,6 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Footer from './Components/Home/Footer'
-// Eliminar componente luego de terminar desarrollo de Footer
 
 
 const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'));
@@ -24,7 +22,6 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-            <Route path="/" exact component={Footer} />
             <Route path="/create-activity" component={ActivitiesForm} />
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
@@ -38,9 +35,6 @@ function App() {
           </Switch>
         </Suspense>
       </BrowserRouter>
-
-      {/* Eliminar una vez finalizado el desarrollo */}
-
     </ThemeProvider>
   )
 }

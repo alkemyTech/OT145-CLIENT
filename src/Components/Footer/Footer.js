@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "./styles/footerStyles";
+import useStyles from "./footerStyles";
 import { Box } from "@mui/system";
 import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
@@ -58,8 +58,8 @@ export default function Footer() {
 								Navegación
 							</Typography>
 							<ul className={classes.footerList}>
-								{footerData.socialMedia.map(({ name, url }) => (
-									<li>
+								{footerData.socialMedia.map(({ name, url }, index) => (
+									<li key={index}>
 										<NavLink className={classes.linkItemFooterList} to={url}>
 											{name}
 										</NavLink>
@@ -72,8 +72,8 @@ export default function Footer() {
 								Nuestras redes
 							</Typography>
 							<ul className={classes.footerList}>
-								{footerData.navigationItems.map(({ name, url }) => (
-									<li>
+								{footerData.navigationItems.map(({ name, url }, index) => (
+									<li key={index} >
 										<a className={classes.linkItemFooterList} href={url}>
 											{name}
 										</a>
