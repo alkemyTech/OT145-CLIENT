@@ -5,9 +5,37 @@ import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 export default function Footer() {
-	// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
 	function getData() {
-		return;
+		// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
+
+		// Mockup parcial
+		const data = {
+			socialMedia: [
+				{
+					name: "Facebook",
+					url: "https://facebook.com",
+				},
+				{
+					name: "LinkedIn",
+					url: "https://linkedin.com",
+				},
+				{
+					name: "Instagram",
+					url: "https://instagram.com",
+				},
+			],
+			navigationItems: [
+				{
+					name: "Actividades",
+					url: "/",
+				},
+				{
+					name: "Novedades",
+					url: "/",
+				},
+			],
+		};
+		return data;
 	}
 
 	const footerData = getData();
@@ -15,56 +43,47 @@ export default function Footer() {
 	const classes = useStyles();
 
 	return (
-		<Container className={classes.footerContainer}>
-			<Box className={classes.footer}>
-				<Box className={classes.logoContainer}>
-					<Box component="img" src="images/logoSomosMas.png" alt="" />
-					<Typography variant="p" className={classes.logoText}>
-						Somos más
-					</Typography>
-				</Box>
-				<Box className={classes.itemsContainer}>
-					<Box>
-						<Typography className={classes.footerListTitle} variant="p">
-							Navegación
+		<Box className={classes.footerContainer}>
+			<Container>
+				<Box className={classes.footer}>
+					<Box className={classes.logoContainer}>
+						<Box component="img" src="images/logoSomosMas.png" alt="" />
+						<Typography variant="p" className={classes.logoText}>
+							Somos más
 						</Typography>
-						<ul className={classes.footerList}>
-							<li>
-								<NavLink className={classes.linkItemFooterList} to="/">
-									Actividades
-								</NavLink>
-							</li>
-							<li>
-								<NavLink className={classes.linkItemFooterList} to="/">
-									Novedades
-								</NavLink>
-							</li>
-						</ul>
 					</Box>
-					<Box>
-						<Typography className={classes.footerListTitle} variant="p">
-							Nuestras redes
-						</Typography>
-						<ul className={classes.footerList}>
-							<li>
-								<a className={classes.linkItemFooterList} href="">
-									Facebook
-								</a>
-							</li>
-							<li>
-								<a className={classes.linkItemFooterList} href="">
-									LinkedIn
-								</a>
-							</li>
-							<li>
-								<a className={classes.linkItemFooterList} href="">
-									Instagram
-								</a>
-							</li>
-						</ul>
+					<Box className={classes.itemsContainer}>
+						<Box>
+							<Typography className={classes.footerListTitle} variant="p">
+								Navegación
+							</Typography>
+							<ul className={classes.footerList}>
+								{footerData.socialMedia.map(({ name, url }) => (
+									<li>
+										<NavLink className={classes.linkItemFooterList} to={url}>
+											{name}
+										</NavLink>
+									</li>
+								))}
+							</ul>
+						</Box>
+						<Box>
+							<Typography className={classes.footerListTitle} variant="p">
+								Nuestras redes
+							</Typography>
+							<ul className={classes.footerList}>
+								{footerData.navigationItems.map(({ name, url }) => (
+									<li>
+										<a className={classes.linkItemFooterList} href={url}>
+											{name}
+										</a>
+									</li>
+								))}
+							</ul>
+						</Box>
 					</Box>
 				</Box>
-			</Box>
-		</Container>
+			</Container>
+		</Box>
 	);
 }
