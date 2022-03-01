@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getAuthorizationHeader = () => {
     const token = localStorage.getItem('token');
-    const auth = 'Portador:  ' + token;
+    const auth = 'Bearer:  ' + token;
   
     return token !== null ? auth : null;
   };
@@ -14,12 +14,7 @@ const config = {
     }
 }
 
-const config = {
-    headers: {
-      Group: 145, 
-      Authorization: getAuthorizationHeader(),
-    },
-  };
+
 
 const Get = () => {
     axios.get('https://jsonplaceholder.typicode.com/users', config)
