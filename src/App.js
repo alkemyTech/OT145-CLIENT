@@ -17,6 +17,7 @@ const MembersForm = lazy(() => import('./Components/Members/MembersForm'));
 const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'));
 const Actividades = lazy (() => import('../src/Components/Activities/Actividades'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
+const DetalleActividad= lazy(() => import('./Components/Activities/Detail/DetalleActividad'))
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/school-campaign" component={SchoolCampaign} />
             <Route path="/toys-campaign" component={ToysCampaign} />
-            <Route path="/Actividades" component={Actividades} />
+            <Route path="/Actividades" exact component={Actividades} />
+            <Route path="/Actividades/:id" component={DetalleActividad} />
             <Route path="/backoffice" component={BackOficce} />
           </Switch>
         </Suspense>
