@@ -1,32 +1,45 @@
-# Ong Client
+### Documentation ###
+#### Skeleton ####
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Para agregar un esqueleto a los elementos, solo basta con utilizar el componente Skeleton.js, ubicado en la carpeta de componentes del proyecto.
 
-## Available Scripts
+Un ejemplo de uso es el siguiente:
+~~~
+<SkeletonLayout>
+    {contenido-para-agregar}
+<SkeletonLayout/>
+~~~
 
-In the project directory, you can run:
+##### props #####
+| Nombre    | Tipo   | Valor por defecto | Opciones    | Obligatorio* |
+|-----------|--------|-------------------|-------------|--------------|
+| children  | node   |                   |             | true         |
+| animation | string | pulse             | wave, false | false        |
+|           |        |                   |             |              |
+# Implementacion Spinner
+**Instalacion:**
 
-### `yarn start`
+Instalar el paquete react-loader-spinner:
+Ejecutar en la terminal el comando **npm install react-loader-spinner --save**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Implementacion:**
+- Importar el componente **Spinner** dentro de su componente.
+- El mismo debera contener 3 parametros por defecto en sus props
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Color: Ej. color="#F00F00"
+2. Height: Ej. height={80}
+3. Width: Ej. width={80}
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.com/package/react-loader-spinner "aqui")
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Implementacion Progress:**
+- Importar el componente **Progress** dentro de su componente.
+- El mismo puede contener 3/4 parametros por defecto en sus props
 
+<<<<<<< HEAD
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 # Implementacion Spinner
@@ -46,3 +59,12 @@ Ejecutar en la terminal el comando **npm install react-loader-spinner --save**
 
 
 para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.com/package/react-loader-spinner "aqui")
+=======
+1. Color: Ej. color="primary"
+2. Size: Ej. size=40
+3. Variant: Ej. variant="indeterminate" **Si no hay valor de progreso** 
+4. Valor: Ej. value={25} variant="determinate" 
+
+
+para mas informacion puede acceder a su documentacion (https://mui.com/api/circular-progress)
+>>>>>>> 1ceb45b80122940637331845cbbbc50cd60181d5
