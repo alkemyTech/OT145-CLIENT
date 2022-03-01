@@ -1,30 +1,28 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import ActivitiesForm from './Components/Activities/ActivitiesForm'
-import CategoriesForm from './Components/Categories/CategoriesForm'
-import NewsForm from './Components/News/NewsForm'
-import SlidesForm from './Components/Slides/SlidesForm'
-import TestimonialForm from './Components/Testimonials/TestimonialsForm'
-import UserForm from './Components/Users/UsersForm'
-import SchoolCampaign from './Campaigns/School/SchoolCampaign'
-import ToysCampaign from './Campaigns/Toys/ToysCampaign'
-import MembersForm from './Components/Members/MembersForm'
-import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
-const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'));
-const CategoriesForm = lazy(() => import('./Components/Categories/CategoriesForm'));
-const NewsForm = lazy(() => import('./Components/News/NewsForm'));
-const SlidesForm = lazy(() => import('./Components/Slides/SlidesForm'));
-const TestimonialForm = lazy(() => import('./Components/Testimonials/TestimonialsForm'));
-const UserForm = lazy(() => import('./Components/Users/UsersForm'));
-const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'));
-const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'));
-const MembersForm = lazy(() => import('./Components/Members/MembersForm'));
-const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'));
-const News = lazy(() => import('./Components/News/News'));
-const NewsDetail =  lazy(() => import('./Components/News/Detail/NewsDetail'));
+const ActivitiesForm = lazy(() =>
+  import('./Components/Activities/ActivitiesForm'),
+)
+const CategoriesForm = lazy(() =>
+  import('./Components/Categories/CategoriesForm'),
+)
+const NewsForm = lazy(() => import('./Components/News/NewsForm'))
+const SlidesForm = lazy(() => import('./Components/Slides/SlidesForm'))
+const TestimonialForm = lazy(() =>
+  import('./Components/Testimonials/TestimonialsForm'),
+)
+const UserForm = lazy(() => import('./Components/Users/UsersForm'))
+const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
+const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
+const MembersForm = lazy(() => import('./Components/Members/MembersForm'))
+const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'))
+const Actividades = lazy(() =>
+  import('../src/Components/Activities/Actividades'),
+)
+const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 
 function App() {
   return (
@@ -43,8 +41,8 @@ function App() {
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/school-campaign" component={SchoolCampaign} />
             <Route path="/toys-campaign" component={ToysCampaign} />
-            <Route exact path="/news" component={News}  />
-            <Route path="/news/:id" component={NewsDetail} />
+            <Route path="/Actividades" component={Actividades} />
+            <Route path="/backoffice" component={BackOficce} />
           </Switch>
         </Suspense>
       </BrowserRouter>
