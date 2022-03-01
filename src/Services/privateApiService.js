@@ -21,12 +21,6 @@ const config = {
     },
   };
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
-
 export const privatePUT = async (path, id, body) => {
     try {
       const response = await axios.put(`${path}/${id}`, body, config);
@@ -37,4 +31,17 @@ export const privatePUT = async (path, id, body) => {
     }
   };
 
-export default Get
+const privateGet = async (path, id) => {
+  try{
+    if(id != null){
+      const response = await axios.get(`${path}/${id}`, config);
+      return response.data;
+    }else{
+      const response = await axios.get(`${path}`, config);
+      return response.data;
+    }
+  } catch (error){
+    console.error(error);
+  }
+};
+export default privateGet;
