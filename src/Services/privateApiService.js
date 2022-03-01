@@ -44,4 +44,19 @@ const privateGet = async (path, id) => {
     console.error(error);
   }
 };
+
+
+export const privateDelete = async (path, id) => {
+  try{
+
+    const response = await axios.delete(`${path}/${id}`, config);
+    return response.data;
+
+  }catch(error){
+
+    throw new Error(error);
+    
+  }
+}
+
 export default privateGet;
