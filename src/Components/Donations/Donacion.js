@@ -8,9 +8,9 @@ const Donacion = ({texto}) => {
 
     return(
         <Box className={classes.container}>
-            <Typography variant='h4' mb={5}>Texto de prueba</Typography>
+            <Typography variant='h4'>Texto de prueba</Typography>
             <Button variant="contained" href="#" color='mercadopago'>
-                Donar con mercadopago
+                Contribuir
             </Button>
         </Box>
     );

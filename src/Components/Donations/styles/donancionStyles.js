@@ -6,8 +6,7 @@ const useStyles = makeStyles(() => ({
         width: '100%',
         height: '100vh',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     }
 }))
