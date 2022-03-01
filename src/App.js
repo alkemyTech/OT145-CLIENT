@@ -3,19 +3,25 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
-
-
-const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'));
-const CategoriesForm = lazy(() => import('./Components/Categories/CategoriesForm'));
-const NewsForm = lazy(() => import('./Components/News/NewsForm'));
-const SlidesForm = lazy(() => import('./Components/Slides/SlidesForm'));
-const TestimonialForm = lazy(() => import('./Components/Testimonials/TestimonialsForm'));
-const UserForm = lazy(() => import('./Components/Users/UsersForm'));
-const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'));
-const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'));
-const MembersForm = lazy(() => import('./Components/Members/MembersForm'));
-const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'));
-const Actividades = lazy (() => import('../src/Components/Activities/Actividades'))
+const ActivitiesForm = lazy(() =>
+  import('./Components/Activities/ActivitiesForm'),
+)
+const CategoriesForm = lazy(() =>
+  import('./Components/Categories/CategoriesForm'),
+)
+const NewsForm = lazy(() => import('./Components/News/NewsForm'))
+const SlidesForm = lazy(() => import('./Components/Slides/SlidesForm'))
+const TestimonialForm = lazy(() =>
+  import('./Components/Testimonials/TestimonialsForm'),
+)
+const UserForm = lazy(() => import('./Components/Users/UsersForm'))
+const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
+const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
+const MembersForm = lazy(() => import('./Components/Members/MembersForm'))
+const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'))
+const Actividades = lazy(() =>
+  import('../src/Components/Activities/Actividades'),
+)
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const DetalleActividad= lazy(() => import('./Components/Activities/Detail/DetalleActividad'))
 
