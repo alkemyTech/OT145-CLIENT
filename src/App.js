@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
+import Contacto from './Components/Contact/Contacto'
 
 const ActivitiesForm = lazy(() =>
   import('./Components/Activities/ActivitiesForm'),
@@ -43,6 +44,7 @@ function App() {
             <Route path="/toys-campaign" component={ToysCampaign} />
             <Route path="/Actividades" component={Actividades} />
             <Route path="/backoffice" component={BackOficce} />
+            <Route path="/contacto" component={Contacto} />
           </Switch>
         </Suspense>
       </BrowserRouter>
