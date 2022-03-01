@@ -1,20 +1,8 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react' 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material';
-import React, { Suspense, lazy } from 'react'
-import { theme } from './theme'
-import { ThemeProvider } from '@mui/material'
+
 
 const ActivitiesForm = lazy(() =>
   import('./Components/Activities/ActivitiesForm'),
@@ -36,6 +24,8 @@ const Actividades = lazy(() =>
   import('../src/Components/Activities/Actividades'),
 )
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
+const Donacion = lazy(() => import('./Components/Donations/Donacion'))
+const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 
 function App() {
   return (
@@ -56,6 +46,8 @@ function App() {
             <Route path="/toys-campaign" component={ToysCampaign} />
             <Route path="/Actividades" component={Actividades} />
             <Route path="/backoffice" component={BackOficce} />
+            <Route path="/donar" component={Donacion} />
+            <Route path="/gracias" component={Gracias} />
           </Switch>
         </Suspense>
       </BrowserRouter>
