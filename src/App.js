@@ -1,16 +1,5 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from './Components/Home';
-import ActivitiesForm from './Components/Activities/ActivitiesForm'
-import CategoriesForm from './Components/Categories/CategoriesForm'
-import NewsForm from './Components/News/NewsForm'
-import SlidesForm from './Components/Slides/SlidesForm'
-import TestimonialForm from './Components/Testimonials/TestimonialsForm'
-import UserForm from './Components/Users/UsersForm'
-import SchoolCampaign from './Campaigns/School/SchoolCampaign'
-import ToysCampaign from './Campaigns/Toys/ToysCampaign'
-import MembersForm from './Components/Members/MembersForm'
-import ProjectsForm from './Components/Projects/ProjectsForm'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
@@ -36,7 +25,7 @@ const Actividades = lazy(() =>
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const News = lazy(() => import('./Components/News/News'))
 const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
-
+const Home = lazy(() => import('./Components/Home/jindex') );
 
 
 function App() {
