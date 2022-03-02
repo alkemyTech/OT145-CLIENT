@@ -25,6 +25,8 @@ const Actividades = lazy(() =>
   import('../src/Components/Activities/Actividades'),
 )
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
+const Donacion = lazy(() => import('./Components/Donations/Donacion'))
+const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const News = lazy(() => import('./Components/News/News'))
 const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
 const Nosotros = lazy(() => import('./Components/About/Nosotros'))
