@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const getAuthorizationHeader = () => {
   const token = localStorage.getItem('token')
-  const auth = 'Portador:  ' + token
+  const auth = 'Bearer:  ' + token
 
   return token !== null ? auth : null
 }

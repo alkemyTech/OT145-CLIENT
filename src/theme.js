@@ -68,4 +68,7 @@ export const theme = createTheme({
       fontFamily: Nunito,
     },
   },
+  zIndex:{
+    appBar: 1250
+  }
 })
