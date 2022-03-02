@@ -24,6 +24,7 @@ const Actividades = lazy(() =>
 )
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
