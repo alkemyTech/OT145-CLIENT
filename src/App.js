@@ -1,19 +1,5 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-<<<<<<< HEAD
-import Home from './Components/Home';
-import ActivitiesForm from './Components/Activities/ActivitiesForm'
-import CategoriesForm from './Components/Categories/CategoriesForm'
-import NewsForm from './Components/News/NewsForm'
-import SlidesForm from './Components/Slides/SlidesForm'
-import TestimonialForm from './Components/Testimonials/TestimonialsForm'
-import UserForm from './Components/Users/UsersForm'
-import SchoolCampaign from './Campaigns/School/SchoolCampaign'
-import ToysCampaign from './Campaigns/Toys/ToysCampaign'
-import MembersForm from './Components/Members/MembersForm'
-import ProjectsForm from './Components/Projects/ProjectsForm'
-=======
->>>>>>> 1ceb45b80122940637331845cbbbc50cd60181d5
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 
