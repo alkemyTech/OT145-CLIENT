@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { theme } from './theme';
 import { ThemeProvider } from '@mui/material';
 
-
 const ActivitiesForm = lazy(() =>
   import('./Components/Activities/ActivitiesForm'),
 )
@@ -26,6 +25,10 @@ const Actividades = lazy(() =>
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const Donacion = lazy(() => import('./Components/Donations/Donacion'))
 const Gracias = lazy(() => import('./Components/Donations/Gracias'))
+const News = lazy(() => import('./Components/News/News'))
+const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
+const Home = lazy(() => import('./Components/Home/index'))
+
 
 function App() {
   return (
@@ -33,7 +36,7 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+            <Route path="/" exact component={Home} />
             <Route path="/create-activity" component={ActivitiesForm} />
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
@@ -48,6 +51,8 @@ function App() {
             <Route path="/backoffice" component={BackOficce} />
             <Route path="/donar" component={Donacion} />
             <Route path="/gracias" component={Gracias} />
+            <Route path="/news/:id" component={NewsDetail} />
+            <Route exact path="/news" component={News} />
           </Switch>
         </Suspense>
       </BrowserRouter>
