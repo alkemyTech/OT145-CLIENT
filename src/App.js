@@ -37,6 +37,9 @@ const Actividades = lazy(() =>
   import('../src/Components/Activities/Actividades'),
 )
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
+const News = lazy(() => import('./Components/News/News'))
+const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
+
 
 
 function App() {
@@ -73,6 +76,8 @@ function App() {
             <Route path="/toys-campaign" component={ToysCampaign} />
             <Route path="/Actividades" component={Actividades} />
             <Route path="/backoffice" component={BackOficce} />
+            <Route path="/news/:id" component={NewsDetail} />
+            <Route exact path="/news" component={News} />
           </Switch>
         </Suspense>
 >>>>>>> 1ceb45b80122940637331845cbbbc50cd60181d5
