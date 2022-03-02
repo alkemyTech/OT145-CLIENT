@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useStyles } from './StylesCard';
 
 
-const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink,textFirstLink,textSecondLink, leerMasLink}) => {
+const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink,textFirstLink,textSecondLink}) => {
   const classes = useStyles();
 
   return (
@@ -38,13 +38,7 @@ const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink
           <div className={classes.paddingBetweenLink}>
             <a href={secondLink}  className={classes.styleLink}>{textSecondLink}</a>
           </div>
-        </div>     
-        { leerMasLink &&
-          <div onClick={leerMasLink} className={classes.leerMas}>
-            <Typography variant="subtitle2" color="secondary">
-              Leer más
-            </Typography>
-        </div>}
+        </div>
       </CardActions>
     </Card>
   );

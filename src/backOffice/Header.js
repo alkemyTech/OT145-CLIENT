@@ -11,24 +11,25 @@ const Header = ({open, setOpen}) => {
     const classes = useStyles();
 
     return(
-        <AppBar color='inherit'>
-            <Toolbar>
-                {
-                    open ?
-                    <FontAwesomeIcon 
+        <>
+            <AppBar color='inherit' position='fixed' className={classes.appBar} >
+                <Toolbar>
+                    { open ? 
+                        <FontAwesomeIcon 
                         icon={faXmark} 
                         className={classes.icon} 
                         onClick={() => setOpen(!open)}
-                    />
-                    :
-                    <FontAwesomeIcon 
+                        />
+                        :
+                        <FontAwesomeIcon 
                         icon={faBars} 
-                        className={classes.icon}
+                        className={classes.icon} 
                         onClick={() => setOpen(!open)}
-                    />
-                }
-            </Toolbar>
-        </AppBar>
+                        />
+                    }
+                </Toolbar>
+            </AppBar>
+        </>
     )
 };
 
