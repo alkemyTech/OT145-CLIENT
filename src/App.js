@@ -1,7 +1,7 @@
-import React, { Suspense, lazy } from 'react' 
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import { theme } from './theme';
-import { ThemeProvider } from '@mui/material';
+import React, { Suspense, lazy } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { theme } from './theme'
+import { ThemeProvider } from '@mui/material'
 
 const ActivitiesForm = lazy(() =>
   import('./Components/Activities/ActivitiesForm'),
