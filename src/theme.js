@@ -26,6 +26,10 @@ export const theme = createTheme({
       main: '#EC4C4C',
       contrastText: '#FFFFFF',
     },
+    mercadopago: {
+      main: '#009ee3',
+      contrastText: '#FFFFFF'
+    }
   },
   typography: {
     h1: {
