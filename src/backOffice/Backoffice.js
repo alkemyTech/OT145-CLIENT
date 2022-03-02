@@ -1,6 +1,6 @@
 import {Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import Sidebar from './SideBar'
 
 function BackOficce() {
     let match = useRouteMatch();

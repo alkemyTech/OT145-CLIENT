@@ -39,7 +39,6 @@ para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.c
 - Importar el componente **Progress** dentro de su componente.
 - El mismo puede contener 3/4 parametros por defecto en sus props
 
-<<<<<<< HEAD
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 # Implementacion Spinner
@@ -59,7 +58,6 @@ Ejecutar en la terminal el comando **npm install react-loader-spinner --save**
 
 
 para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.com/package/react-loader-spinner "aqui")
-=======
 1. Color: Ej. color="primary"
 2. Size: Ej. size=40
 3. Variant: Ej. variant="indeterminate" **Si no hay valor de progreso** 
@@ -67,4 +65,3 @@ para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.c
 
 
 para mas informacion puede acceder a su documentacion (https://mui.com/api/circular-progress)
->>>>>>> 1ceb45b80122940637331845cbbbc50cd60181d5
