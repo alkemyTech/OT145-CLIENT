@@ -4,7 +4,6 @@ import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 import { AnimatedSwitch } from 'react-router-transition'
 
-
 const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'))
 const CategoriesForm = lazy(() => import('./Components/Categories/CategoriesForm'))
 const NewsForm = lazy(() => import('./Components/News/NewsForm'))
@@ -18,6 +17,9 @@ const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'))
 const Actividades = lazy(() => import('../src/Components/Activities/Actividades'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const DetalleActividad = lazy(() => import('./Components/Activities/Detail/DetalleActividad'))
+const News = lazy(() => import('./Components/News/News'))
+const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
+
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
             <Route path="/Actividades" exact component={Actividades} />
             <Route path="/Actividades/:id" component={DetalleActividad} />
             <Route path="/backoffice" component={BackOficce} />
+            <Route exact path="/news" component={News} />
+            <Route path="/news/:id" component={NewsDetail} />
           </AnimatedSwitch>
         </Suspense>
       </BrowserRouter>
