@@ -25,7 +25,7 @@ const Actividades = lazy(() =>
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const News = lazy(() => import('./Components/News/News'))
 const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
-const Home = lazy(() => import('./Components/Home/jindex') );
+const Home = lazy(() => import('./Components/Home/index') );
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+            <Route path="/" exact component={Home} />
             <Route path="/create-activity" component={ActivitiesForm} />
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
