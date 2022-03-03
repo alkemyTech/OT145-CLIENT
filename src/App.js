@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Home from './Components/Home/Index'
 import LayoutHome from './Components/Home/LayoutHome'
 
 const ActivitiesForm = lazy(() =>
