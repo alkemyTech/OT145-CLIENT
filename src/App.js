@@ -17,8 +17,13 @@ const ProjectsForm = lazy(() => import('./Components/Projects/ProjectsForm'))
 const Actividades = lazy(() => import('../src/Components/Activities/Actividades'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const DetalleActividad = lazy(() => import('./Components/Activities/Detail/DetalleActividad'))
+const Donacion = lazy(() => import('./Components/Donations/Donacion'))
+const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const News = lazy(() => import('./Components/News/News'))
 const NewsDetail = lazy(() => import('./Components/News/Detail/NewsDetail'))
+const Nosotros = lazy(() => import('./Components/About/Nosotros'))
+const Contacto = lazy(() => import('./Components/Contact/Contacto'))
+const Home = lazy(() => import('./Components/Home/Index'))
 
 
 
@@ -28,27 +33,31 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <AnimatedSwitch
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
+            atEnter={0}
+            atLeave={0}
+            atActive={1}
             className="fadeIn"
           >
-            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-            <Route path="/create-activity" component={ActivitiesForm} />
-            <Route path="/create-category" component={CategoriesForm} />
-            <Route path="/create-news" component={NewsForm} />
-            <Route path="/backoffice/create-slide" component={SlidesForm} />
-            <Route path="/create-testimonials" component={TestimonialForm} />
-            <Route path="/create-user" component={UserForm} />
-            <Route path="/create-member" component={MembersForm} />
-            <Route path="/create-project" component={ProjectsForm} />
-            <Route path="/school-campaign" component={SchoolCampaign} />
-            <Route path="/toys-campaign" component={ToysCampaign} />
-            <Route path="/Actividades" exact component={Actividades} />
-            <Route path="/Actividades/:id" component={DetalleActividad} />
-            <Route path="/backoffice" component={BackOficce} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/create-activity" component={ActivitiesForm} />
+            <Route exact path="/create-category" component={CategoriesForm} />
+            <Route exact path="/create-news" component={NewsForm} />
+            <Route exact path="/backoffice/create-slide" component={SlidesForm} />
+            <Route exact path="/create-testimonials" component={TestimonialForm} />
+            <Route exact path="/create-user" component={UserForm} />
+            <Route exact path="/create-member" component={MembersForm} />
+            <Route exact path="/create-project" component={ProjectsForm} />
+            <Route exact path="/school-campaign" component={SchoolCampaign} />
+            <Route exact path="/toys-campaign" component={ToysCampaign} />
+            <Route exact path="/Actividades" component={Actividades} />
+            <Route  path="/Actividades/:id" component={DetalleActividad} />
+            <Route exact path="/backoffice" component={BackOficce} />
+            <Route  path="/news/:id" component={NewsDetail} />
             <Route exact path="/news" component={News} />
-            <Route path="/news/:id" component={NewsDetail} />
+            <Route exact path="/nosotros" component={Nosotros} />
+            <Route exact path="/contacto" component={Contacto} />
+            <Route exact path="/donar" component={Donacion} />
+            <Route exact path="/gracias" component={Gracias} />
           </AnimatedSwitch>
         </Suspense>
       </BrowserRouter>
