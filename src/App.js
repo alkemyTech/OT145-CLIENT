@@ -2,8 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Home from './Components/Home/Index'
-import LayoutHome from './Components/Home/LayoutHome'
+import LayoutHome from './Components/Home/LayoutHome';
 
 const ActivitiesForm = lazy(() =>
   import('./Components/Activities/ActivitiesForm'),
@@ -34,11 +33,12 @@ const Contacto = lazy(() => import('./Components/Contact/Contacto'))
 const Home = lazy(() => import('./Components/Home/Index'))
 
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <LayoutHome>
+        {/* <LayoutHome> */}
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -61,7 +61,7 @@ function App() {
             
           </Switch>
         </Suspense>
-        </LayoutHome> 
+        {/* </LayoutHome>  */}
       </BrowserRouter>
     </ThemeProvider>
   )
