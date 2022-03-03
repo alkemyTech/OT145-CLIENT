@@ -46,6 +46,7 @@ para mas informacion puede acceder a su documentacion [aqui](https://www.npmjs.c
 
 
 para mas informacion puede acceder a su documentacion (https://mui.com/api/circular-progress)
+<<<<<<< HEAD
 
 
 #### Sweet Alert ####
@@ -73,3 +74,5 @@ Para usar las alertas se debe utilizar de la siguiente manera
         Para mas informacion visitar https://sweetalert2.github.io/#examples
 
 
+=======
+>>>>>>> c28469c9aeaa57a6e9b488006e8a85a202bc13a8
