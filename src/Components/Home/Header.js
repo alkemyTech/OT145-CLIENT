@@ -105,7 +105,7 @@ const Header = () => {
 
             <Box className={classes.styledBoxMd}>
               <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm}/>
-              <NavLink to='/home' className={classes.links} activeClassName={classes.active}>
+              <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks} >
                   Inicio
                 </Typography>
