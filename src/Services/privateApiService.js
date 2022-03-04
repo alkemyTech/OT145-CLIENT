@@ -17,7 +17,6 @@ const config = {
 export const privatePUT = async (path, id, body) => {
   try {
     const response = await axios.put(`${path}/${id}`, body, config)
-export default Get
     return response.data
   } catch (error) {
     console.error(error)
@@ -34,7 +33,7 @@ export const privatePATCH = async (path, id, body) => {
   }
 }
 
-const privateGet = async (path, id) => {
+const privateGET = async (path, id) => {
   try {
     if (id != null) {
       const response = await axios.get(`${path}/${id}`, config)
@@ -59,4 +58,4 @@ export const privatePOST = async (path, body) => {
   }
 }
 
-export default privateGet
+export { privateGET, privatePATCH, privatePOST, privatePUT }
