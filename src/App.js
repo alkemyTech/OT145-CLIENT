@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 import { AnimatedSwitch } from 'react-router-transition'
+import LayoutHome from './Components/Home/LayoutHome';
 
 const ActivitiesForm = lazy(() => import('./Components/Activities/ActivitiesForm'))
 const CategoriesForm = lazy(() => import('./Components/Categories/CategoriesForm'))
@@ -31,6 +32,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <LayoutHome>
         <Suspense fallback={<div>Loading...</div>}>
           <AnimatedSwitch
             atEnter={0}
@@ -60,6 +62,7 @@ function App() {
             <Route exact path="/gracias" component={Gracias} />
           </AnimatedSwitch>
         </Suspense>
+        </LayoutHome> 
       </BrowserRouter>
     </ThemeProvider>
   )

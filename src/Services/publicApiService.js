@@ -18,4 +18,16 @@ const getServicePublic = async (URL, Id) => {
         console.error(error);
     }
 }
+
+export const privatePOST = async (path, body) => {
+    try {
+      const response = await axios.post(path, body)
+      return response
+      
+    } catch (error) {
+      console.error('Hubo un error al hacer la petición');
+      console.log(error);
+    }
+  }
+  
 export default getServicePublic;
