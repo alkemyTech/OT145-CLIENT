@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useStyles } from "./Styles/countDown";
-import {Box,  Typography} from "@mui/material";
+import { Typography} from "@mui/material";
 
 const CountDown = () => {
   const dateTarget = new Date("08/14/2022 4:00 PM");

@@ -5,7 +5,7 @@ import { Container, Grid } from "@mui/material";
 import NewsText from "./NewsText";
 import CardComponent from "../Card/CardComponent";
 import { useHistory } from "react-router-dom";
-import Typography from '@mui/material/Typography';
+
 
 const NewsMockUseEffect = [
   {
