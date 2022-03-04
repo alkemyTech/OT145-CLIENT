@@ -70,4 +70,4 @@ export const privateDelete = async (path, id) => {
 }
 
 
-export default privateGet
+export default privateGET
