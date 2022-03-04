@@ -2,10 +2,10 @@ import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import useStyles from "./Styles";
+import Logo from "../../image/logoSomosMas.png"
 
-export default function Title({ imgSrc = 'images/logoSomosMas.png', title }) {
-
-	let isLogo = (imgSrc !== 'images/logoSomosMas.png') ? false : true
+export default function Title({ imgSrc = Logo, title }) {
+	let isLogo = (imgSrc !== Logo) ? false : true
 
 	const classes = useStyles({isLogo: isLogo});
 

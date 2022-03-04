@@ -1,13 +1,13 @@
 import {Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
-import Sidebar from './SideBar'
+import SideBar from './SideBar'
 
 function BackOficce() {
     let match = useRouteMatch();
     return (
         <>
             <Header />
-            <Sidebar />
+            <SideBar />
             <Switch>
                 <Route path={`${match.path}`} exact component="" />
             </Switch>
