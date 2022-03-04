@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeTitle from './HomeTitle';
-import LayoutHome from './LayoutHome';
+
 
 const Home = () => {
     return(

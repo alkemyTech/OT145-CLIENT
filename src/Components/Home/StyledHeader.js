@@ -2,16 +2,9 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(theme => ({  
     links: {
-        paddingRight: 10,
-        paddingLeft:10,
+        padding:'0 10px',
         color:"inherit",
         textDecoration: 'none',
-        [theme.breakpoints.down('lg')]: {
-            paddingTop:'1%',
-        },
-        [theme.breakpoints.up('lg')]: {
-            paddingTop:'2%',
-        },
     },
     active: {
         color: '#545e6f'
@@ -38,8 +31,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('sm')]: {
             maxWidth: '5%',
-            paddingLeft:20,
-            paddingRight:10
+
         },
     },
     styledBoxSm: {
@@ -55,10 +47,12 @@ const useStyles = makeStyles(theme => ({
     styledBoxMd:{
         flexGrow: 1, 
         [theme.breakpoints.down('sm')]: {
-            display:'none', 
+            display:'none',
+
         },
         [theme.breakpoints.up('sm')]: {
-            display:'flex', 
+            display:'flex',
+            alignItems:'center'  
         },
     }
 
