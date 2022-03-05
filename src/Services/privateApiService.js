@@ -17,7 +17,6 @@ const config = {
 export const privatePUT = async (path, id, body) => {
   try {
     const response = await axios.put(`${path}/${id}`, body, config)
-
     return response.data
   } catch (error) {
     console.error(error)
@@ -34,7 +33,7 @@ export const privatePATCH = async (path, id, body) => {
   }
 }
 
-const privateGet = async (path, id) => {
+const privateGET = async (path, id) => {
   try {
     if (id != null) {
       const response = await axios.get(`${path}/${id}`, config)
@@ -45,6 +44,17 @@ const privateGet = async (path, id) => {
     }
   } catch (error) {
     console.error(error)
+  }
+}
+
+export const privatePOST = async (path, body) => {
+  try {
+    const response = await axios.post(path, body, config)
+    return response
+    
+  } catch (error) {
+    console.error('Hubo un error al hacer la petición');
+    console.log(error);
   }
 }
 
@@ -60,4 +70,4 @@ export const privateDelete = async (path, id) => {
 }
 
 
-export default privateGet
+export default privateGET

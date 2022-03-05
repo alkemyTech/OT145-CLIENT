@@ -1,13 +1,15 @@
 import React from 'react';
 import '../CardListStyles.css';
+import { Link } from 'react-router-dom';
+
 
 const ActivitiesList = () => {
+
     const activitiesMock = [
         {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
         {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
         {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
     ];
-
     return (
         <div>
             <h1>Listado Actividades</h1>
@@ -18,9 +20,13 @@ const ActivitiesList = () => {
                             <li className="card-info" key={activity.id}>
                                 <h3>{activity.name}</h3>
                                 <p>{activity.description}</p>
+                                <Link to={`/Actividades/${activity.id}`}>ir a la actividad</Link>
                             </li>
+                            
                         )
+                        
                     })
+                    
                 :
                     <p>No hay actividades</p>
                 }
