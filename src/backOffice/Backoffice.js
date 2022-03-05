@@ -24,7 +24,7 @@ function BackOficce() {
     return (
         <>
             <Header />
-            <SideBar />
+            <Sidebar />
             <Switch>
                 {/* <Route exact path={`${match.path}`} component={Index} /> */}
                 <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
