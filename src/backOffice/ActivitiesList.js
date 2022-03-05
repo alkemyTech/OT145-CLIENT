@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import useStyles from './styles/stylesActivitiesList';
+import useStyles from './styles/styledList';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
