@@ -1,23 +1,28 @@
 import { makeStyles } from "@mui/styles";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     containerList:{
         minWidth:400,
-        maxWidth:800,
+        maxWidth:1200,
         margin: "auto",
-        padding:"10px 20px"
+        padding:"10px 10px"
     },
     styleLink: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        color: theme.palette.primary.main,
+        cursor: "pointer",
+
     },
     contLink: {
         minWidth:400,
         maxWidth:1200,
         margin: "auto",
-        padding:"10px 560px"
+        padding:"10px"
     },
     img: {
+        minWidth: 100,
+        maxWidth: 400,
         objectFit: "contain",
     },
 }));

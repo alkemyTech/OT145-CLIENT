@@ -90,14 +90,14 @@ export default function ActivitiesList() {
                         <StyledTableCell>{row.name}</StyledTableCell>
                         <StyledTableCell><img alt="" height="150px" width="150px" className={classes.img} src={row.image} /></StyledTableCell>
                         <StyledTableCell>{row.createdAt}</StyledTableCell>
-                        <StyledTableCell><EditIcon/></StyledTableCell>
-                        <StyledTableCell><DeleteIcon/></StyledTableCell>
+                        <StyledTableCell><EditIcon color="secondary"/></StyledTableCell>
+                        <StyledTableCell><DeleteIcon color="secondary"/></StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
-    </div>
+      </div>
     </>
   );
 }
