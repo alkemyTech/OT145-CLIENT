@@ -4,7 +4,6 @@ import Header from './Header'
 import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 
-
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
 )
@@ -29,11 +28,11 @@ function BackOficce() {
       <SideBar />
       <Switch>
         <Route path={`${match.path}/news`} exact component={NewsList} />
-        <Route path={`${match.path}/news/create`} exact component="" />
+        <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         {/* <Route exact path={`${match.path}`} component={Index} /> */}
         <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
-        <Route exact path={`${match.path}/create-news`} component={NewsForm} />
+
         <Route exact path={`${match.path}/create-slide`} component={SlidesForm} />
         <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/create-user`} component={UserForm} />
