@@ -33,36 +33,36 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <LayoutHome>
-        <Suspense fallback={<div>Loading...</div>}>
-          <AnimatedSwitch
-            atEnter={0}
-            atLeave={0}
-            atActive={1}
-            className="fadeIn"
-          >
-            <Route exact path="/" component={Home} />
-            <Route exact path="/create-activity" component={ActivitiesForm} />
-            <Route exact path="/create-category" component={CategoriesForm} />
-            <Route exact path="/create-news" component={NewsForm} />
-            <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-            <Route exact path="/create-testimonials" component={TestimonialForm} />
-            <Route exact path="/create-user" component={UserForm} />
-            <Route exact path="/create-member" component={MembersForm} />
-            <Route exact path="/create-project" component={ProjectsForm} />
-            <Route exact path="/school-campaign" component={SchoolCampaign} />
-            <Route exact path="/toys-campaign" component={ToysCampaign} />
-            <Route exact path="/Actividades" component={Actividades} />
-            <Route  path="/Actividades/:id" component={DetalleActividad} />
-            <Route exact path="/backoffice" component={BackOficce} />
-            <Route  path="/news/:id" component={NewsDetail} />
-            <Route exact path="/news" component={News} />
-            <Route exact path="/nosotros" component={Nosotros} />
-            <Route exact path="/contacto" component={Contacto} />
-            <Route exact path="/donar" component={Donacion} />
-            <Route exact path="/gracias" component={Gracias} />
-          </AnimatedSwitch>
-        </Suspense>
-        </LayoutHome> 
+          <Suspense fallback={<div>Loading...</div>}>
+            <AnimatedSwitch
+              atEnter={0}
+              atLeave={0}
+              atActive={1}
+              className="fadeIn"
+            >
+              <Route exact path="/" component={Home} />
+              <Route exact path="/create-activity" component={ActivitiesForm} />
+              <Route exact path="/create-category" component={CategoriesForm} />
+              <Route exact path="/create-news" component={NewsForm} />
+              <Route exact path="/backoffice/create-slide" component={SlidesForm} />
+              <Route exact path="/create-testimonials" component={TestimonialForm} />
+              <Route exact path="/create-user" component={UserForm} />
+              <Route exact path="/create-member" component={MembersForm} />
+              <Route exact path="/create-project" component={ProjectsForm} />
+              <Route exact path="/school-campaign" component={SchoolCampaign} />
+              <Route exact path="/toys-campaign" component={ToysCampaign} />
+              <Route exact path="/Actividades" component={Actividades} />
+              <Route path="/Actividades/:id" component={DetalleActividad} />
+              <Route path="/backoffice" component={BackOficce} />
+              <Route path="/news/:id" component={NewsDetail} />
+              <Route exact path="/news" component={News} />
+              <Route exact path="/nosotros" component={Nosotros} />
+              <Route exact path="/contacto" component={Contacto} />
+              <Route exact path="/donar" component={Donacion} />
+              <Route exact path="/gracias" component={Gracias} />
+            </AnimatedSwitch>
+          </Suspense>
+        </LayoutHome>
       </BrowserRouter>
     </ThemeProvider>
   )
