@@ -1,32 +1,27 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-    container:{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+    title:{
+        textAlign: 'center',
+        paddingTop: '20px'
     },
-    paperContainer:{
-        marginTop: 30,
-        minWidth: 200,
-        maxWidth: 500,
-        padding: 20,
-        margin: '0px 15px 0px 15px'
+    table:{
+        width: 10
     },
-    imgContainer:{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center'
+    tableCell:{
+        maxWidth: 20
     },
-    containerButton:{
-        marginTop: 30
+    tableContainer:{
+        minWidth: 400,
+        maxWidth: 1200,
+        margin: "40px auto 40px auto",
+        padding:"5px 5px",
     },
-    button:{
+    styleLink: {
         textDecoration: 'none',
-        color: theme.palette.primary.contrastText
+        color: theme.palette.mercadopago.main,
+        cursor: "pointer",
     }
 }));
-
 
 export default useStyles;
