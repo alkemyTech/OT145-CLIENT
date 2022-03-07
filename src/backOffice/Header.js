@@ -29,6 +29,7 @@ const Header = ({open, setOpen}) => {
                     }
                 </Toolbar>
             </AppBar>
+            <Toolbar></Toolbar>
         </>
     )
 };

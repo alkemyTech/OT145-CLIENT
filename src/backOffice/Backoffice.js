@@ -1,7 +1,8 @@
-import React, { lazy } from 'react'
+import React, { lazy, useState } from 'react'
 import {Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import ScreenDashboard from './ScreenDashboard'
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -21,12 +22,15 @@ const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
 
 function BackOficce() {
     let match = useRouteMatch();
+
+    const [ open, setOpen ] = useState(false);
+
     return (
         <>
-            <Header />
-            <Sidebar />
+            <Header open={open} setOpen={setOpen}/>
+            <Sidebar open={open}/>
             <Switch>
-                {/* <Route exact path={`${match.path}`} component={Index} /> */}
+                <Route exact path={`${match.path}`} component={ScreenDashboard} />
                 <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
                 <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
                 <Route exact path={`${match.path}/create-news`} component={NewsForm} />
