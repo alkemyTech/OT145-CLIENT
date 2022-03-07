@@ -2,7 +2,6 @@ import React, { lazy, useState } from 'react'
 import {Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import ScreenDashboard from './ScreenDashboard'
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -18,6 +17,7 @@ const TestimonialForm = lazy(() =>
 const UserForm = lazy(() => import('../Components/Users/UsersForm'))
 const MembersForm = lazy(() => import('../Components/Members/MembersForm'))
 const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
+const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
 // const Index = lazy(() => import('./Index'))
 
 function BackOficce() {
