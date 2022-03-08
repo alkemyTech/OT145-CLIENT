@@ -15,10 +15,8 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path="/backoffice" component={BackOficce} />
-
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
-
             <Route path="/" component={Routes} />
           </Switch>
         </Suspense>
