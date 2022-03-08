@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
+import Spinner from './Components/Spinner/Spinner'
 
 const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
@@ -12,7 +13,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div>
+              <Spinner />
+            </div>
+          }
+        >
           <Switch>
             <Route path="/backoffice" component={BackOficce} />
             <Route exact path="/school-campaign" component={SchoolCampaign} />
