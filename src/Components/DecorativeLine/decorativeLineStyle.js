@@ -22,6 +22,16 @@ const useStyles = makeStyles((theme) => ({
     height: '1em',
     backgroundColor: theme.palette.secondary.main,
   },
+  black: {
+    width: '25%',
+    height: '1em',
+    backgroundColor: '#888888',
+  },
+  grey: {
+    width: '25%',
+    height: '1em',
+    backgroundColor: '#BFBFB4',
+  },
 }))
 
 export default useStyles
