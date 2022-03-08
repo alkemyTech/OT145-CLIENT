@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ShowModal from '../../../Utils/AlertsProps'
+import Spinner from '../../Spinner/Spinner'
+import useStyles from '../Styles/StyledAct'
 import Actividad from './Actividad'
 import findId from './findId'
+
+
+
 const DetalleActividad = () => {
+    const classes = useStyles();
+    //constantes de prueba hasta tener los endpoints
+    const loading = true;
+    const error = false;
+
     const { id } = useParams()
     const [actividad, setActividad] = useState([])
     const activitiesMock = [
@@ -16,9 +27,18 @@ const DetalleActividad = () => {
     }, [id])
     return (
         <>
-            {actividad.length !== 0 && actividad.map(({ id, name, description }) => (
-                <Actividad key={id} titulo={name} descripcion={description} />
-            ))}
+            {loading?<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div> :(error? 
+                <ShowModal
+                icon= "error"
+                title= "Oooops..."
+                text= "Error al cargar"
+                footer= "Intente nuevamente"
+                /> :
+                <div>
+                    {actividad.length !== 0 && actividad.map(({ id, name, description }) => (
+                    <Actividad key={id} titulo={name} descripcion={description} />))}
+                </div>
+                )}
         </>
     )
 }
