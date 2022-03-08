@@ -2,7 +2,8 @@ import React, { lazy } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import SideBar from './Sidebar'
+import NewsList from './NewsList/NewsList';
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -21,45 +22,23 @@ const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
 // const Index = lazy(() => import('./Index'))
 
 function BackOficce() {
-  let match = useRouteMatch()
+  let match = useRouteMatch();
   return (
     <>
       <Header />
-      <Sidebar />
+      <SideBar />
       <Switch>
+        <Route path={`${match.path}/news`} exact component={NewsList} />
+        <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         {/* <Route exact path={`${match.path}`} component={Index} /> */}
-        <Route
-          exact
-          path={`${match.path}/create-activity`}
-          component={ActivitiesForm}
-        />
-        <Route
-          exact
-          path={`${match.path}/create-category`}
-          component={CategoriesForm}
-        />
-        <Route exact path={`${match.path}/create-news`} component={NewsForm} />
-        <Route
-          exact
-          path={`${match.path}/create-slide`}
-          component={SlidesForm}
-        />
-        <Route
-          exact
-          path={`${match.path}/create-testimonials`}
-          component={TestimonialForm}
-        />
+        <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
+        <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
+
+        <Route exact path={`${match.path}/create-slide`} component={SlidesForm} />
+        <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/create-user`} component={UserForm} />
-        <Route
-          exact
-          path={`${match.path}/create-member`}
-          component={MembersForm}
-        />
-        <Route
-          exact
-          path={`${match.path}/create-project`}
-          component={ProjectsForm}
-        />
+        <Route exact path={`${match.path}/create-member`} component={MembersForm} />
+        <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
         <Route
           exact
           path={`${match.path}/categories`}
