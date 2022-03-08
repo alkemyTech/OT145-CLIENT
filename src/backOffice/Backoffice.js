@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 
 const ActivitiesForm = lazy(() =>
@@ -19,6 +19,8 @@ const TestimonialForm = lazy(() =>
 const UserForm = lazy(() => import('../Components/Users/UsersForm'))
 const MembersForm = lazy(() => import('../Components/Members/MembersForm'))
 const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
+
+const Slides = lazy(() => import('../Components/Slides/SlidesBackOffice'))
 const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
 const OrganizationScreen = lazy(() => import('./OrganizationScreen'));
 const ActivitiesList = lazy(() => import('./ActivitiesList'))
@@ -41,11 +43,13 @@ function BackOficce() {
         <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
 
-        <Route exact path={`${match.path}/create-slide`} component={SlidesForm} />
+        <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
         <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/create-member`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
+
+        <Route exact path={`${match.path}/slides`} component={Slides} />
         <Route exact path={`${match.path}/organization`} component={OrganizationScreen} />
         <Route
           exact
