@@ -1,7 +1,8 @@
 import React, { lazy, useState } from 'react'
-import {Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import SideBar from './SideBar'
+import NewsList from './NewsList/NewsList';
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -21,27 +22,29 @@ const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
 // const Index = lazy(() => import('./Index'))
 
 function BackOficce() {
-    let match = useRouteMatch();
+  let match = useRouteMatch();
 
-    const [ open, setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
 
-    return (
-        <>
-            <Header open={open} setOpen={setOpen}/>
-            <Sidebar open={open}/>
-            <Switch>
-                <Route exact path={`${match.path}`} component={ScreenDashboard} />
-                <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
-                <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
-                <Route exact path={`${match.path}/create-news`} component={NewsForm} />
-                <Route exact path={`${match.path}/create-slide`} component={SlidesForm} />
-                <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
-                <Route exact path={`${match.path}/create-user`} component={UserForm} />
-                <Route exact path={`${match.path}/create-member`} component={MembersForm} />
-                <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
-            </Switch>
-        </>
-    )
+  return (
+    <>
+      <Header open={open} setOpen={setOpen}/>
+      <SideBar open={open}/>
+      <Switch>
+        <Route path={`${match.path}/news`} exact component={NewsList} />
+        <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
+        <Route exact path={`${match.path}`} component={ScreenDashboard} />
+        <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
+        <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
+
+        <Route exact path={`${match.path}/create-slide`} component={SlidesForm} />
+        <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
+        <Route exact path={`${match.path}/create-user`} component={UserForm} />
+        <Route exact path={`${match.path}/create-member`} component={MembersForm} />
+        <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
+      </Switch>
+    </>
+  )
 }
 export default BackOficce
 
