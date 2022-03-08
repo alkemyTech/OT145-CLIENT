@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.8rem !important',
     },
   },
-  cardList: (props) => ({
-    justifyContent: props.isLoadingCard ? 'space-around' : 'flex-start',
+  cardList:{
+    justifyContent: 'flex-start',
     columnGap: '60px',
-  }),
+  },
 
   iconButton: {
     cursor: 'pointer',
@@ -42,12 +42,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1',
     padding: '20px',
   },
-  newsSpinner: (props) => ({
-    display: props.isLoading ? 'flex' : 'block',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-  }),
+ 
 }))
 
 export default useStyles
