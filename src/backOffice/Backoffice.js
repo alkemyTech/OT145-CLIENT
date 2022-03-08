@@ -19,6 +19,8 @@ const TestimonialForm = lazy(() =>
 const UserForm = lazy(() => import('../Components/Users/UsersForm'))
 const MembersForm = lazy(() => import('../Components/Members/MembersForm'))
 const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
+const ActivitiesList = lazy(() => import('./ActivitiesList'))
+
 // const Index = lazy(() => import('./Index'))
 
 function BackOficce() {
@@ -44,6 +46,7 @@ function BackOficce() {
           path={`${match.path}/categories`}
           component={CategoriesList}
         />
+        <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
       </Switch>
     </>
   )
