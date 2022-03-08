@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
@@ -19,6 +19,7 @@ const TestimonialForm = lazy(() =>
 const UserForm = lazy(() => import('../Components/Users/UsersForm'))
 const MembersForm = lazy(() => import('../Components/Members/MembersForm'))
 const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
+const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
 const OrganizationScreen = lazy(() => import('./OrganizationScreen'));
 const ActivitiesList = lazy(() => import('./ActivitiesList'))
 
@@ -26,14 +27,17 @@ const ActivitiesList = lazy(() => import('./ActivitiesList'))
 
 function BackOficce() {
   let match = useRouteMatch();
+
+  const [open, setOpen] = useState(false);
+
   return (
     <>
-      <Header />
-      <SideBar />
+      <Header open={open} setOpen={setOpen}/>
+      <SideBar open={open}/>
       <Switch>
         <Route path={`${match.path}/news`} exact component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
-        {/* <Route exact path={`${match.path}`} component={Index} /> */}
+        <Route exact path={`${match.path}`} component={ScreenDashboard} />
         <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
 
