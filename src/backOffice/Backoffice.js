@@ -1,7 +1,7 @@
 import React, { lazy } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import Header from './Header'
-import SideBar from './SideBar'
+import SideBar from './Sidebar'
 import NewsList from './NewsList/NewsList';
 
 const ActivitiesForm = lazy(() =>
@@ -40,6 +40,7 @@ function BackOficce() {
         <Route exact path={`${match.path}/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/create-member`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
+        <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
       </Switch>
     </>
   )
