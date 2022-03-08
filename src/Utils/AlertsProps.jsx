@@ -3,12 +3,12 @@ import withReactContent from 'sweetalert2-react-content'
 
 export const Modal = withReactContent(Swal)
 
+
 const ShowModal = (props) => {
-  console.log(props)
   return Modal.fire({
     ...props,
     showCloseButton: true,
   })
 }
 
-export default ShowModal
+export default ShowModal;
