@@ -9,7 +9,7 @@ const Header = ({ open, setOpen }) => {
 
   return (
     <>
-      <AppBar color="inherit" position="static" className={classes.appBar}>
+      <AppBar color="inherit" position="fixed" className={classes.appBar}>
         <Toolbar>
           {open ? (
             <FontAwesomeIcon
@@ -26,6 +26,7 @@ const Header = ({ open, setOpen }) => {
           )}
         </Toolbar>
       </AppBar>
+      <Toolbar></Toolbar>
     </>
   )
 }
