@@ -22,8 +22,8 @@ import useStyles from "./styles/screenDashboardStyles";
 const ScreenDashboard = () => {
   const options = [
     { name: "Novedades", icon: faNewspaper, path: "/backoffice/news" },
-    { name: "Actividades", icon: faListCheck, path: "/backoffice/activity" },
-    { name: "Categorias", icon: faTableList, path: "/backoffice/category" },
+    { name: "Actividades", icon: faListCheck, path: "/backoffice/activities" },
+    { name: "Categorias", icon: faTableList, path: "/backoffice/categories" },
     { name: "Testimonios", icon: faMessage, path: "/backoffice/testimonials" },
     { name: "Organizacion", icon: faSitemap, path: "/backoffice/organization" },
     { name: "Slides", icon: faSliders, path: "/backoffice/slides" },
