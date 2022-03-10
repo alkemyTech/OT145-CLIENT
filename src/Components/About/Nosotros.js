@@ -1,12 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Container } from '@mui/material'
 import DecorativeLine from '../DecorativeLine/DecorativeLine'
-import NosotrosText from './NostrosText'
+import NosotrosText from './NosotrosText'
 import Title from './../Title/Title'
 import NosotrosList from './NosotrosList'
 import Spinner from '../Spinner/Spinner'
 import ShowModal from '../../Utils/AlertsProps'
-import { useState } from 'react'
+
 
 const nosotrosMockInfo = {
   title: 'Nosotros',

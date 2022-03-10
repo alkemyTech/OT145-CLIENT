@@ -1,22 +1,24 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {Button , TextField }from '@mui/material';
+import {Button , Container, TextField, Typography }from '@mui/material';
+import useStyles from './AuthStyles';
 
 
 const validationSchema = yup.object({
   email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
+    .string('Ingrese su mail')
+    .email('Ingrese una dirección de mail válida')
+    .required('Es necesario ingresar una dirección de mail'),
   password: yup
-    .string('Enter your password')
-    .min(6, 'Password should be of minimum 8 characters length')
-    .required('Password is required')
-    .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'Password can only contain Latin letters.'),
+    .string('Ingrese su contraseña')
+    .min(6, 'La contraseña debe tener una longitud mínima de 6 caraceteres.')
+    .required('Es necesario ingresar una contraseña')
+    .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'),
 });
 
 const LoginForm = () => {
+    const classes= useStyles()
   const formik = useFormik({
     initialValues: {
       email: 'foobar@example.com',
@@ -24,15 +26,17 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const datosLogin= values
+      console.log(datosLogin)
     },
   });
 
   return (
-    <div>
-        <p>Andy</p>
+    <Container className={classes.containerForm}>
+        <Typography>Completá tus datos para ingresar</Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
+        className={classes.fieldForm}
           fullWidth
           id="email"
           name="email"
@@ -41,8 +45,9 @@ const LoginForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
+          color="secondary"
         />
-        <TextField
+        <TextField className={classes.fieldForm}
           fullWidth
           id="password"
           name="password"
@@ -52,12 +57,13 @@ const LoginForm = () => {
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
+          color="secondary"
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button className={classes.fieldForm} color="secondary" variant="contained" fullWidth type="submit">
           Submit
         </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 

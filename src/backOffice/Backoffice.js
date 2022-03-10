@@ -4,6 +4,7 @@ import CategoriesList from './Categories'
 import Header from './Header'
 import SideBar from './Sidebar'
 import NewsList from './NewsList/NewsList';
+import UsersList from './UsersList'
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -45,7 +46,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
         <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
-        <Route exact path={`${match.path}/create-user`} component={UserForm} />
+        <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/create-member`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
 
@@ -57,6 +58,7 @@ function BackOficce() {
           component={CategoriesList}
         />
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
+        <Route exact path={`${match.path}/users`} component={UsersList} />
       </Switch>
     </>
   )
