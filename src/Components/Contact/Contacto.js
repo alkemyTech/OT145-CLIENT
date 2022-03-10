@@ -21,7 +21,7 @@ const Contacto = () => {
   return (
     <>
       <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
-      <Container>
+      <Container className={classes.container}>
         <Typography variant="h6" className={classes.subtitle}>
           Comunicate con nosotros para colaborar, y obtener información.
         </Typography>
@@ -74,8 +74,9 @@ const Contacto = () => {
           {contactoInfo.teléfono}
         </Typography>
 
-        <DecorativeLine />
+        
       </Container>
+      <DecorativeLine />
     </>
   )
 }

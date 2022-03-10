@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -7,24 +7,26 @@ import useStyles from './styles/styledList'
 import DecorativeLineBW from '../Components/DecorativeLine/DecorativeLineBW'
 
 
-function createData(name, createdAt, edit, deleteData) {
-  return { name, createdAt, edit, deleteData }
+function createData(name, email, edit, deleteData) {
+  return { name, email, edit, deleteData }
 }
 
 const rows = [
-  createData('Campaigns', '27/04/2021', <EditIcon />, <DeleteForeverIcon />),
-  createData('News', '12/09/2121', <EditIcon />, <DeleteForeverIcon />),
-  createData('Activities', '23/01/2022', <EditIcon />, <DeleteForeverIcon />),
+  createData('Juan García', 'juangarcia@gmail.com', <EditIcon />, <DeleteForeverIcon />),
+  createData('Federico Moreno', 'fedemoreno@gimal.com', <EditIcon />, <DeleteForeverIcon />),
+  createData('Mariano Perez', 'marianop@gmail.com', <EditIcon />, <DeleteForeverIcon />),
 ]
 
-export default function CategoriesList() {
+export default function UsersList() {
   const classes = useStyles()
+  const location = useLocation();
+  const path = location.pathname;
 
   return (
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
-        <Link to="/backoffice/create-category" className={classes.styleLink}>
-          <Typography variant="subtitle1">Crear Categoría</Typography>
+        <Link to={`${path}/create-user`} className={classes.styleLink}>
+          <Typography variant="subtitle1">Crear Usuario</Typography>
         </Link>
       </div>
 
@@ -33,7 +35,7 @@ export default function CategoriesList() {
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableCell}>Nombre</TableCell>
-              <TableCell className={classes.tableCell} align="center">Fecha</TableCell>
+              <TableCell className={classes.tableCell} align="center">Email</TableCell>
               <TableCell className={classes.tableCell} align="center">Modificar</TableCell>
               <TableCell className={classes.tableCell} align="center">Eliminar</TableCell>
             </TableRow>
@@ -45,7 +47,7 @@ export default function CategoriesList() {
                   {row.name}
                 </TableCell>
                 <TableCell className={classes.tableCell} align="center">
-                  {row.createdAt}
+                  {row.email}
                 </TableCell>
                 <TableCell className={classes.tableCell} align="center">
                   <Button variant="text" color="secondary">

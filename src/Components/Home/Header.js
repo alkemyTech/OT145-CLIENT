@@ -11,8 +11,6 @@ import { NavLink } from 'react-router-dom';
 import useStyles from './StyledHeader';
 
 
-
-
 const Header = () => {
   const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,7 +36,8 @@ const Header = () => {
 
   return (
     <>
-      <AppBar position="static">
+    
+      <AppBar position="static" className={classes.appbar}>
           <Toolbar disableGutters>
             <Box className={classes.styledBoxSm}>
               <IconButton
@@ -47,7 +46,7 @@ const Header = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="default"
               >
                 <MenuIcon />
               </IconButton>
@@ -104,6 +103,7 @@ const Header = () => {
 
 
             <Box className={classes.styledBoxMd}>
+           
               <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm}/>
               <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks} >

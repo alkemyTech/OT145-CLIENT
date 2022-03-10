@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
 
   boxLogoDeCampana: {
     borderRadius: '50%',
-    backgroundColor: '#f5f5f5',
+   /*  backgroundColor: '#f5f5f5', */
     width: '100px',
     height: '100px',
     display: 'flex',

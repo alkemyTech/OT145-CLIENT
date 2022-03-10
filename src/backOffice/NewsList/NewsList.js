@@ -1,38 +1,8 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { Link, useLocation } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Paper, Button, Container} from '@mui/material';
 import Delete from '@mui/icons-material/Delete';
 import ModeEdit from '@mui/icons-material/ModeEdit';
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import useStyles from '../styles/styledList'
-import Container from '@mui/material/Container'
-import { Button } from '@mui/material';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
-}));
 
 
 const NewsList = () => {
@@ -60,26 +30,27 @@ const NewsList = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>Nombre</StyledTableCell>
-                                <StyledTableCell align='center'>Imagen</StyledTableCell>
-                                <StyledTableCell align='center'>Fecha</StyledTableCell>
-                                <StyledTableCell align='center'>Modificar</StyledTableCell>
-                                <StyledTableCell align='center'>Eliminar</StyledTableCell>
+                                <TableCell align='center' className={classes.tableCell}>Nombre</TableCell>
+                                <TableCell align='center' className={classes.tableCell}>Imagen</TableCell>
+                                <TableCell align='center' className={classes.tableCell}>Fecha</TableCell>
+                                <TableCell align='center' className={classes.tableCell}>Modificar</TableCell>
+                                <TableCell align='center' className={classes.tableCell}>Eliminar</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {row.map(({ name, image, createdAt }) => (
-                                <StyledTableRow
+                                <TableRow
                                     key={name}
+                                    className={classes.tableRow}
                                 >
-                                    <StyledTableCell component="th">
+                                    <TableCell component="th" className={classes.tableCell}>
                                         {name}
-                                    </StyledTableCell>
-                                    <StyledTableCell align='center'><img src={image} alt={name} className={classes.img} /></StyledTableCell>
-                                    <StyledTableCell align='center'>{createdAt}</StyledTableCell>
-                                    <StyledTableCell align='center'> <Button color='secondary'> <ModeEdit /> </Button>  </StyledTableCell>
-                                    <StyledTableCell align='center'> <Button color='secondary' sx={{cursor:'pointer'}}> <Delete /> </Button>  </StyledTableCell>
-                                </StyledTableRow>
+                                    </TableCell>
+                                    <TableCell align='center' className={classes.tableCell}><img src={image} alt={name} className={classes.img} /></TableCell>
+                                    <TableCell align='center' className={classes.tableCell}>{createdAt}</TableCell>
+                                    <TableCell align='center' className={classes.tableCell}> <Button color='secondary'> <ModeEdit /> </Button>  </TableCell>
+                                    <TableCell align='center' className={classes.tableCell}> <Button color='secondary' sx={{cursor:'pointer'}}> <Delete /> </Button>  </TableCell>
+                                </TableRow>
                             ))}
                         </TableBody>
                     </Table>
