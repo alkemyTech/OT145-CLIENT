@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { tableCellClasses } from '@mui/material/TableCell';
 
 const useStyles = makeStyles((theme) => ({
     containerList:{
@@ -23,6 +24,30 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 400,
         objectFit: "contain",
     },
+    tableCell:{
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+          },
+          [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+          },
+    },
+    tableRow:{
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+          },
+          '&:last-child td, &:last-child th': {
+            border: 0,
+          },
+    },
+    title:{
+        textAlign: 'center',
+        padding: '20px 0px 20px 0px'
+    },
+    icon:{
+        color: theme.palette.secondary.main
+    }
 }));
 
 export default useStyles;
