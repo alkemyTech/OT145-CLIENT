@@ -1,10 +1,12 @@
 import React from 'react';
+import useStyles from './HomeTitlesyles';
 
 
 const HomeTitle = () => {
+    const classes = useStyles()
 
     return(
-        <h1>Bienvenidos a Somos Mas</h1>
+        <h1 className={classes.title}>Bienvenidos a Somos Mas</h1>
     )
 }
 

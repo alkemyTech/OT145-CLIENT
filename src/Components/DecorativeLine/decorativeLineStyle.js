@@ -5,20 +5,20 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '10px',
+  
   },
   redBox: {
-    width: '33%',
+    width: '33.3%',
     height: '1em',
     backgroundColor: theme.palette.primary.main,
   },
   yellowBox: {
-    width: '33%',
+    width: '33.3%',
     height: '1em',
     backgroundColor: theme.palette.warning.main,
   },
   blueBox: {
-    width: '33%',
+    width: '33.4%',
     height: '1em',
     backgroundColor: theme.palette.secondary.main,
   },

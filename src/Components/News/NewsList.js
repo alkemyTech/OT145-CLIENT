@@ -1,30 +1,63 @@
-import React from 'react';
-import '../CardListStyles.css';
+import React, { useEffect, useState } from 'react'
+import DecorativeLine from '../DecorativeLine/DecorativeLine';
+import { useHistory } from 'react-router-dom';
+import CardComponent from '../Card/CardComponent';
+import { Container, Grid } from '@mui/material'
+import {NEWS_API} from '../../Utils/enpoins'
+import getServicePublic from '../../Services/publicApiService'
+import useStyles from './novedadesStyles';
+
+
 
 const NewsList = () => {
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+    const classes = useStyles()
+    const [news, setNews] = useState([])
+    const history = useHistory()
+    
+    const handleSubmit = (name, id) => {
+        history.push(`/news/${id}`, { title: name })
+      }
+    
+      useEffect(()=>{
+        getServicePublic(NEWS_API)
+        .then(response =>{
+          setNews(response.data)
+         
+          console.log(response)
+          
+        })
+        .catch((error) =>{
+          console.log()
+        })
+       },[])
+
+    const lastNews=news.slice(-5)
+    console.log(lastNews)
 
     return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
-                }
-            </ul>
+        <div >
+            <h2>Ultimas Novedades</h2>
+            <Container className={classes.containerThree}>
+            <Grid container className={classes.cardList}>
+                  {lastNews.map((row) => {
+                    return (
+                      <div key={row.id}>
+                       
+                          <CardComponent
+                            key={row.id}
+                            title={row.name}
+                            image={row.image}
+                            description={row.createdAt}
+                            leerMasLink={() => handleSubmit(row.name, row.id)}
+                          />
+                       
+                      </div>
+                    )
+                  })}
+                </Grid>
+                </Container>
+                <DecorativeLine />
+               
         </div>
     );
 }
