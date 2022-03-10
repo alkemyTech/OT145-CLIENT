@@ -1,20 +1,32 @@
-import React from 'react';
+
 import Slide from '../Slider/Slider';
 import HomeTitle from "./HomeTitle";
 import NewsList from "../News/NewsList"
+import React, { useState } from "react";
 
+
+import Spinner from "../Spinner/Spinner";
+import ShowModal from "../../Utils/AlertsProps";
 
 const Home = () => {
-    return(
-        <>
+	const [loading, setloading] = useState(false);
+	const [error, seterror] = useState(false);
 
-            <HomeTitle />
+	return loading ? (
+		<Spinner />
+	) : error ? (
+		<ShowModal
+			icon="error"
+			title="Hubo un error al cargar el sitio"
+			text="Intenta recargar el sitio nuevamente en unos instantes"
+		/>
+	) : (
+		<>
+			 <HomeTitle />
             <Slide />
             <NewsList />
-
-            
-        </>
-    )
-}
+		</>
+	);
+};
 
 export default Home;

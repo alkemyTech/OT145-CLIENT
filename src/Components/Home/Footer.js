@@ -43,6 +43,7 @@ export default function Footer() {
 	const classes = useStyles();
 
 	return (
+		<div className={classes.insideContainer}>
 		<Box className={classes.footerContainer}>
 			<Container>
 				<Box className={classes.footer}>
@@ -55,7 +56,7 @@ export default function Footer() {
 					<Box className={classes.itemsContainer}>
 						<Box>
 							<Typography className={classes.footerListTitle} variant="p">
-								Navegación
+							Nuestras redes 
 							</Typography>
 							<ul className={classes.footerList}>
 								{footerData.socialMedia.map(({ name, url }, index) => (
@@ -69,7 +70,7 @@ export default function Footer() {
 						</Box>
 						<Box>
 							<Typography className={classes.footerListTitle} variant="p">
-								Nuestras redes
+							Navegación
 							</Typography>
 							<ul className={classes.footerList}>
 								{footerData.navigationItems.map(({ name, url }, index) => (
@@ -85,5 +86,6 @@ export default function Footer() {
 				</Box>
 			</Container>
 		</Box>
+		</div>
 	);
 }

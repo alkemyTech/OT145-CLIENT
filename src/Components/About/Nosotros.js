@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Container } from '@mui/material'
 import DecorativeLine from '../DecorativeLine/DecorativeLine'
-import NosotrosText from './NostrosText'
+import NosotrosText from './NosotrosText'
 import Title from './../Title/Title'
 import NosotrosList from './NosotrosList'
+import Spinner from "../Spinner/Spinner"
+import ShowModal from "../../Utils/AlertsProps"
+import { ClassNames } from '@emotion/react'
 
 const nosotrosMockInfo = {
   title: 'Nosotros',
@@ -95,15 +98,27 @@ const nosotrosMockInfo = {
 const nosotrosPersons = nosotrosMockInfo.cardsInfo
 
 const Nosotros = () => {
-  return (
-    <div>
+
+  const [loading, setloading] = useState(false);
+	const [error, seterror] = useState(false);
+
+	return loading ? (
+		<Spinner />
+	) : error ? (
+		<ShowModal
+			icon="error"
+			title="Hubo un error al cargar el sitio"
+			text="Intenta recargar el sitio nuevamente en unos instantes"
+		/>
+	) : (
+    <>
       <Title title={nosotrosMockInfo.title} imgSrc={nosotrosMockInfo.image} />
       <Container>
         <NosotrosText text={nosotrosMockInfo.text} />
         <NosotrosList nosotrosPersons={nosotrosPersons} />
         <DecorativeLine />
       </Container>
-    </div>
-  )
+    </>
+	);
 }
 export default Nosotros

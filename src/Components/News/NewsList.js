@@ -56,6 +56,7 @@ const NewsList = () => {
                   })}
                 </Grid>
                 </Container>
+                <DecorativeLine />
                
         </div>
     );

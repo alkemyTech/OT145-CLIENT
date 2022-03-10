@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     textDecoration: 'none',
   },
+  container:{
+    marginBottom: '35px'
+  }
 }))
 
 export default useStyles

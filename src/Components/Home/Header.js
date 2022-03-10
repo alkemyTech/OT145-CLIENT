@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <>
     
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appbar}>
           <Toolbar disableGutters>
             <Box className={classes.styledBoxSm}>
               <IconButton
@@ -46,7 +46,7 @@ const Header = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="default"
               >
                 <MenuIcon />
               </IconButton>
