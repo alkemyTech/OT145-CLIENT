@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 import Spinner from './Components/Spinner/Spinner'
+import { Box } from '@mui/material';
 
 const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
@@ -15,9 +16,13 @@ function App() {
       <BrowserRouter>
         <Suspense
           fallback={
-            <div>
-              <Spinner />
-            </div>
+            <Box sx={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <Spinner
+                color="#000"
+                height={80}
+                width={800}
+              />
+            </Box>
           }
         >
           <Switch>

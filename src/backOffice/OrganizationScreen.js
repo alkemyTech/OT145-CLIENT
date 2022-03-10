@@ -9,10 +9,11 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Box
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import useStyles from "./styles/organizationScreenStyles";
+import useStyles from "./styles/styledList";
 
 const OrganizationScreen = () => {
   const classes = useStyles();
@@ -27,24 +28,29 @@ const OrganizationScreen = () => {
   return (
       <>
       <Typography variant="h3" className={classes.title}>Organizacion</Typography>
+      <Box className={classes.containerList}>
     <TableContainer component={Paper} className={classes.tableContainer}>
-      <Table>
+      <Table sx={{minWidth: 300}} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Nombre</TableCell>
-            <TableCell align="center">Imagen</TableCell>
-            <TableCell align="center">Descripcion</TableCell>
-            <TableCell align="center">Editar</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Nombre</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Imagen</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Descripcion</TableCell>
+            <TableCell align="center" className={classes.tableCell}>Editar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow className={classes.tableRow}>
             <TableCell align="center" className={classes.tableCell}>
               {datosMockeados.name}
             </TableCell>
             <TableCell align="center" className={classes.tableCell}>
               <img
+                alt="Logo Ong" 
+                height="150px" 
+                width="150px"
                 src={datosMockeados.image}
+                className={classes.img}
               />
             </TableCell>
             <TableCell align="center" className={classes.tableCell} sx={{maxWidth: 50}}>
@@ -52,13 +58,14 @@ const OrganizationScreen = () => {
             </TableCell>
             <TableCell align="center" className={classes.tableCell}>
                 <Link to="/backoffice/organization/edit">
-                    <FontAwesomeIcon icon={faPen} />
+                    <FontAwesomeIcon icon={faPen} className={classes.icon}/>
                 </Link>
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
+      </Box>
     </>
   );
 };
