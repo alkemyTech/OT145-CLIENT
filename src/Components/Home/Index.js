@@ -6,7 +6,7 @@ import ShowModal from "../../Utils/AlertsProps";
 
 const Home = () => {
 	const [loading, setloading] = useState(false);
-	const [error, seterror] = useState(true);
+	const [error, seterror] = useState(false);
 
 	return loading ? (
 		<Spinner />
