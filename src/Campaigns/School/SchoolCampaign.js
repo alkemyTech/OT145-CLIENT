@@ -7,8 +7,6 @@ const SchoolCampaign = () => {
   return (
     <>
       <Header />
-      {/* Corregir slider una vez terminado el desarrollo de Title.js */}
-      {/* <Slider />  */}
       <Content />
       <Footer />
     </>
