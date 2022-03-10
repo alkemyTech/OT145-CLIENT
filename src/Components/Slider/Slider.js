@@ -51,27 +51,30 @@ const Slide = ({
 const defaultSliderData = [
 	{
 		id: 1,
-		name: "test2",
-		description: "test description2",
-		image: "images/campaign-recent-02.jpg",
-		title: "title test 2",
-		// image: Foto6,
+		name: "Acompañamos a aprender.",
+		description: "test description2Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
+		image: "https://res.cloudinary.com/danb0chax/image/upload/v1646849820/SomosMas/pexels-kindel-media-7105593_cv7jcl.jpg",
+		title: "Acompañamos a aprender.",
+
 	},
 	{
 		id: 2,
-		name: "test3",
+		name: "la importancia de jugar.",
 		description:
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-		image: "images/campaign-recent-03.jpg",
-		title: "title test 3",
+		image: 'https://res.cloudinary.com/danb0chax/image/upload/v1646849827/SomosMas/pexels-polesie-toys-4487869_tfd7uk.jpg',
+		title: "La importancia de jugar.",
 	},
 	{
 		id: 3,
-		name: "test4",
-		description: "test description4",
-		// image: Manos10,
+		name: "Actividad física y deporte",
+		description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
+		image: 'https://res.cloudinary.com/danb0chax/image/upload/v1646849812/SomosMas/pexels-bruna-saito-1805843_hormkl.jpg',
+		title: "Actividad física y deporte.",
 	},
 ];
+
+
 
 // Principal component
 const Slider = ({ slidersData = defaultSliderData }) => {

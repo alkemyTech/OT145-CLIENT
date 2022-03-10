@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+
+import Slide from '../Slider/Slider';
 import HomeTitle from "./HomeTitle";
+import NewsList from "../News/NewsList"
+import React, { useState } from "react";
+
 
 import Spinner from "../Spinner/Spinner";
 import ShowModal from "../../Utils/AlertsProps";
@@ -18,11 +22,9 @@ const Home = () => {
 		/>
 	) : (
 		<>
-			<h2>Este seria el Slider</h2>
-
-			<HomeTitle />
-
-			<h2>Este seria el listado de Novedades</h2>
+			 <HomeTitle />
+            <Slide />
+            <NewsList />
 		</>
 	);
 };
