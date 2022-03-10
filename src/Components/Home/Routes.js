@@ -11,6 +11,7 @@ const NewsDetail = lazy(() => import('../News/Detail/NewsDetail'))
 const Nosotros = lazy(() => import('../About/Nosotros'))
 const Contacto = lazy(() => import('../Contact/Contacto'))
 const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActividad'))
+const LoginForm = lazy(() => import('../Auth/LoginForm'))
 
 
 export default function Routes() {
@@ -25,6 +26,7 @@ export default function Routes() {
           <Route exact path="/news/:id" component={NewsDetail} />
           <Route exact path="/news" component={News} />
           <Route exact path="/contacto" component={Contacto} />
+          <Route exact path="/login" component={LoginForm} />
       </Switch>
     </LayoutHome>
   )
