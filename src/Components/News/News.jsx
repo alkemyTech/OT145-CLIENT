@@ -104,3 +104,4 @@ useEffect(()=>{
 }
 
 export default News
+

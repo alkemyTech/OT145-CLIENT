@@ -11,8 +11,6 @@ import { NavLink } from 'react-router-dom';
 import useStyles from './StyledHeader';
 
 
-
-
 const Header = () => {
   const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,6 +36,7 @@ const Header = () => {
 
   return (
     <>
+    
       <AppBar position="static">
           <Toolbar disableGutters>
             <Box className={classes.styledBoxSm}>
@@ -104,6 +103,7 @@ const Header = () => {
 
 
             <Box className={classes.styledBoxMd}>
+           
               <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm}/>
               <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks} >

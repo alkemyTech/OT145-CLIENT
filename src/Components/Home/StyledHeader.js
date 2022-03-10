@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles(theme => ({  
     links: {
         padding:'0 10px',
-        color:"inherit",
+        color:'#000',
         textDecoration: 'none',
     },
     active: {
@@ -30,8 +30,12 @@ const useStyles = makeStyles(theme => ({
             display: 'none',
         },
         [theme.breakpoints.up('sm')]: {
-            maxWidth: '5%',
-
+            maxWidth: '10%',
+            marginRight: '20%',
+            marginLeft: '20px',
+            alignSelf: "flex-start",
+            flexGrow: 1,
+            
         },
     },
     styledBoxSm: {
@@ -45,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     styledBoxMd:{
+        backgroundColor: '#fff',
         flexGrow: 1, 
         [theme.breakpoints.down('sm')]: {
             display:'none',
@@ -52,9 +57,16 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('sm')]: {
             display:'flex',
-            alignItems:'center'  
+            alignItems:'center', 
+            justifyContent: 'space-between',
+            width: '90%',
+            gap: '20px',
+
+
+
         },
-    }
+    },
+   
 
 }));
 

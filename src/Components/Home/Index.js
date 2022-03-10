@@ -1,16 +1,18 @@
 import React from 'react';
-import HomeTitle from './HomeTitle';
+import Slide from '../Slider/Slider';
+import HomeTitle from "./HomeTitle";
+import NewsList from "../News/NewsList"
 
 
 const Home = () => {
     return(
         <>
 
-            <h2>Este seria el Slider</h2>
-
             <HomeTitle />
+            <Slide />
+            <NewsList />
 
-            <h2>Este seria el listado de Novedades</h2>
+            
         </>
     )
 }

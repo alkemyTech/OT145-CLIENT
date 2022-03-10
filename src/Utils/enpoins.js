@@ -1,1 +1,1 @@
-export const NEWS_API ='http://ongapi.alkemy.org/api/news'
+export const NEWS_API ='https://ongapi.alkemy.org/api/news'
