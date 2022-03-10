@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   cardList: {
     justifyContent: 'flex-start',
     columnGap: '60px',
+    marginBottom: '35px',
   },
 }))
 

@@ -6,6 +6,7 @@ import Title from './../Title/Title'
 import NosotrosList from './NosotrosList'
 import Spinner from "../Spinner/Spinner"
 import ShowModal from "../../Utils/AlertsProps"
+import { ClassNames } from '@emotion/react'
 
 const nosotrosMockInfo = {
   title: 'Nosotros',
