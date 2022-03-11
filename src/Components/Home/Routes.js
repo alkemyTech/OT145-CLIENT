@@ -26,7 +26,6 @@ export default function Routes() {
           <Route exact path="/news/:id" component={NewsDetail} />
           <Route exact path="/news" component={News} />
           <Route exact path="/contacto" component={Contacto} />
-          <Route exact path="/login" component={LoginForm} />
       </Switch>
     </LayoutHome>
   )
