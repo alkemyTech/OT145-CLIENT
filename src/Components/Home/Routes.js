@@ -11,7 +11,7 @@ const NewsDetail = lazy(() => import('../News/Detail/NewsDetail'))
 const Nosotros = lazy(() => import('../About/Nosotros'))
 const Contacto = lazy(() => import('../Contact/Contacto'))
 const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActividad'))
-const LoginForm = lazy(() => import('../Auth/LoginForm'))
+
 
 
 export default function Routes() {
