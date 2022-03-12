@@ -13,6 +13,7 @@ const Contacto = lazy(() => import('../Contact/Contacto'))
 const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActividad'))
 
 
+
 export default function Routes() {
     let match = useRouteMatch();
   return (
