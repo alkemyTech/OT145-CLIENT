@@ -4,9 +4,9 @@ import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import NosotrosText from './NosotrosText'
 import Title from './../Title/Title'
 import NosotrosList from './NosotrosList'
-import Spinner from "../Spinner/Spinner"
-import ShowModal from "../../Utils/AlertsProps"
-import { ClassNames } from '@emotion/react'
+import Spinner from '../Spinner/Spinner'
+import ShowModal from '../../Utils/AlertsProps'
+
 
 const nosotrosMockInfo = {
   title: 'Nosotros',
