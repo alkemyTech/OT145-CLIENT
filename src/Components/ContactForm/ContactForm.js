@@ -17,7 +17,7 @@ const validationSchema = yup.object({
     name: yup
       .string('Ingrese su nombre')
       .required('El nombre es requerido')
-      .matches(/[a-zA-Z] + !(?=.*[0-9])/, 'El nombre solo puede contener letras'),
+      .matches(/[a-zA-Z]/, 'El nombre solo puede contener letras'),
     phone: yup
       .string('Ingrese su telefono')
       .min(8, 'El telefono debe tener al menos 8 digitos')
@@ -84,7 +84,9 @@ const ContactForm = () => {
             placeholder="Ingrese su mensaje"
             className={classes.txt}
             value={formik.values.message}
-            onChange={formik.handleChange}/>
+            onChange={formik.handleChange}
+            error={formik.touched.message && Boolean(formik.errors.message)}/>
+            <Typography className={classes.typographyTextArea} variant="caption" color="error">{formik.touched.message && formik.errors.message}</Typography>
           <Button color="secondary" variant="contained" fullWidth type="submit">
             Submit 
           </Button>

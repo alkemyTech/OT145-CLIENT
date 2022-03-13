@@ -11,9 +11,12 @@ const useStyles = makeStyles((theme) => ({
     },
     txt: {
         marginTop: '10px !important',
-        marginBottom: '10px !important',
         width:'99%',
         maxHeight:'50%'
+    },
+    typographyTextArea: {
+        paddingLeft:12,
+        paddingBottom:10
     }
 
 }));
