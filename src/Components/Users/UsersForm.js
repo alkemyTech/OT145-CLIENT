@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useFormik, Field } from 'formik';
+import React from 'react';
+import { useFormik} from 'formik';
 import * as yup from 'yup';
-import '../FormStyles.css';
 import {Button , TextField, Autocomplete, Typography  } from '@mui/material';
 import useStyles from './style';
+
 
 
 const validationSchema = yup.object({
@@ -23,9 +23,14 @@ const validationSchema = yup.object({
         .string('Ingrese su contraseña')
         .min(8, 'La contraseña debe tener una longitud mínima de 8 caraceteres.')
         .required('Es necesario ingresar una contraseña'),
-    imageFile: yup
-        .string('')
-        .required('Es necesario que ingrese una imagen')
+    profilePhoto: yup
+        .mixed()
+        .test(
+            "type",
+            "We only support jpeg",
+            (value) => !value || (value && value[0].type === ("image/jpeg" || "image/png"))
+          )
+        .required('Es necesario ingresar una imagen'),
   });
 
 
@@ -39,7 +44,8 @@ const UserForm = () => {
             name: '',
             email: '',
             role: '',
-            password:''
+            password:'',
+            profilePhoto:null
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -47,6 +53,7 @@ const UserForm = () => {
         console.log(datosLogin)
         },
     });
+
 
     return (
         <div className={classes.containerForm}>
@@ -98,12 +105,11 @@ const UserForm = () => {
                     onChange={(e, value) => formik.setFieldValue("role", value)}
                     renderInput={(params) => <TextField {...params} label="Elija una opcion" error={formik.touched.role && Boolean(formik.errors.role)} helperText={formik.touched.role && formik.errors.role}/>}
                 />
-                <p>
-                    <Typography>Selecciona tu foto de perfil</Typography>
-                    <input type="file" id="imageFile" accept="image/*" 
-                    />
-                </p>
-            
+                
+                <Typography>Selecciona tu foto de perfil</Typography>
+                <input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"/>
+                
+                
                 <Button color="secondary" variant="contained" fullWidth type="submit">
                     Submit
                 </Button>
