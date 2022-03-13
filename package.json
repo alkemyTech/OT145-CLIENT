@@ -32,7 +32,8 @@
     "react-transition-group": "^4.4.2",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.4.4",
-    "sweetalert2-react-content": "^4.2.0"
+    "sweetalert2-react-content": "^4.2.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
