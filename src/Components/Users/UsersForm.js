@@ -23,6 +23,16 @@ const validationSchema = yup.object({
         .string('Ingrese su contraseña')
         .min(8, 'La contraseña debe tener una longitud mínima de 8 caraceteres.')
         .required('Es necesario ingresar una contraseña'),
+    profilePhoto: yup
+    .mixed()
+    .test(
+        "type",
+        "Solo imagenes png y jpg",
+        (value) =>{
+            console.log(value)
+            return value && ([".jpg"].includes(value) || [".png"].includes(value))}
+        )
+    .required('Es necesario ingresar una imagen'),
   });
 
 
@@ -37,6 +47,7 @@ const UserForm = () => {
             email: '',
             role: '',
             password:'',
+            profilePhoto:''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -46,7 +57,7 @@ const UserForm = () => {
     });
 
 
-
+console.log(formik)
     return (
         <div className={classes.containerForm}>
             <Typography variant='h6'>Registrate</Typography>
@@ -99,10 +110,12 @@ const UserForm = () => {
                 />
                 
                 <Typography>Selecciona tu foto de perfil</Typography>
-                <Input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"
-                    required={true}
+                <Input type="file" id="profilePhoto"  name="profilePhoto" onChange={formik.handleChange}
+                
+                    error={Boolean(formik.errors.profilePhoto)}
                 />
-
+                    {formik.errors.profilePhoto && 
+                        <Typography>Selecciona tu foto de perfil</Typography>}
                 <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
                     Enviar
                 </Button>
