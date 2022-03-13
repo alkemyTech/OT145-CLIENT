@@ -8,7 +8,12 @@ const useStyles = makeStyles((theme) => ({
     content: {
         display: 'flex',
         gap: '15px',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    form: {
+        display: 'flex',
+        gap: '15px'
     }
 }));
 
