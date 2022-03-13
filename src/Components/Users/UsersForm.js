@@ -104,7 +104,7 @@ const UserForm = () => {
                 />
 
                 <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
-                    <Enviar></Enviar>
+                    Enviar
                 </Button>
             </form>
         </div>
