@@ -17,7 +17,7 @@ const validationSchema = yup.object({
     name: yup
       .string('Ingrese su nombre')
       .required('El nombre es requerido')
-      .matches(/[a-zA-Z]/, 'El nombre solo puede contener letras'),
+      .matches(/[a-zA-Z] + !(?=.*[0-9])/, 'El nombre solo puede contener letras'),
     phone: yup
       .string('Ingrese su telefono')
       .min(8, 'El telefono debe tener al menos 8 digitos')
@@ -49,8 +49,7 @@ const ContactForm = () => {
     <div className={classes.containerForm}>
       <Typography variant="h6">Contactanos</Typography>
       <form onSubmit={formik.handleSubmit}>
-        <TextField
-            fullWidth
+        <TextField fullWidth
             id="name"
             name="name"
             label="Nombre"
@@ -58,10 +57,8 @@ const ContactForm = () => {
             value={formik.values.name}
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
-            helperText={formik.touched.name && formik.errors.name}
-            />
-          <TextField
-          fullWidth
+            helperText={formik.touched.name && formik.errors.name}/>
+          <TextField fullWidth
           id="email"
           name="email"
           label="Email"
@@ -69,10 +66,8 @@ const ContactForm = () => {
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-          />
-          <TextField
-            fullWidth
+          helperText={formik.touched.email && formik.errors.email}/>
+          <TextField fullWidth
             id="phone"
             name="phone"
             label="Telefono"
@@ -80,8 +75,7 @@ const ContactForm = () => {
             value={formik.values.phone}
             onChange={formik.handleChange}
             error={formik.touched.phone && Boolean(formik.errors.phone)}
-            helperText={formik.touched.phone && formik.errors.phone}
-          />
+            helperText={formik.touched.phone && formik.errors.phone}/>
           <TextareaAutosize
             id="message"
             name="message"
@@ -90,11 +84,10 @@ const ContactForm = () => {
             placeholder="Ingrese su mensaje"
             className={classes.txt}
             value={formik.values.message}
-            onChange={formik.handleChange}
-          />
-        <Button color="secondary" variant="contained" fullWidth type="submit">
-          Submit 
-        </Button>
+            onChange={formik.handleChange}/>
+          <Button color="secondary" variant="contained" fullWidth type="submit">
+            Submit 
+          </Button>
       </form>
     </div>
   );
