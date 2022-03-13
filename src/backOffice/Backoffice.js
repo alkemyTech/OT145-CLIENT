@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
 
