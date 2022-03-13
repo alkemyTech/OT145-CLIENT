@@ -32,10 +32,11 @@ export default function authReducer(state = initialValues, action) {
                 token: action.payload.token,
             }
         case LOG_OUT:
+            localStorage.removeItem("token")
             return {
                 ...state,
                 user: null,
-                token: localStorage.getItem("token") || "",
+                token: "",
                 isLogin: false,
                 isError: false,
             }
