@@ -34,6 +34,10 @@ export default function authReducer(state = initialValues, action) {
         case LOG_OUT:
             return {
                 ...state,
+                user: null,
+                token: localStorage.getItem("token") || "",
+                isLogin: false,
+                isError: false,
             }
         default:
             return state;
