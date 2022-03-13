@@ -102,9 +102,9 @@ const UserForm = () => {
                 <Input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"
                     required={true}
                 />
-                
+
                 <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
-                    Submit
+                    <Enviar></Enviar>
                 </Button>
             </form>
         </div>
