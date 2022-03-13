@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik} from 'formik';
 import * as yup from 'yup';
-import {Button , TextField, Autocomplete, Typography  } from '@mui/material';
+import {Button , TextField, Autocomplete, Typography, Input  } from '@mui/material';
 import useStyles from './style';
 
 
@@ -15,7 +15,7 @@ const validationSchema = yup.object({
       .string('Ingrese su nombre')
       .min(4, 'El nombre debe tener al menos 4 caracteres')
       .required('Es necesario ingresar un nombre')
-      .matches(/!(?=.*[@#$%^&+=])+!(?=.*[0-9])/, 'El nombre solo puede tener letras'),
+      .matches(/[a-zA-Z]/, 'El nombre solo puede tener letras'),
     role: yup
         .string('Selecione un rol')
         .required('Elija una opción'),
@@ -23,14 +23,6 @@ const validationSchema = yup.object({
         .string('Ingrese su contraseña')
         .min(8, 'La contraseña debe tener una longitud mínima de 8 caraceteres.')
         .required('Es necesario ingresar una contraseña'),
-    profilePhoto: yup
-        .mixed()
-        .test(
-            "type",
-            "We only support jpeg",
-            (value) => !value || (value && value[0].type === ("image/jpeg" || "image/png"))
-          )
-        .required('Es necesario ingresar una imagen'),
   });
 
 
@@ -45,7 +37,6 @@ const UserForm = () => {
             email: '',
             role: '',
             password:'',
-            profilePhoto:null
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -53,6 +44,7 @@ const UserForm = () => {
         console.log(datosLogin)
         },
     });
+
 
 
     return (
@@ -107,11 +99,11 @@ const UserForm = () => {
                 />
                 
                 <Typography>Selecciona tu foto de perfil</Typography>
-                <input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"
-                error={formik.touched.profilePhoto && Boolean(formik.errors.profilePhoto)}/>
-                 <Typography variant="body2" color="error" className={classes.typographyImg}>{formik.touched.profilePhoto && formik.errors.profilePhoto}</Typography>
+                <Input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"
+                    required={true}
+                />
                 
-                <Button color="secondary" variant="contained" fullWidth type="submit">
+                <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
                     Submit
                 </Button>
             </form>
