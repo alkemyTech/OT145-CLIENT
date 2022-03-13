@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px !important',
         marginBottom: '10px',
         width:"100%"
+    },
+    typographyImg: {
+        paddingLeft:15
     }
 
 }))

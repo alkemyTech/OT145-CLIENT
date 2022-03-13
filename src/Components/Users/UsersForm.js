@@ -107,8 +107,9 @@ const UserForm = () => {
                 />
                 
                 <Typography>Selecciona tu foto de perfil</Typography>
-                <input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"/>
-                
+                <input type="file" id="profilePhoto" accept="image/png, image/jpeg"  name="profilePhoto"
+                error={formik.touched.profilePhoto && Boolean(formik.errors.profilePhoto)}/>
+                 <Typography variant="body2" color="error" className={classes.typographyImg}>{formik.touched.profilePhoto && formik.errors.profilePhoto}</Typography>
                 
                 <Button color="secondary" variant="contained" fullWidth type="submit">
                     Submit
