@@ -11,6 +11,7 @@ const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
 const Routes = lazy(() => import('./Components/Home/Routes'))
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
