@@ -1,31 +1,79 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
+import { privatePATCH , privatePOST } from '../../Services/privateApiService'
 
-const SlidesForm = () => {
-    const [initialValues, setInitialValues] = useState({
+import { useFormik} from 'formik';
+import * as yup from 'yup';
+import { TextField, Button } from '@mui/material';
+import useStyles from './styleSlides';
+
+
+const validationSchema = yup.object({
+    name: yup
+      .string('Ingrese su nombre')
+      .min(4, 'El nombre debe tener al menos 4 caracteres')
+      .required('Es necesario ingresar un nombre')
+      .matches(/!(?=.*[@#$%^&+=])+!(?=.*[0-9])/, 'El nombre solo puede tener letras'),
+    description: yup
+    .string('Ingrese Una descripcion')
+    .min(4, 'El nombre debe tener al menos 4 caracteres')
+    .required('Es necesario ingresar un nombre')
+    .matches(/!(?=.*[@#$%^&+=])+!(?=.*[0-9])/, 'El nombre solo puede tener letras'),
+    
+  });
+
+const SlidesForm = ({ data }) => {
+    const classes = useStyles();
+
+    const [slidesData, setSlidesData] = useState(data || {
         name: '',
-        description: ''
+        description: '',
+        order:0,
+        image:''
     });
 
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
-    }
+    const formik = useFormik({
+        initialValues:{
+            ...slidesData
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            if(data){
+                privatePATCH('https://ongapi.alkemy.org/api/slides', data.id, values)
+            } else {
+                privatePOST('https://ongapi.alkemy.org/api/slides', values);
+            }
+        },
+        
+    });
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(initialValues);
-    }
-
+    
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write the description"></input>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
+        <div>
+            <form onSubmit={formik.handleSubmit} className={classes.containerForm}>
+                <TextField fullWidth
+                    id="name" 
+                    name="name" 
+                    className={classes.fieldForm}
+                    value={formik.values.name} 
+                    onChange={formik.handleChange}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}/>
+
+                <TextField fullWidth
+                    id="description"
+                    name="description" 
+                    className={classes.fieldForm}
+                    value={formik.values.description} 
+                    onChange={formik.handleChange} placeholder="Descripcion"                     
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}/>
+
+                <Button color="secondary" variant="contained" fullWidth type="submit">
+                    Enviar
+                </Button>
+            </form>
+        </div>
     );
 }
  
