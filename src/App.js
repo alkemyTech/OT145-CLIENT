@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material'
 import Spinner from './Components/Spinner/Spinner'
 import { Box } from '@mui/material';
 
+
 const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('./Campaigns/School/SchoolCampaign'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" component={Routes} />
           </Switch>
         </Suspense>
+          
       </BrowserRouter>
     </ThemeProvider>
   )
