@@ -30,10 +30,10 @@ const validationSchema = yup.object({
         "Solo imagenes png y jpg",
         (value) =>{
             console.log(value)
-            return value && ([".jpg"].includes(value) || [".png"].includes(value))}
+            return value && (["aplication/jpg"].includes(value) || ["aplication/png"].includes(value))}
         )
     .required('Es necesario ingresar una imagen'),
-  });
+});
 
 
 
@@ -54,7 +54,7 @@ const UserForm = () => {
         const datosLogin= values
         console.log(datosLogin)
         },
-    });
+});
 
 
 console.log(formik)
@@ -108,14 +108,18 @@ console.log(formik)
                     onChange={(e, value) => formik.setFieldValue("role", value)}
                     renderInput={(params) => <TextField {...params} label="Elija una opcion" error={formik.touched.role && Boolean(formik.errors.role)} helperText={formik.touched.role && formik.errors.role}/>}
                 />
-                
-                <Typography>Selecciona tu foto de perfil</Typography>
-                <Input type="file" id="profilePhoto"  name="profilePhoto" onChange={formik.handleChange}
-                
-                    error={Boolean(formik.errors.profilePhoto)}
+                <TextField className={classes.fieldForm}
+                    fullWidth
+                    id="profilePhoto"
+                    name="profilePhoto"
+                    type="file"
+                    value={formik.values.profilePhoto}
+                    onChange={formik.handleChange}
+                    error={formik.touched.profilePhoto && Boolean(formik.errors.profilePhoto)}
+                    helperText={formik.touched.profilePhoto && formik.errors.profilePhoto}
+                    color="secondary"
                 />
-                    {formik.errors.profilePhoto && 
-                        <Typography>Selecciona tu foto de perfil</Typography>}
+                
                 <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
                     Enviar
                 </Button>
