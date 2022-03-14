@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStyles from "./styles/TestimonialsFormStyles";
+import { TextField, Button } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -28,15 +29,17 @@ const TestimonialForm = () => {
 	return (
 		// Realizar create y edit
 		<form className={classes.form} onSubmit={handleSubmit}>
-			<input
-				className="input-field"
+			<TextField
+				className={classes.formElement}
 				type="text"
 				name="name"
 				value={initialValues.name}
 				onChange={handleChange}
-				placeholder="Testimonial Title"></input>
+				placeholder="Testimonial Title"
+			/>
 			{/* Reemplaza campo por ckeditor */}
 			<CKEditor
+				className={classes.formElement}
 				editor={ClassicEditor}
 				data="<p>Hello from CKEditor 5!</p>"
 				onReady={(editor) => {
@@ -56,10 +59,16 @@ const TestimonialForm = () => {
 			/>
 			{/* <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description"></input> */}
 			{/* input image */}
-			<input type="file" accept="image/png, image/jpeg" />
-			<button className="submit-btn" type="submit">
+			<TextField
+				type="file"
+				inputProps={{
+					accept: "image/png, image/jpeg",
+				}}
+				className={classes.formElement}
+			/>
+			<Button className={classes.formElement} type="submit" variant="contained">
 				Send
-			</button>
+			</Button>
 		</form>
 	);
 };

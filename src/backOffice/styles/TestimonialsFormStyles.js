@@ -5,7 +5,13 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        gap: '15px',
+        maxWidth: '630px',
+        margin: 'auto',
+    },
+    formElement: {
+        width: '100%'
     }
 })
 
