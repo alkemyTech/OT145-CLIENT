@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../FormStyles.css';
 import { privatePATCH , privatePOST } from '../../Services/privateApiService'
 
 import { useFormik} from 'formik';
@@ -8,17 +7,28 @@ import { TextField, Button } from '@mui/material';
 import useStyles from './styleSlides';
 
 
+
 const validationSchema = yup.object({
     name: yup
       .string('Ingrese su nombre')
       .min(4, 'El nombre debe tener al menos 4 caracteres')
       .required('Es necesario ingresar un nombre')
-      .matches(/!(?=.*[@#$%^&+=])+!(?=.*[0-9])/, 'El nombre solo puede tener letras'),
+      .matches(/[a-zA-Z]/, 'El nombre solo puede tener letras'),
     description: yup
     .string('Ingrese Una descripcion')
-    .min(4, 'El nombre debe tener al menos 4 caracteres')
-    .required('Es necesario ingresar un nombre')
-    .matches(/!(?=.*[@#$%^&+=])+!(?=.*[0-9])/, 'El nombre solo puede tener letras'),
+    .required('Es necesario ingresar un nombre'),
+    order: yup
+        .string('Ingrese orden')
+        .matches(/(?=.*[0-9])/, 'Solo puede ingresar numeros'),
+    profilePhoto: yup
+    .mixed()
+    .test(
+        "type",
+        "Solo imagenes png y jpg",
+        (value) =>{
+            return value && ([".jpg"].includes(value) || [".png"].includes(value))}
+        )
+    .required('Es necesario ingresar una imagen'),
     
   });
 
@@ -59,6 +69,7 @@ const SlidesForm = ({ data }) => {
                     onChange={formik.handleChange}
                     error={formik.touched.name && Boolean(formik.errors.name)}
                     helperText={formik.touched.name && formik.errors.name}/>
+
 
                 <TextField fullWidth
                     id="description"
