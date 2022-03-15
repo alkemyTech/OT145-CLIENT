@@ -1,32 +1,126 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React, { useState } from "react";
+import "../FormStyles.css";
+import { privatePOST, privatePATCH } from "../../Services/privateApiService";
+import TextField from "@mui/material/TextField";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import { Container, Button, Typography } from "@mui/material";
+import { useFormik } from 'formik';
+import * as yup from 'yup'
 
-const ProjectsForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    title: '',
-    description: ''
-  })
+import useStyles from "../Auth/AuthStyles";
 
-  const handleChange = (e) => {
-    if(e.target.name === 'title'){
-      setInitialValues({...initialValues, title: e.target.value})
-    } if(e.target.name === 'description'){
-      setInitialValues({...initialValues, description: e.target.value})
+
+const validationSchema = yup.object({
+    title: yup
+      .string('Ingrese un título')
+      .required('El titulo es obligarotio'),
+    description: yup
+      .string('Ingrese una desripción')
+      .required('La descripción es obligatoria'),
+    image: yup
+      .mixed()
+      .test(
+        "Unsupported Format",
+        value => value && SUPPORTED_FORMATS.includes(value.type)
+      )
+
+  });
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/png"
+  ]; 
+
+const ProjectsForm = ({ data }) => {
+  const classes = useStyles()
+  const [projectData, setProjectData] = useState(
+    data || {
+      title: '',
+      description: '',
+      image: '',
+      due_date:'',
     }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  }
+  );
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      description: '',
+      image: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+        setProjectData(
+            Object.assign(projectData,values))
+            if (data) {
+                privatePATCH('https://ongapi.alkemy.org/api/projects', data.id, projectData)
+               } else {
+                 privatePOST("http://ongapi.alkemy.org/api/projects", projectData);
+               }
+           
+      console.log(projectData)
+    },
+  });
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input className="input-field" type="text" name="title" value={initialValues.title} onChange={handleChange} placeholder="Title"></input>
-      <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
-      <button className="submit-btn" type="submit">Send</button>
-    </form>
+    <Container className={classes.containerForm}>
+         <Typography>Completá los datos del proyecto</Typography>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+        className={classes.fieldForm}
+          fullWidth
+          id="title"
+          name="title"
+          label="Título"
+          value={formik.values.title}
+          onChange={formik.handleChange}
+          error={formik.touched.title && Boolean(formik.errors.title)}
+          helperText={formik.touched.title && formik.errors.title}
+          color="secondary"
+        />
+        <TextField
+        className={classes.fieldForm}
+          fullWidth
+          id="description"
+          name="description"
+          label="Descripción"
+          type="text"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          error={formik.touched.desription && Boolean(formik.errors.description)}
+          helperText={formik.touched.description && formik.errors.description}
+          color="secondary"
+        />
+        <label htmlFor="contained-button-file">
+        <TextField className={classes.fieldFormInput} 
+        id="image" 
+        type="file"
+        name="image"
+        onChange={(e)=>formik.setFieldValue("image",e.target.files[0])}
+        error={formik.touched.image && Boolean(formik.errors.image)}
+        helperText={formik.touched.image && formik.errors.image}/>
+        </label>
+
+
+        <Typography></Typography>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DesktopDatePicker
+      className={classes.fieldForm}
+          label="Fecha de finalización"
+          value={projectData.due_date || new Date()}
+          minDate={new Date()}
+          onChange={(newValue) => {
+            setProjectData({...projectData, due_date: newValue});
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>
+      <Button className={classes.fieldForm} color="secondary" variant="contained" fullWidth type="submit" >
+          Submit
+        </Button>
+      </form>
+    </Container>
   );
-}
- 
+};
+
 export default ProjectsForm;
