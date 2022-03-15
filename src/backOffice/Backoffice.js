@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './SideBar'
+import Sidebar from './Sidebar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
 import Error404 from '../Components/Error404/Error404'
@@ -39,7 +39,7 @@ function BackOficce() {
   return (
     <>
       <Header open={open} setOpen={setOpen} />
-      <SideBar open={open} />
+      <Sidebar open={open} />
       <Switch>
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
