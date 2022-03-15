@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
 
@@ -41,7 +41,7 @@ function BackOficce() {
         <Route path={`${match.path}/news`} exact component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
-        <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} />
+        {/* <Route exact path={`${match.path}/create-activity`} component={ActivitiesForm} /> */}
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
@@ -58,6 +58,7 @@ function BackOficce() {
           component={CategoriesList}
         />
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
+        <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/users`} component={UsersList} />
       </Switch>
     </>
