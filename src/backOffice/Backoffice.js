@@ -2,9 +2,10 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
+import OrganizationForm from './OrganizationForm'
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -52,6 +53,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/slides`} component={Slides} />
         <Route exact path={`${match.path}/organization`} component={OrganizationScreen} />
+        <Route exact path={`${match.path}/organization/edit`} component={OrganizationForm} />
         <Route
           exact
           path={`${match.path}/categories`}
