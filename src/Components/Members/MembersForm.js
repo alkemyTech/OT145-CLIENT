@@ -7,6 +7,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Alert, Button, Container } from "@mui/material";
 import useStyles from "../../Components/Auth/AuthStyles";
 import FileInputFormik from "./FileInputFormik";
+import {AlertSucces} from '../../Utils/AlertSucces'
 
 const MembersForm = () => {
   const showAlert = (type, text) => {
@@ -116,6 +117,8 @@ const MembersForm = () => {
 	}
 	console.info(newValues)
 	setSubmitting(false)
+
+  AlertSucces(newValues, setSubmitting)
 }
 
   const handleImageChange = (e, handleChange) => {
