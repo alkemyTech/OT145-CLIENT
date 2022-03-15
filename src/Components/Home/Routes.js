@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import {Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import LayoutHome from './LayoutHome';
 import Error404 from "../Error404/Error404";
 // const Donacion = lazy(() => import('./Components/Donations/Donacion'))
@@ -15,18 +15,18 @@ const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActivida
 
 
 export default function Routes() {
-    let match = useRouteMatch();
+  let match = useRouteMatch();
   return (
     <LayoutHome>
       <Switch>
-          <Route exact path={`${match.path}`} component={Home} />
-          <Route exact path={`${match.path}nosotros`} component={Nosotros} />
-          <Route exact path="/Actividades" component={Actividades} />
-          <Route exact path="/Actividades/:id" component={DetalleActividad} />
-          <Route exact path="/news/:id" component={NewsDetail} />
-          <Route exact path="/news" component={News} />
-          <Route exact path="/contacto" component={Contacto} />
-          <Route path="*" component={Error404}  />
+        <Route exact path={`${match.path}`} component={Home} />
+        <Route exact path={`${match.path}nosotros`} component={Nosotros} />
+        <Route exact path="/Actividades" component={Actividades} />
+        <Route exact path="/Actividades/:id" component={DetalleActividad} />
+        <Route exact path="/news/:id" component={NewsDetail} />
+        <Route exact path="/news" component={News} />
+        <Route exact path="/contacto" component={Contacto} />
+        <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>
   )

@@ -2,12 +2,10 @@ import { Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import '../FormStyles.css';
 import useStyles from '../Auth/AuthStyles';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { privatePATCH, privatePOST } from '../../Services/privateApiService'
-
+import Editor from '../Editor/Editor';
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();
@@ -17,12 +15,12 @@ const ActivitiesForm = ({ data }) => {
         image: '',
     });
 
+
     const handleChange = (e) => {
-        if (e.target.name === 'name') {
-            setInitialValues({ ...initialValues, name: e.target.value })
-        } if (e.target.name === 'description') {
-            setInitialValues({ ...initialValues, description: e.target.value })
-        }
+        setInitialValues({
+            ...initialValues,
+            [e.target.name]: e.target.value
+        })
     }
 
     const activitySchema = yup.object().shape({
@@ -42,7 +40,7 @@ const ActivitiesForm = ({ data }) => {
             .required("El campo es obligatorio")
     });
 
-    const { handleSubmit, touched, errors, setFieldValue, getFieldProps } = useFormik({
+    const { handleSubmit, touched, errors, setFieldValue } = useFormik({
         initialValues: {
             ...initialValues
         },
@@ -56,20 +54,24 @@ const ActivitiesForm = ({ data }) => {
             }
         }
     });
+
     return (
         <form onSubmit={handleSubmit} className={classes.containerForm}>
             <TextField
                 className={classes.fieldForm}
                 type="text"
-                {...getFieldProps('name')}
                 placeholder="Activity Title"
                 fullWidth
                 error={touched.name && errors.name}
                 helperText={touched.name && errors.name ? errors.name : null}
+                name="name"
+                value={initialValues.name}
+                onChange={handleChange}
             />
-            <CKEditor
-                editor={ClassicEditor}
-            />
+            <Editor text={initialValues.description} onChangeText={(description) => {
+                setInitialValues({ ...initialValues , description });
+            }} />
+
             {handleSubmit && errors.ckeditorError &&
                 <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.name && errors.name ? errors.name : null}</Typography>
             }
