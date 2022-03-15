@@ -3,68 +3,95 @@ import useStyles from "./styles/TestimonialsFormStyles";
 import { TextField, Button } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useFormik } from "formik";
 
 const TestimonialForm = () => {
-	const [initialValues, setInitialValues] = useState({
-		name: "",
-		description: "",
-	});
+	// const [initialValues, setInitialValues] = useState({
+	// 	name: "",
+	// 	description: "",
+	// 	image: "",
+	// });
 
-	const handleChange = (e) => {
-		if (e.target.name === "name") {
-			setInitialValues({ ...initialValues, name: e.target.value });
-		}
-		if (e.target.name === "description") {
-			setInitialValues({ ...initialValues, description: e.target.value });
-		}
-	};
+	// const [descriptionValue, setDescriptionValue] = useState('')
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(initialValues);
-	};
+	// const handleChange = (e, data) => {
+	//     console.log(e)
+	//     console.log(data)
+	// 	if (e.target.name === "name") {
+	// 		setInitialValues({ ...initialValues, name: e.target.value });
+	// 	}
+	// 	if (e.target.name === "description") {
+	// 		setInitialValues({ ...initialValues, description: e.target.value });
+	// 	}
+	// };
+
+	// const handleDescriptionName = (data) => {
+	//     console.log(data)
+
+	//     setInitialValues({ ...initialValues, description: data})
+	// }
+
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	console.log(initialValues);
+	// };
 
 	const classes = useStyles();
 
+	const formik = useFormik({
+		initialValues: {
+			name: "",
+			description: "",
+			image: "",
+		},
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	});
+
 	return (
-		// Realizar create y edit
-		<form className={classes.form} onSubmit={handleSubmit}>
+		<form onSubmit={formik.handleSubmit} className={classes.form}>
 			<TextField
 				className={classes.formElement}
-				type="text"
+				// type="text"
 				name="name"
-				value={initialValues.name}
-				onChange={handleChange}
+				value={formik.values.name}
+				onChange={formik.handleChange}
 				placeholder="Testimonial Title"
 			/>
 			{/* Reemplaza campo por ckeditor */}
 			<CKEditor
 				className={classes.formElement}
 				editor={ClassicEditor}
-				data="<p>Hello from CKEditor 5!</p>"
+				data={formik.values.description}
+				id="description"
 				onReady={(editor) => {
 					// You can store the "editor" and use when it is needed.
 					console.log("Editor is ready to use!", editor);
 				}}
 				onChange={(event, editor) => {
-					const data = editor.getData();
-					console.log({ event, editor, data });
+					console.log(editor.getData());
+					formik.setFieldValue("description", editor.getData());
+					// handleDescriptionName(data)
+					// setInitialValues({ ...initialValues, description: data})
 				}}
-				onBlur={(event, editor) => {
-					console.log("Blur.", editor);
-				}}
-				onFocus={(event, editor) => {
-					console.log("Focus.", editor);
-				}}
+				// onChange={formik.handleChange}
+				// onBlur={(event, editor) => {
+				// 	console.log("Blur.", editor);
+				// }}
+				// onFocus={(event, editor) => {
+				// 	console.log("Focus.", editor);
+				// }}
 			/>
 			{/* <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description"></input> */}
 			{/* input image */}
 			<TextField
-				type="file"
 				inputProps={{
 					accept: "image/png, image/jpeg",
+					type: "file",
 				}}
 				className={classes.formElement}
+				onChange={formik.handleChange}
 			/>
 			<Button className={classes.formElement} type="submit" variant="contained">
 				Send
