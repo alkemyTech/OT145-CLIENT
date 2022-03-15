@@ -2,9 +2,11 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
+import Error404 from '../Components/Error404/Error404'
+
 
 const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
@@ -59,6 +61,7 @@ function BackOficce() {
         />
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
         <Route exact path={`${match.path}/users`} component={UsersList} />
+        <Route path="*" component={Error404}  />
       </Switch>
     </>
   )
