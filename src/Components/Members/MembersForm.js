@@ -21,19 +21,18 @@ const MembersForm = () => {
   const classes= useStyles()
   const [image, setImage] = useState('')
   const [userDetails, setUserDetails] = useState({
-    name: "",
-    instagramUsername: "",
-    facebookUsername: "",
-    twitterUsername: "",
-    description: "",
-    image: ""
+    name: "jhon",
+    instagramUsername: "1",
+    facebookUsername: "2",
+    twitterUsername: "3",
   });
 	const imageExample = 'https://www.w3schools.com/howto/img_avatar.png'
 	const formValues = [
 		{
 			type: 'text',
-			name: 'name',
-			placeholder: 'Ingrese su nombre por favor',
+			name: userDetails.name,
+			placeholder: 'Nombre',
+			id: 'name',
 			validate: (value) => {
 				if (!value) {
 					return 'El nombre es obligatorio'
@@ -46,8 +45,9 @@ const MembersForm = () => {
 		},
 		{
 			type: 'text',
-			name: 'instagram',
-			placeholder: 'Ingrese el nombre de usuario de Instagram',
+			name: userDetails.instagramUsername,
+			placeholder: 'Imstagram username',
+			id: 'instagram',
 			validate: (value) => {
 				if (!value) {
 					return 'Ingrese el nombre de usuario de Instagram'
@@ -57,8 +57,9 @@ const MembersForm = () => {
 		},
 		{
 			type: 'text',
-			name: 'twitter',
-			placeholder: 'Ingrese el nombre de usuario de Twitter',
+			name: userDetails.twitterUsername,
+			placeholder: 'Twitter username',
+			id: 'twitter',
 			validate: (value) => {
 				if (!value) {
 					return 'Ingrese el nombre de usuario de Twitter'
@@ -68,8 +69,9 @@ const MembersForm = () => {
 		},
 		{
 			type: 'text',
-			name: 'facebook',
-			placeholder: 'Ingrese el nombre de usuario de Facebook',
+			name: userDetails.facebookUsername,
+			placeholder: 'Facebook username',
+			id: 'facebook',
 			validate: (value) => {
 				if (!value) {
 					return 'Ingrese el nombre de usuario de Facebook'
@@ -138,6 +140,16 @@ const MembersForm = () => {
 		handleChange(e)
 	}
 
+	const handleInputChange = (e) => {
+		const target = e.target;
+		const value =  target.value;
+		const name = target.name;
+	
+		setUserDetails({
+		  [name]: value
+		});
+	  }
+
 	return (
     <Container className={classes.containerForm}>
 		<Formik
@@ -159,16 +171,17 @@ const MembersForm = () => {
 				>
 					{formValues.map((item) => (
 						<div
-							key={item.name}
+							key={item.id}
 							style={{
 								...item.divStyle,
 							}}
 							className="create-member-input-field"
 						>
 							<Field
+								id={item.id}
 								type={item.type}
 								name={item.name}
-								onChange={handleChange}
+								onChange={handleInputChange}
 								value={values[item.name]}
 								placeholder={item.placeholder}
 								className={`input-field ${item.className}`}
