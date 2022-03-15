@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik} from 'formik';
 import * as yup from 'yup';
 import {Button , TextField, Autocomplete, Typography, Input  } from '@mui/material';
 import useStyles from './style';
-
+import { privatePATCH, privatePOST} from '../../Services/privateApiService';
 
 
 const validationSchema = yup.object({
@@ -16,48 +16,51 @@ const validationSchema = yup.object({
       .min(4, 'El nombre debe tener al menos 4 caracteres')
       .required('Es necesario ingresar un nombre')
       .matches(/[a-zA-Z]/, 'El nombre solo puede tener letras'),
-    role: yup
+    role_id: yup
         .string('Selecione un rol')
         .required('Elija una opción'),
     password: yup
         .string('Ingrese su contraseña')
         .min(8, 'La contraseña debe tener una longitud mínima de 8 caraceteres.')
         .required('Es necesario ingresar una contraseña'),
-    profilePhoto: yup
-    .mixed()
-    .test(
-        "type",
-        "Solo imagenes png y jpg",
-        (value) =>{
-            console.log(value)
-            return value && (["aplication/jpg"].includes(value) || ["aplication/png"].includes(value))}
-        )
-    .required('Es necesario ingresar una imagen'),
+    profile_image: yup
+        .mixed()
+        .test(
+            "type",
+            "Solo imagenes png y jpg",
+            (value) =>{
+                return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
+            )
+        .required('Es necesario ingresar una imagen'),
 });
 
 
 
 
-const UserForm = () => {
+const UserForm = ({ data }) => {
     const classes = useStyles()
-    const options = ['Administardor', 'Regular'];
+    const options = ["Administrador", "Regular"]
+    const [userData, setUserData] = useState(data || {
+        name: '',
+        email: '',
+        role_id: 0,
+        password:'',
+        profile_image:''
+    }); 
     const formik = useFormik({
         initialValues:{
-            name: '',
-            email: '',
-            role: '',
-            password:'',
-            profilePhoto:''
+            ...userData
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-        const datosLogin= values
-        console.log(datosLogin)
+            if(data){
+                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
+            } else {
+                privatePOST('https://ongapi.alkemy.org/api/users', values);
+            }
         },
-});
+    });
 
-
-console.log(formik)
     return (
         <div className={classes.containerForm}>
             <Typography variant='h6'>Registrate</Typography>
@@ -100,26 +103,23 @@ console.log(formik)
                     color="secondary"
                 />
                 <Autocomplete
-                    id="role"
-                    name="role"
+                    id="role_id"
+                    name="role_id"
                     className={classes.txt}
-                    value={formik.values.role}
+                    value={formik.values.role_id}
                     options={options}
-                    onChange={(e, value) => formik.setFieldValue("role", value)}
-                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={formik.touched.role && Boolean(formik.errors.role)} helperText={formik.touched.role && formik.errors.role}/>}
+                    onChange={(e, value) => formik.setFieldValue("role_id", value)}
+                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={formik.touched.role_id && Boolean(formik.errors.role_id)} helperText={formik.touched.role_id && formik.errors.role_id}/>}
                 />
                 <TextField className={classes.fieldForm}
                     fullWidth
-                    id="profilePhoto"
-                    name="profilePhoto"
+                    id="profile_image"
+                    name="profile_image"
                     type="file"
-                    value={formik.values.profilePhoto}
-                    onChange={formik.handleChange}
-                    error={formik.touched.profilePhoto && Boolean(formik.errors.profilePhoto)}
-                    helperText={formik.touched.profilePhoto && formik.errors.profilePhoto}
-                    color="secondary"
-                />
-                
+                    onChange={(e)=>formik.setFieldValue("profile_image", e.target.files[0])}
+                    error={formik.touched.profile_image && Boolean(formik.errors.profile_image)}
+                    helperText={formik.touched.profile_image && formik.errors.profile_image}/>
+
                 <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
                     Enviar
                 </Button>
