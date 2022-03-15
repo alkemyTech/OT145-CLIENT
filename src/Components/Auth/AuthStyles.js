@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
     fieldForm:{
         marginBottom: '10px',
         marginTop: '10px !important',
+    },
+    fieldFormInput:{
+        marginBottom:'20px'
+
     }
 
 }))
