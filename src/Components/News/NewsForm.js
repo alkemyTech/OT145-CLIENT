@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import '../../Components/FormStyles.css';
+import { TextField, Select, MenuItem, Button } from '@mui/material';
+import SelectField from './SelectField';
+// import '../../Components/FormStyles.css';
 
 const NewsForm = ({ news }) => {
 
@@ -12,6 +14,8 @@ const NewsForm = ({ news }) => {
         category: '',
         image: news?.image || ''
     });
+
+    const { category } = initialValues;
 
     useEffect(() => {
 
@@ -27,7 +31,6 @@ const NewsForm = ({ news }) => {
                 console.error(error);
             }
         }
-
         fetchCategories();
     }, [])
 
@@ -39,23 +42,29 @@ const NewsForm = ({ news }) => {
             title: Yup.string().required('El campo es obligatorio').min(4, 'Debe tener como minimo 4 caracteres')
         }),
         onSubmit: ((values)=> {
-            console.log(initialValues);
+            console.log(values);
         })
     })
 
-   
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="title" value={values.title} onChange={handleChange}></input>
-            <input className="input-field" type="text" name="content" value={values.content} onChange={handleChange}></input>
-            <select className="select-field" name="category" value={values.category} onChange={handleChange}>
-                <option value="" disabled>Select category</option>
-                <option value="1">Demo option 1</option>
-                <option value="2">Demo option 2</option>
-                <option value="3">Demo option 3</option>
-            </select>
-            <button className="submit-btn" type="submit">Send</button>
+            <TextField className="input-field" type="text" name="title" value={values.title} onChange={handleChange} />
+            <TextField className="input-field" type="text" name="content" value={values.content} onChange={handleChange} />
+            <SelectField className="select-field" name="category" value={values.category} onChange={handleChange}>
+                <MenuItem disabled value=''>--Seleccione una opcion--</MenuItem>
+                {   category.length > 0 &&
+                    category.map(element => (
+                        <MenuItem key={element.id} value={element.name}> {element.name} </MenuItem>
+                    ))
+                }
+            </SelectField>
+            <TextField 
+                type='file' 
+                name='image'
+                onChange={(e) => setFieldValue('image', e.target.files[0])}
+            />
+            <Button variant="contained" color="secondary" type="submit">Send</Button>
         </form>
     );
 }
