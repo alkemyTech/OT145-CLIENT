@@ -1,7 +1,7 @@
 import React, { lazy } from 'react'
 import {Route, Switch, useRouteMatch } from 'react-router-dom'
 import LayoutHome from './LayoutHome';
-
+import Error404 from "../Error404/Error404";
 // const Donacion = lazy(() => import('./Components/Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import('./Index'))
@@ -26,6 +26,7 @@ export default function Routes() {
           <Route exact path="/news/:id" component={NewsDetail} />
           <Route exact path="/news" component={News} />
           <Route exact path="/contacto" component={Contacto} />
+          <Route path="*" component={Error404}  />
       </Switch>
     </LayoutHome>
   )

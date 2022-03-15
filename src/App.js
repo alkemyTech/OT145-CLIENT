@@ -4,6 +4,7 @@ import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 import Spinner from './Components/Spinner/Spinner'
 import { Box } from '@mui/material';
+import Error404 from './Components/Error404/Error404'
 
 
 const ToysCampaign = lazy(() => import('./Campaigns/Toys/ToysCampaign'))
@@ -17,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Suspense
           fallback={
-            <Box sx={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Box sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Spinner
                 color="#000"
                 height={80}
@@ -27,13 +28,13 @@ function App() {
           }
         >
           <Switch>
+            <Route path="/" component={Routes} />
             <Route path="/backoffice" component={BackOficce} />
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
-            <Route path="/" component={Routes} />
           </Switch>
         </Suspense>
-          
+
       </BrowserRouter>
     </ThemeProvider>
   )
