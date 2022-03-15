@@ -1,20 +1,24 @@
 import { makeStyles } from "@mui/styles";
 
+
 const useStyles = makeStyles((theme) => ({
     containerForm:{      
         padding: '10px',
         maxWidth: '70%',
-        margin: 'auto',
     },
     fieldForm:{
-        marginBottom: '10px',
         marginTop: '10px !important',
     },
-    fieldFormInput:{
-        marginBottom:'20px'
-
+    txt: {
+        marginTop: '10px !important',
+        width:'99%',
+        maxHeight:'50%'
+    },
+    typographyTextArea: {
+        paddingLeft:12,
+        paddingBottom:10
     }
 
-}))
+}));
 
 export default useStyles;
