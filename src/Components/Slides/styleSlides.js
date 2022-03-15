@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     fieldForm:{
         marginTop: '10px !important',
         marginBottom: '10px'
+    },
+    typography: {
+        paddingLeft:17
     }
 
 }))

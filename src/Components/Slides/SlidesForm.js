@@ -62,8 +62,9 @@ const SlidesForm = ({ data }) => {
 
 
     return (
-        <div >
-            <form onSubmit={formik.handleSubmit}  className={classes.containerForm}>
+        <div  className={classes.containerForm}>
+            <Typography variant="h6">Crear slide</Typography>
+            <form onSubmit={formik.handleSubmit}>
                 <TextField fullWidth
                     id="name" 
                     name="name" 
@@ -100,7 +101,7 @@ const SlidesForm = ({ data }) => {
                         onChange={(event, editor)=>formik.setFieldValue("description", editor.getData())}
                         editor={ClassicEditor}/>
                     {formik.handleSubmit && formik.errors.description &&
-                        <Typography variant="caption" color="error">Es necesario ingresar una descripcion</Typography>
+                        <Typography variant="caption" color="error" className={classes.typography}>Es necesario ingresar una descripcion</Typography>
                     }
                 </div>
                 <Button color="secondary" variant="contained" fullWidth type="submit">
