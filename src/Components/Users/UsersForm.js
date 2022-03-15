@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik} from 'formik';
 import * as yup from 'yup';
-import {Button , TextField, Autocomplete, Typography, Input  } from '@mui/material';
+import {Button , TextField, Autocomplete, Typography } from '@mui/material';
 import useStyles from './style';
 import { privatePATCH, privatePOST} from '../../Services/privateApiService';
 
@@ -39,11 +39,11 @@ const validationSchema = yup.object({
 
 const UserForm = ({ data }) => {
     const classes = useStyles()
-    const options = ["Administrador", "Regular"]
+    const options = ["", "Administrador", "Regular"]
     const [userData, setUserData] = useState(data || {
         name: '',
         email: '',
-        role_id: 0,
+        role_id: '',
         password:'',
         profile_image:''
     }); 
