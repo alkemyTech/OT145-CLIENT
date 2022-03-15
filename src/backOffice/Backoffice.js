@@ -25,7 +25,7 @@ const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
 
 const Slides = lazy(() => import('../Components/Slides/SlidesBackOffice'))
 const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
-const OrganizationScreen = lazy(() => import('./OrganizationScreen'));
+const OrganizationScreen = lazy(() => import('./Organization/OrganizationScreen'));
 const ActivitiesList = lazy(() => import('./ActivitiesList'))
 const MemberList = lazy(() => import('./MemberList/MemberList'));
 
