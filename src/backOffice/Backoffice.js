@@ -37,31 +37,25 @@ function BackOficce() {
 
   return (
     <>
-      <Header open={open} setOpen={setOpen}/>
-      <SideBar open={open}/>
+      <Header open={open} setOpen={setOpen} />
+      <SideBar open={open} />
       <Switch>
-        <Route path={`${match.path}/news`} exact component={NewsList} />
+        <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
-        <Route exact path={`${match.path}/activities/create`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
-
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
         <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/create-member`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
-
         <Route exact path={`${match.path}/slides`} component={Slides} />
         <Route exact path={`${match.path}/organization`} component={OrganizationScreen} />
-        <Route
-          exact
-          path={`${match.path}/categories`}
-          component={CategoriesList}
-        />
+        <Route exact path={`${match.path}/categories`} component={CategoriesList} />
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
+        <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/users`} component={UsersList} />
-        <Route path="*" component={Error404}  />
+        <Route path="*" component={Error404} />
       </Switch>
     </>
   )
