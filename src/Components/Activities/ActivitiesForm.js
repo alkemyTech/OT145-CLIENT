@@ -9,48 +9,37 @@ import Editor from '../Editor/Editor';
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();
-    const [initialValues, setInitialValues] = useState(data || {
-        name: '',
-        description: '',
-        image: '',
-    });
-
-
-    const handleChange = (e) => {
-        setInitialValues({
-            ...initialValues,
-            [e.target.name]: e.target.value
-        })
-    }
-
+    
     const activitySchema = yup.object().shape({
         name: yup.string()
             .required('El campo obligatorio'),
         image: yup
             .mixed()
+            .required("La imagen es obligatorio")
             .test(
                 "type",
                 "Solo imagenes png y jpg",
                 (value) => {
                     return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
                 }
-            )
-            .required("La imagen es obligatorio"),
+            ),
         ckeditorError: yup.string()
             .required("El campo es obligatorio")
     });
 
-    const { handleSubmit, touched, errors, setFieldValue } = useFormik({
+    const { handleSubmit, touched, errors, setFieldValue, values , handleChange } = useFormik({
         initialValues: {
-            ...initialValues
+            name: data?.name || '',
+            description: data?.description || '',
+            image: data?.image || '',
         },
         validationSchema: activitySchema,
-        onSubmit: (values) => {
+        onSubmit: (initialValues) => {
             if (data) {
-                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, values);
+                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, initialValues);
             }
             else {
-                privatePOST('https://ongapi.alkemy.org/api/news', values);
+                privatePOST('https://ongapi.alkemy.org/api/news', initialValues);
             }
         }
     });
@@ -62,14 +51,14 @@ const ActivitiesForm = ({ data }) => {
                 type="text"
                 placeholder="Activity Title"
                 fullWidth
-                error={touched.name && errors.name}
+                error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name ? errors.name : null}
                 name="name"
-                value={initialValues.name}
+                value={values.name}
                 onChange={handleChange}
             />
-            <Editor text={initialValues.description} onChangeText={(description) => {
-                setInitialValues({ ...initialValues , description });
+            <Editor text={values.description} onChangeText={(description) => {
+                setFieldValue("description",description);
             }} />
 
             {handleSubmit && errors.ckeditorError &&
@@ -81,7 +70,7 @@ const ActivitiesForm = ({ data }) => {
                 name='image'
                 onChange={(e) => setFieldValue("image", e.target.files[0])}
                 fullWidth
-                error={touched.image && errors.image}
+                error={touched.image && Boolean(errors.image)}
                 helperText={touched.image && errors.image ? errors.image : null}
             />
             <Button color="secondary" variant="contained" fullWidth type="submit">Enviar</Button>

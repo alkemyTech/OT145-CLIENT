@@ -23,7 +23,7 @@ export default function CategoriesList() {
   return (
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
-        <Link to="/backoffice/create-category" className={classes.styleLink}>
+        <Link to="/backoffice/category/create-category" className={classes.styleLink}>
           <Typography variant="subtitle1">Crear Categoría</Typography>
         </Link>
       </div>
