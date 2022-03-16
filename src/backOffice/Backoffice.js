@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import SideBar from './Sidebar'
+import Sidebar from './Sidebar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
 import Error404 from '../Components/Error404/Error404'
@@ -25,7 +25,7 @@ const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
 
 const Slides = lazy(() => import('../Components/Slides/SlidesBackOffice'))
 const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
-const OrganizationScreen = lazy(() => import('./OrganizationScreen'));
+const OrganizationScreen = lazy(() => import('./Organization/OrganizationScreen'));
 const ActivitiesList = lazy(() => import('./ActivitiesList'))
 const MemberList = lazy(() => import('./MemberList/MemberList'));
 
@@ -39,7 +39,7 @@ function BackOficce() {
   return (
     <>
       <Header open={open} setOpen={setOpen} />
-      <SideBar open={open} />
+      <Sidebar open={open} />
       <Switch>
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
@@ -48,7 +48,7 @@ function BackOficce() {
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
         <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
-        <Route exact path={`${match.path}/create-member`} component={MembersForm} />
+        <Route exact path={`${match.path}/members/edit`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
         <Route exact path={`${match.path}/slides`} component={Slides} />
         <Route exact path={`${match.path}/organization`} component={OrganizationScreen} />
