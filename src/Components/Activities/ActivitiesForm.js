@@ -28,6 +28,7 @@ const ActivitiesForm = ({ data }) => {
             .required('El campo obligatorio'),
         image: yup
             .mixed()
+            .required("La imagen es obligatorio")
             .test(
                 "type",
                 "Solo imagenes png y jpg",
@@ -35,12 +36,12 @@ const ActivitiesForm = ({ data }) => {
                     return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
                 }
             )
-            .required("La imagen es obligatorio"),
+            ,
         ckeditorError: yup.string()
             .required("El campo es obligatorio")
     });
 
-    const { handleSubmit, touched, errors, setFieldValue } = useFormik({
+    const { handleSubmit, touched, errors, setFieldValue, values } = useFormik({
         initialValues: {
             ...initialValues
         },
@@ -62,7 +63,7 @@ const ActivitiesForm = ({ data }) => {
                 type="text"
                 placeholder="Activity Title"
                 fullWidth
-                error={touched.name && errors.name}
+                error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name ? errors.name : null}
                 name="name"
                 value={initialValues.name}
@@ -81,7 +82,7 @@ const ActivitiesForm = ({ data }) => {
                 name='image'
                 onChange={(e) => setFieldValue("image", e.target.files[0])}
                 fullWidth
-                error={touched.image && errors.image}
+                error={touched.image && Boolean(errors.image)}
                 helperText={touched.image && errors.image ? errors.image : null}
             />
             <Button color="secondary" variant="contained" fullWidth type="submit">Enviar</Button>

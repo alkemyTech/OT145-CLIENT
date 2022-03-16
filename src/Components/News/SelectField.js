@@ -1,14 +1,21 @@
 import React from 'react';
-import { Select } from '@mui/material';
+import { Select, InputLabel, FormControl   } from '@mui/material';
 
 
-const SelectField = ({children, ...props}) => {
+const SelectField = ({children, id, label, className, ...props}) => {
+
+
     return(
-        <Select
-            {...props}
-        >
-            {children}
-        </Select>
+        <FormControl fullWidth className={className}>
+            <InputLabel id={id}>{ label }</InputLabel>
+            <Select
+                {...props}
+                labelId={id}
+                id={id}
+            >
+                {children}
+            </Select>
+        </FormControl>
     );
 };
 
