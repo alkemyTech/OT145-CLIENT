@@ -47,7 +47,12 @@ function SlidesBackOffice() {
     const [data, setData] = useState([])
 
 	const deleteItem = (row) => {
-		const filterArray = mockedData.filter((slide) => slide.id !== row.id);
+		if(data.length >= 1){
+			const filterArray = data.filter((item) => item.id !== row.id);
+			return setData(filterArray);
+
+		}
+		const filterArray = mockedData.filter((item) => item.id !== row.id);
 		return setMockedData(filterArray);
 	};
 

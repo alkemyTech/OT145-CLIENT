@@ -4,6 +4,7 @@ import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../../Components/Editor/Editor";
 import * as Yup from "yup";
+import { privatePOST } from "../../Services/privateApiService";
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -12,7 +13,7 @@ const validationSchema = Yup.object({
 	description: Yup.string("Ingrese Una descripcion").required(
 		"Es necesario ingresar una descripción"
 	),
-	image: Yup.mixed()
+	defaultImage: Yup.mixed()
 		.nullable()
 		.required("La imágen es obligatoria")
 		.test(
@@ -25,6 +26,20 @@ const validationSchema = Yup.object({
 		),
 });
 
+const postData = async (data) => {
+	// let jsonData = JSON.stringify(data)
+
+	try {
+		const response = await privatePOST(
+			process.env.REACT_APP_API_GET_TESTIMONIALS,
+			data
+		);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 const TestimonialForm = () => {
 	const classes = useStyles();
 
@@ -33,13 +48,36 @@ const TestimonialForm = () => {
 			name: "",
 			description: "",
 			image: "",
+			defaultImage: "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values) => {
 			console.log(values);
-			
+			postData(values);
 		},
 	});
+
+	// const reader = new FileReader();
+	// let base64String = "";
+
+	const convertToBase64 = (file) => {
+		return new Promise((resolve, reject) => {
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(file);
+			fileReader.onload = () => {
+				resolve(fileReader.result);
+			};
+			fileReader.onerror = (error) => {
+				reject(error);
+			};
+		});
+	};
+
+	const handleImageChange = async (event) => {
+		const base64String = await convertToBase64(event.target.files[0]);
+		formik.setFieldValue("image", base64String);
+		formik.setFieldValue("defaultImage", event.target.files[0]);
+	};
 
 	return (
 		<form onSubmit={formik.handleSubmit} className={classes.form}>
@@ -67,11 +105,9 @@ const TestimonialForm = () => {
 					accept: "image/png, image/jpeg",
 					type: "file",
 				}}
-				name="image"
+				name="defaultImage"
 				className={classes.formElement}
-				onChange={(event) => {
-					formik.setFieldValue("image", event.target.files[0]);
-				}}
+				onChange={(event) => handleImageChange(event)}
 			/>
 			{formik.touched.image && formik.errors.image ? (
 				<div>{formik.errors.image}</div>
