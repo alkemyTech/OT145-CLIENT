@@ -90,7 +90,7 @@ const SlidesForm = ({ data }) => {
                     name="image" 
                     type="file"
                     className={classes.fieldForm}
-                    onChange={(e)=>formik.setFieldValue("image", e.target.files[0])} placeholder="Descripcion"                     
+                    onChange={(e)=>formik.setFieldValue("image", e.target.files[0])}                     
                     error={formik.touched.image && Boolean(formik.errors.image)}
                     helperText={formik.touched.image && formik.errors.image}/>
 
