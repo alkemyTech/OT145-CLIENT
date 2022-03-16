@@ -11,6 +11,7 @@ const NewsDetail = lazy(() => import('../News/Detail/NewsDetail'))
 const Nosotros = lazy(() => import('../About/Nosotros'))
 const Contacto = lazy(() => import('../Contact/Contacto'))
 const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActividad'))
+const RegisterForm = lazy(() => import('../Auth/RegisterForm'))
 
 
 
@@ -27,6 +28,7 @@ export default function Routes() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
         <Route path="*" component={Error404} />
+        <Route exact path="/register" component={RegisterForm} />
       </Switch>
     </LayoutHome>
   )
