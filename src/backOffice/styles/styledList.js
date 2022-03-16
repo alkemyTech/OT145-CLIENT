@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '20px 0px 20px 0px'
     },
     icon:{
-        color: theme.palette.secondary.main
+        color: theme.palette.secondary.main,
+        cursor: 'pointer'
     }
 }));
 
