@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     },
     errorCkEditor: {
         paddingLeft: theme.spacing(2)
+    },
+    title:{
+        textAlign: 'center',
+        marginBottom: theme.spacing(2)
     }
 }));
 

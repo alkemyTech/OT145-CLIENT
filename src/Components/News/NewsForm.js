@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Editor from '../Editor/Editor';
+import SelectField from './SelectField';
+import useStyles from './styles/newsFormStyles';
 import { useFormik } from 'formik';
 import { TextField, MenuItem, Button, Container, Paper, Typography } from '@mui/material';
-import SelectField from './SelectField';
-import Editor from '../Editor/Editor';
-import  { validationSchema } from './config/index';
-import useStyles from './styles/newsFormStyles';
+import { validationSchema } from './config/index';
+import { privatePOST, privatePATCH } from '../../Services/privateApiService';
+import { convertToBase64 } from './config/helper';
 
 const NewsForm = ({ news }) => {
 
@@ -15,9 +17,9 @@ const NewsForm = ({ news }) => {
     const [errorCategory, setErrorCategory] = useState(false);
 
     const initialValues = {
-        title: news?.title || '',
+        name: news?.name || '',
         content: news?.content || '',
-        category: '',
+        category_id: '',
         image: news?.image || ''
     };
 
@@ -37,53 +39,62 @@ const NewsForm = ({ news }) => {
     }, [])
 
 
-   
 
     const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
-        onSubmit: ((values)=> {
-            
+        onSubmit: ( async (values) => {
+            if (news && !errorCategory) {
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                privatePATCH(`https://ongapi.alkemy.org/api/news/${news.id}`, values);
+            }
+            else if(!errorCategory) {
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                privatePOST('https://ongapi.alkemy.org/api/news', values);
+            }
         })
     })
 
     useEffect(() => {
 
         if(category.length > 0){
-            const validacionCategory = category.find((element) => element.id === values.category)
+            const validacionCategory = category.find((element) => element.id === values.category_id)
             if(!validacionCategory){
                 setErrorCategory(true);
             }else{
                 setErrorCategory(false);
             }
         }
-    }, [values.category])
+    }, [values.category_id])
+
 
   
     return (
         <Container className={classes.container}>
         <form className={classes.form} onSubmit={handleSubmit}>
             <Paper className={classes.paper}  elevation={5}>
-            
+
+            <Typography className={classes.title} variant='h5'> {news ? 'Editar Noticia' : 'Crear Noticia'} </Typography>
             
             <TextField 
             className={classes.inputs} 
             label="Title" 
             type="text" 
-            name="title" 
-            value={values.title} 
+            name="name" 
+            value={values.name} 
             onChange={handleChange} 
             onBlur={handleBlur}
-            error={touched.title && Boolean(errors.title)}
-            helperText={touched.title && errors.title}
+            error={touched.name && Boolean(errors.name)}
+            helperText={touched.name && errors.name}
             fullWidth
             />
             
-            
             <SelectField 
             className={classes.inputs}
-            name="category" 
-            value={values.category} 
+            name="category_id" 
+            value={values.category_id} 
             onChange={handleChange} 
             onBlur={handleBlur}
             id="Categoria" 
@@ -92,14 +103,12 @@ const NewsForm = ({ news }) => {
             errorText='Categoria Invalida'
             >
                 <MenuItem disabled value=''>--Seleccione una opcion--</MenuItem>
-                <MenuItem value='hola'>Opcion Erronea</MenuItem>
                 {   category.length > 0 &&
                     category.map(element => (
                         <MenuItem key={element.id} value={element.id}> {element.name} </MenuItem>
                     ))
                 }
             </SelectField>
-            
             
             <TextField 
                 type='file' 
@@ -111,13 +120,11 @@ const NewsForm = ({ news }) => {
                 error={touched.image && Boolean(errors.image)}
                 helperText={touched.image && errors.image}
             />
-            
-            
+
             <Editor 
             text={values.content} 
             onChangeText={(content) => {setFieldValue("content" , content );}} 
             />
-
             {handleSubmit && errors.content &&  
             <Typography className={classes.errorCkEditor} variant="caption" color="error">{touched.content && errors.content}</Typography> 
             }

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 
 export const validationSchema = Yup.object().shape({
-    title: Yup.string().required('El campo es obligatorio').min(4, 'Debe tener minimo 4 caracteres'),
+    name: Yup.string().required('El campo es obligatorio').min(4, 'Debe tener minimo 4 caracteres'),
     image: Yup
             .mixed()
             .required("La imagen es obligatorio")
