@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     containerForm:{      
         padding: '10px',
         maxWidth: '70%',
-        margin: 'auto',
+        margin: 'auto'
     },
     fieldForm:{
         marginBottom: '10px',
