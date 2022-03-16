@@ -2,7 +2,7 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import CategoriesList from './Categories'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import SideBar from './SideBar'
 import NewsList from './NewsList/NewsList';
 import UsersList from './UsersList'
 import OrganizationForm from './OrganizationForm'
@@ -40,7 +40,7 @@ function BackOficce() {
   return (
     <>
       <Header open={open} setOpen={setOpen} />
-      <Sidebar open={open} />
+      <SideBar open={open} />
       <Switch>
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
