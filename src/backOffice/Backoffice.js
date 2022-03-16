@@ -16,9 +16,8 @@ const CategoriesForm = lazy(() =>
 )
 const NewsForm = lazy(() => import('../Components/News/NewsForm'))
 const SlidesForm = lazy(() => import('../Components/Slides/SlidesForm'))
-const TestimonialForm = lazy(() =>
-  import('./TestimonialsForm'),
-)
+const TestimonialForm = lazy(() => import('./Testimonials/TestimonialsForm'))
+const Testimonials = lazy(() => import('./Testimonials/Testimonials'))
 const UserForm = lazy(() => import('../Components/Users/UsersForm'))
 const MembersForm = lazy(() => import('../Components/Members/MembersForm'))
 const ProjectsForm = lazy(() => import('../Components/Projects/ProjectsForm'))
@@ -46,7 +45,8 @@ function BackOficce() {
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
         <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
-        <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
+        <Route exact path={`${match.path}/testimonials/create`} component={TestimonialForm} />
+        <Route exact path={`${match.path}/testimonials`} component={Testimonials} />
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/create-member`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />

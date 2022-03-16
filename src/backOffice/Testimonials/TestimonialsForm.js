@@ -2,7 +2,7 @@ import React from "react";
 import useStyles from "./styles/TestimonialsFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
-import Editor from "../Components/Editor/Editor";
+import Editor from "../../Components/Editor/Editor";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
@@ -37,6 +37,7 @@ const TestimonialForm = () => {
 		validationSchema: validationSchema,
 		onSubmit: (values) => {
 			console.log(values);
+			
 		},
 	});
 
