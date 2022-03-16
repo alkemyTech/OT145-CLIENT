@@ -9,20 +9,7 @@ import Editor from '../Editor/Editor';
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();
-    const [initialValues, setInitialValues] = useState(data || {
-        name: '',
-        description: '',
-        image: '',
-    });
-
-
-    const handleChange = (e) => {
-        setInitialValues({
-            ...initialValues,
-            [e.target.name]: e.target.value
-        })
-    }
-
+    
     const activitySchema = yup.object().shape({
         name: yup.string()
             .required('El campo obligatorio'),
@@ -35,23 +22,24 @@ const ActivitiesForm = ({ data }) => {
                 (value) => {
                     return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
                 }
-            )
-            ,
+            ),
         ckeditorError: yup.string()
             .required("El campo es obligatorio")
     });
 
-    const { handleSubmit, touched, errors, setFieldValue, values } = useFormik({
+    const { handleSubmit, touched, errors, setFieldValue, values , handleChange } = useFormik({
         initialValues: {
-            ...initialValues
+            name: data?.name || '',
+            description: data?.description || '',
+            image: data?.image || '',
         },
         validationSchema: activitySchema,
-        onSubmit: (values) => {
+        onSubmit: (initialValues) => {
             if (data) {
-                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, values);
+                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, initialValues);
             }
             else {
-                privatePOST('https://ongapi.alkemy.org/api/news', values);
+                privatePOST('https://ongapi.alkemy.org/api/news', initialValues);
             }
         }
     });
@@ -66,11 +54,11 @@ const ActivitiesForm = ({ data }) => {
                 error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name ? errors.name : null}
                 name="name"
-                value={initialValues.name}
+                value={values.name}
                 onChange={handleChange}
             />
-            <Editor text={initialValues.description} onChangeText={(description) => {
-                setInitialValues({ ...initialValues , description });
+            <Editor text={values.description} onChangeText={(description) => {
+                setFieldValue("description",description);
             }} />
 
             {handleSubmit && errors.ckeditorError &&

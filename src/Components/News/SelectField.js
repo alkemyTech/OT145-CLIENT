@@ -1,12 +1,12 @@
 import React from 'react';
-import { Select, InputLabel, FormControl   } from '@mui/material';
+import { Select, InputLabel, FormControl, FormHelperText } from '@mui/material';
 
 
-const SelectField = ({children, id, label, className, ...props}) => {
+const SelectField = ({children, id, label, className, error, errorText,  ...props}) => {
 
 
     return(
-        <FormControl fullWidth className={className}>
+        <FormControl fullWidth className={className} error={error}>
             <InputLabel id={id}>{ label }</InputLabel>
             <Select
                 {...props}
@@ -15,7 +15,11 @@ const SelectField = ({children, id, label, className, ...props}) => {
             >
                 {children}
             </Select>
+            {
+              error && <FormHelperText> { errorText } </FormHelperText>
+            }
         </FormControl>
+        
     );
 };
 

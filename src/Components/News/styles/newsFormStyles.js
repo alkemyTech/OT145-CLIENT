@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     },
     button:{
         marginTop: theme.spacing(2)
+    },
+    errorCkEditor: {
+        paddingLeft: theme.spacing(2)
     }
 }));
 
