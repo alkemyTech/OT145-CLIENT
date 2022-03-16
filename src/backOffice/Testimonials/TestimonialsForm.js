@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./styles/TestimonialsFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
@@ -13,42 +13,37 @@ const validationSchema = Yup.object({
 	description: Yup.string("Ingrese Una descripcion").required(
 		"Es necesario ingresar una descripción"
 	),
-	defaultImage: Yup.mixed()
-		.nullable()
-		.required("La imágen es obligatoria")
-		.test(
-			"FILE_SIZE",
-			"La imágen no tiene un formato válido",
-			(value) =>
-				!value ||
-				(value &&
-					["image/jpg", "image/jpeg", "image/png"].includes(value?.type))
-		),
+	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
+	// .test(
+	// 	"FILE_SIZE",
+	// 	"La imágen no tiene un formato válido",
+	// 	(value) => !value || (value && ["image/jpg", "image/jpeg", "image/png"].includes(value))
+	// ),
 });
-
-const postData = async (data) => {
-	// let jsonData = JSON.stringify(data)
-
-	try {
-		const response = await privatePOST(
-			process.env.REACT_APP_API_GET_TESTIMONIALS,
-			data
-		);
-		console.log(response);
-	} catch (error) {
-		console.log(error);
-	}
-};
 
 const TestimonialForm = () => {
 	const classes = useStyles();
+
+	const postData = async (data) => {
+		// let jsonData = JSON.stringify(data)
+
+		try {
+			const response = await privatePOST(
+				process.env.REACT_APP_API_GET_TESTIMONIALS,
+				data
+			);
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const formik = useFormik({
 		initialValues: {
 			name: "",
 			description: "",
 			image: "",
-			defaultImage: "",
+			// defaultImage: "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values) => {
@@ -56,6 +51,8 @@ const TestimonialForm = () => {
 			postData(values);
 		},
 	});
+
+	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 
 	// const reader = new FileReader();
 	// let base64String = "";
@@ -75,8 +72,15 @@ const TestimonialForm = () => {
 
 	const handleImageChange = async (event) => {
 		const base64String = await convertToBase64(event.target.files[0]);
+		setIsValidImageFormat(
+			event.target.files[0].type === "image/jpeg" ||
+				event.target.files[0].type === "image/jpg" ||
+				event.target.files[0].type === "image/png"
+				? true
+				: false
+		);
 		formik.setFieldValue("image", base64String);
-		formik.setFieldValue("defaultImage", event.target.files[0]);
+		// formik.setFieldValue("defaultImage", event.target.files[0]);
 	};
 
 	return (
@@ -109,8 +113,8 @@ const TestimonialForm = () => {
 				className={classes.formElement}
 				onChange={(event) => handleImageChange(event)}
 			/>
-			{formik.touched.image && formik.errors.image ? (
-				<div>{formik.errors.image}</div>
+			{formik.touched.image && !isValidImageFormat? (
+				<div>El formato de la imágen no es válido {formik.errors.image}</div>
 			) : null}
 			<Button className={classes.formElement} type="submit" variant="contained">
 				Send
