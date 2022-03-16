@@ -4,9 +4,9 @@ const useStyles = makeStyles((theme) => ({
 	footerContainer: {
 		backgroundColor: "#f5f5f5",
     	borderTop: 'solid 1px #dfdfdf',
-		width: '100%',
-		position: 'absolute',
-		bottom: 0,
+		// width: '100%',
+		// position: 'absolute',
+		// bottom: 0,
 		
 	},
 	insideContainer:{

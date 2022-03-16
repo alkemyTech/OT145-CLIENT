@@ -13,7 +13,8 @@ import {
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import useStyles from "./styles/styledList";
+import useStyles from "../styles/styledList";
+import EditHomeForm from "./EditHome/EditHomeForm";
 
 const OrganizationScreen = () => {
   const classes = useStyles();
@@ -65,6 +66,9 @@ const OrganizationScreen = () => {
         </TableBody>
       </Table>
     </TableContainer>
+      </Box>
+      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <EditHomeForm />
       </Box>
     </>
   );
