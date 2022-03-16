@@ -45,9 +45,9 @@ function BackOficce() {
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
-        <Route exact path={`${match.path}/create-category`} component={CategoriesForm} />
+        <Route exact path={`${match.path}/category/create-category`} component={CategoriesForm} />
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
-        <Route exact path={`${match.path}/create-testimonials`} component={TestimonialForm} />
+        <Route exact path={`${match.path}/testimonials/create-testimonials`} component={TestimonialForm} />
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
         <Route exact path={`${match.path}/members/edit`} component={MembersForm} />
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />

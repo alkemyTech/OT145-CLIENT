@@ -51,7 +51,7 @@ const ActivitiesForm = ({ data }) => {
                 type="text"
                 placeholder="Activity Title"
                 fullWidth
-                error={touched.name && errors.name}
+                error={touched.name && Boolean(errors.name)}
                 helperText={touched.name && errors.name ? errors.name : null}
                 name="name"
                 value={values.name}
@@ -70,7 +70,7 @@ const ActivitiesForm = ({ data }) => {
                 name='image'
                 onChange={(e) => setFieldValue("image", e.target.files[0])}
                 fullWidth
-                error={touched.image && errors.image}
+                error={touched.image && Boolean(errors.image)}
                 helperText={touched.image && errors.image ? errors.image : null}
             />
             <Button color="secondary" variant="contained" fullWidth type="submit">Enviar</Button>
