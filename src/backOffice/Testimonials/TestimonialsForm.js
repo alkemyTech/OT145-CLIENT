@@ -4,7 +4,7 @@ import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../../Components/Editor/Editor";
 import * as Yup from "yup";
-import { privatePOST } from "../../Services/privateApiService";
+import { privatePOST, privatePATCH } from "../../Services/privateApiService";
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -21,35 +21,40 @@ const validationSchema = Yup.object({
 	// ),
 });
 
-const TestimonialForm = () => {
+const TestimonialForm = ({ testimonial }) => {
 	const classes = useStyles();
 
-	const postData = async (data) => {
-		// let jsonData = JSON.stringify(data)
+	// const postData = async (data) => {
+	// 	// let jsonData = JSON.stringify(data)
 
-		try {
-			const response = await privatePOST(
-				process.env.REACT_APP_API_GET_TESTIMONIALS,
-				data
-			);
-			console.log(response);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	// 	try {
+	// 		const response = await privatePOST(
+	// 			process.env.REACT_APP_API_GET_TESTIMONIALS,
+	// 			data
+	// 		);
+	// 		console.log(response);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
-	const formik = useFormik({
+	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
 		initialValues: {
-			name: "",
-			description: "",
-			image: "",
+			name: testimonial?.name || "",
+			description: testimonial?.description ||"",
+			image: testimonial?.image || "",
 			// defaultImage: "",
 		},
 		validationSchema: validationSchema,
-		onSubmit: (values) => {
-			console.log(values);
-			postData(values);
-		},
+		onSubmit: ( async (values) => {
+			// const base64 = await convertToBase64(values.image)
+			// values.image = base64
+            if (testimonial) {
+                privatePATCH(`${process.env.REACT_APP_API_GET_TESTIMONIALS}/${testimonial.id}`, values);
+            }
+            privatePOST(process.env.REACT_APP_API_GET_TESTIMONIALS, values);
+            
+        })
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
@@ -79,30 +84,28 @@ const TestimonialForm = () => {
 				? true
 				: false
 		);
-		formik.setFieldValue("image", base64String);
-		// formik.setFieldValue("defaultImage", event.target.files[0]);
+		setFieldValue("image", base64String);
+		// setFieldValue("defaultImage", event.target.files[0]);
 	};
 
 	return (
-		<form onSubmit={formik.handleSubmit} className={classes.form}>
+		<form onSubmit={handleSubmit} className={classes.form}>
 			<TextField
 				className={classes.formElement}
 				name="name"
-				value={formik.values.name}
-				onChange={formik.handleChange}
+				value={values.name}
+				onChange={handleChange}
 				placeholder="Testimonial Title"
+				error={touched.name && errors.name}
 			/>
-			{formik.touched.name && formik.errors.name ? (
-				<div>{formik.errors.name}</div>
-			) : null}
 			<Editor
-				text={formik.values.description}
+				text={values.description}
 				onChangeText={(data) => {
-					formik.setFieldValue("description", data);
+					setFieldValue("description", data);
 				}}
 			/>
-			{formik.touched.description && formik.errors.description ? (
-				<div>{formik.errors.description}</div>
+			{touched.description && errors.description ? (
+				<div>{errors.description}</div>
 			) : null}
 			<TextField
 				inputProps={{
@@ -113,8 +116,8 @@ const TestimonialForm = () => {
 				className={classes.formElement}
 				onChange={(event) => handleImageChange(event)}
 			/>
-			{formik.touched.image && !isValidImageFormat? (
-				<div>El formato de la imágen no es válido {formik.errors.image}</div>
+			{touched.image && !isValidImageFormat? (
+				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button className={classes.formElement} type="submit" variant="contained">
 				Send
