@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import Editor from "../../Components/Editor/Editor";
 import * as Yup from "yup";
 import { privatePOST, privatePATCH } from "../../Services/privateApiService";
+import {convertToBase64} from '../../Components/News/config/helper'
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -14,41 +15,19 @@ const validationSchema = Yup.object({
 		"Es necesario ingresar una descripción"
 	),
 	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
-	// .test(
-	// 	"FILE_SIZE",
-	// 	"La imágen no tiene un formato válido",
-	// 	(value) => !value || (value && ["image/jpg", "image/jpeg", "image/png"].includes(value))
-	// ),
 });
 
 const TestimonialForm = ({ testimonial }) => {
 	const classes = useStyles();
-
-	// const postData = async (data) => {
-	// 	// let jsonData = JSON.stringify(data)
-
-	// 	try {
-	// 		const response = await privatePOST(
-	// 			process.env.REACT_APP_API_GET_TESTIMONIALS,
-	// 			data
-	// 		);
-	// 		console.log(response);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
 
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
 		initialValues: {
 			name: testimonial?.name || "",
 			description: testimonial?.description ||"",
 			image: testimonial?.image || "",
-			// defaultImage: "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
-			// const base64 = await convertToBase64(values.image)
-			// values.image = base64
             if (testimonial) {
                 privatePATCH(`${process.env.REACT_APP_API_GET_TESTIMONIALS}/${testimonial.id}`, values);
             }
@@ -58,22 +37,6 @@ const TestimonialForm = ({ testimonial }) => {
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
-
-	// const reader = new FileReader();
-	// let base64String = "";
-
-	const convertToBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			fileReader.readAsDataURL(file);
-			fileReader.onload = () => {
-				resolve(fileReader.result);
-			};
-			fileReader.onerror = (error) => {
-				reject(error);
-			};
-		});
-	};
 
 	const handleImageChange = async (event) => {
 		const base64String = await convertToBase64(event.target.files[0]);
@@ -85,7 +48,6 @@ const TestimonialForm = ({ testimonial }) => {
 				: false
 		);
 		setFieldValue("image", base64String);
-		// setFieldValue("defaultImage", event.target.files[0]);
 	};
 
 	return (
