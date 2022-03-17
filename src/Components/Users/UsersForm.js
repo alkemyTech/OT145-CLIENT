@@ -40,16 +40,14 @@ const validationSchema = yup.object({
 const UserForm = ({ data }) => {
     const classes = useStyles()
     const options = ["", "Administrador", "Regular"]
-    const [userData, setUserData] = useState(data || {
-        name: '',
-        email: '',
-        role_id: '',
-        password:'',
-        profile_image:''
-    }); 
-    const formik = useFormik({
+ 
+    const {handleChange, handleSubmit, values, setFieldValue, touched, errors} = useFormik({
         initialValues:{
-            ...userData
+            name: data?.name || '',
+            email: data?.email || '',
+            role_id: data?.role_id || '',
+            password: data?.password || '',
+            profile_image: data?.profile_image || ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -61,20 +59,22 @@ const UserForm = ({ data }) => {
         },
     });
 
+
+
     return (
         <div className={classes.containerForm}>
             <Typography variant='h6'>Registrate</Typography>
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
                     id="name"
                     name="name"
                     label="Nombre"
                     className={classes.fieldForm}
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    error={formik.touched.name && Boolean(formik.errors.name)}
-                    helperText={formik.touched.name && formik.errors.name}
+                    value={values.name}
+                    onChange={handleChange}
+                    error={touched.name && Boolean(errors.name)}
+                    helperText={touched.name && errors.name}
                     color="secondary"
                 />
                 <TextField
@@ -84,10 +84,10 @@ const UserForm = ({ data }) => {
                     name="email"
                     label="Email"
                     className={classes.fieldForm}
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
+                    value={values.email}
+                    onChange={handleChange}
+                    error={touched.email && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
                     color="secondary"
                 />
                 <TextField className={classes.fieldForm}
@@ -96,31 +96,31 @@ const UserForm = ({ data }) => {
                     name="password"
                     label="Contraseña"
                     type="password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.touched.password && formik.errors.password}
+                    value={values.password}
+                    onChange={handleChange}
+                    error={touched.password && Boolean(errors.password)}
+                    helperText={touched.password && errors.password}
                     color="secondary"
                 />
                 <Autocomplete
                     id="role_id"
                     name="role_id"
                     className={classes.txt}
-                    value={formik.values.role_id}
+                    value={values.role_id}
                     options={options}
-                    onChange={(e, value) => formik.setFieldValue("role_id", value)}
-                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={formik.touched.role_id && Boolean(formik.errors.role_id)} helperText={formik.touched.role_id && formik.errors.role_id}/>}
+                    onChange={(e, value) => setFieldValue("role_id", value)}
+                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={touched.role_id && Boolean(errors.role_id)} helperText={touched.role_id && errors.role_id}/>}
                 />
                 <TextField className={classes.fieldForm}
                     fullWidth
                     id="profile_image"
                     name="profile_image"
                     type="file"
-                    onChange={(e)=>formik.setFieldValue("profile_image", e.target.files[0])}
-                    error={formik.touched.profile_image && Boolean(formik.errors.profile_image)}
-                    helperText={formik.touched.profile_image && formik.errors.profile_image}/>
+                    onChange={(e)=>setFieldValue("profile_image", e.target.files[0])}
+                    error={touched.profile_image && Boolean(errors.profile_image)}
+                    helperText={touched.profile_image && errors.profile_image}/>
 
-                <Button color="secondary" variant="contained" fullWidth type="submit" onSubmit={formik.handleSubmit}>
+                <Button color="secondary" variant="contained" fullWidth type="submit">
                     Enviar
                 </Button>
             </form>
