@@ -81,7 +81,7 @@ const TestimonialForm = ({ testimonial }) => {
 			{touched.image && !isValidImageFormat? (
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
-			<Button className={classes.formElement} type="submit" variant="contained">
+			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
 				Send
 			</Button>
 		</form>
