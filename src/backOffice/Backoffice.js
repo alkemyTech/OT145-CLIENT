@@ -1,6 +1,5 @@
 import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
-import CategoriesList from './Categories'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import NewsList from './NewsList/NewsList';
@@ -13,7 +12,10 @@ const ActivitiesForm = lazy(() =>
   import('../Components/Activities/ActivitiesForm'),
 )
 const CategoriesForm = lazy(() =>
-  import('../Components/Categories/CategoriesForm'),
+  import('./Categories/CategoriesForm'),
+)
+const Categories= lazy(() =>
+  import('./Categories/Categories'),
 )
 const NewsForm = lazy(() => import('../Components/News/NewsForm'))
 const SlidesForm = lazy(() => import('../Components/Slides/SlidesForm'))
@@ -44,7 +46,8 @@ function BackOficce() {
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route exact path={`${match.path}/news/create-news`} component={NewsForm} />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
-        <Route exact path={`${match.path}/category/create-category`} component={CategoriesForm} />
+        <Route exact path={`${match.path}/categories`} component={Categories} />
+        <Route exact path={`${match.path}/categories/create`} component={CategoriesForm} />
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
         <Route exact path={`${match.path}/testimonials/create`} component={TestimonialForm} />
         <Route exact path={`${match.path}/testimonials`} component={Testimonials} />
@@ -54,11 +57,6 @@ function BackOficce() {
         <Route exact path={`${match.path}/slides`} component={Slides} />
         <Route exact path={`${match.path}/organization`} component={OrganizationScreen} />
         <Route exact path={`${match.path}/organization/edit`} component={OrganizationForm} />
-        <Route
-          exact
-          path={`${match.path}/categories`}
-          component={CategoriesList}
-        />
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
         <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
         <Route exact path={`${match.path}/users`} component={UsersList} />
