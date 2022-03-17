@@ -4,43 +4,43 @@ import { Drawer, List, ListItem, Divider, Typography, Box, Toolbar } from '@mui/
 import useStyles from './styles/sideBarStyles';
 
 
-const Sidebar = ({open}) => {
+const SideBar = ({open}) => {
 
     const classes = useStyles();
 
     const rutasMokeadas = [
         {   
             name:"Create Activity",
-            link: "/backoffice/activities/create-activity"
+            link: "/create-activity"
         },
         
         {
             name:"Create Category",
-            link: "/backoffice/category/create-category"
+            link: "/create-category"
         },
         {
             name:"Create News",
-            link: "/backoffice/news/create-news"
+            link: "/create-news"
         },
         {
             name:"Create Slide",
-            link: "/backoffice/slides/create"
+            link: "/backoffice/create-slide"
         },
         {
             name:"Create Testimonials",
-            link: "/backoffice/testimonials/create-testimonials"
+            link: "/create-testimonials"
         },
         {
             name:"Create User",
-            link: "/backoffice/users/create-user"
+            link: "/create-user"
         },
         {
             name:"Create Member",
-            link: "/backoffice/members/edit"
+            link: "/create-member"
         },
         {
             name:"Create Proyect",
-            link: "/backoffice/create-project"
+            link: "/create-project"
         }
 
     ]
@@ -84,4 +84,4 @@ const Sidebar = ({open}) => {
 };
 
 
-export default Sidebar;
+export default SideBar;
