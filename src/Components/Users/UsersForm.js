@@ -1,37 +1,130 @@
 import React, { useState } from 'react';
-import '../FormStyles.css';
+import { useFormik} from 'formik';
+import * as yup from 'yup';
+import {Button , TextField, Autocomplete, Typography } from '@mui/material';
+import useStyles from './style';
+import { privatePATCH, privatePOST} from '../../Services/privateApiService';
 
-const UserForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        email: '',
-        roleId: ''
-    })
 
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        }
-    }
+const validationSchema = yup.object({
+    email: yup
+      .string('Ingrese su mail')
+      .email('Ingrese una dirección de mail válida')
+      .required('Es necesario ingresar una dirección de mail'),
+    name: yup
+      .string('Ingrese su nombre')
+      .min(4, 'El nombre debe tener al menos 4 caracteres')
+      .required('Es necesario ingresar un nombre')
+      .matches(/[a-zA-Z]/, 'El nombre solo puede tener letras'),
+    role_id: yup
+        .string('Selecione un rol')
+        .required('Elija una opción'),
+    password: yup
+        .string('Ingrese su contraseña')
+        .min(8, 'La contraseña debe tener una longitud mínima de 8 caraceteres.')
+        .required('Es necesario ingresar una contraseña'),
+    profile_image: yup
+        .mixed()
+        .test(
+            "type",
+            "Solo imagenes png y jpg",
+            (value) =>{
+                return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
+            )
+        .required('Es necesario ingresar una imagen'),
+});
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
+
+
+
+const UserForm = ({ data }) => {
+    const classes = useStyles()
+    const options = ["", "Administrador", "Regular"]
+ 
+    const {handleChange, handleSubmit, values, setFieldValue, touched, errors} = useFormik({
+        initialValues:{
+            name: data?.name || '',
+            email: data?.email || '',
+            role_id: data?.role_id || '',
+            password: data?.password || '',
+            profile_image: data?.profile_image || ''
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            if(data){
+                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
+            } else {
+                privatePOST('https://ongapi.alkemy.org/api/users', values);
+            }
+        },
+    });
+
+
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
-            <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
-                <option value="" disabled >Select the role</option>
-                <option value="1">Admin</option>
-                <option value="2">User</option>
-            </select>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
+        <div className={classes.containerForm}>
+            <Typography variant='h6'>Registrate</Typography>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    fullWidth
+                    id="name"
+                    name="name"
+                    label="Nombre"
+                    className={classes.fieldForm}
+                    value={values.name}
+                    onChange={handleChange}
+                    error={touched.name && Boolean(errors.name)}
+                    helperText={touched.name && errors.name}
+                    color="secondary"
+                />
+                <TextField
+                   
+                    fullWidth
+                    id="email"
+                    name="email"
+                    label="Email"
+                    className={classes.fieldForm}
+                    value={values.email}
+                    onChange={handleChange}
+                    error={touched.email && Boolean(errors.email)}
+                    helperText={touched.email && errors.email}
+                    color="secondary"
+                />
+                <TextField className={classes.fieldForm}
+                    fullWidth
+                    id="password"
+                    name="password"
+                    label="Contraseña"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    error={touched.password && Boolean(errors.password)}
+                    helperText={touched.password && errors.password}
+                    color="secondary"
+                />
+                <Autocomplete
+                    id="role_id"
+                    name="role_id"
+                    className={classes.txt}
+                    value={values.role_id}
+                    options={options}
+                    onChange={(e, value) => setFieldValue("role_id", value)}
+                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={touched.role_id && Boolean(errors.role_id)} helperText={touched.role_id && errors.role_id}/>}
+                />
+                <TextField className={classes.fieldForm}
+                    fullWidth
+                    id="profile_image"
+                    name="profile_image"
+                    type="file"
+                    onChange={(e)=>setFieldValue("profile_image", e.target.files[0])}
+                    error={touched.profile_image && Boolean(errors.profile_image)}
+                    helperText={touched.profile_image && errors.profile_image}/>
+
+                <Button color="secondary" variant="contained" fullWidth type="submit">
+                    Enviar
+                </Button>
+            </form>
+        </div>
     );
 }
  
