@@ -4,6 +4,8 @@ import { Drawer, List, ListItem, Divider, Typography, Box, Toolbar } from '@mui/
 import useStyles from './styles/sideBarStyles';
 
 
+
+
 const Sidebar = ({open}) => {
 
     const classes = useStyles();
