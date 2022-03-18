@@ -1,27 +1,29 @@
 import privateGET, { privatePATCH, privatePOST, privatePUT, privateDELETE } from '../privateApiService'
 
+const SLIDES_URL = process.env.REACT_APP_API_GET_SLIDES
+
 const getAllSlides = () => {
-    return privateGET(process.env.REACT_APP_API_GET_SLIDES)
+    return privateGET(SLIDES_URL)
 }
 
 const getSlideById = (id) => {
-    return privateGET(process.env.REACT_APP_API_GET_SLIDES, id)
+    return privateGET(SLIDES_URL, id)
 }
 
 const postSlide = (body) => {
-    return privatePOST(process.env.REACT_APP_API_GET_SLIDES, body)
+    return privatePOST(SLIDES_URL, body)
 }
 
 const patchSlide = (id, body) => {
-    return privatePATCH(process.env.REACT_APP_API_GET_SLIDES, id, body)
+    return privatePATCH(SLIDES_URL, id, body)
 }
 
 const putSlide = (id, body) => {
-    return privatePUT(process.env.REACT_APP_API_GET_SLIDES, id, body)
+    return privatePUT(SLIDES_URL, id, body)
 }
 
 const deleteSlide = (id) => {
-    return privateDELETE(process.env.REACT_APP_API_GET_SLIDES, id)
+    return privateDELETE(SLIDES_URL, id)
 }
 
 export { getAllSlides, getSlideById, postSlide, patchSlide, putSlide, deleteSlide }
