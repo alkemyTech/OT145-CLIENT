@@ -8,7 +8,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import { Container, Button, Typography } from "@mui/material";
 import { useFormik } from 'formik';
 import * as yup from 'yup'
-
+import { convertToBase64 } from "../News/config/helper";
 import useStyles from "../Auth/AuthStyles";
 
 
@@ -22,60 +22,57 @@ const validationSchema = yup.object({
     image: yup
       .mixed()
       .test(
-        "Unsupported Format",
-        value => value && SUPPORTED_FORMATS.includes(value.type)
-      )
+        "type",
+        "Solo imagenes png y jpg",
+        (value) => {
+            return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
+        })
 
   });
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/png"
-  ]; 
+ 
 
 const ProjectsForm = ({ data }) => {
   const classes = useStyles()
-  const [projectData, setProjectData] = useState(
-    data || {
-      title: '',
-      description: '',
-      image: '',
-      due_date:'',
-    }
-  );
-  const formik = useFormik({
+  const [projectData, setProjectData] = useState({due_date:''});
+
+  const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
     initialValues: {
-      title: '',
-      description: '',
-      image: ''
+      title: data?.title ||'',
+      description:  data?.description|| '',
+       image: data?.image || ''
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (async(values) => {
         setProjectData(
             Object.assign(projectData,values))
             if (data) {
-                privatePATCH('https://ongapi.alkemy.org/api/projects', data.id, projectData)
+              const base64 = await convertToBase64(projectData.image)
+                projectData.image = base64
+                privatePATCH(`https://ongapi.alkemy.org/api/projects/${data.id}`, projectData)
                } else {
+                const base64 = await convertToBase64(projectData.image)
+                projectData.image = base64
                  privatePOST("http://ongapi.alkemy.org/api/projects", projectData);
                }
            
       console.log(projectData)
-    },
+    }),
   });
 
   return (
     <Container className={classes.containerForm}>
          <Typography>Completá los datos del proyecto</Typography>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
         className={classes.fieldForm}
           fullWidth
           id="title"
           name="title"
           label="Título"
-          value={formik.values.title}
-          onChange={formik.handleChange}
-          error={formik.touched.title && Boolean(formik.errors.title)}
-          helperText={formik.touched.title && formik.errors.title}
+          value={values.title}
+          onChange={handleChange}
+          error={touched.title && Boolean(errors.title)}
+          helperText={touched.title &&errors.title}
           color="secondary"
         />
         <TextField
@@ -85,21 +82,22 @@ const ProjectsForm = ({ data }) => {
           name="description"
           label="Descripción"
           type="text"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          error={formik.touched.desription && Boolean(formik.errors.description)}
-          helperText={formik.touched.description && formik.errors.description}
+          value={values.description}
+          onChange={handleChange}
+          error={touched.desription && Boolean(errors.description)}
+          helperText={touched.description && errors.description}
           color="secondary"
         />
-        <label htmlFor="contained-button-file">
+      
         <TextField className={classes.fieldFormInput} 
+          fullWidth
         id="image" 
         type="file"
         name="image"
-        onChange={(e)=>formik.setFieldValue("image",e.target.files[0])}
-        error={formik.touched.image && Boolean(formik.errors.image)}
-        helperText={formik.touched.image && formik.errors.image}/>
-        </label>
+        onChange={(e)=>setFieldValue("image",e.target.files[0])}
+        error={touched.image && Boolean(errors.image)}
+        helperText={touched.image && errors.image}/>
+        
 
 
         <Typography></Typography>
