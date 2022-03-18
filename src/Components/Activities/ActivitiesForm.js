@@ -6,10 +6,11 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { privatePATCH, privatePOST } from '../../Services/privateApiService'
 import Editor from '../Editor/Editor';
+import { convertToBase64 } from '../News/config/helper'; 
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();
-    
+
     const activitySchema = yup.object().shape({
         name: yup.string()
             .required('El campo obligatorio'),
@@ -23,7 +24,7 @@ const ActivitiesForm = ({ data }) => {
                     return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
                 }
             ),
-        ckeditorError: yup.string()
+        description: yup.string()
             .required("El campo es obligatorio")
     });
 
@@ -34,16 +35,19 @@ const ActivitiesForm = ({ data }) => {
             image: data?.image || '',
         },
         validationSchema: activitySchema,
-        onSubmit: (initialValues) => {
+        onSubmit: ( async (values)  => {
             if (data) {
-                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, initialValues);
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, values);
             }
-            else {
-                privatePOST('https://ongapi.alkemy.org/api/news', initialValues);
+            else  {
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                privatePOST('https://ongapi.alkemy.org/api/news', values);
             }
-        }
+        })
     });
-
     return (
         <form onSubmit={handleSubmit} className={classes.containerForm}>
             <TextField
@@ -61,8 +65,8 @@ const ActivitiesForm = ({ data }) => {
                 setFieldValue("description",description);
             }} />
 
-            {handleSubmit && errors.ckeditorError &&
-                <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.name && errors.name ? errors.name : null}</Typography>
+            {handleSubmit && errors.description &&
+                <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.description && errors.description ? errors.description : null}</Typography>
             }
             <TextField
                 className={classes.fieldForm}
