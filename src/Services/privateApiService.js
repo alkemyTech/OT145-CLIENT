@@ -58,7 +58,7 @@ export const privatePOST = async (path, body) => {
   }
 }
 
-export const privateDelete = async (path, id) => {
+export const privateDELETE = async (path, id) => {
   try{
 
     const response = await axios.delete(`${path}/${id}`, config)
