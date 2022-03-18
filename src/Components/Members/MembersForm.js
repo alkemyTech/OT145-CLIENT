@@ -7,7 +7,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Alert, Button, Container } from "@mui/material";
 import useStyles from "../../Components/Auth/AuthStyles";
 import FileInputFormik from "./FileInputFormik";
-import {AlertSucces} from '../../Utils/AlertSucces'
+import { AlertSucces } from "../../Utils/AlertSucces";
 
 const MembersForm = () => {
   const showAlert = (type, text) => {
@@ -16,19 +16,13 @@ const MembersForm = () => {
 
   const classes = useStyles();
   const [image, setImage] = useState("");
-  const [userDetails, setUserDetails] = useState({
-    name: "",
-    instagram: "",
-    facebook: "",
-    twitter: "",
-  });
+
   const imageExample = "https://www.w3schools.com/howto/img_avatar.png";
   const formValues = [
     {
       type: "text",
-      name: userDetails.name,
-      placeholder: "Nombre",
-      id: "name",
+      name: "name",
+      placeholder: "Ingrese su nombre por favor",
       validate: (value) => {
         if (!value) {
           return "El nombre es obligatorio";
@@ -41,9 +35,8 @@ const MembersForm = () => {
     },
     {
       type: "text",
-      name: userDetails.instagram,
-      placeholder: "Imstagram username",
-      id: "instagram",
+      name: "instagram",
+      placeholder: "Instagram username",
       validate: (value) => {
         if (!value) {
           return "Ingrese el nombre de usuario de Instagram";
@@ -53,9 +46,8 @@ const MembersForm = () => {
     },
     {
       type: "text",
-      name: userDetails.twitter,
+      name: "twitter",
       placeholder: "Twitter username",
-      id: "twitter",
       validate: (value) => {
         if (!value) {
           return "Ingrese el nombre de usuario de Twitter";
@@ -65,9 +57,8 @@ const MembersForm = () => {
     },
     {
       type: "text",
-      name: userDetails.facebook,
+      name: "facebook",
       placeholder: "Facebook username",
-      id: "facebook",
       validate: (value) => {
         if (!value) {
           return "Ingrese el nombre de usuario de Facebook";
@@ -97,29 +88,29 @@ const MembersForm = () => {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-	const getBase64 = (file) => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader()
-			reader.readAsDataURL(file)
-			reader.onloadend = () => resolve(reader.result)
-			reader.onerror = reject
-		}).then((base64) => {
-			return base64
-		})
-	}
+    const getBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+      }).then((base64) => {
+        return base64;
+      });
+    };
 
-	const newValues = {
-		...values,
-		image: await getBase64(image),
-		instagram: 'https://www.instagram.com/' + values.instagram,
-		twitter: 'https://www.twitter.com/' + values.twitter,
-		facebook: 'https://www.facebook.com/' + values.facebook,
-	}
-	console.info(newValues)
-	setSubmitting(false)
+    const newValues = {
+      ...values,
+      image: await getBase64(image),
+      instagram: "https://www.instagram.com/" + values.instagram,
+      twitter: "https://www.twitter.com/" + values.twitter,
+      facebook: "https://www.facebook.com/" + values.facebook,
+    };
+    console.info(newValues);
+    setSubmitting(false);
 
-  AlertSucces(newValues, setSubmitting)
-}
+    AlertSucces(newValues, setSubmitting);
+  };
 
   const handleImageChange = (e, handleChange) => {
     const file = e.target.files[0];
@@ -137,7 +128,6 @@ const MembersForm = () => {
     setImage(e.target.files[0]);
     handleChange(e);
   };
-
 
   return (
     <Container className={classes.containerForm}>
@@ -161,18 +151,16 @@ const MembersForm = () => {
           >
             {formValues.map((item) => (
               <div
-                key={item.id}
+                key={item.name}
                 style={{
                   ...item.divStyle,
                 }}
                 className="create-member-input-field"
               >
                 <Field
-                  id={item.id}
                   type={item.type}
                   name={item.name}
                   onChange={handleChange}
-                  value={item.name}
                   placeholder={item.placeholder}
                   className={`input-field ${item.className}`}
                 />
