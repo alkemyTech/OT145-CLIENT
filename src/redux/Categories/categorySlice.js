@@ -37,7 +37,7 @@ const categorySlice = createSlice({
             state.status = 'loading'
         },
         [getCategories.fulfilled]: (state, {payload}) => {
-            state.users = payload.data
+            state.categories = payload.data
             state.status = 'success'
         },
         [getCategories.rejected]: (state) => {
@@ -47,7 +47,7 @@ const categorySlice = createSlice({
             state.status = 'loading'
         },
         [getCategoriesById.fulfilled]: (state, {payload}) => {
-            state.users = payload.data
+            state.categories = payload.data
             state.status = 'success'
         },
         [getCategoriesById.rejected]: (state) => {
