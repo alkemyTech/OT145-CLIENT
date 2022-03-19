@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../FormStyles.css";
-import { privatePOST, privatePATCH } from "../../Services/privateApiService";
+/* import "../FormStyles.css"; */
+import { privatePOST, privatePATCH } from "../../../Services/privateApiService";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -9,7 +9,7 @@ import { Container, Button, Typography } from "@mui/material";
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 
-import useStyles from "../Auth/AuthStyles";
+import useStyles from "../../../Components/Auth/AuthStyles";
 
 
 const validationSchema = yup.object({

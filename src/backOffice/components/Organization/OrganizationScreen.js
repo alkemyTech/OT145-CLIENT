@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import useStyles from "../styles/styledList";
+import useStyles from "../../styles/styledList";
 import EditHomeForm from "./EditHome/EditHomeForm";
 
 const OrganizationScreen = () => {
