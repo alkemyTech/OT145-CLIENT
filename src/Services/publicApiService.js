@@ -1,15 +1,17 @@
 import axios from 'axios';
 
+const baseURL = 'https://ongapi.alkemy.org/api'
+
 const config = {
     headers: {
         Group: 145                //Aqui va el ID del equipo!!
     }
 }
 
-const getServicePublic = async (URL, Id) => {
+export const getServicePublic = async (URL, Id) => {
     try{
         if(!Id){
-            const response = await axios.get(URL);
+            const response = await axios.get(URL, { ...config.headers });
             return response.data;
         }
         const response = await axios.get(URL + Id);
@@ -17,6 +19,15 @@ const getServicePublic = async (URL, Id) => {
     }catch (error){
         console.error(error);
     }
+}
+
+export const getRequest = async (url, id = null) => {
+	const endpoint = !id ? `${baseURL}${url}` : `${baseURL}${url}/${id}`
+	try {
+		return await axios.get(endpoint, { ...config.headers })
+	} catch (e) {
+		alert('Error al traer la data')
+	}
 }
 
 export const privatePOST = async (path, body) => {

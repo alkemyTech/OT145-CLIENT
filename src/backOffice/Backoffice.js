@@ -57,12 +57,12 @@ function BackOficce() {
         <Route
           exact
           path={`${match.path}/categories`}
-          component={CategoriesList}
+          component={(CategoriesList)}
         />
-        <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
-        <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
-        <Route exact path={`${match.path}/users`} component={UsersList} />
-        <Route exact path={`${match.path}/members`} component={MemberList} />
+        <Route exact path={`${match.path}/activities`} component={(ActivitiesList)} />
+        <Route exact path={`${match.path}/activities/create-activity`} component={(ActivitiesForm)} />
+        <Route exact path={`${match.path}/users`} component={(UsersList)} />
+        <Route exact path={`${match.path}/members`} component={(MemberList)} />
         <Route path="*" component={Error404} />
       </Switch>
     </>
