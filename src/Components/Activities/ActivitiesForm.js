@@ -5,6 +5,7 @@ import useStyles from '../Auth/AuthStyles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { privatePATCH, privatePOST } from '../../Services/privateApiService'
+import { postActivities, updateActivities } from '../../Services/ActivityApiService'
 import Editor from '../Editor/Editor';
 import { convertToBase64 } from '../News/config/helper'; 
 
@@ -39,12 +40,12 @@ const ActivitiesForm = ({ data }) => {
             if (data) {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePATCH(`https://ongapi.alkemy.org/api/activities/${data.id}`, values);
+                updateActivities(data.id, values);
             }
             else  {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePOST('https://ongapi.alkemy.org/api/news', values);
+                postActivities(values);
             }
         })
     });

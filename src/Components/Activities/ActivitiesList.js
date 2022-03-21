@@ -22,11 +22,8 @@ const ActivitiesList = () => {
                                 <p>{activity.description}</p>
                                 <Link to={`/Actividades/${activity.id}`}>ir a la actividad</Link>
                             </li>
-                            
-                        )
-                        
+                        )       
                     })
-                    
                 :
                     <p>No hay actividades</p>
                 }

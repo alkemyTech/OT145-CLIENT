@@ -5,29 +5,42 @@ import Spinner from '../../Spinner/Spinner'
 import useStyles from '../Styles/StyledAct'
 import Actividad from './Actividad'
 import findId from './findId'
-
+import { getActivitiesId } from '../../../Services/ActivityApiService'
 
 
 const DetalleActividad = () => {
     const classes = useStyles();
-    //constantes de prueba hasta tener los endpoints
-    const loading = true;
-    const error = false;
-
     const { id } = useParams()
-    const [actividad, setActividad] = useState([])
-    const activitiesMock = [
-        { id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-        { id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-        { id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba' }
-    ];
+    //constantes de prueba hasta tener los endpoints
+    const [actividad, setActividad] = useState({
+        loading: true,
+		data: [],
+		error: '',
+    })
 
     useEffect(() => {
-        setActividad(...actividad, [findId(activitiesMock, id)]);
-    }, [id])
+		try {
+			(async () => {
+				const response = await getActivitiesId(id)
+				response.status === 200
+					? setActividad({
+						...actividad,
+						data: response.data.data,
+						loading: false,
+					  })
+					: setActividad({
+						...actividad,
+						error: response.error,
+						loading: false,
+					  })
+			})()
+		} catch (error) {
+			setActividad({ ...actividad, error: error.message, loading: false })
+		}
+	}, [])
     return (
         <>
-            {loading?<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div> :(error? 
+            {actividad.loading?<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div> :(actividad.error? 
                 <ShowModal
                 icon= "error"
                 title= "Oooops..."
@@ -35,8 +48,7 @@ const DetalleActividad = () => {
                 footer= "Intente nuevamente"
                 /> :
                 <div>
-                    {actividad.length !== 0 && actividad.map(({ id, name, description }) => (
-                    <Actividad key={id} titulo={name} descripcion={description} />))}
+                    <Actividad key={actividad.data.id} titulo={actividad.data.name} descripcion={actividad.data.description} />
                 </div>
                 )}
         </>
