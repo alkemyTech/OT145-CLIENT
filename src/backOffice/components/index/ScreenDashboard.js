@@ -17,7 +17,7 @@ import {
   faUsers,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
-import useStyles from "./styles/screenDashboardStyles";
+import useStyles from "../../styles/screenDashboardStyles";
 
 const ScreenDashboard = () => {
   const options = [

@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
-import useStyles from './StyledHeader';
+import useStyles from './styles/StyledHeader';
 
 
 const Header = () => {

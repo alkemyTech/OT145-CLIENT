@@ -1,8 +1,8 @@
 import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
-import useStyles from "../../src/Components/Auth/AuthStyles"
+import useStyles from "../../../Components/Auth/AuthStyles"
 import * as yup from "yup";
-import Editor from '../Components/Editor/Editor';
+import Editor from '../Editor/Editor';
 import { useFormik } from 'formik';
 
 const OrganizationForm = () => {

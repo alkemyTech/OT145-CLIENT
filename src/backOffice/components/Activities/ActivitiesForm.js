@@ -1,12 +1,12 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import '../FormStyles.css';
-import useStyles from '../Auth/AuthStyles';
+/* import '../FormStyles.css'; */
+import useStyles from '../../../Components/Auth/AuthStyles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { privatePATCH, privatePOST } from '../../Services/privateApiService'
+import { privatePATCH, privatePOST } from '../../../Services/privateApiService'
 import Editor from '../Editor/Editor';
-import { convertToBase64 } from '../News/config/helper'; 
+import { convertToBase64 } from '../../../helpers/base64'; 
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();

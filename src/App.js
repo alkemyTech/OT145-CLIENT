@@ -2,14 +2,14 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Spinner from './Components/Spinner/Spinner'
+import Spinner from './shared/Spinner/Spinner'
 import { Box } from '@mui/material';
 import PrivateRoutes from './backOffice/PrivateRoutes'
 import { useDispatch } from 'react-redux'
 import {iniciarSesion} from './redux/action'
 const ToysCampaign = lazy(() => import('../src/Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('../src/Campaigns/School/SchoolCampaign'))
-const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
+const BackOficce = lazy(() => import('./backOffice/components/index/Backoffice'))
 const Routes = lazy(() => import('./Components/Home/Routes'))
 
 

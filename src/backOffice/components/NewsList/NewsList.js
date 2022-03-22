@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box, Paper, Button, Container} from '@mui/material';
 import Delete from '@mui/icons-material/Delete';
 import ModeEdit from '@mui/icons-material/ModeEdit';
-import useStyles from '../styles/styledList'
+import useStyles from '../../styles/styledList'
 
 
 const NewsList = () => {

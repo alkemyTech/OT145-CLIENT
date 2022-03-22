@@ -2,7 +2,7 @@ import React from 'react'
 import { AppBar, Toolbar } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
-import useStyles from './styles/headerStyles'
+import useStyles from '../../styles/headerStyles'
 
 const Header = ({ open, setOpen }) => {
   const classes = useStyles()
