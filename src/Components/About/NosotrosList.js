@@ -1,5 +1,5 @@
 import * as React from 'react'
-import CardComponent from '../../Card/CardComponent'
+import CardComponent from '../Card/CardComponent'
 import { Grid } from '@mui/material'
 import useStyles from '../About/nosotrosStyles'
 
