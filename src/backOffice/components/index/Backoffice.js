@@ -3,7 +3,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 /* import CategoriesList from './Categories' */ //acomodar fran
 import Header from './Header'
 import SideBar from './Sidebar'
-/* import UsersList from './UsersList'*/ //tira error
+import UsersList from '../Users/UsersList';
 import Error404 from '../../../shared/Error404/Error404'
 
 
@@ -19,7 +19,7 @@ const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
 
 // const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
-const UserForm = lazy(() => import('../../../Components/Users/UsersForm'))
+const UserForm = lazy(() => import('../Users/UsersForm'))
 
 const MembersForm = lazy(() => import('../MemberList/MemberList'))
 
@@ -63,6 +63,8 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
 
+        <Route exact path={`${match.path}/users/edit-user/:id`} component={UserForm} />
+
         <Route exact path={`${match.path}/members/edit`} component={MembersForm} />
 
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
@@ -79,7 +81,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
 
-        {/* <Route exact path={`${match.path}/users`} component={UsersList} /> */}
+        <Route exact path={`${match.path}/users`} component={UsersList} />
 
         <Route exact path={`${match.path}/members`} component={MemberList} />
 

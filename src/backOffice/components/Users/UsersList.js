@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/backOffice/UsersList.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useHistory } from "react-router-dom";
@@ -14,21 +13,12 @@ import {
   Container,
   Button,
 } from "@mui/material";
-import { getUsers, deleteUser } from "../redux/Users/userSlice";
-import { sweetAlertConfirm } from "../Utils/SweetAlertConfirm";
+import { getUsers, deleteUser } from "../../../redux/Users/userSlice";
+import { sweetAlertConfirm } from "../../../Utils/SweetAlertConfirm";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import useStyles from "./styles/styledList";
-import DecorativeLineBW from "../Components/DecorativeLine/DecorativeLineBW";
-=======
-import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import useStyles from '../../styles/styledList'
-import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
->>>>>>> 30f46c70a0d9757c9457af96d2b58db7cd763f89:src/backOffice/components/Users/UsersList.js
+import useStyles from "../../styles/styledList";
+import DecorativeLineBW from "../../../Components/DecorativeLine/DecorativeLine";
 
 const UsersList = () => {
   const { users, status } = useSelector((state) => state.users);

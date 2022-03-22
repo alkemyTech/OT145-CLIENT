@@ -3,11 +3,11 @@ import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { useFormik} from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
-import { patchUser, postUser } from '../../redux/Users/userSlice';
-import { convertToBase64 } from '../News/config/helper';
-import { getUsersById } from '../../redux/Users/userSlice';
+import { patchUser, postUser } from '../../../redux/Users/userSlice';
+import { convertToBase64 } from '../../../helpers/base64';
+import { getUsersById } from '../../../redux/Users/userSlice';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from './style';
 
 
