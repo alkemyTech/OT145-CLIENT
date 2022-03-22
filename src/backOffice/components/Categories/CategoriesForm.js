@@ -17,13 +17,13 @@ const validationSchema = Yup.object({
 	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
 });
 
-const CategoriesForm = ({ category }) => {
+const CategoriesForm = ({ category = null }) => {
 	const classes = useStyles();
 
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
 		initialValues: {
 			name: category?.name || "",
-			description: category?.description ||"",
+			description: category?.description || "",
 			image: category?.image || "",
 		},
 		validationSchema: validationSchema,
