@@ -3,26 +3,14 @@ import privateGET from '../../Services/privateApiService';
 
 
 export const getCategories = createAsyncThunk(
-    "category/getCategories",
-    async () => {
-        try{
-            const response = await privateGET("https://ongapi.alkemy.org/api/categories")
-            return response
-        }catch(err){
-            console.log(err);
-        }
+    "category/getCategories",() => {
+        return privateGET("https://ongapi.alkemy.org/api/categories")
     }
 );
 
 export const getCategoriesById = createAsyncThunk(
-    "category/getCategoriesByID",
-    async (id) => {
-        try{
-            const response = await privateGET(`https://ongapi.alkemy.org/api/categories/${id}`)
-            return response;
-        }catch(err){
-            console.log(err);
-        }
+    "category/getCategoriesByID",(id) => {
+        return privateGET(`https://ongapi.alkemy.org/api/categories/${id}`)
     }
 );
 
@@ -31,6 +19,7 @@ const categorySlice = createSlice({
     initialState:{
         categories: [],
         status: null,
+        categoriesById:[]
     },
     extraReducers:{
         [getCategories.pending]: (state) => {
@@ -47,8 +36,14 @@ const categorySlice = createSlice({
             state.status = 'loading'
         },
         [getCategoriesById.fulfilled]: (state, {payload}) => {
-            state.categories = payload.data
-            state.status = 'success'
+            if(payload.success){
+                state.categoriesById = payload.data
+                state.status = 'success'
+            }else{
+                state.categories = []
+                state.status = payload.data.message
+            }
+            
         },
         [getCategoriesById.rejected]: (state) => {
             state.status = 'failed'
