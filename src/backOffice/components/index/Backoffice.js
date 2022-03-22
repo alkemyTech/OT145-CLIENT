@@ -9,13 +9,15 @@ import Error404 from '../../../shared/Error404/Error404'
 
 const ActivitiesForm = lazy(() => import('../Activities/ActivitiesForm'))
 
-const CategoriesForm = lazy(() => import('../Categories/Categories'))
+const CategoriesForm = lazy(() => import('../Categories/CategoriesForm'))
+
+const Categories = lazy(() => import('../Categories/Categories'))
 
 const NewsForm = lazy(() => import('../NewsList/NewsForm'))
 
 const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
 
-const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
+// const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
 const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
 
@@ -55,7 +57,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
 
-        <Route exact path={`${match.path}/category/create-category`} component={CategoriesForm} />
+        <Route exact path={`${match.path}/categories/create`} component={CategoriesForm} />
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
 
@@ -75,7 +77,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/organization/edit`} component={OrganizationForm} />
 
-        {/* <Route exact path={`${match.path}/categories`} component={CategoriesList} /> */}
+        <Route exact path={`${match.path}/categories`} component={Categories} />
 
         <Route exact path={`${match.path}/activities`} component={ActivitiesList} />
 
