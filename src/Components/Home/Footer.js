@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "./footerStyles";
+import useStyles from "./styles/footerStyles";
 import { Box } from "@mui/system";
 import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
