@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import useStyles from "./styles/CategoriesFormStyles";
+import useStyles from "../../styles/CategoriesFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
-import Editor from "../../Components/Editor/Editor";
+import Editor from "../Editor/Editor";
 import * as Yup from "yup";
-import { privatePOST, privatePATCH } from "../../Services/privateApiService";
-import {convertToBase64} from '../../Components/News/config/helper'
+import { privatePOST, privatePATCH } from "../../../Services/privateApiService"; //Cambiar por servicio custom
+import { convertToBase64 } from '../../../helpers/base64'
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
