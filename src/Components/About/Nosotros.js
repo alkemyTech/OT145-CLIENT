@@ -4,7 +4,7 @@ import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import NosotrosText from './NosotrosText'
 import Title from './../Title/Title'
 import NosotrosList from './NosotrosList'
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../../shared/Spinner/Spinner'
 import ShowModal from '../../Utils/AlertsProps'
 
 

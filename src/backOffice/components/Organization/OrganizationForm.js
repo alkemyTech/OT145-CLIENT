@@ -1,8 +1,8 @@
 import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
-import useStyles from "../../src/Components/Auth/AuthStyles"
+import useStyles from "../../../Components/Auth/AuthStyles"
 import * as yup from "yup";
-import Editor from '../Components/Editor/Editor';
+import Editor from '../Editor/Editor';
 import { useFormik } from 'formik';
 
 const OrganizationForm = () => {
@@ -42,7 +42,7 @@ const OrganizationForm = () => {
                     return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))
                 }
             ),
-        ckeditorError: yup.string()
+            description: yup.string()
             .required("El campo es obligatorio")
     })
     
@@ -87,8 +87,8 @@ const OrganizationForm = () => {
             <Editor text={values.shortDescription} onChangeText={(shortDescription) => {
                 setFieldValue("shortDescription", shortDescription)
             }} />
-            {handleSubmit && errors.ckeditorError &&
-                <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.name && errors.name ? errors.name : null}</Typography>
+            {handleSubmit && errors.description &&
+                <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.description && errors.description ? errors.description : null}</Typography>
             }
 
             <TextField

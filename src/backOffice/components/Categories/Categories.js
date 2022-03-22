@@ -1,32 +1,30 @@
 import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import useStyles from './styles/styledList'
-import DecorativeLineBW from '../Components/DecorativeLine/DecorativeLineBW'
+import useStyles from '../../styles/styledList'
+import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
 
 
-function createData(name, email, edit, deleteData) {
-  return { name, email, edit, deleteData }
+function createData(name, createdAt, edit, deleteData) {
+  return { name, createdAt, edit, deleteData }
 }
 
 const rows = [
-  createData('Juan García', 'juangarcia@gmail.com', <EditIcon />, <DeleteForeverIcon />),
-  createData('Federico Moreno', 'fedemoreno@gimal.com', <EditIcon />, <DeleteForeverIcon />),
-  createData('Mariano Perez', 'marianop@gmail.com', <EditIcon />, <DeleteForeverIcon />),
+  createData('Campaigns', '27/04/2021', <EditIcon />, <DeleteForeverIcon />),
+  createData('News', '12/09/2121', <EditIcon />, <DeleteForeverIcon />),
+  createData('Activities', '23/01/2022', <EditIcon />, <DeleteForeverIcon />),
 ]
 
-export default function UsersList() {
+export default function CategoriesList() {
   const classes = useStyles()
-  const location = useLocation();
-  const path = location.pathname;
 
   return (
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
-        <Link to={`${path}/create-user`} className={classes.styleLink}>
-          <Typography variant="subtitle1">Crear Usuario</Typography>
+        <Link to="/backoffice/category/create-category" className={classes.styleLink}>
+          <Typography variant="subtitle1">Crear Categoría</Typography>
         </Link>
       </div>
 
@@ -35,7 +33,7 @@ export default function UsersList() {
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableCell}>Nombre</TableCell>
-              <TableCell className={classes.tableCell} align="center">Email</TableCell>
+              <TableCell className={classes.tableCell} align="center">Fecha</TableCell>
               <TableCell className={classes.tableCell} align="center">Modificar</TableCell>
               <TableCell className={classes.tableCell} align="center">Eliminar</TableCell>
             </TableRow>
@@ -47,7 +45,7 @@ export default function UsersList() {
                   {row.name}
                 </TableCell>
                 <TableCell className={classes.tableCell} align="center">
-                  {row.email}
+                  {row.createdAt}
                 </TableCell>
                 <TableCell className={classes.tableCell} align="center">
                   <Button variant="text" color="secondary">

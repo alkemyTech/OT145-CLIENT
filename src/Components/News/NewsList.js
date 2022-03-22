@@ -5,7 +5,7 @@ import CardComponent from '../Card/CardComponent';
 import { Container, Grid } from '@mui/material'
 import { NEWS_API } from '../../Utils/enpoins'
 import getServicePublic from '../../Services/publicApiService'
-import useStyles from './novedadesStyles';
+import useStyles from './styles/novedadesStyles';
 
 
 
