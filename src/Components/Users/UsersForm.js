@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik} from 'formik';
 import { validationSchema } from './config/index';
-import { convertToBase64 } from '../News/config/helper'
+import { convertToBase64 } from '../../helpers/base64'
 import {Button , TextField, Autocomplete, Typography } from '@mui/material';
 import useStyles from './style';
 import { privatePATCH, privatePOST} from '../../Services/privateApiService';

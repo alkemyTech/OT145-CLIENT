@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import useStyles from './styles/styledList'
-import DecorativeLineBW from '../Components/DecorativeLine/DecorativeLineBW'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCategories } from '../redux/Categories/categorySlice'
-
-
+import useStyles from '../../styles/styledList'
+import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
 
 
 function createData(name, createdAt, edit, deleteData) {
