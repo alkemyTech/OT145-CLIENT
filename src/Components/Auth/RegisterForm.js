@@ -33,9 +33,14 @@ const RegisterForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     const { firstName, email, password } = values
-    dispatch(registarUsuario(firstName, email, password))
-    AlertSucces(values, setSubmitting)
-    setOpen(true);
+    if(isRegister){
+      dispatch(registarUsuario(firstName, email, password))
+      AlertSucces(values, setSubmitting)
+      setOpen(true);
+    }
+    else{
+      console.log("ya esta registrado") // reemplazar por alertas 
+    }
 
   };
 
