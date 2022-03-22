@@ -5,8 +5,7 @@ import { ThemeProvider } from '@mui/material'
 import Spinner from './shared/Spinner/Spinner'
 import { Box } from '@mui/material';
 import PrivateRoutes from './backOffice/PrivateRoutes'
-import { useDispatch } from 'react-redux'
-import {iniciarSesion} from './redux/action'
+
 const ToysCampaign = lazy(() => import('../src/Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('../src/Campaigns/School/SchoolCampaign'))
 const BackOficce = lazy(() => import('./backOffice/components/index/Backoffice'))
@@ -15,10 +14,7 @@ const Routes = lazy(() => import('./Components/Home/Routes'))
 
 
 function App() {
-  
-const dispatch = useDispatch()
-dispatch(iniciarSesion("gaby.0097@hotmail.com", "40916271"))
-
+ 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

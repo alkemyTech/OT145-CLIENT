@@ -2,16 +2,20 @@ import { Route, Redirect } from 'react-router-dom'
 import { useSelector  } from 'react-redux'
 import { useEffect } from 'react'
 
-const PrivateRoutes = ({component: Component, rol, ...rest}) => {
+const PrivateRoutes = ({component: Component, ...rest}) => {
 
-  const { rol_id } = useSelector(store => store.auth)
 
+  const rol_id = localStorage.getItem('role')
+  useEffect(() => {
+    console.log(localStorage.getItem('role'))
+  }, [])
+  
     return (
         <Route
       {...rest}
       render={
         (props) => (
-          rol_id == 1
+          rol_id === '1'
             ? (
              <Component {...props} />
             ) : (

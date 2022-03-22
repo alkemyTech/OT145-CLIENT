@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS,REGISTER_SUCCESS, ROL_SUCCESS } from "./types"
+import { LOGIN_SUCCESS,REGISTER_SUCCESS } from "./types"
 import axios from "axios"
 
 export const iniciarSesion = (email, password) => async (dispatch) => {
