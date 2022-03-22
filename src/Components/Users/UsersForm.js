@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,17 +8,9 @@ import { convertToBase64 } from '../News/config/helper';
 import { getUsersById } from '../../redux/Users/userSlice';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
 import Spinner from '../Spinner/Spinner';
-=======
-import React from 'react';
-import { useFormik} from 'formik';
-import { validationSchema } from './config/index';
-import { convertToBase64 } from '../../helpers/base64'
-import {Button , TextField, Autocomplete, Typography } from '@mui/material';
->>>>>>> 30f46c70a0d9757c9457af96d2b58db7cd763f89
 import useStyles from './style';
 
 
-<<<<<<< HEAD
 const validationSchema = yup.object({
     email: yup
       .string('Ingrese su mail')
@@ -100,36 +91,6 @@ const UserForm = () => {
             history.push('/backoffice/users')
         }
     }, [status])
-=======
-const UserForm = ({ data }) => {
-    const classes = useStyles()
-    const options = ["", "Administrador", "Regular"]
- 
-    const initialValues = {
-        name: data?.name || '',
-        email: data?.email || '',
-        role_id: data?.role_id || '',
-        password: data?.password || '',
-        profile_image: data?.profile_image || ''
-    };
-
-    const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
-        initialValues: initialValues,
-        validationSchema: validationSchema,
-        onSubmit: ( async (values) => {
-            if (data) {
-                const base64 = await convertToBase64(values.profile_image)
-                values.profile_image = base64
-                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
-            }
-            else {
-                const base64 = await convertToBase64(values.profile_image)
-                values.profile_image = base64
-                privatePOST('https://ongapi.alkemy.org/api/users', values);
-            }
-        })
-    })
->>>>>>> 30f46c70a0d9757c9457af96d2b58db7cd763f89
 
 
     return (
