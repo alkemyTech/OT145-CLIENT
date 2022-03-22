@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Editor from '../Editor/Editor';
 import SelectField from './SelectField';
-import useStyles from './styles/newsFormStyles';
+import useStyles from '../../styles/newsFormStyles';
 import { useFormik } from 'formik';
 import { TextField, MenuItem, Button, Container, Paper, Typography } from '@mui/material';
 import { validationSchema } from './config/index';
-import { privatePOST, privatePATCH } from '../../Services/privateApiService';
-import { convertToBase64 } from './config/helper';
+import { privatePOST, privatePATCH } from '../../../Services/privateApiService';
+import { convertToBase64 } from '../../../helpers/base64';
 
 const NewsForm = ({ news }) => {
 

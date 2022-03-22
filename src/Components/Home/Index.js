@@ -5,7 +5,7 @@ import NewsList from "../News/NewsList"
 import React, { useState } from "react";
 
 
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../shared/Spinner/Spinner";
 import ShowModal from "../../Utils/AlertsProps";
 
 const Home = () => {
