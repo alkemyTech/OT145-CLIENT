@@ -6,10 +6,7 @@ const PrivateRoutes = ({component: Component, ...rest}) => {
 
 
   const rol_id = localStorage.getItem('role')
-  useEffect(() => {
-    console.log(localStorage.getItem('role'))
-  }, [])
-  
+
     return (
         <Route
       {...rest}
