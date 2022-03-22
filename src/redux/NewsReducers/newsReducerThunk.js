@@ -1,55 +1,49 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import privateGET from '../../Services/privateApiService'
 
-export const getNews = createAsyncThunk(
-    'news/getNews', 
-    async()=>{
-        try{
-            const response= await privateGET('https://ongapi.alkemy.org/api/news')
-            return response
-        }catch(error){
-            console.log(error)
-        }
+export const getNews = createAsyncThunk('news/getNews', () => {
+  const response = privateGET('https://ongapi.alkemy.org/api/news')
+  return response
 })
 
-export const getNewsById = createAsyncThunk(
-    'news/getNewsById', 
-    async(id)=>{
-        try{
-            const response= await privateGET(`https://ongapi.alkemy.org/api/news/${id}`)
-            return response
-        }catch(error){
-            console.log(error)
-        }
+export const getNewsById = createAsyncThunk('news/getNewsById', (id) => {
+  const response = privateGET(`https://ongapi.alkemy.org/api/news/${id}`)
+  return response
 })
 
 const newsSlice = createSlice({
-    name: 'news',
-    initialState: {
-        news:[],
-        status: null, 
-    },
-       extraReducers:{
-           [getNews.pending]:(state)=>{
-               state.status = 'loading'
-           },
-           [getNews.fulfilled]:(state,{payload})=>{
-              state.news=payload.data 
-               state.status='success'
-           },
-           [getNewsById.rejected]:(state)=>{
-               state.status= "failed"            
-           },
-           [getNewsById.pending]:(state)=>{
-            state.status = 'loading'
-        },
-        [getNewsById.fulfilled]:(state,{payload})=>{
-           state.news=payload.data 
-            state.status='success'
-        },
-        [getNewsById.rejected]:(state)=>{
-            state.status= "failed"            
-        },
-       }
+  name: 'news',
+  initialState: {
+    news: [],
+    status: 'idle',
+    error: null,
+    newsId: [],
+  },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(getNews.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(getNews.fulfilled, (state, action) => {
+        state.status = 'success'
+        state.news = action.payload.data
+      })
+      .addCase(getNews.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+      .addCase(getNewsById.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(getNewsById.fulfilled, (state, action) => {
+        state.status = 'success'
+        state.newsId = action.payload.data
+      })
+      .addCase(getNewsById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+  },
 })
 export default newsSlice.reducer

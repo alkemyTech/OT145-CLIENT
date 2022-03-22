@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import useStyles from './novedadesStyles'
 import Title from '../Title/Title'
 import { Container, Grid } from '@mui/material'
@@ -8,9 +9,7 @@ import { useHistory } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner'
 import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import ShowModal from '../../Utils/AlertsProps'
-import getServicePublic from '../../Services/publicApiService'
-import {NEWS_API} from '../../Utils/enpoins'
-
+import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
 
 const NewsMock = {
   title: 'Novedades',
@@ -28,58 +27,45 @@ const alertText = {
 }
 
 const News = () => {
-  
-  
-
-  const [news, setNews] = useState([])
-  const [error, setError] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
+  const { loading, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
+  console.log(news)
 
-  
-
-useEffect(()=>{
-  getServicePublic(NEWS_API)
-  .then(response =>{
-    setNews(response.data)
-    setLoading(false)
-    console.log(response)
-    
-  })
-  .catch((error) =>{
-    setError(true)
-  })
- },[])
+  useEffect(() => {
+    dispatch(getNews())
+  }, [dispatch])
 
   //Paso de parametros del ID de cada noticia al link de Leer Mas
   const history = useHistory()
   const handleSubmit = (name, id) => {
-    history.push(`/news/${id}`, { title: name })
+    history.push(`/news/${id}`, { id: news.id })
+    console.log(id)
   }
 
   return (
-    <div className={classes.newsSpinner}>
-      {error ? (
-        <ShowModal
-          icon={alertText.icon}
-          title={alertText.title}
-          text={alertText.text}
-          footer={alertText.footer}
-        />
-      ) : (
-        <>
-              <Title title={NewsMock.title} imgSrc={NewsMock.image}/>
-              <Container>
+    <div>
+      <div className={classes.newsSpinner}>
+        {error ? (
+          <ShowModal
+            icon={alertText.icon}
+            title={alertText.title}
+            text={alertText.text}
+            footer={alertText.footer}
+          />
+        ) : (
+          <>
+            <Title title={NewsMock.title} imgSrc={NewsMock.image} />
+            <Container>
               {loading ? (
-            <Spinner color={'#C63A3B'} />
-          ) : (
-            <>
-                <NewsText text={NewsMock.text} />
-                <Grid container className={classes.cardList}>
-                  {news.map((row) => {
-                    return (
-                      <div key={row.id}>
-                       
+                <Spinner color={'#C63A3B'} />
+              ) : (
+                <>
+                  <NewsText text={NewsMock.text} />
+                  <Grid container className={classes.cardList}>
+                    {news.map((row) => {
+                      return (
+                        <div key={row.id}>
                           <CardComponent
                             key={row.id}
                             title={row.name}
@@ -87,21 +73,19 @@ useEffect(()=>{
                             description={row.createdAt}
                             leerMasLink={() => handleSubmit(row.name, row.id)}
                           />
-                       
-                      </div>
-                    )
-                  })}
-                </Grid>
-                <DecorativeLine />
+                        </div>
+                      )
+                    })}
+                  </Grid>
+                  <DecorativeLine />
                 </>
-          )}
-              </Container>
-          
-        </>
-      )}
+              )}
+            </Container>
+          </>
+        )}
+      </div>
     </div>
   )
 }
 
 export default News
-
