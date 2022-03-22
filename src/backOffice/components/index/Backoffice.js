@@ -17,6 +17,8 @@ const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
 
 const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
+const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
+
 const UserForm = lazy(() => import('../../../Components/Users/UsersForm'))
 
 const MembersForm = lazy(() => import('../MemberList/MemberList'))
