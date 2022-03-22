@@ -2,28 +2,28 @@ import privateGET, { privatePATCH, privatePOST, privatePUT, privateDELETE } from
 
 const SLIDES_URL = process.env.REACT_APP_API_GET_SLIDES
 
-const getAllSlides = () => {
-    return privateGET(SLIDES_URL)
+const getAllSlides = async () => {
+    return await privateGET(SLIDES_URL)
 }
 
-const getSlideById = (id) => {
-    return privateGET(SLIDES_URL, id)
+const getSlideById = async (id) => {
+    return await privateGET(SLIDES_URL, id)
 }
 
-const postSlide = (body) => {
-    return privatePOST(SLIDES_URL, body)
+const postSlide = async (body) => {
+    return await privatePOST(SLIDES_URL, body)
 }
 
-const patchSlide = (id, body) => {
-    return privatePATCH(SLIDES_URL, id, body)
+const patchSlide = async (id, body) => {
+    return await privatePATCH(SLIDES_URL, id, body)
 }
 
-const putSlide = (id, body) => {
-    return privatePUT(SLIDES_URL, id, body)
+const putSlide = async (id, body) => {
+    return await privatePUT(SLIDES_URL, id, body)
 }
 
-const deleteSlide = (id) => {
-    return privateDELETE(SLIDES_URL, id)
+const deleteSlide = async (id) => {
+    return await privateDELETE(SLIDES_URL, id)
 }
 
 export { getAllSlides, getSlideById, postSlide, patchSlide, putSlide, deleteSlide }
