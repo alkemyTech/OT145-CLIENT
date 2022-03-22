@@ -19,7 +19,6 @@ const sliderSlice = createSlice({
     })
     .addCase(fetchSlides.fulfilled, (state, action) => {
       state.status = 'succeeded'
-      // Add any fetched posts to the array
       state.slides = state.slides.concat(action.payload)
     })
     .addCase(fetchSlides.rejected, (state, action) => {
