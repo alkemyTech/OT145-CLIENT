@@ -43,7 +43,7 @@ const privateGET = async (path, id) => {
       return response.data
     }
   } catch (error) {
-    console.error(error)
+    return error.response
   }
 }
 
