@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategories } from '../redux/Categories/categorySlice'
+import { getCategories } from '../../../redux/Categories/categorySlice'
 import useStyles from '../../styles/styledList'
 import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
 
