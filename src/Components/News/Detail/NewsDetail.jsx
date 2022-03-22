@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Typography, Box } from '@mui/material'
-import useStyles from '../novedadesStyles'
+import useStyles from '../styles/novedadesStyles'
 import Title from '../../Title/Title'
 import { useParams } from 'react-router-dom'
 import { getNewsById } from '../../../redux/NewsReducers/newsReducerThunk'

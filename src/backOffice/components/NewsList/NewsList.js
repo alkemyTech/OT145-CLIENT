@@ -14,9 +14,9 @@ import {
 import Delete from '@mui/icons-material/Delete'
 import ModeEdit from '@mui/icons-material/ModeEdit'
 import { useEffect } from 'react'
-import useStyles from '../styles/styledList'
+import useStyles from '../../styles/styledList'
 import { useSelector, useDispatch } from 'react-redux'
-import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
+import { getNews } from '../../../redux/NewsReducers/newsReducerThunk'
 
 const NewsList = () => {
   const location = useLocation()

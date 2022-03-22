@@ -1,8 +1,9 @@
 import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom' //acomodar fran
-/* import CategoriesList from './Categories' */ import Header from './Header'
-import SideBar from './Sidebar' //tira error
-/* import UsersList from './UsersList'*/ import Error404 from '../../../shared/Error404/Error404'
+import CategoriesList from '../Categories/Categories'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import Error404 from '../../../shared/Error404/Error404'
 
 const ActivitiesForm = lazy(() => import('../Activities/ActivitiesForm'))
 
@@ -36,6 +37,8 @@ const NewsList = lazy(() => import('../NewsList/NewsList'))
 
 const OrganizationForm = lazy(() => import('../Organization/OrganizationForm'))
 
+const UsersList = lazy(() => import('../Users/UsersList'))
+
 function BackOficce() {
   let match = useRouteMatch()
 
@@ -44,7 +47,7 @@ function BackOficce() {
   return (
     <>
       <Header open={open} setOpen={setOpen} />
-      <SideBar open={open} />
+      <Sidebar open={open} />
       <Switch>
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route

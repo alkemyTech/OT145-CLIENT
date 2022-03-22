@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import useStyles from './novedadesStyles'
+import useStyles from './styles/novedadesStyles'
 import Title from '../Title/Title'
 import { Container, Grid } from '@mui/material'
 import NewsText from './NewsText'

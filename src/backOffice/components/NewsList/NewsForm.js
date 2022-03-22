@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Editor from '../Editor/Editor'
 import SelectField from './SelectField'
-import useStyles from './styles/newsFormStyles'
+import useStyles from '../../styles/newsFormStyles'
 import { useFormik } from 'formik'
 import {
   TextField,
@@ -13,11 +13,11 @@ import {
   Typography,
 } from '@mui/material'
 import { validationSchema } from './config/index'
-import { privatePOST, privatePATCH } from '../../Services/privateApiService'
-import { convertToBase64 } from './config/helper'
+import { privatePOST, privatePATCH } from '../../../Services/privateApiService'
+import { convertToBase64 } from '../../../helpers/base64'
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getNewsById } from '../../redux/NewsReducers/newsReducerThunk'
+import { getNewsById } from '../../../redux/NewsReducers/newsReducerThunk'
 
 const NewsForm = (id) => {
   const { state } = useLocation()
@@ -28,7 +28,7 @@ const NewsForm = (id) => {
   const [errorCategory, setErrorCategory] = useState(false)
 
   useEffect(() => {
-    if (state.id) {
+    if (state) {
       dispatch(getNewsById(state.id))
     }
   }, [])
@@ -95,8 +95,7 @@ const NewsForm = (id) => {
       <form className={classes.form} onSubmit={handleSubmit}>
         <Paper className={classes.paper} elevation={5}>
           <Typography className={classes.title} variant="h5">
-            {' '}
-            {newsId ? 'Editar Noticia' : 'Crear Noticia'}{' '}
+            {newsId ? 'Editar Noticia' : 'Crear Noticia'}
           </Typography>
 
           <TextField
