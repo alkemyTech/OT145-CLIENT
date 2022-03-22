@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { useFormik} from 'formik';
+import React, { useEffect } from 'react';
 import * as yup from 'yup';
-import {Button , TextField, Autocomplete, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { useFormik} from 'formik';
+import { useLocation, useHistory } from 'react-router-dom';
+import { patchUser, postUser } from '../../redux/Users/userSlice';
+import { convertToBase64 } from '../News/config/helper';
+import { getUsersById } from '../../redux/Users/userSlice';
+import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
+import Spinner from '../Spinner/Spinner';
 import useStyles from './style';
-import { privatePATCH, privatePOST} from '../../Services/privateApiService';
 
 
 const validationSchema = yup.object({
@@ -35,35 +40,62 @@ const validationSchema = yup.object({
 });
 
 
+const UserForm = () => {
 
-
-const UserForm = ({ data }) => {
+    const { userId, status } = useSelector((state) => state.users)
+    const dispatch = useDispatch();
+    const { state } = useLocation()
+    const history = useHistory();
+    
     const classes = useStyles()
-    const options = ["", "Administrador", "Regular"]
- 
-    const {handleChange, handleSubmit, values, setFieldValue, touched, errors} = useFormik({
-        initialValues:{
-            name: data?.name || '',
-            email: data?.email || '',
-            role_id: data?.role_id || '',
-            password: data?.password || '',
-            profile_image: data?.profile_image || ''
+    
+    useEffect(() => {  
+        if(state){
+           dispatch(getUsersById(state))
+        }
+    }, [])
+
+    
+    const {handleChange, handleSubmit, handleReset, handleBlur, values, setFieldValue, touched, errors} = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            name: userId?.name || '',
+            email: userId?.email || '',
+            role_id: userId?.role_id || '',
+            password: userId?.password || '',
+            profile_image: userId?.profile_image || ''
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            if(data){
-                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
+        onSubmit: async (values) => {
+            if(userId){
+                const base64 = await convertToBase64(values.profile_image)
+                values.profile_image = base64
+                values.id = userId.id
+               dispatch(patchUser(values))
             } else {
-                privatePOST('https://ongapi.alkemy.org/api/users', values);
+                const base64 = await convertToBase64(values.profile_image)
+                values.profile_image = base64
+                dispatch(postUser(values))
             }
         },
     });
 
+    useEffect(() => {
+        if(status == 'created'){
+            handleReset();
+        }
+    }, [status])
+
+    useEffect(() => {
+        if(status == 'edited'){
+            history.push('/backoffice/users')
+        }
+    }, [status])
 
 
     return (
         <div className={classes.containerForm}>
-            <Typography variant='h6'>Registrate</Typography>
+            <Typography variant='h6'>{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
@@ -78,7 +110,6 @@ const UserForm = ({ data }) => {
                     color="secondary"
                 />
                 <TextField
-                   
                     fullWidth
                     id="email"
                     name="email"
@@ -102,15 +133,27 @@ const UserForm = ({ data }) => {
                     helperText={touched.password && errors.password}
                     color="secondary"
                 />
-                <Autocomplete
-                    id="role_id"
-                    name="role_id"
+                <FormControl 
+                    fullWidth
+                    error={touched.role_id && Boolean(errors.role_id)}
                     className={classes.txt}
-                    value={values.role_id}
-                    options={options}
-                    onChange={(e, value) => setFieldValue("role_id", value)}
-                    renderInput={(params) => <TextField {...params} label="Elija una opcion" error={touched.role_id && Boolean(errors.role_id)} helperText={touched.role_id && errors.role_id}/>}
-                />
+                >
+                    <InputLabel id='role_id'>Rol</InputLabel>
+                    <Select
+                        id='role_id'
+                        labelId='role_id'
+                        name='role_id'
+                        value={values.role_id}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    >
+                        <MenuItem value='' disabled>--Seleccione una opcion--</MenuItem>
+                        <MenuItem value={2}>Administrador</MenuItem>
+                        <MenuItem value={1}>Regular</MenuItem>
+                    </Select>
+                    {errors.role_id && <FormHelperText>{errors.role_id}</FormHelperText>}
+                </FormControl>
+               
                 <TextField className={classes.fieldForm}
                     fullWidth
                     id="profile_image"
@@ -120,8 +163,11 @@ const UserForm = ({ data }) => {
                     error={touched.profile_image && Boolean(errors.profile_image)}
                     helperText={touched.profile_image && errors.profile_image}/>
 
-                <Button color="secondary" variant="contained" fullWidth type="submit">
-                    Enviar
+                <Button color="secondary" variant="contained" fullWidth type="submit" className={classes.button}>
+                    {status == 'loading' 
+                        ? <Spinner width={30} height={30} color='#000'/>
+                        : 'Enviar'    
+                    }
                 </Button>
             </form>
         </div>

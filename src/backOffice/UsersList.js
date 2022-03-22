@@ -1,26 +1,50 @@
-import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import useStyles from './styles/styledList'
-import DecorativeLineBW from '../Components/DecorativeLine/DecorativeLineBW'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Container,
+  Button,
+} from "@mui/material";
+import { getUsers, deleteUser } from "../redux/Users/userSlice";
+import { sweetAlertConfirm } from "../Utils/SweetAlertConfirm";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import useStyles from "./styles/styledList";
+import DecorativeLineBW from "../Components/DecorativeLine/DecorativeLineBW";
 
-
-function createData(name, email, edit, deleteData) {
-  return { name, email, edit, deleteData }
-}
-
-const rows = [
-  createData('Juan García', 'juangarcia@gmail.com', <EditIcon />, <DeleteForeverIcon />),
-  createData('Federico Moreno', 'fedemoreno@gimal.com', <EditIcon />, <DeleteForeverIcon />),
-  createData('Mariano Perez', 'marianop@gmail.com', <EditIcon />, <DeleteForeverIcon />),
-]
-
-export default function UsersList() {
-  const classes = useStyles()
+const UsersList = () => {
+  const { users, status } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const classes = useStyles();
   const location = useLocation();
   const path = location.pathname;
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  const handleDelete = async (id) => {
+    const deleteIt = await sweetAlertConfirm();
+    if (deleteIt) {
+      dispatch(deleteUser(id));
+    }
+  };
+
+ useEffect(() => {
+  if(status == 'deleted'){
+    window.location.reload();
+  }
+ }, [status])
+
 
   return (
     <Container className={classes.containerList}>
@@ -35,36 +59,59 @@ export default function UsersList() {
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableCell}>Nombre</TableCell>
-              <TableCell className={classes.tableCell} align="center">Email</TableCell>
-              <TableCell className={classes.tableCell} align="center">Modificar</TableCell>
-              <TableCell className={classes.tableCell} align="center">Eliminar</TableCell>
+              <TableCell className={classes.tableCell} align="center">
+                Email
+              </TableCell>
+              <TableCell className={classes.tableCell} align="center">
+                Modificar
+              </TableCell>
+              <TableCell className={classes.tableCell} align="center">
+                Eliminar
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name} className={classes.tableRow}>
-                <TableCell className={classes.tableCell} component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell className={classes.tableCell} align="center">
-                  {row.email}
-                </TableCell>
-                <TableCell className={classes.tableCell} align="center">
-                  <Button variant="text" color="secondary">
-                    {row.edit}
-                  </Button>
-                </TableCell>
-                <TableCell className={classes.tableCell} align="center">
-                  <Button variant="text" color="secondary">
-                    {row.deleteData}
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {users.length > 0 &&
+              users.map((user) => (
+                <TableRow key={user.id} className={classes.tableRow}>
+                  <TableCell
+                    className={classes.tableCell}
+                    component="th"
+                    scope="row"
+                  >
+                    {user.name}
+                  </TableCell>
+                  <TableCell className={classes.tableCell} align="center">
+                    {user.email}
+                  </TableCell>
+                  <TableCell className={classes.tableCell} align="center">
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() =>
+                        history.push(`${path}/edit-user/${user.id}`, user.id)
+                      }
+                    >
+                      <EditIcon />
+                    </Button>
+                  </TableCell>
+                  <TableCell className={classes.tableCell} align="center">
+                    <Button
+                      variant="text"
+                      color="secondary"
+                      onClick={() => handleDelete(user.id)}
+                    >
+                      <DeleteForeverIcon />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
       <DecorativeLineBW></DecorativeLineBW>
     </Container>
-  )
-}
+  );
+};
+
+export default UsersList;
