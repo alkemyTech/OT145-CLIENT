@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS,REGISTER_SUCCESS } from "./types"
+import { LOGIN_SUCCESS,REGISTER_SUCCESS, ROL_SUCCESS } from "./types"
 import axios from "axios"
 
 export const iniciarSesion = (email, password) => async (dispatch) => {
@@ -8,7 +8,7 @@ export const iniciarSesion = (email, password) => async (dispatch) => {
 
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: { user: respuesta.data.user, token: respuesta.data.token}
+            payload: { user: respuesta.data.user, token: respuesta.data.token, rol_id: respuesta.data.data.user.role_id}
         })
     }
 

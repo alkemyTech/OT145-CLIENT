@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED, REGISTER_SUCCESS, REGISTER_FAILED, LOG_OUT } from "./types";
+import { LOGIN_SUCCESS, LOGIN_FAILED, REGISTER_SUCCESS, REGISTER_FAILED, LOG_OUT, ROL_SUCCESS } from "./types";
 
 //Initial values
 const initialValues = {
@@ -6,6 +6,7 @@ const initialValues = {
     token: localStorage.getItem("token") || "",
     isLogin: false,
     isError: false,
+    rol_id: null
 }
 
 //reducer
@@ -18,6 +19,7 @@ export default function authReducer(state = initialValues, action) {
                 user: action.payload.user,
                 token: action.payload.token,
                 isLogin: true,
+                rol_id: action.payload.rol_id
             }
         case LOGIN_FAILED:
         case REGISTER_FAILED:
@@ -40,6 +42,11 @@ export default function authReducer(state = initialValues, action) {
                 isLogin: false,
                 isError: false,
             }
+            case ROL_SUCCESS:
+                return {
+                    ...state,
+                    rol_id: action.payload
+                }
         default:
             return state;
     }

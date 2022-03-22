@@ -1,17 +1,17 @@
 import { Route, Redirect } from 'react-router-dom'
-import isUserAdmin from '../Services/isUserAdmin'
+import { useSelector  } from 'react-redux'
+import { useEffect } from 'react'
 
-const PrivateRoutes = ({component: Component, ...rest}) => {
+const PrivateRoutes = ({component: Component, rol, ...rest}) => {
 
-    const role = isUserAdmin()
-    console.log(role)
+  const { rol_id } = useSelector(store => store.auth)
 
     return (
         <Route
       {...rest}
       render={
         (props) => (
-          role
+          rol_id == 1
             ? (
              <Component {...props} />
             ) : (

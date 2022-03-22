@@ -5,6 +5,8 @@ import { ThemeProvider } from '@mui/material'
 import Spinner from './Components/Spinner/Spinner'
 import { Box } from '@mui/material';
 import PrivateRoutes from './backOffice/PrivateRoutes'
+import { useDispatch } from 'react-redux'
+import {iniciarSesion} from './redux/action'
 const ToysCampaign = lazy(() => import('../src/Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() => import('../src/Campaigns/School/SchoolCampaign'))
 const BackOficce = lazy(() => import('../src/backOffice/Backoffice'))
@@ -13,10 +15,9 @@ const Routes = lazy(() => import('./Components/Home/Routes'))
 
 
 function App() {
-
-  localStorage.setItem('token', 123)
-  localStorage.setItem('email','intento57@alkemy.com')
   
+const dispatch = useDispatch()
+dispatch(iniciarSesion("gaby.0097@hotmail.com", "40916271"))
 
   return (
     <ThemeProvider theme={theme}>
