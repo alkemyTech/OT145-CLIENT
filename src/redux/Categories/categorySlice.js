@@ -1,17 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import privateGET from '../../Services/privateApiService';
+import { getCATEGORIES,getCATEGORIESID } from '../../Peticiones/categoriesService';
 
 
 export const getCategories = createAsyncThunk(
-    "category/getCategories",() => {
-        return privateGET("https://ongapi.alkemy.org/api/categories")
-    }
+    "category/getCategories",getCATEGORIES
 );
 
 export const getCategoriesById = createAsyncThunk(
-    "category/getCategoriesByID",(id) => {
-        return privateGET(`https://ongapi.alkemy.org/api/categories/${id}`)
-    }
+    "category/getCategoriesByID",getCATEGORIESID
 );
 
 const categorySlice = createSlice({
@@ -40,7 +36,7 @@ const categorySlice = createSlice({
                 state.categoriesById = payload.data
                 state.status = 'success'
             }else{
-                state.categories = []
+                state.categoriesById = []
                 state.status = payload.data.message
             }
             
