@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { registarUsuario } from "../../redux/usersReducer/action"
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../../shared/Spinner/Spinner'
 
 const RegisterForm = () => {
   const history = useHistory()

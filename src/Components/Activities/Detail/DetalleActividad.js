@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ShowModal from '../../../Utils/AlertsProps'
-import Spinner from '../../Spinner/Spinner'
+import Spinner from '../../../shared/Spinner/Spinner'
 import useStyles from '../Styles/StyledAct'
 import Actividad from './Actividad'
 import findId from './findId'

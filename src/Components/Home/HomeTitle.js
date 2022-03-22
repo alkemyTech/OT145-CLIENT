@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from './HomeTitlesyles';
+import useStyles from './styles/HomeTitlesyles';
 
 
 const HomeTitle = () => {

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { iniciarSesion } from "../../redux/usersReducer/action"
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Spinner from "../../Components/Spinner/Spinner"
+import Spinner from "../../shared/Spinner/Spinner"
 const validationSchema = yup.object({
   email: yup
     .string('Ingrese su mail')
