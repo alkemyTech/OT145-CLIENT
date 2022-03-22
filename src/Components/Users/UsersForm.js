@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,9 +9,17 @@ import { convertToBase64 } from '../News/config/helper';
 import { getUsersById } from '../../redux/Users/userSlice';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
 import Spinner from '../Spinner/Spinner';
+=======
+import React from 'react';
+import { useFormik} from 'formik';
+import { validationSchema } from './config/index';
+import { convertToBase64 } from '../../helpers/base64'
+import {Button , TextField, Autocomplete, Typography } from '@mui/material';
+>>>>>>> 30f46c70a0d9757c9457af96d2b58db7cd763f89
 import useStyles from './style';
 
 
+<<<<<<< HEAD
 const validationSchema = yup.object({
     email: yup
       .string('Ingrese su mail')
@@ -91,6 +100,36 @@ const UserForm = () => {
             history.push('/backoffice/users')
         }
     }, [status])
+=======
+const UserForm = ({ data }) => {
+    const classes = useStyles()
+    const options = ["", "Administrador", "Regular"]
+ 
+    const initialValues = {
+        name: data?.name || '',
+        email: data?.email || '',
+        role_id: data?.role_id || '',
+        password: data?.password || '',
+        profile_image: data?.profile_image || ''
+    };
+
+    const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
+        initialValues: initialValues,
+        validationSchema: validationSchema,
+        onSubmit: ( async (values) => {
+            if (data) {
+                const base64 = await convertToBase64(values.profile_image)
+                values.profile_image = base64
+                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
+            }
+            else {
+                const base64 = await convertToBase64(values.profile_image)
+                values.profile_image = base64
+                privatePOST('https://ongapi.alkemy.org/api/users', values);
+            }
+        })
+    })
+>>>>>>> 30f46c70a0d9757c9457af96d2b58db7cd763f89
 
 
     return (
@@ -99,36 +138,36 @@ const UserForm = () => {
             <form onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
-                    id="name"
                     name="name"
                     label="Nombre"
                     className={classes.fieldForm}
                     value={values.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     error={touched.name && Boolean(errors.name)}
                     helperText={touched.name && errors.name}
                     color="secondary"
                 />
                 <TextField
                     fullWidth
-                    id="email"
                     name="email"
                     label="Email"
                     className={classes.fieldForm}
                     value={values.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     error={touched.email && Boolean(errors.email)}
                     helperText={touched.email && errors.email}
                     color="secondary"
                 />
                 <TextField className={classes.fieldForm}
                     fullWidth
-                    id="password"
                     name="password"
                     label="Contraseña"
                     type="password"
                     value={values.password}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     error={touched.password && Boolean(errors.password)}
                     helperText={touched.password && errors.password}
                     color="secondary"
@@ -156,9 +195,9 @@ const UserForm = () => {
                
                 <TextField className={classes.fieldForm}
                     fullWidth
-                    id="profile_image"
                     name="profile_image"
                     type="file"
+                    onBlur={handleBlur}
                     onChange={(e)=>setFieldValue("profile_image", e.target.files[0])}
                     error={touched.profile_image && Boolean(errors.profile_image)}
                     helperText={touched.profile_image && errors.profile_image}/>

@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import useStyles from './novedadesStyles'
+import useStyles from './styles/novedadesStyles'
 
 const NewsText =  ({text}) => {
     const classes = useStyles()
