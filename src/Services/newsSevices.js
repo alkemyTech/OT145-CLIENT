@@ -10,11 +10,9 @@ const NEWS_URL = process.env.REACT_APP_API_GET_NEWS
 export const getAllNews = () => {
   return privateGET(NEWS_URL)
 }
-
-export const getNewsById = (id) => {
+export const getNewById = (id) => {
   return privateGET(NEWS_URL, id)
 }
-
 export const postNews = (body) => {
   return privatePOST(NEWS_URL, body)
 }

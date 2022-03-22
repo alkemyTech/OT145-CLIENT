@@ -13,7 +13,7 @@ import {
   Typography,
 } from '@mui/material'
 import { validationSchema } from './config/index'
-import { privatePOST, privatePATCH } from '../../../Services/privateApiService'
+import { privatePOST, privatePUT } from '../../../Services/privateApiService'
 import { convertToBase64 } from '../../../helpers/base64'
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -68,7 +68,7 @@ const NewsForm = (id) => {
       if (newsId && !errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
-        privatePATCH(`https://ongapi.alkemy.org/api/news/${newsId.id}`, values)
+        privatePUT(`https://ongapi.alkemy.org/api/news/${newsId.id}`, values)
       } else if (!errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
@@ -95,7 +95,7 @@ const NewsForm = (id) => {
       <form className={classes.form} onSubmit={handleSubmit}>
         <Paper className={classes.paper} elevation={5}>
           <Typography className={classes.title} variant="h5">
-            {newsId ? 'Editar Noticia' : 'Crear Noticia'}
+            {newsId.id ? 'Editar Noticia' : 'Crear Noticia'}
           </Typography>
 
           <TextField
