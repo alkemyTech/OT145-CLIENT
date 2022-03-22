@@ -21,16 +21,7 @@ export const getServicePublic = async (URL, Id) => {
     }
 }
 
-export const getRequest = async (url, id = null) => {
-	const endpoint = !id ? `${baseURL}${url}` : `${baseURL}${url}/${id}`
-	try {
-		return await axios.get(endpoint, { ...config.headers })
-	} catch (e) {
-		alert('Error al traer la data')
-	}
-}
-
-export const privatePOST = async (path, body) => {
+export const publicPOST = async (path, body) => {
     try {
       const response = await axios.post(path, body)
       return response
