@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import useStyles from './styles/styledList';
+import useStyles from '../../styles/styledList';
 
-import Foto6 from "./Images/Foto6.jpg";
-import Foto7 from "./Images/Foto7.jpg";
-import Manos10 from "./Images/Manos10.jpg";
+import Foto6 from "../../Images/Foto6.jpg";
+import Foto7 from "../../Images/Foto7.jpg";
+import Manos10 from "../../Images/Manos10.jpg";
 
 
 function createData(name, image, createdAt) {

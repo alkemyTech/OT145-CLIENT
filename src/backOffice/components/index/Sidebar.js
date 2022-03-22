@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, Divider, Typography, Box, Toolbar } from '@mui/material';
-import useStyles from './styles/sideBarStyles';
+import useStyles from '../../styles/sideBarStyles';
 
 
-const SideBar = ({open}) => {
+
+
+const Sidebar = ({open}) => {
 
     const classes = useStyles();
 
@@ -84,4 +86,4 @@ const SideBar = ({open}) => {
 };
 
 
-export default SideBar;
+export default Sidebar;

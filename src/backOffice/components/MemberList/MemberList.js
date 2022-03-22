@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import useStyles from '../styles/styledList';
+import useStyles from '../../styles/styledList';
 
 
 const MemberList = () => {
