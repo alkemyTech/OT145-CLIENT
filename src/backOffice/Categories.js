@@ -1,24 +1,30 @@
-import * as React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import useStyles from './styles/styledList'
 import DecorativeLineBW from '../Components/DecorativeLine/DecorativeLineBW'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCategories } from '../redux/Categories/categorySlice'
+
+
 
 
 function createData(name, createdAt, edit, deleteData) {
   return { name, createdAt, edit, deleteData }
 }
 
-const rows = [
-  createData('Campaigns', '27/04/2021', <EditIcon />, <DeleteForeverIcon />),
-  createData('News', '12/09/2121', <EditIcon />, <DeleteForeverIcon />),
-  createData('Activities', '23/01/2022', <EditIcon />, <DeleteForeverIcon />),
-]
-
 export default function CategoriesList() {
-  const classes = useStyles()
+  const classes = useStyles();
+  const {categories} = useSelector(state => state.categories);
+  const rows = categories.map((dat) => createData(dat.name,dat.createdAt,<EditIcon />, <DeleteForeverIcon />))
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [])
+  
 
   return (
     <Container className={classes.containerList}>
