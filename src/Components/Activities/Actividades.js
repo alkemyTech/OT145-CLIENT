@@ -2,7 +2,7 @@ import React from 'react'
 import ActivitiesList from './ActivitiesList'
 import Title from '../Title/Title'
 import ShowModal from '../../Utils/AlertsProps'
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../../shared/Spinner/Spinner'
 import useStyles from './Styles/StyledAct'
 
 

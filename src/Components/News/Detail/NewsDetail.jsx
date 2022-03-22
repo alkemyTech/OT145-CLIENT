@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Typography, Box } from '@mui/material';
-import useStyles from '../novedadesStyles'
+import useStyles from '../styles/novedadesStyles'
 import Title from '../../Title/Title';
 import { useLocation } from "react-router-dom";
 
