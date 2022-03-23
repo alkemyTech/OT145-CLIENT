@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Spinner from './shared/Spinner/Spinner'
+import Spinner from './shared/Spinner/Spinner';
 import { Box } from '@mui/material';
 import PrivateRoutes from './backOffice/PrivateRoutes'
 
