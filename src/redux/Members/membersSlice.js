@@ -6,7 +6,7 @@ export const getMembers = createAsyncThunk("members/getMembers",  () => {
 });
 
 export const getMembersById = createAsyncThunk("members/getMembersByID", (id) => {
-    return privateGET(`https://ongapi.alkemy.org/api/members/${id}`)
+    return privateGET(`https://ongapi.alkemy.org/api/members`, id)
 });
 
 export const putMembers = createAsyncThunk("members/putMembers", (values) => {
@@ -26,6 +26,7 @@ const membersSlice = createSlice({
   initialState: {
     members: [],
     status: null,
+    memberId: null
   },
   extraReducers: {
     [getMembers.pending]: (state) => {
@@ -42,7 +43,7 @@ const membersSlice = createSlice({
       state.status = "loading";
     },
     [getMembersById.fulfilled]: (state, { payload }) => {
-      state.members = payload.data;
+      state.memberId = payload.data;
       state.status = "success";
     },
     [getMembersById.rejected]: (state) => {

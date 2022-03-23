@@ -36,10 +36,10 @@ export const privatePATCH = async (path, id, body) => {
 const privateGET = async (path, id) => {
   try {
     if (id != null) {
-      const response = await axios.get(`${path}/${id}`, config)
+      const response = await axios.get(`${path}/${id}`)
       return response.data
     } else {
-      const response = await axios.get(`${path}`, )
+      const response = await axios.get(`${path}`)
       return response.data
     }
   } catch (error) {

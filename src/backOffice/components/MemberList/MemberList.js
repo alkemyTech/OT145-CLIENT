@@ -41,6 +41,12 @@ const MemberList = () => {
             dispatch(deleteMembers(id));
     }};
 
+    useEffect(() => {
+        if(status == 'deleted'){
+          window.location.reload();
+        }
+       }, [status])
+
 
     return(
         <>
@@ -74,7 +80,7 @@ const MemberList = () => {
                             <EditIcon 
                                 color="secondary" 
                                 className={classes.icon}
-                                onClick={() => history.push(`/backoffice/members/edit-member/${member.id}`, {id: member.id})}
+                                onClick={() => history.push(`/backoffice/members/edit-member/${member.id}`, member.id)}
                             />
                         </TableCell>
                         <TableCell className={classes.tableCell} align='center'>
