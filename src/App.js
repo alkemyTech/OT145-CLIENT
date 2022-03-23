@@ -30,7 +30,8 @@ function App() {
           }
         >
           <Switch>
-            <PrivateRoutes exact path="/backoffice" component={BackOficce} />
+            {/* <PrivateRoutes exact path="/backoffice" component={BackOficce} /> */}
+            <Route path="/backoffice" component={BackOficce} />
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
             <Route path="/" component={Routes} />
