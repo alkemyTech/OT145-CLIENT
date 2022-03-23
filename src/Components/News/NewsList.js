@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { getAllNews } from '../../Services/Home';
+import CardComponent from '../Card/CardComponent';
 import DecorativeLine from '../DecorativeLine/DecorativeLine';
 import { useHistory } from 'react-router-dom';
-import CardComponent from '../Card/CardComponent';
 import { Container, Grid } from '@mui/material'
-import { NEWS_API } from '../../Utils/enpoins'
-import getServicePublic from '../../Services/publicApiService'
 import useStyles from './styles/novedadesStyles';
 
 
@@ -19,15 +18,14 @@ const NewsList = () => {
   }
 
   useEffect(() => {
-    getServicePublic(NEWS_API)
-      .then(response => {
-        setNews(response.data)
-      })
-      .catch((error) => {
-      })
+      const getData = async () => {
+        const { data } = await getAllNews();
+        setNews(data);
+      }
+      getData();
   }, [])
 
-  const lastNews = news.slice(-5)
+  const lastNews = news.slice(-6)
 
   return (
     <div >
