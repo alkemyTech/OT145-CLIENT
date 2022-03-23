@@ -8,7 +8,9 @@ export const validationSchema = Yup.object().shape({
     .required('La imagen es obligatorio')
     .test('type', 'Solo imagenes png y jpg', (value) => {
       return (
-        value && ([].includes(value.type) || ['image/jpg'].includes(value.type))
+        value &&
+        (['image/jpg'].includes(value.type) ||
+          ['image/png'].includes(value.type))
       )
     }),
   content: Yup.string().required('El campo es obligatorio'),
