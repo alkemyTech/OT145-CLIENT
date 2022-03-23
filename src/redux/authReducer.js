@@ -6,6 +6,7 @@ const initialValues = {
     token: localStorage.getItem("token") || "",
     isLogin: false,
     isError: false,
+    rol_id: null
 }
 
 //reducer
@@ -13,11 +14,13 @@ export default function authReducer(state = initialValues, action) {
     switch (action.type) {
         case LOGIN_SUCCESS:
             localStorage.setItem("token", action.payload.token)
+            localStorage.setItem("role", action.payload.rol_id)
             return {
                 ...state,
                 user: action.payload.user,
                 token: action.payload.token,
                 isLogin: true,
+                rol_id: action.payload.rol_id
             }
         case LOGIN_FAILED:
         case REGISTER_FAILED:
@@ -32,7 +35,7 @@ export default function authReducer(state = initialValues, action) {
                 token: action.payload.token,
             }
         case LOG_OUT:
-            localStorage.removeItem("token")
+            localStorage.clear()
             return {
                 ...state,
                 user: null,
