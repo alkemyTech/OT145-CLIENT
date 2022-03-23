@@ -20,7 +20,7 @@ import {
   getNews,
   deleteNews,
 } from '../../../redux/NewsReducers/newsReducerThunk'
-import { sweetAlertConfirm } from '../../../Utils/SweetAlertConfirm'
+import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm'
 
 const NewsList = () => {
   const location = useLocation()
