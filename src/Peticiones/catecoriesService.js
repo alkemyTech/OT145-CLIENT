@@ -1,4 +1,4 @@
-import privateGET, { privatePATCH, privateDelete, privatePOST, privatePUT } from "../Services/privateApiService";
+import privateGET, { privateDelete, privatePOST, privatePUT } from "../Services/privateApiService";
 const endPoint=process.env.REACT_APP_API_CATEGORIES
 
 export const getCATEGORIES = ()=>{
