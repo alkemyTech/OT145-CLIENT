@@ -3,7 +3,6 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom' //acomodar fran
 import CategoriesList from '../Categories/Categories'
 import Header from './Header'
 import SideBar from './Sidebar'
-/* import UsersList from '../Users/UsersList' */
 import Error404 from '../../../shared/Error404/Error404'
 
 const ActivitiesForm = lazy(() => import('../Activities/ActivitiesForm'))
@@ -22,7 +21,9 @@ const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
 
 const UserForm = lazy(() => import('../Users/UsersForm'))
 
-const MembersForm = lazy(() => import('../MemberList/MemberList'))
+const MembersForm = lazy(() =>
+  import('../../../Components/Members/MembersForm'),
+)
 
 const ProjectsForm = lazy(() => import('../Projects/ProjectsForm'))
 
@@ -66,7 +67,6 @@ function BackOficce() {
         />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
 
-        <Route exact path={`${match.path}/users`} component={UsersList} />
         <Route
           exact
           path={`${match.path}/categories/create`}
@@ -97,6 +97,17 @@ function BackOficce() {
           component={UserForm}
         />
 
+        <Route
+          exact
+          path={`${match.path}/members/create`}
+          component={MembersForm}
+        />
+
+        <Route
+          exact
+          path={`${match.path}/members/edit/:id`}
+          component={MembersForm}
+        />
         <Route
           exact
           path={`${match.path}/users/edit-user/:id`}
