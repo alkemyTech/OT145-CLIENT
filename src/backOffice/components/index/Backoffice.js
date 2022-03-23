@@ -3,7 +3,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 /* import CategoriesList from './Categories' */ //acomodar fran
 import Header from './Header'
 import SideBar from './Sidebar'
-/* import UsersList from './UsersList'*/ //tira error
+import UsersList from '../Users/UsersList';
 import Error404 from '../../../shared/Error404/Error404'
 
 
@@ -79,7 +79,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
 
-        {/* <Route exact path={`${match.path}/users`} component={UsersList} /> */}
+        <Route exact path={`${match.path}/users`} component={UsersList} />
 
         <Route exact path={`${match.path}/members`} component={MemberList} />
 
