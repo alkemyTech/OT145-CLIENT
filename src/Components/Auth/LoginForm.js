@@ -14,11 +14,11 @@ const validationSchema = yup.object({
     .string('Ingrese su mail')
     .email('Ingrese una dirección de mail válida')
     .required('Es necesario ingresar una dirección de mail'),
-  password: yup
+  /*password: yup
     .string('Ingrese su contraseña')
     .min(6, 'La contraseña debe tener una longitud mínima de 6 caraceteres.')
     .required('Es necesario ingresar una contraseña')
-    .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'),
+    .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'),*/
 });
 
 const LoginForm = () => {

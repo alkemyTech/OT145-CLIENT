@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     typographyImg: {
         paddingLeft:15
+    },
+    button: {
+        marginTop: theme.spacing(3)
     }
 
 }))

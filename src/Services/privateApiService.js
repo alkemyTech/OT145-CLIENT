@@ -26,15 +26,14 @@ export const privatePUT = async (path, id, body) => {
 export const privatePATCH = async (path, id, body) => {
   try {
     const response = await axios.patch(`${path}/${id}`, body)
-
     return response.data
   } catch (error) {
-    console.error(error)
+    return error.response
   }
 }
 
 const privateGET = async (path, id) => {
-  try {
+  try{
     if (id != null) {
       const response = await axios.get(`${path}/${id}`, config)
       return response.data
@@ -45,6 +44,7 @@ const privateGET = async (path, id) => {
   } catch (error) {
     return error.response.data
   }
+    
 }
 
 export const privatePOST = async (path, body) => {
@@ -62,8 +62,8 @@ export const privateDelete = async (path, id) => {
     const response = await axios.delete(`${path}/${id}`,config )
     return response.data
 
-  } catch (error) {
-    console.error(error)
+  }catch(error){
+    return error.response
   }
 }
 
