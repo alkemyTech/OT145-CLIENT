@@ -9,6 +9,7 @@ const useStyles = makeStyles({
         gap: '15px',
         maxWidth: '630px',
         margin: 'auto',
+        paddingTop:10
     },
     formElement: {
         width: '100%'
