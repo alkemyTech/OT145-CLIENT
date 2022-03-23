@@ -13,19 +13,23 @@ import {
   Typography,
 } from '@mui/material'
 import { validationSchema } from './config/index'
-import { privatePOST, privatePUT } from '../../../Services/privateApiService'
 import { convertToBase64 } from '../../../helpers/base64'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getNewsById } from '../../../redux/NewsReducers/newsReducerThunk'
+import {
+  getNewsById,
+  postNews,
+  putNews,
+} from '../../../redux/NewsReducers/newsReducerThunk'
 
 const NewsForm = (id) => {
   const { state } = useLocation()
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { newsId } = useSelector((state) => state.news)
+  const { newsId, status } = useSelector((state) => state.news)
   const [category, setCategory] = useState([])
   const [errorCategory, setErrorCategory] = useState(false)
+  const history = useHistory()
 
   useEffect(() => {
     if (state) {
@@ -33,7 +37,6 @@ const NewsForm = (id) => {
     }
   }, [])
 
-  console.log(state, newsId)
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -51,6 +54,7 @@ const NewsForm = (id) => {
     handleSubmit,
     handleChange,
     handleBlur,
+    handleReset,
     touched,
     errors,
     setFieldValue,
@@ -65,17 +69,34 @@ const NewsForm = (id) => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      if (newsId && !errorCategory) {
+      console.log({ newsId })
+      if (newsId?.id && !errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
-        privatePUT(`https://ongapi.alkemy.org/api/news/${newsId.id}`, values)
+        values.id = newsId.id
+        console.log('put')
+        dispatch(putNews(values))
       } else if (!errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
-        privatePOST(`https://ongapi.alkemy.org/api/news`, values)
+        console.log('post')
+        dispatch(postNews(values))
       }
+      console.log(values)
     },
   })
+
+  useEffect(() => {
+    if (status === 'created') {
+      handleReset()
+    }
+  }, [status])
+
+  useEffect(() => {
+    if (status === 'edited') {
+      history.push('/backoffice/news')
+    }
+  }, [status])
 
   useEffect(() => {
     if (category.length > 0) {

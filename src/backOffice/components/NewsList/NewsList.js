@@ -16,21 +16,40 @@ import ModeEdit from '@mui/icons-material/ModeEdit'
 import { useEffect } from 'react'
 import useStyles from '../../styles/styledList'
 import { useSelector, useDispatch } from 'react-redux'
-import { getNews } from '../../../redux/NewsReducers/newsReducerThunk'
+import {
+  getNews,
+  deleteNews,
+} from '../../../redux/NewsReducers/newsReducerThunk'
+import { sweetAlertConfirm } from '../../../Utils/SweetAlertConfirm'
 
 const NewsList = () => {
   const location = useLocation()
   const path = location.pathname
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { news } = useSelector((state) => state.news)
+  const { news, status } = useSelector((state) => state.news)
   const history = useHistory()
 
   useEffect(() => {
     dispatch(getNews())
   }, [])
 
+  const handleDelete = async (id) => {
+    const deleteIt = await sweetAlertConfirm()
+    if (deleteIt) {
+      dispatch(deleteNews(id))
+    }
+    console.log(id)
+  }
+
+  useEffect(() => {
+    if (status === 'deleted') {
+      window.location.reload()
+    }
+  }, [status])
+
   const tableTitles = ['Nombre', 'Imagen', 'Fecha', 'Modificar', 'Eliminar']
+
   return (
     <>
       <Container className={classes.containerList}>
@@ -45,11 +64,7 @@ const NewsList = () => {
             <TableHead>
               <TableRow className={classes.tableRow}>
                 {tableTitles.map((titles, key) => (
-                  <TableCell
-                    align="center"
-                    key={KeyboardEvent}
-                    className={classes.tableCell}
-                  >
+                  <TableCell align="center" className={classes.tableCell}>
                     {titles}
                   </TableCell>
                 ))}
@@ -70,6 +85,7 @@ const NewsList = () => {
                   <TableCell align="center" className={classes.tableCell}>
                     <Button
                       color="secondary"
+                      sx={{ cursor: 'pointer' }}
                       onClick={() =>
                         history.push(`news/edit-news`, {
                           id: id,
@@ -80,7 +96,13 @@ const NewsList = () => {
                     </Button>
                   </TableCell>
                   <TableCell align="center" className={classes.tableCell}>
-                    <Button color="secondary" sx={{ cursor: 'pointer' }}>
+                    <Button
+                      color="secondary"
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        handleDelete(id)
+                      }}
+                    >
                       <Delete />
                     </Button>
                   </TableCell>
