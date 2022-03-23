@@ -14,7 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import { getUsers, deleteUser } from "../../../redux/Users/userSlice";
-import { sweetAlertConfirm } from "../../../Utils/SweetAlertConfirm";
+import { sweetAlertConfirm } from "../../../Utils/sweetAlertConfirm";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useStyles from "../../styles/styledList";
