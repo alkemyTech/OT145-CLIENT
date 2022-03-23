@@ -17,7 +17,9 @@ const NewsForm = lazy(() => import('../NewsList/NewsForm'))
 
 const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
 
-// const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
+const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
+
+const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
 
 const UserForm = lazy(() => import('../../../Components/Users/UsersForm'))
 
@@ -60,8 +62,10 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
 
-        {/* <Route exact path={`${match.path}/testimonials/create-testimonials`} component={TestimonialForm} /> */}
+        <Route exact path={`${match.path}/testimonials/create`} component={TestimonialForm} />
 
+        <Route exact path={`${match.path}/testimonials`} component={Testimonials} />
+        
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
 
         <Route exact path={`${match.path}/members/edit`} component={MembersForm} />
