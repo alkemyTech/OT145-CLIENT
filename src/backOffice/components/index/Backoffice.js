@@ -58,6 +58,7 @@ function BackOficce() {
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
 
         <Route exact path={`${match.path}/categories/create`} component={CategoriesForm} />
+        <Route exact path={`${match.path}/categories/edit/:id`} component={CategoriesForm} />
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
 
@@ -98,3 +99,4 @@ function BackOficce() {
   )
 }
 export default BackOficce
+
