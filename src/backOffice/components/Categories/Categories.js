@@ -26,7 +26,6 @@ export default function CategoriesList() {
     if(deleteIt) {
       dispatch(deleteCategory(id));
     }
-    console.log(id);
   }
   useEffect(() => {
     if(status === 'deleted'){
@@ -56,24 +55,24 @@ export default function CategoriesList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map((row) => (
-              <TableRow key={row.name} className={classes.tableRow}>
+            {categories.map(({name, image, createdAt,id}) => (
+              <TableRow key={name} className={classes.tableRow}>
                 <TableCell component="th" className={classes.tableCell} >
-                  {row.name}
+                  {name}
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  <img src={row.image} alt={row.name} className={classes.img} />
+                  <img src={image} alt={name} className={classes.img} />
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  {row.createdAt}
+                  {createdAt}
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  <Button variant="text" color="secondary" onClick={() => history.push(`/categories/edit/${row.id}`, {id: row.id})}>
+                  <Button variant="text" color="secondary" onClick={() => history.push(`/categories/edit/`, {id:id})}>
                     <EditIcon />
                   </Button>
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  <Button variant="text" color="secondary" onClick={() => handleDelete(row.id)}>
+                  <Button variant="text" color="secondary" onClick={() => handleDelete(id)}>
                     <DeleteForeverIcon/>
                   </Button>
                 </TableCell>
