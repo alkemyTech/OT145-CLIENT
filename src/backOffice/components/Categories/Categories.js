@@ -67,7 +67,7 @@ export default function CategoriesList() {
                   {createdAt}
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  <Button variant="text" color="secondary" onClick={() => history.push(`/categories/edit/`, {id:id})}>
+                  <Button variant="text" color="secondary" onClick={() => history.push(`/backoffice/categories/edit/${id}`, id)}>
                     <EditIcon />
                   </Button>
                 </TableCell>

@@ -27,8 +27,8 @@ export const deleteCategory = createAsyncThunk(
 );
 
 export const putCategory = createAsyncThunk(
-    "category/putCategory",(id,body)=>{
-        return putCATEGORY(id,body);
+    "category/putCategory",(body)=>{
+        return putCATEGORY(body.id,body);
      }
 );
 
@@ -37,7 +37,7 @@ const categorySlice = createSlice({
     initialState:{
         categories: [],
         status: null,
-        categoriesById:[]
+        categoriesById:null
     },
     extraReducers:{
         [getCategories.pending]: (state) => {

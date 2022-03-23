@@ -6,8 +6,9 @@ import Editor from "../Editor/Editor";
 import * as Yup from "yup";
 import { convertToBase64 } from '../../../helpers/base64';
 import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+
 
 
 const validationSchema = Yup.object({
@@ -25,15 +26,17 @@ const CategoriesForm = () => {
 	const {state} = useLocation();
 	const {categoriesById, status} = useSelector(state => state.categories);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 	  if(state){
-		  dispatch(getCategoriesById(state.id))
+		  dispatch(getCategoriesById(state))
 	  }
 	}, [])
 
 	
-	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
+	const { setFieldValue, handleSubmit, values, handleChange, touched, errors,handleReset } = useFormik({
+		enableReinitialize: true,
 		initialValues: {
 			name: categoriesById?.name || "",
 			description: categoriesById?.description || "",
@@ -42,19 +45,24 @@ const CategoriesForm = () => {
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
             if (categoriesById) {
-                dispatch(putCategory(values.id,values));
-            }
-            dispatch(postCategory(values));
-            
+				values.id = categoriesById.id
+                dispatch(putCategory(values));
+				
+            }else{
+            	dispatch(postCategory(values));
+			}
         })
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 	useEffect(() => {
 		if(status === 'created'){
-		  window.location.reload()
-		  window.location.href="/backoffice/categories"
+			handleReset()
 		}
+		if(status === 'edited'){
+			history.push("/backoffice/categories")
+		}
+		
 	  }, [status])
 
 	const handleImageChange = async (event) => {
@@ -102,7 +110,7 @@ const CategoriesForm = () => {
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				{categoriesById ? ('Actualizar') : ('Crear')}
+				Enviar
 			</Button>
 		</form>
 	);
