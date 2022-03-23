@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { getMembers, deleteMembers } from '../../../redux/Members/membersSlice';
-import { sweetAlertConfirm } from '../../../Utils/SweetAlertConfirm';
+import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import useStyles from '../../styles/styledList';
