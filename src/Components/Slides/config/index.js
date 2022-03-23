@@ -15,13 +15,13 @@ export const validationSchema = Yup.object().shape({
         .matches(/(?=.*[0-9])/, 'Solo puede ingresar numeros'),
     image: Yup
         .mixed()
-        .test(
-            "type",
-            "Solo imagenes png y jpg",
+        // .test(
+        //     "type",
+        //     "Solo imagenes png y jpg",
 
-            (value) =>{
-                return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
-            )
+        //     (value) =>{
+        //         return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
+        //     )
         .required('Es necesario ingresar una imagen'),
     
   });

@@ -1,5 +1,5 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
-import privateGET from '../../Services/privateApiService.js'
+import privateGET, { privateDelete } from '../../Services/privateApiService.js'
 
 const initialState = {
   slides: [],
@@ -30,6 +30,11 @@ const sliderSlice = createSlice({
 
 export const fetchSlides = createAsyncThunk('slider/fetchSlides', async () => {
   const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES)
+  return response.data
+})
+
+export const deleteSlides = createAsyncThunk('slider/deleteSlides', async (id) => {
+  const response = await privateDelete(process.env.REACT_APP_API_GET_SLIDES, id)
   return response.data
 })
 
