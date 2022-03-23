@@ -97,6 +97,7 @@ const MembersForm = () => {
       }).then((base64) => {
         return base64;
       });
+      console.log(values);
     };
 
     const newValues = {
