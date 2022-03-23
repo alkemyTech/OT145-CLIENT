@@ -10,7 +10,6 @@ import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormContro
 import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from './style';
 
-
 const validationSchema = yup.object({
     email: yup
       .string('Ingrese su mail')
@@ -38,7 +37,6 @@ const validationSchema = yup.object({
             )
         .required('Es necesario ingresar una imagen'),
 });
-
 
 const UserForm = () => {
 
@@ -91,7 +89,6 @@ const UserForm = () => {
             history.push('/backoffice/users')
         }
     }, [status])
-
 
     return (
         <div className={classes.containerForm}>
@@ -163,7 +160,7 @@ const UserForm = () => {
                     error={touched.profile_image && Boolean(errors.profile_image)}
                     helperText={touched.profile_image && errors.profile_image}/>
 
-                <Button color="secondary" variant="contained" fullWidth type="submit" className={classes.button}>
+                <Button color="secondary" disabled={status == 'loading' ? true : false} variant="contained" fullWidth type="submit" className={classes.button}>
                     {status == 'loading' 
                         ? <Spinner width={30} height={30} color='#000'/>
                         : 'Enviar'    
