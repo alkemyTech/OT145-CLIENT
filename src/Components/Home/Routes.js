@@ -1,7 +1,8 @@
 import React, { lazy } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import LayoutHome from './LayoutHome';
-import Error404 from "../Error404/Error404";
+import Error404 from "../../shared/Error404/Error404";
+import { Login } from '@mui/icons-material';
 // const Donacion = lazy(() => import('./Components/Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import('./Index'))
@@ -12,8 +13,7 @@ const Nosotros = lazy(() => import('../About/Nosotros'))
 const Contacto = lazy(() => import('../Contact/Contacto'))
 const DetalleActividad = lazy(() => import('../Activities/Detail/DetalleActividad'))
 const RegisterForm = lazy(() => import('../Auth/RegisterForm'))
-
-
+const LoginForm = lazy (() => import('../Auth/LoginForm'))
 
 export default function Routes() {
   let match = useRouteMatch();
@@ -27,8 +27,10 @@ export default function Routes() {
         <Route exact path="/news/:id" component={NewsDetail} />
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
-        <Route path="*" component={Error404} />
+        <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component={RegisterForm} />
+        <Route path="*" component={Error404} />
+        
       </Switch>
     </LayoutHome>
   )

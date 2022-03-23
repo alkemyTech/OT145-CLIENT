@@ -2,7 +2,7 @@ import React from 'react';
 import { privatePATCH , privatePOST } from '../../Services/privateApiService'
 import { useFormik} from 'formik';
 import { validationSchema } from './config/index';
-import { convertToBase64 } from '../News/config/helper';
+import { convertToBase64 } from '../../helpers/base64';
 import { TextField, Button, Typography } from '@mui/material';
 import useStyles from './styleSlides';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
