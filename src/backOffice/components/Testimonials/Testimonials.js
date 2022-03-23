@@ -9,16 +9,17 @@ import {
 	TableRow,
 	Paper,
 	Box,
+	TableCell,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
-import {
-	StyledTableCell,
-	StyledTableRow,
-} from "../../Utils/SlidesBackOfficeStyled";
-import useStyles from "../styles/styledList";
-import privateGET from "../../Services/privateApiService";
+// import {
+// 	TableCell,
+// 	TableRow,
+// } from "../../styles/styledList";
+import useStyles from "../../styles/styledList";
+import privateGET from "../../../Services/privateApiService";
 
 function SlidesBackOffice() {
 	const classes = useStyles();
@@ -44,30 +45,29 @@ function SlidesBackOffice() {
 		},
 	]);
 
-    const [data, setData] = useState([])
+	const [data, setData] = useState([]);
 
 	const deleteItem = (row) => {
-		if(data.length >= 1){
+		if (data.length >= 1) {
 			const filterArray = data.filter((item) => item.id !== row.id);
 			return setData(filterArray);
-
 		}
 		const filterArray = mockedData.filter((item) => item.id !== row.id);
 		return setMockedData(filterArray);
 	};
 
 	const getData = async () => {
-        try {
-            const res = await privateGET(process.env.REACT_APP_API_GET_TESTIMONIALS);
-            // console.log(res.data)
-			setData((res.data.length >= 1) ? res.data : mockedData)
-        } catch (error) {
-            console.log(error)
-        }
+		try {
+			const res = await privateGET(process.env.REACT_APP_API_GET_TESTIMONIALS);
+			// console.log(res.data)
+			setData(res.data.length >= 1 ? res.data : mockedData);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
-        getData()
+		getData();
 	}, []);
 
 	return (
@@ -85,30 +85,50 @@ function SlidesBackOffice() {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<StyledTableCell>Titulo</StyledTableCell>
-							<StyledTableCell align="center">Imágen</StyledTableCell>
-							<StyledTableCell align="center">Descripción</StyledTableCell>
-							<StyledTableCell align="center">Editar</StyledTableCell>
-							<StyledTableCell align="center">Eliminar</StyledTableCell>
+							<TableCell align="center" className={classes.tableCell}>
+								Titulo
+							</TableCell>
+							<TableCell align="center" className={classes.tableCell}>
+								Imágen
+							</TableCell>
+							<TableCell align="center" className={classes.tableCell}>
+								Descripción
+							</TableCell>
+							<TableCell align="center" className={classes.tableCell}>
+								Editar
+							</TableCell>
+							<TableCell align="center" className={classes.tableCell}>
+								Eliminar
+							</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{data.map((row) => (
-							<StyledTableRow key={row.id}>
-								<StyledTableCell component="th" scope="row">
+							<TableRow className={classes.tableRow} key={row.id}>
+								<TableCell
+									align="center"
+									className={classes.tableCell}
+									component="th"
+									scope="row">
 									{row.title}
-								</StyledTableCell>
-								<StyledTableCell align="center">
+								</TableCell>
+								<TableCell align="center">
 									<img
 										src={row.image}
 										alt={row.title}
 										className={classes.img}
 									/>
-								</StyledTableCell>
-								<StyledTableCell align="center">
+								</TableCell>
+								<TableCell
+									align="center"
+									className={classes.tableCell}
+									align="center">
 									{row.description}
-								</StyledTableCell>
-								<StyledTableCell align="center">
+								</TableCell>
+								<TableCell
+									align="center"
+									className={classes.tableCell}
+									align="center">
 									<IconButton
 										component={Link}
 										to={`/backoffice/testimonials/edit/${row.id}`}
@@ -116,16 +136,19 @@ function SlidesBackOffice() {
 										color="secondary">
 										<EditIcon />
 									</IconButton>
-								</StyledTableCell>
-								<StyledTableCell align="center">
+								</TableCell>
+								<TableCell
+									align="center"
+									className={classes.tableCell}
+									align="center">
 									<IconButton
 										onClick={() => deleteItem(row)}
 										color="secondary"
 										sx={{ cursor: "pointer" }}>
 										<DeleteIcon />
 									</IconButton>
-								</StyledTableCell>
-							</StyledTableRow>
+								</TableCell>
+							</TableRow>
 						))}
 					</TableBody>
 				</Table>
