@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 
-export const SweetAlertConfirm = async () => {
+export const sweetAlertConfirm = async () => {
     const alerta = Swal.fire({
       title: "Estas Seguro?",
       text: "Si lo borras, no podras recuperarlo!",
