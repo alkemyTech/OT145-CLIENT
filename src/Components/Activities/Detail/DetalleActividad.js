@@ -4,8 +4,7 @@ import ShowModal from '../../../Utils/AlertsProps'
 import Spinner from '../../../shared/Spinner/Spinner'
 import useStyles from '../Styles/StyledAct'
 import Actividad from './Actividad'
-import findId from './findId'
-import { getActivitiesId } from '../../../Services/ActivityApiService'
+import { privateGET } from '../../../Services/privateApiService'
 
 
 const DetalleActividad = () => {
@@ -20,38 +19,44 @@ const DetalleActividad = () => {
 
     useEffect(() => {
 		try {
-			(async () => {
-				const response = await getActivitiesId(id)
-				response.status === 200
-					? setActividad({
+			;(async () => {
+				const response = await privateGET(`https://ongapi.alkemy.org/api/activities/${id}`)
+				if (response.success) {
+					setActividad({
 						...actividad,
-						data: response.data.data,
+						data: response.data,
 						loading: false,
-					  })
-					: setActividad({
+					})
+				} else {
+					setActividad({
 						...actividad,
 						error: response.error,
 						loading: false,
-					  })
+					})
+				}
 			})()
 		} catch (error) {
-			setActividad({ ...actividad, error: error.message, loading: false })
+			setActividad({ ...actividad, error: error, loading: false })
 		}
 	}, [])
+
+    if (actividad.loading) {
+		return (
+			<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div>
+		)
+	}
+
+	if (actividad.error) {
+		return <ShowModal
+        icon= "error"
+        title= "Oooops..."
+        text= "Error al cargar"
+        footer= "Intente nuevamente"
+        />
+	}
+
     return (
-        <>
-            {actividad.loading?<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div> :(actividad.error? 
-                <ShowModal
-                icon= "error"
-                title= "Oooops..."
-                text= "Error al cargar"
-                footer= "Intente nuevamente"
-                /> :
-                <div>
-                    <Actividad key={actividad.data.id} titulo={actividad.data.name} descripcion={actividad.data.description} />
-                </div>
-                )}
-        </>
+        <Actividad key={actividad.data.id} titulo={actividad.data.name} descripcion={actividad.data.description} />
     )
 }
 

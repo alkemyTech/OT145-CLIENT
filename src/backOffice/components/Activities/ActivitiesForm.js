@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import useStyles from '../../../Components/Auth/AuthStyles';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { privatePATCH, privatePOST } from '../../../Services/privateApiService'
+import { postActivities, updateActivities } from '../../../Services/ActivityApiService'
 import Editor from '../Editor/Editor';
 import { convertToBase64 } from '../../../helpers/base64'; 
+
+
 
 const ActivitiesForm = ({ data }) => {
     const classes = useStyles();
@@ -40,12 +42,15 @@ const ActivitiesForm = ({ data }) => {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
                 updateActivities(data.id, values);
+                console.log(data)
             }
             else  {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
                 postActivities(values);
+                console.log(data)
             }
+            
         })
     });
     return (
