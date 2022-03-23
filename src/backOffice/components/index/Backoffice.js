@@ -67,9 +67,9 @@ function BackOficce() {
         
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
 
-        <Route exact path={`${match.path}/members/create-member`} component={MembersForm} />
+        <Route exact path={`${match.path}/members/create`} component={MembersForm} />
 
-        <Route exact path={`${match.path}/members/edit-member/:id`} component={MembersForm} />
+        <Route exact path={`${match.path}/members/edit/:id`} component={MembersForm} />
 
         <Route exact path={`${match.path}/create-project`} component={ProjectsForm} />
 

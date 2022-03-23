@@ -56,7 +56,7 @@ const MemberList = () => {
             </Typography>
         </Box>
         <Box className={classes.contLink}>
-            <Link to='/backoffice/members/create-member' className={classes.styleLink}>
+            <Link to='/backoffice/members/create' className={classes.styleLink}>
                 <Button color='secondary' variant='contained'>Crear Miembro</Button>
             </Link>
         </Box>
@@ -80,7 +80,7 @@ const MemberList = () => {
                             <EditIcon 
                                 color="secondary" 
                                 className={classes.icon}
-                                onClick={() => history.push(`/backoffice/members/edit-member/${member.id}`, member.id)}
+                                onClick={() => history.push(`/backoffice/members/edit/${member.id}`, member.id)}
                             />
                         </TableCell>
                         <TableCell className={classes.tableCell} align='center'>

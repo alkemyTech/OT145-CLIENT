@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { getMembersById, putMembers, postMembers} from "../../redux/Members/membersSlice";
-import { convertToBase64 } from "../../helpers/base64";
 import Editor from "../../backOffice/components/Editor/Editor";
+import Spinner from '../../shared/Spinner/Spinner';
+import { convertToBase64 } from "../../helpers/base64";
 import { Button, Container, TextField, Typography } from "@mui/material";
+import useStyles from "../../Components/Auth/AuthStyles";
 import "../FormStyles.css";
 import "./MembersForm.css";
-import useStyles from "../../Components/Auth/AuthStyles";
 
 
 const MembersForm = () => {
+  const dispatch = useDispatch();
+  const { memberId, status } = useSelector((state) => state.members);
+  const { state } = useLocation();
+  const history = useHistory();
+  const classes = useStyles();
+
+
+  useEffect(() => {
+    if (state) {
+      dispatch(getMembersById(state));
+    }
+  }, []);
 
   const isValidUrl = (url) => {
     try {
@@ -45,16 +58,6 @@ const MembersForm = () => {
       .test("type", "La url no es valida", (value) => isValidUrl(value)),
   });
 
-  const dispatch = useDispatch();
-  const { memberId } = useSelector((state) => state.members);
-  const { state } = useLocation();
-  const classes = useStyles();
-
-  useEffect(() => {
-    if (state) {
-      dispatch(getMembersById(state));
-    }
-  }, []);
 
   const imageExample = "https://www.w3schools.com/howto/img_avatar.png";
 
@@ -62,6 +65,7 @@ const MembersForm = () => {
     handleSubmit,
     handleChange,
     handleBlur,
+    handleReset,
     touched,
     errors,
     setFieldValue,
@@ -90,6 +94,18 @@ const MembersForm = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if(status == 'created'){
+        handleReset();
+    }
+}, [status])
+
+useEffect(() => {
+    if(status == 'edited'){
+        history.push('/backoffice/members')
+    }
+}, [status])
 
 
   return (
@@ -175,12 +191,13 @@ const MembersForm = () => {
         />
         <Button
           type="submit"
-          style={{ gridArea: "submit" }}
+          style={{ gridArea: "submit" }}  
           color="secondary"
           variant="contained"
           fullWidth
+          disabled={status === 'loading'}
         >
-          Enviar
+          {status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
         </Button>
       </form>
     </Container>
