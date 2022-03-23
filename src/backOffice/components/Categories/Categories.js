@@ -8,7 +8,7 @@ import { getCategories,deleteCategory } from '../../../redux/Categories/category
 import useStyles from '../../styles/styledList'
 import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
 import { useHistory } from 'react-router-dom';
-import { sweetAlertConfirm } from '../../../Utils/SweetAlertConfirm';
+import { SweetAlertConfirm } from '../../../Utils/SweetAlertConfirm';
 
 
 export default function CategoriesList() {
@@ -22,7 +22,7 @@ export default function CategoriesList() {
   }, [])
 
   const handleDelete = async (id)=>{
-    const deleteIt = await sweetAlertConfirm();
+    const deleteIt = await SweetAlertConfirm();
     if(deleteIt) {
       dispatch(deleteCategory(id));
     }
