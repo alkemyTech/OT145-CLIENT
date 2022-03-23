@@ -2,17 +2,16 @@
 import { useSelector  } from 'react-redux'
 import { useEffect } from 'react'
 
-const PrivateRoutes = ({component: Component, ...rest}) => {
+const PrivateRoutes = ({component: Component, rol, ...rest}) => {
 
-
-  const rol_id = localStorage.getItem('role')
+  const { rol_type } = useSelector(state => state.auth)
 
     return (
         <Route
       {...rest}
       render={
         (props) => (
-          rol_id === '1'
+          (rol_type === rol)
             ? (
              <Component {...props} />
             ) : (

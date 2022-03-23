@@ -4,7 +4,7 @@ import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
 import Spinner from './shared/Spinner/Spinner'
 import { Box } from '@mui/material'
-/* import PrivateRoutes from './backOffice/PrivateRoutes' */
+import PrivateRoutes from './backOffice/PrivateRoutes'
 
 const ToysCampaign = lazy(() => import('../src/Campaigns/Toys/ToysCampaign'))
 const SchoolCampaign = lazy(() =>
@@ -34,8 +34,11 @@ function App() {
           }
         >
           <Switch>
-            {/*   <PrivateRoutes exact path="/backoffice" component={BackOficce} /> */}
-            <Route path="/backoffice" component={BackOficce} />
+            <PrivateRoutes
+              rol="Admin"
+              path="/backoffice"
+              component={BackOficce}
+            />
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
             <Route path="/" component={Routes} />

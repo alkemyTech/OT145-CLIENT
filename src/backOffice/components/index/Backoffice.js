@@ -2,7 +2,8 @@ import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom' //acomodar fran
 import CategoriesList from '../Categories/Categories'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import SideBar from './Sidebar'
+/* import UsersList from '../Users/UsersList' */
 import Error404 from '../../../shared/Error404/Error404'
 
 const ActivitiesForm = lazy(() => import('../Activities/ActivitiesForm'))
@@ -19,7 +20,7 @@ const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
 const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
 
-const UserForm = lazy(() => import('../../../Components/Users/UsersForm'))
+const UserForm = lazy(() => import('../Users/UsersForm'))
 
 const MembersForm = lazy(() => import('../MemberList/MemberList'))
 
@@ -50,7 +51,7 @@ function BackOficce() {
   return (
     <>
       <Header open={open} setOpen={setOpen} />
-      <Sidebar open={open} />
+      <SideBar open={open} />
       <Switch>
         <Route exact path={`${match.path}/news`} component={NewsList} />
         <Route
@@ -65,6 +66,7 @@ function BackOficce() {
         />
         <Route exact path={`${match.path}`} component={ScreenDashboard} />
 
+        <Route exact path={`${match.path}/users`} component={UsersList} />
         <Route
           exact
           path={`${match.path}/categories/create`}
@@ -97,6 +99,12 @@ function BackOficce() {
 
         <Route
           exact
+          path={`${match.path}/users/edit-user/:id`}
+          component={UserForm}
+        />
+
+        <Route
+          exact
           path={`${match.path}/members/edit`}
           component={MembersForm}
         />
@@ -108,32 +116,35 @@ function BackOficce() {
         />
 
         <Route exact path={`${match.path}/slides`} component={Slides} />
+
         <Route
           exact
           path={`${match.path}/organization`}
           component={OrganizationScreen}
         />
+
         <Route
           exact
           path={`${match.path}/organization/edit`}
           component={OrganizationForm}
         />
-        <Route
-          exact
-          path={`${match.path}/categories`}
-          component={CategoriesList}
-        />
+
+        <Route exact path={`${match.path}/categories`} component={Categories} />
+
         <Route
           exact
           path={`${match.path}/activities`}
           component={ActivitiesList}
         />
+
         <Route
           exact
           path={`${match.path}/activities/create-activity`}
           component={ActivitiesForm}
         />
+
         <Route exact path={`${match.path}/users`} component={UsersList} />
+
         <Route exact path={`${match.path}/members`} component={MemberList} />
 
         <Route path="*" component={Error404} />
