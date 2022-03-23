@@ -1,4 +1,4 @@
-import { Route, Redirect } from 'react-router-dom'
+/* import { Route, Redirect } from 'react-router-dom'
 import { useSelector  } from 'react-redux'
 import { useEffect } from 'react'
 
@@ -29,4 +29,4 @@ const PrivateRoutes = ({component: Component, ...rest}) => {
     
 }
 
-export default PrivateRoutes
+export default PrivateRoutes */

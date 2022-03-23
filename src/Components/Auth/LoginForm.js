@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {Button , Container, TextField, Typography }from '@mui/material';
+import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import useStyles from './AuthStyles';
 import { useDispatch } from 'react-redux';
-
-
+/* import { iniciarSesion,cerrarSesion } from '../../redux/usersReducer/userReducer'; */
+import { iniciarSesion } from "../../redux/usersReducer/action"
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Spinner from "../../shared/Spinner/Spinner"
 const validationSchema = yup.object({
   email: yup
     .string('Ingrese su mail')
@@ -19,7 +22,11 @@ const validationSchema = yup.object({
 });
 
 const LoginForm = () => {
-    const classes= useStyles()
+  const history = useHistory()
+  const { isLogin, loading } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const classes = useStyles()
+
   const formik = useFormik({
     initialValues: {
       email: 'foobar@example.com',
@@ -27,17 +34,25 @@ const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      const datosLogin= values
-      console.log(datosLogin)
+      const { email, password } = values
+      dispatch(iniciarSesion({ email, password }))
+
     },
   });
-  
+
+  useEffect(() => {
+    if (isLogin) {
+      history.push("/")
+    }
+  }, [isLogin])
+
+
   return (
     <Container className={classes.containerForm}>
-        <Typography>Completá tus datos para ingresar</Typography>
+      <Typography>Completá tus datos para ingresar</Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
-        className={classes.fieldForm}
+          className={classes.fieldForm}
           fullWidth
           id="email"
           name="email"
@@ -56,13 +71,18 @@ const LoginForm = () => {
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          /* error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password} */
           color="secondary"
         />
-        <Button className={classes.fieldForm} color="secondary" variant="contained" fullWidth type="submit">
-          Submit
-        </Button>
+        {loading ? <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Spinner width={30} heigth={30} color="#000" />
+        </Box> :
+          <Button color="secondary" variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        }
+
       </form>
     </Container>
   );

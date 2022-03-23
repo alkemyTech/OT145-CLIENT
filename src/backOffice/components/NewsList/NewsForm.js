@@ -69,12 +69,10 @@ const NewsForm = (id) => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log({ newsId })
       if (newsId?.id && !errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
         values.id = newsId.id
-        console.log('put')
         dispatch(putNews(values))
       } else if (!errorCategory) {
         const base64 = await convertToBase64(values.image)
