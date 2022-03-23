@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCATEGORIES,getCATEGORIESID } from '../../Peticiones/categoriesService';
+import { getCATEGORIES, getCATEGORIESID,postCATEGORY, deleteCATEGORY, putCATEGORY } from '../../Peticiones/categoriesService';
 
 
 export const getCategories = createAsyncThunk(
@@ -7,7 +7,29 @@ export const getCategories = createAsyncThunk(
 );
 
 export const getCategoriesById = createAsyncThunk(
-    "category/getCategoriesByID",getCATEGORIESID
+    "category/getCategoriesByID",(id)=>{
+        return getCATEGORIESID(id);
+     }
+    
+);
+
+export const postCategory = createAsyncThunk(
+    "category/postCategories",(body)=>{
+        return postCATEGORY(body);
+     }
+);
+
+export const deleteCategory = createAsyncThunk(
+    "category/deleteCategory",(id)=>{
+       return deleteCATEGORY(id);
+    }
+
+);
+
+export const putCategory = createAsyncThunk(
+    "category/putCategory",(id,body)=>{
+        return putCATEGORY(id,body);
+     }
 );
 
 const categorySlice = createSlice({
@@ -42,6 +64,33 @@ const categorySlice = createSlice({
             
         },
         [getCategoriesById.rejected]: (state) => {
+            state.status = 'failed'
+        },
+        [postCategory.pending]: (state) => {
+            state.status = 'loading'
+        },
+        [postCategory.fulfilled]: (state) => {
+            state.status = 'created'
+        },
+        [postCategory.rejected]: (state) => {
+            state.status = 'failed'
+        },
+        [deleteCategory.pending]: (state) => {
+            state.status = 'loading'
+        },
+        [deleteCategory.fulfilled]: (state) => {
+            state.status = 'deleted'
+        },
+        [deleteCategory.rejected]: (state) => {
+            state.status = 'failed'
+        },
+        [putCategory.pending]: (state) => {
+            state.status = 'loading'
+        },
+        [putCategory.fulfilled]: (state) => {
+            state.status = 'edited'
+        },
+        [putCategory.rejected]: (state) => {
             state.status = 'failed'
         },
 

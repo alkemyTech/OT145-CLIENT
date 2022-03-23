@@ -1,33 +1,45 @@
-import React, {useEffect} from 'react'
+import React, { useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategories } from '../../../redux/Categories/categorySlice'
+import { getCategories,deleteCategory } from '../../../redux/Categories/categorySlice'
 import useStyles from '../../styles/styledList'
 import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
+import { useHistory } from 'react-router-dom';
+import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm';
 
-
-function createData(name, createdAt, edit, deleteData) {
-  return { name, createdAt, edit, deleteData }
-}
 
 export default function CategoriesList() {
   const classes = useStyles();
-  const {categories} = useSelector(state => state.categories);
-  const rows = categories.map((dat) => createData(dat.name,dat.createdAt,<EditIcon />, <DeleteForeverIcon />))
+  const {categories, status} = useSelector(state => state.categories);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCategories());
   }, [])
+
+  const handleDelete = async (id)=>{
+    const deleteIt = await sweetAlertConfirm();
+    if(deleteIt) {
+      dispatch(deleteCategory(id));
+    }
+    console.log(id);
+  }
+  useEffect(() => {
+    if(status === 'deleted'){
+      window.location.reload()
+    }
+  }, [status])
+  
   
 
   return (
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
-        <Link to="/backoffice/category/create-category" className={classes.styleLink}>
+        <Link to="/backoffice/categories/create" className={classes.styleLink}>
           <Typography variant="subtitle1">Crear Categoría</Typography>
         </Link>
       </div>
@@ -36,29 +48,33 @@ export default function CategoriesList() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableCell}>Nombre</TableCell>
-              <TableCell className={classes.tableCell} align="center">Fecha</TableCell>
-              <TableCell className={classes.tableCell} align="center">Modificar</TableCell>
-              <TableCell className={classes.tableCell} align="center">Eliminar</TableCell>
+              <TableCell align='center' className={classes.tableCell}>Nombre</TableCell>
+              <TableCell align='center' className={classes.tableCell}>Imagen</TableCell>
+              <TableCell align='center' className={classes.tableCell} >Fecha</TableCell>
+              <TableCell align='center' className={classes.tableCell}>Modificar</TableCell>
+              <TableCell align='center' className={classes.tableCell}>Eliminar</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {categories.map((row) => (
               <TableRow key={row.name} className={classes.tableRow}>
-                <TableCell className={classes.tableCell} component="th" scope="row">
+                <TableCell component="th" className={classes.tableCell} >
                   {row.name}
                 </TableCell>
-                <TableCell className={classes.tableCell} align="center">
+                <TableCell align='center' className={classes.tableCell} >
+                  <img src={row.image} alt={row.name} className={classes.img} />
+                </TableCell>
+                <TableCell align='center' className={classes.tableCell} >
                   {row.createdAt}
                 </TableCell>
-                <TableCell className={classes.tableCell} align="center">
-                  <Button variant="text" color="secondary">
-                    {row.edit}
+                <TableCell align='center' className={classes.tableCell} >
+                  <Button variant="text" color="secondary" onClick={() => history.push(`/categories/edit/${row.id}`, {id: row.id})}>
+                    <EditIcon />
                   </Button>
                 </TableCell>
-                <TableCell className={classes.tableCell} align="center">
-                  <Button variant="text" color="secondary">
-                    {row.deleteData}
+                <TableCell align='center' className={classes.tableCell} >
+                  <Button variant="text" color="secondary" onClick={() => handleDelete(row.id)}>
+                    <DeleteForeverIcon/>
                   </Button>
                 </TableCell>
               </TableRow>

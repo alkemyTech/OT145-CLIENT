@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "../../styles/CategoriesFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
-import { privatePOST, privatePATCH } from "../../../Services/privateApiService"; //Cambiar por servicio custom
-import { convertToBase64 } from '../../../helpers/base64'
+import { convertToBase64 } from '../../../helpers/base64';
+import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -17,26 +20,42 @@ const validationSchema = Yup.object({
 	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
 });
 
-const CategoriesForm = ({ category = null }) => {
+const CategoriesForm = () => {
 	const classes = useStyles();
+	const {state} = useLocation();
+	const {categoriesById, status} = useSelector(state => state.categories);
+	const dispatch = useDispatch();
 
+	useEffect(() => {
+	  if(state){
+		  dispatch(getCategoriesById(state.id))
+	  }
+	}, [])
+
+	
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
 		initialValues: {
-			name: category?.name || "",
-			description: category?.description || "",
-			image: category?.image || "",
+			name: categoriesById?.name || "",
+			description: categoriesById?.description || "",
+			image: categoriesById?.image || "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
-            if (category) {
-                privatePATCH(`${process.env.REACT_APP_API_CATEGORIES}/${category.id}`, values);
+            if (categoriesById) {
+                dispatch(putCategory(values.id,values));
             }
-            privatePOST(process.env.REACT_APP_API_CATEGORIES, values);
+            dispatch(postCategory(values));
             
         })
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
+	useEffect(() => {
+		if(status === 'created'){
+		  window.location.reload()
+		  window.location.href="/backoffice/categories"
+		}
+	  }, [status])
 
 	const handleImageChange = async (event) => {
 		const base64String = await convertToBase64(event.target.files[0]);
@@ -57,7 +76,7 @@ const CategoriesForm = ({ category = null }) => {
 				name="name"
 				value={values.name}
 				onChange={handleChange}
-				placeholder={category ? category?.name : "Nombre de categoría"}
+				placeholder={categoriesById ? categoriesById?.name : "Nombre de categoría"}
 				error={touched.name && errors.name}
                 label='Nombre de categoría'
 			/>
@@ -83,7 +102,7 @@ const CategoriesForm = ({ category = null }) => {
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				{category ? ('Actualizar') : ('Crear')}
+				{categoriesById ? ('Actualizar') : ('Crear')}
 			</Button>
 		</form>
 	);
