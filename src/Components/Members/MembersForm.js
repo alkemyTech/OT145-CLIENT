@@ -80,6 +80,7 @@ const MembersForm = () => {
       if (memberId) {
           const base64 = await convertToBase64(values.image)
           values.image = base64
+          values.id = memberId.id
           dispatch(putMembers(values));
       }
       else {

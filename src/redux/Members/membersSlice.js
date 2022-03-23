@@ -10,8 +10,8 @@ export const getMembersById = createAsyncThunk("members/getMembersByID", (id) =>
 });
 
 export const putMembers = createAsyncThunk("members/putMembers", (values) => {
-  console.log(values)
-  // return privatePATCH('https://ongapi.alkemy.org/api/members', values.id, values)
+  console.log(values);
+  return privatePATCH('https://ongapi.alkemy.org/api/members', values.id, values)
 })
 
 export const postMembers = createAsyncThunk("members/postMembers", (values) => {
