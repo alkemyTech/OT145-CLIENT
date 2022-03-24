@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, LOGIN_FAILED, LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED, AUTH_SUCCESS, AUTH_FAILED } from "./types"
+import { LOGIN_SUCCESS, REGISTER_SUCCESS,REGISTER_FAILED, LOGIN_FAILED, LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED, AUTH_SUCCESS, AUTH_FAILED } from "./types"
 import axios from "axios"
 import { privatePOST } from "../../Services/privateApiService"
 import privateGET from "../../Services/privateApiService"
