@@ -43,11 +43,17 @@ const useStyles = makeStyles((theme) => ({
     },
     title:{
         textAlign: 'center',
-        padding: '20px 0px 20px 0px'
+        paddingBottom: 20
     },
     icon:{
         color: theme.palette.secondary.main,
         cursor: 'pointer'
+    },
+    buttonBack:{
+        margin: '15px 0px 0px 15px'
+    },
+    iconButtonBack:{
+        fontSize: 30
     }
 }));
 
