@@ -1,4 +1,4 @@
-import {privateGET,privateDelete,privatePATCH,privatePUT, privatePOST} from "../../Services/privateApiService"
+import {privateGET,privateDelete,privatePUT, privatePOST} from "../../Services/privateApiService"
 
 
 const USER_URL = process.env.REACT_APP_API_GET_USER
