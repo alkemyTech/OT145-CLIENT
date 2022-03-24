@@ -11,6 +11,8 @@ import {
   Container,
   Paper,
   Typography,
+  Box,
+  Link,
 } from '@mui/material'
 import { validationSchema } from './config/index'
 import { convertToBase64 } from '../../../helpers/base64'
@@ -21,33 +23,36 @@ import {
   postNews,
   putNews,
 } from '../../../redux/NewsReducers/newsReducerThunk'
+import Spinner from '../../../shared/Spinner/Spinner'
+import { AlertSucces } from '../../../Utils/AlertSucces'
 
 const NewsForm = (id) => {
   const { state } = useLocation()
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { newsId, status } = useSelector((state) => state.news)
+  const { newsId, status, error } = useSelector((state) => state.news)
   const [category, setCategory] = useState([])
   const [errorCategory, setErrorCategory] = useState(false)
   const history = useHistory()
-
-  useEffect(() => {
-    if (state) {
-      dispatch(getNewsById(state.id))
-    }
-  }, [])
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios('https://ongapi.alkemy.org/api/categories')
         const result = await response.data
+        console.log(response)
         setCategory(result.data)
       } catch (error) {
         console.error(error)
       }
     }
     fetchCategories()
+  }, [])
+
+  useEffect(() => {
+    if (state) {
+      dispatch(getNewsById(state.id))
+    }
   }, [])
 
   const {
@@ -77,7 +82,6 @@ const NewsForm = (id) => {
       } else if (!errorCategory) {
         const base64 = await convertToBase64(values.image)
         values.image = base64
-        console.log('post')
         dispatch(postNews(values))
       }
       console.log(values)
@@ -147,8 +151,7 @@ const NewsForm = (id) => {
             {category.length > 0 &&
               category.map((element) => (
                 <MenuItem key={element.id} value={element.id}>
-                  {' '}
-                  {element.name}{' '}
+                  {element.name}
                 </MenuItem>
               ))}
           </SelectField>
@@ -179,17 +182,30 @@ const NewsForm = (id) => {
               {touched.content && errors.content}
             </Typography>
           )}
-
+          <Button
+            color="secondary"
+            disabled={status === 'loading' ? true : false}
+            variant="contained"
+            fullWidth
+            type="submit"
+            className={classes.button}
+          >
+            {status === 'loading' ? (
+              <Spinner width={30} height={30} color="#000" />
+            ) : (
+              'Enviar'
+            )}
+          </Button>
+        </Paper>
+        <Box className={classes.finalLink}>
           <Button
             variant="contained"
             color="secondary"
-            type="submit"
-            className={classes.button}
-            fullWidth
+            onClick={() => history.goBack()}
           >
-            Send
+            Volver a la lista
           </Button>
-        </Paper>
+        </Box>
       </form>
     </Container>
   )

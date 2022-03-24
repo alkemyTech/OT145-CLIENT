@@ -44,9 +44,13 @@ const NewsList = () => {
 
   useEffect(() => {
     if (status === 'deleted') {
-      window.location.reload()
+      dispatch(getNews())
     }
   }, [status])
+
+  const orderedNews = news
+    .slice()
+    .sort((a, b) => b.created_at.localeCompare(a.created_at))
 
   const tableTitles = ['Nombre', 'Imagen', 'Fecha', 'Modificar', 'Eliminar']
 
@@ -71,7 +75,7 @@ const NewsList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {news.map(({ name, image, created_at, id }) => (
+              {orderedNews.map(({ name, image, created_at, id }) => (
                 <TableRow key={id} className={classes.tableRow}>
                   <TableCell component="th" className={classes.tableCell}>
                     {name}
@@ -89,6 +93,7 @@ const NewsList = () => {
                       onClick={() =>
                         history.push(`news/edit-news`, {
                           id: id,
+                          path,
                         })
                       }
                     >
