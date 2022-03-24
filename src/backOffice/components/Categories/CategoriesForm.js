@@ -8,7 +8,8 @@ import { convertToBase64 } from '../../../helpers/base64';
 import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
 import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import Spinner from '../../../shared/Spinner/Spinner'
+import Spinner from '../../../shared/Spinner/Spinner';
+import { sweetAlertMixin } from "../../../Utils/AlertState";
 
 
 const validationSchema = Yup.object({
@@ -30,8 +31,9 @@ const CategoriesForm = () => {
 
 	useEffect(() => {
 	  if(state){
-		  dispatch(getCategoriesById(state))
+		dispatch(getCategoriesById(state))
 	  }
+
 	}, [])
 
 	
@@ -57,6 +59,7 @@ const CategoriesForm = () => {
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 	useEffect(() => {
 		if(status === 'created'){
+			sweetAlertMixin('success' ,'Creado satisfactoriamente')
 			handleReset()
 		}
 		if(status === 'edited'){
