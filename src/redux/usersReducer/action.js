@@ -1,6 +1,6 @@
-import { LOGIN_SUCCESS, REGISTER_SUCCESS,LOGIN_FAILED,LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED } from "./types"
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, LOGIN_FAILED, LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED, AUTH_SUCCESS, AUTH_FAILED } from "./types"
 import axios from "axios"
-import  { privatePOST }  from "../../Services/privateApiService"
+import { privatePOST } from "../../Services/privateApiService"
 import privateGET from "../../Services/privateApiService"
 
 export const iniciarSesion = (objeto) => async (dispatch) => {
@@ -20,9 +20,9 @@ export const iniciarSesion = (objeto) => async (dispatch) => {
                 obtenerRol(respuesta.data.user.role_id)
             )
         }
-        else{
+        else {
             dispatch({
-                type : LOGIN_FAILED
+                type: LOGIN_FAILED
             })
         }
 
@@ -39,7 +39,7 @@ export const obtenerRol = (id) => async (dispatch) => {
         if (response.success) {
             dispatch({
                 type: ROL_SUCCESS,
-                payload: { rol_type: response.data.description}
+                payload: { rol_type: response.data.description }
             })
             dispatch({
                 type: LOADING_OFF
@@ -78,6 +78,31 @@ export const registarUsuario = (name, email, password) => async (dispatch) => {
 
 export const cerrarSesion = () => (dispatch) => {
     dispatch({
-        type : LOG_OUT
+        type: LOG_OUT
     })
+}
+
+export const authMe = (token) => async (dispatch) => {
+    try {
+        const respuesta = await axios.get(`https://ongapi.alkemy.org/api/auth/me`, {
+            headers: {
+                "Authorization": "Bearer" + token
+            }
+        })
+        console.log(respuesta)
+        dispatch({
+            type: AUTH_SUCCESS,
+            payload: respuesta.data.data.user
+        })
+        dispatch(
+            obtenerRol(respuesta.data.data.user.role_id)
+        )
+    }
+    catch (err) {
+        console.log(err);
+        dispatch({
+            type: AUTH_FAILED,
+            payload: null
+        })
+    }
 }
