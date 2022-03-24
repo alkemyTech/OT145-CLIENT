@@ -56,10 +56,10 @@ const CategoriesForm = () => {
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 	useEffect(() => {
-		if(status == 'created'){
+		if(status === 'created'){
 			handleReset()
 		}
-		if(status == 'edited'){
+		if(status === 'edited'){
 			history.push("/backoffice/categories")
 		}
 		
