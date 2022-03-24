@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useStyles from "../../styles/TestimonialsFormStyles";
+import useStyles from "../../styles/CategoriesFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
-import { privatePOST, privatePATCH } from "../../../Services/privateApiService";
+import { privatePOST, privatePATCH } from "../../../Services/privateApiService"; //Cambiar por servicio custom
 import { convertToBase64 } from '../../../helpers/base64'
 
 const validationSchema = Yup.object({
@@ -17,21 +17,21 @@ const validationSchema = Yup.object({
 	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
 });
 
-const TestimonialForm = ({ testimonial }) => {
+const CategoriesForm = ({ category = null }) => {
 	const classes = useStyles();
 
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
 		initialValues: {
-			name: testimonial?.name || "",
-			description: testimonial?.description ||"",
-			image: testimonial?.image || "",
+			name: category?.name || "",
+			description: category?.description || "",
+			image: category?.image || "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
-            if (testimonial) {
-                privatePATCH(`${process.env.REACT_APP_API_GET_TESTIMONIALS}/${testimonial.id}`, values);
+            if (category) {
+                privatePATCH(`${process.env.REACT_APP_API_CATEGORIES}/${category.id}`, values);
             }
-            privatePOST(process.env.REACT_APP_API_GET_TESTIMONIALS, values);
+            privatePOST(process.env.REACT_APP_API_CATEGORIES, values);
             
         })
 	});
@@ -57,8 +57,9 @@ const TestimonialForm = ({ testimonial }) => {
 				name="name"
 				value={values.name}
 				onChange={handleChange}
-				placeholder="Testimonial Title"
+				placeholder={category ? category?.name : "Nombre de categoría"}
 				error={touched.name && errors.name}
+                label='Nombre de categoría'
 			/>
 			<Editor
 				text={values.description}
@@ -82,10 +83,10 @@ const TestimonialForm = ({ testimonial }) => {
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				Send
+				{category ? ('Actualizar') : ('Crear')}
 			</Button>
 		</form>
 	);
 };
 
-export default TestimonialForm;
+export default CategoriesForm;

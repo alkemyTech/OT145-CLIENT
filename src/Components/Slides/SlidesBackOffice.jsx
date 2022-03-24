@@ -16,7 +16,7 @@ import {
 } from "../../Utils/SlidesBackOfficeStyled";
 import useStyles from "../../backOffice/styles/styledList";
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchSlides } from '../../redux/slides/slidesSlice'
+import { fetchSlides, deleteSlides } from '../../redux/slides/slidesSlice'
 
 function SlidesBackOffice() {
   const classes = useStyles();
@@ -55,10 +55,14 @@ function SlidesBackOffice() {
 
   const dispatch = useDispatch()
   const slides = useSelector(state => state.slides.slides)
+  const slideStatus = useSelector(state => state.slides.status)
 
-  useEffect(() => {
-    dispatch(fetchSlides())
-  }, [dispatch]);
+	useEffect(() => {
+    console.log(slideStatus)
+		if(slideStatus === 'idle'){
+			dispatch(fetchSlides())
+		}
+	}, [slideStatus, dispatch]);
 
   return (
     <Container className={classes.containerList}>
@@ -84,23 +88,23 @@ function SlidesBackOffice() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {slides.map((row) => (
-              <StyledTableRow key={row.id}>
+            {slides?.map((row) => (
+              <StyledTableRow key={row?.id}>
                 <StyledTableCell component="th" scope="row">
-                  {row.Title}
+                  {row?.Title}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   <img
-                    src={row.image}
-                    alt={row.Title}
+                    src={row?.image}
+                    alt={row?.Title}
                     className={classes.img}
                   />
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.order}</StyledTableCell>
+                <StyledTableCell align="right">{row?.order}</StyledTableCell>
                 <StyledTableCell align="right">
                   <IconButton
                     component={Link}
-                    to={`/backoffice/Slides/edit/${row.id}`}
+                    to={`/backoffice/Slides/edit/${row?.id}`}
                     variant="outlined"
                     color="secondary"
                   >
@@ -109,7 +113,7 @@ function SlidesBackOffice() {
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   <IconButton
-                    // onClick={() => deleteSlide(row)}
+                    onClick={() => dispatch(deleteSlides(row?.id))}
                     color="secondary"
                     sx={{ cursor: "pointer" }}
                   >

@@ -80,6 +80,15 @@ const Slider = () => {
 		setActiveStep(step);
 	};
 
+	useEffect(() => {
+		const getData = async () => {
+			const { data } = await getSlides(3);
+			setSlides(data);
+		}
+		getData();
+	}, [])
+
+
 	const classes = useStyles();
 
 	return (
@@ -96,7 +105,7 @@ const Slider = () => {
 							key={slideData.id}
 							imgLabel={slideData.name}
 							description={slideData.description}
-							title={slideData.title}
+							title={slideData.name}
 							imgSrc={slideData.image}
 						/>
 					);

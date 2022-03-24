@@ -25,6 +25,20 @@ const sliderSlice = createSlice({
       state.status = 'failed'
       state.error = action.error.message
     })
+
+    .addCase(deleteSlides.pending, (state, action) => {
+      state.status = 'loading'
+    })
+    .addCase(deleteSlides.fulfilled, (state, action) => {
+      state.status = 'succeeded'
+      console.log(action)
+      // state.slides = state.slides.concat(action.payload)
+      // state.slides = state.find((elemento) => elemento.id === Number(id))
+    })
+    .addCase(deleteSlides.rejected, (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    })
   }
 })
 

@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from "../redux/authReducer"
 import slidesReducer from "../redux/slides/slidesSlice"
+import membersReducer from '../redux/Members/membersSlice';
+import userReducer from '../redux/Users/userSlice';
+
+
 
 export default configureStore({
   reducer: {
     auth : authReducer,
-    slides: slidesReducer
+    slides: slidesReducer,
+    members: membersReducer,
+    users: userReducer,
   },
 });
