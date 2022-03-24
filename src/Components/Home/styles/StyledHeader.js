@@ -13,20 +13,30 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.secondary.main
     },
     typographyLinks: {
-        fontSize: '15px',
+        fontSize: '20px',
         paddingRight: 20,
+        [theme.breakpoints.down('md')]: {
+            fontSize: '15px',
+            paddingRight: 20
+        },
     },
     logosx: {
-        [theme.breakpoints.down('md')]: {
-            maxWidth: '20%',
-            marginLeft: '65%'
-        },
+        maxWidth: '20%',
+        marginLeft: '65%',
+        marginRight: '10%',
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
     },
     logosm: {
-        paddingLeft : "20px"
+        [theme.breakpoints.up('md')]: {
+            paddingLeft : "20px"
+            
+        },
+        [theme.breakpoints.down('md')]: {
+            display: 'none',
+        },
+        
     },
     styledBoxSm: {
         backgroundColor: '#fff',
@@ -40,17 +50,26 @@ const useStyles = makeStyles(theme => ({
     },
 
     styledBoxMd: {
-        width : "85%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems : "flex-end" ,
-        backgroundColor: '#fff',
+        [theme.breakpoints.up('md')]: {
+            width : "85%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems : "flex-end" ,
+            backgroundColor: '#fff',
+        },
+        [theme.breakpoints.down('md')]: {
+            display: 'none'
+        },
+        
     },
     appbar: {
-
-        marginBottom: '10px',
+        marginBottom: '20px',
         backgroundColor: "#fff",
-        height : "25vh"
+        height : "25vh",
+        [theme.breakpoints.down('sm')]: {
+            height : "15vh",
+        },
+
     },
 
     boxLogin: {
@@ -65,6 +84,16 @@ const useStyles = makeStyles(theme => ({
         minWidth : "110px",
         
     },
+    icon: {
+        [theme.breakpoints.down('md')]: {
+            fontSize:50,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize:30,
+        },
+        
+    }
+
 
 }));
 
