@@ -39,32 +39,30 @@ const privateGET = async (path, id) => {
       const response = await axios.get(`${path}/${id}`, config)
       return response.data
     } else {
-      const response = await axios.get(`${path}`, config)
+      const response = await axios.get(`${path}`, )
       return response.data
     }
   } catch (error) {
-    console.error(error)
+    return error.response.data
   }
 }
 
 export const privatePOST = async (path, body) => {
   try {
-    const response = await axios.post(path, body, config)
-    return response
-    
+    const response = await axios.post(path, body)
+    return response.data
   } catch (error) {
-    console.error('Hubo un error al hacer la petición');
-    console.log(error);
+    return error.response.data
   }
 }
 
 export const privateDelete = async (path, id) => {
-  try{
+  try {
 
-    const response = await axios.delete(`${path}/${id}`, config)
+    const response = await axios.delete(`${path}/${id}`,config )
     return response.data
 
-  }catch(error){
+  } catch (error) {
     console.error(error)
   }
 }

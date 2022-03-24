@@ -24,7 +24,7 @@ const memberSlice = createSlice({
         },
 
         [getMembers.fulfilled] : (state,{payload}) => {
-            state.members = payload
+            state.members = payload.data
             state.status = "success"
         },
 
