@@ -80,13 +80,13 @@ const Slider = () => {
 		setActiveStep(step);
 	};
 
-	useEffect(() => {
-		const getData = async () => {
-			const { data } = await getSlides(3);
-			setSlides(data);
-		}
-		getData();
-	}, [])
+	// useEffect(() => {
+	// 	const getData = async () => {
+	// 		const { data } = await getSlides(3);
+	// 		setSlides(data);
+	// 	}
+	// 	getData();
+	// }, [])
 
 
 	const classes = useStyles();
