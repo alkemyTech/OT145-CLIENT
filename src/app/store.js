@@ -5,6 +5,7 @@ import userReducer from '../redux/Users/userSlice';
 import categorySlice from '../redux/Categories/categorySlice';
 
 
+import nosotrosReducer from '../redux/NosotrosReducer/nosotrosReducer';
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     members: membersReducer,
     users: userReducer,
     categories : categorySlice,
+    nosotros : nosotrosReducer,
   },
 });
