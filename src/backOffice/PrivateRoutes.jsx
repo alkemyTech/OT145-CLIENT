@@ -15,7 +15,7 @@ const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
       {...rest}
       render={
         (props) => (
-          (rol_type === rol)
+          (rol_type === rol && user )
             ? (
               <Component {...props} />
             ) : (
