@@ -3,7 +3,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 /* import CategoriesList from './Categories' */ //acomodar fran
 import Header from './Header'
 import SideBar from './Sidebar'
-/* import UsersList from './UsersList'*/ //tira error
+import UsersList from '../../components/Users/UsersList';
 import Error404 from '../../../shared/Error404/Error404'
 
 
@@ -17,11 +17,13 @@ const NewsForm = lazy(() => import('../NewsList/NewsForm'))
 
 const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
 
-// const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
+const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
-const UserForm = lazy(() => import('../../../Components/Users/UsersForm'))
+const Testimonials = lazy(() => import('../Testimonials/Testimonials'))
 
-const MembersForm = lazy(() => import('../MemberList/MemberList'))
+const UserForm = lazy(() => import('../Users/UsersForm'))
+
+const MembersForm = lazy(() => import('../../../Components/Members/MembersForm'));
 
 const ProjectsForm = lazy(() => import('../Projects/ProjectsForm'))
 
@@ -59,9 +61,16 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/slides/create`} component={SlidesForm} />
 
-        {/* <Route exact path={`${match.path}/testimonials/create-testimonials`} component={TestimonialForm} /> */}
+        <Route exact path={`${match.path}/testimonials/create`} component={TestimonialForm} />
 
+        <Route exact path={`${match.path}/testimonials`} component={Testimonials} />
+        
         <Route exact path={`${match.path}/users/create-user`} component={UserForm} />
+
+        <Route exact path={`${match.path}/members/create`} component={MembersForm} />
+
+        <Route exact path={`${match.path}/members/edit/:id`} component={MembersForm} />
+        <Route exact path={`${match.path}/users/edit-user/:id`} component={UserForm} />
 
         <Route exact path={`${match.path}/members/edit`} component={MembersForm} />
 
@@ -79,7 +88,7 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/activities/create-activity`} component={ActivitiesForm} />
 
-        {/* <Route exact path={`${match.path}/users`} component={UsersList} /> */}
+        <Route exact path={`${match.path}/users`} component={UsersList} />
 
         <Route exact path={`${match.path}/members`} component={MemberList} />
 

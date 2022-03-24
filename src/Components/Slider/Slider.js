@@ -1,6 +1,8 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import { getSlides } from '../../Services/Home';
+
 
 // MUI
 import { IconButton, Typography } from "@mui/material";
@@ -79,7 +81,8 @@ const defaultSliderData = [
 // Principal component
 const Slider = ({ slidersData = defaultSliderData }) => {
 	const theme = useTheme();
-	const [activeStep, setActiveStep] = React.useState(0);
+	const [activeStep, setActiveStep] = useState(0);
+	const [ slides, setSlides ] = useState([]);
 	const maxSteps = slidersData.length;
 
 	const handleNext = () => {
@@ -94,6 +97,15 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 		setActiveStep(step);
 	};
 
+	useEffect(() => {
+		const getData = async () => {
+			const { data } = await getSlides(3);
+			setSlides(data);
+		}
+		getData();
+	}, [])
+
+
 	const classes = useStyles();
 
 	return (
@@ -104,13 +116,13 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 				index={activeStep}
 				axis={theme.direction === "rtl" ? "x-reverse" : "x"}
 				interval={50000000000000000}>
-				{slidersData.map((slideData) => {
+				{slides.map((slideData) => {
 					return (
 						<Slide
 							key={slideData.id}
 							imgLabel={slideData.name}
 							description={slideData.description}
-							title={slideData.title}
+							title={slideData.name}
 							imgSrc={slideData.image}
 						/>
 					);
