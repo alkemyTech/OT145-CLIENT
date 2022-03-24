@@ -65,11 +65,24 @@ export const registarUsuario = (name, email, password) => async (dispatch) => {
     })
     try {
         const respuesta = await axios.post(`https://ongapi.alkemy.org/api/register`, { name, email, password });
+        if (respuesta.success) {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: { user: respuesta.data.user, token: respuesta.data.token }
+            })
+            dispatch({
+                type: LOADING_OFF,
+            })
+        }
+        else{
+            dispatch({
+                type: REGISTER_FAILED,
+            })
+            dispatch({
+                type: LOADING_OFF
+            })
+        }
 
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: { user: respuesta.data.user, token: respuesta.data.token }
-        })
     }
     catch (err) {
         console.log(err);
