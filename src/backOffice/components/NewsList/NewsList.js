@@ -21,6 +21,7 @@ import {
   deleteNews,
 } from '../../../redux/NewsReducers/newsReducerThunk'
 import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm'
+import { sweetAlertMixin } from '../../../Utils/AlertState'
 
 const NewsList = () => {
   const location = useLocation()
@@ -45,6 +46,7 @@ const NewsList = () => {
   useEffect(() => {
     if (status === 'deleted') {
       dispatch(getNews())
+      sweetAlertMixin('success', 'Se eliminó correctamente')
     }
   }, [status])
 

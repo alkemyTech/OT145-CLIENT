@@ -23,7 +23,7 @@ import {
   putNews,
 } from '../../../redux/NewsReducers/newsReducerThunk'
 import Spinner from '../../../shared/Spinner/Spinner'
-import AlertState from '../../../Utils/AlertsProps'
+import { sweetAlertMixin } from '../../../Utils/AlertState'
 
 const NewsForm = (id) => {
   const { state } = useLocation()
@@ -89,6 +89,7 @@ const NewsForm = (id) => {
 
   useEffect(() => {
     if (status === 'created') {
+      sweetAlertMixin('success', 'Se creó correctamente')
       handleReset()
     }
   }, [status])
