@@ -93,7 +93,8 @@ const UserForm = ({ data }) => {
                     onBlur={handleBlur}
                     onChange={(e)=>setFieldValue("profile_image", e.target.files[0])}
                     error={touched.profile_image && Boolean(errors.profile_image)}
-                    helperText={touched.profile_image && errors.profile_image}/>
+                    helperText={touched.profile_image && errors.profile_image}
+                />
 
                 <Button color="secondary" variant="contained" fullWidth type="submit">
                     Enviar

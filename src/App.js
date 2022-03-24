@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { theme } from './theme'
 import { ThemeProvider } from '@mui/material'
-import Spinner from './shared/Spinner/Spinner'
+import Spinner from './shared/Spinner/Spinner';
 import { Box } from '@mui/material';
 import PrivateRoutes from './backOffice/PrivateRoutes'
 
@@ -30,7 +30,7 @@ function App() {
           }
         >
           <Switch>
-            <PrivateRoutes exact path="/backoffice" component={BackOficce} />
+            <PrivateRoutes rol="Admin" path="/backoffice" component={BackOficce} />
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
             <Route path="/" component={Routes} />
