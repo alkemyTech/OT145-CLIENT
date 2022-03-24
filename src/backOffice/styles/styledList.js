@@ -48,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
     icon:{
         color: theme.palette.secondary.main,
         cursor: 'pointer'
+    },
+    buttonBack:{
+        margin: '15px 0px 0px 15px'
+    },
+    iconButtonBack:{
+        fontSize: 30
     }
 }));
 

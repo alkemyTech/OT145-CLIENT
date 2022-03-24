@@ -9,14 +9,15 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
   Container,
   Button,
+  IconButton
 } from "@mui/material";
 import { getUsers, deleteUser } from "../../../redux/Users/userSlice";
 import { sweetAlertConfirm } from "../../../Utils/sweetAlertConfirm";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import useStyles from "../../styles/styledList";
 import DecorativeLineBW from "../../../Components/DecorativeLine/DecorativeLine";
 
@@ -27,6 +28,7 @@ const UsersList = () => {
   const location = useLocation();
   const path = location.pathname;
   const history = useHistory();
+
 
   useEffect(() => {
     dispatch(getUsers());
@@ -41,16 +43,25 @@ const UsersList = () => {
 
  useEffect(() => {
   if(status == 'deleted'){
-    window.location.reload();
+    dispatch(getUsers());
   }
  }, [status])
 
 
   return (
+    <>
+    <IconButton 
+      aria-label="upload picture" 
+      component="span" 
+      className={classes.buttonBack} 
+      onClick={() => history.push('/backoffice')}
+    >
+      <ArrowBackIcon className={classes.iconButtonBack} />
+    </IconButton>
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
         <Link to={`${path}/create-user`} className={classes.styleLink}>
-          <Typography variant="subtitle1">Crear Usuario</Typography>
+          <Button variant="contained" color="secondary">Crear Usuario</Button>
         </Link>
       </div>
 
@@ -111,6 +122,7 @@ const UsersList = () => {
       </TableContainer>
       <DecorativeLineBW></DecorativeLineBW>
     </Container>
+    </>
   );
 };
 

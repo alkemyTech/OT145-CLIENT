@@ -28,18 +28,22 @@ const userSlice = createSlice({
     users: [],
     status: null,
     userId: null,
+    error: null
   },
   extraReducers: {
+    //GET
     [getUsers.pending]: (state) => {
       state.status = "loading";
     },
     [getUsers.fulfilled]: (state, { payload }) => {
       state.users = payload.data;
+      state.userId = null;
       state.status = "success";
     },
     [getUsers.rejected]: (state, {payload}) => {
       state.status = payload.data.message;
     },
+    //GET BY ID
     [getUsersById.pending]: (state) => {
       state.status = "loading";
     },
@@ -49,12 +53,14 @@ const userSlice = createSlice({
         state.status = "success";
       } else {
         state.users = [];
-        state.status = payload.data.message;
+        state.status = 'failed'
+        state.error = payload.message;
       }
     },
     [getUsersById.rejected]: (state, {payload}) => {
       state.status = payload.data.message;
     },
+    //PUT
     [patchUser.pending]: (state) => {
       state.status = "loading";
     },
@@ -64,6 +70,7 @@ const userSlice = createSlice({
     [patchUser.rejected]: (state) => {
       state.status = 'failed';
     },
+    //POST
     [postUser.pending]: (state) => {
       state.status = "loading";
     },
@@ -73,6 +80,7 @@ const userSlice = createSlice({
     [postUser.rejected]: (state) => {
       state.status = 'failed'
     },
+    //DELETE
     [deleteUser.pending]: (state) => {
       state.status = "loading";
     },

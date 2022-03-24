@@ -6,7 +6,8 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { patchUser, postUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
-import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
+import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from './style';
 
@@ -91,6 +92,15 @@ const UserForm = () => {
     }, [status])
 
     return (
+    <>
+    <IconButton 
+      aria-label="upload picture" 
+      component="span" 
+      className={classes.buttonBack} 
+      onClick={() => history.push('/backoffice/users')}
+    >
+      <ArrowBackIcon className={classes.iconButtonBack} />
+    </IconButton>
         <div className={classes.containerForm}>
             <Typography variant='h6'>{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
             <form onSubmit={handleSubmit}>
@@ -168,6 +178,7 @@ const UserForm = () => {
                 </Button>
             </form>
         </div>
+        </>
     );
 }
  
