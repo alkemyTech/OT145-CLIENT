@@ -27,12 +27,13 @@ export default function CategoriesList() {
       dispatch(deleteCategory(id));
     }
   }
+
+  
   useEffect(() => {
-    if(status === 'deleted'){
-      window.location.reload()
+    if (status === 'deleted') {
+      dispatch(getCategories())
     }
   }, [status])
-  
   
 
   return (
@@ -55,7 +56,7 @@ export default function CategoriesList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map(({name, image, createdAt,id}) => (
+            {categories.map(({name, image, created_at,id}) => (
               <TableRow key={name} className={classes.tableRow}>
                 <TableCell component="th" className={classes.tableCell} >
                   {name}
@@ -64,7 +65,7 @@ export default function CategoriesList() {
                   <img src={image} alt={name} className={classes.img} />
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
-                  {createdAt}
+                  {created_at}
                 </TableCell>
                 <TableCell align='center' className={classes.tableCell} >
                   <Button variant="text" color="secondary" onClick={() => history.push(`/backoffice/categories/edit/${id}`, id)}>

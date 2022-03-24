@@ -8,7 +8,7 @@ import { convertToBase64 } from '../../../helpers/base64';
 import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
 import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-
+import Spinner from '../../../shared/Spinner/Spinner'
 
 
 const validationSchema = Yup.object({
@@ -56,10 +56,10 @@ const CategoriesForm = () => {
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 	useEffect(() => {
-		if(status === 'created'){
+		if(status == 'created'){
 			handleReset()
 		}
-		if(status === 'edited'){
+		if(status == 'edited'){
 			history.push("/backoffice/categories")
 		}
 		
@@ -110,7 +110,7 @@ const CategoriesForm = () => {
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				Enviar
+				{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
 			</Button>
 		</form>
 	);
