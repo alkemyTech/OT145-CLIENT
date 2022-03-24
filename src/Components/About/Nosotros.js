@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Container } from '@mui/material'
 import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import NosotrosText from './NosotrosText'
@@ -19,30 +19,27 @@ const nosotrosMockInfo = {
     'https://res.cloudinary.com/danb0chax/image/upload/v1645801942/SomosMas/Foto_6_1_dzfrhc.jpg'
 }
 
-const nosotrosPersons = nosotrosMockInfo.cardsInfo
 
 const Nosotros = () => {
   const dispatch = useDispatch()
-  const {members} = useSelector(state => state.members)
+  const { members } = useSelector(state => state.members)
   const [loading, setloading] = useState(false);
-	const [error, seterror] = useState(false);
-  const [miembros,setMembers] = useState([])
+  const [error, seterror] = useState(false);
 
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     dispatch(getMembers())
-    setMembers(members)
-  },[miembros])
+  }, [])
 
-	return loading ? (
-		<Spinner />
-	) : error ? (
-		<ShowModal
-			icon="error"
-			title="Hubo un error al cargar el sitio"
-			text="Intenta recargar el sitio nuevamente en unos instantes"
-		/>
-	) : (
+  return loading ? (
+    <Spinner />
+  ) : error ? (
+    <ShowModal
+      icon="error"
+      title="Hubo un error al cargar el sitio"
+      text="Intenta recargar el sitio nuevamente en unos instantes"
+    />
+  ) : (
     <>
       <Title title={nosotrosMockInfo.title} imgSrc={nosotrosMockInfo.image} />
       <Container>
@@ -51,6 +48,6 @@ const Nosotros = () => {
         <DecorativeLine />
       </Container>
     </>
-	);
+  );
 }
 export default Nosotros
