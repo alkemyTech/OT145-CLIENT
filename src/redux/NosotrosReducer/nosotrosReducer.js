@@ -1,34 +1,28 @@
-import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import privateGET from "../../Services/privateApiService";
 
-export const getMembers = createAsyncThunk('members/getMembers',async () => {
-    try{
-        const response = await privateGET(`https://ongapi.alkemy.org/api/members`)
-        return response;
-    }
-    catch(err){
-        console.log(err);
-    }
+export const getMembers = createAsyncThunk('members/getMembers', async () => {
+    return privateGET(`https://ongapi.alkemy.org/api/members`)
 
 })
 
 const memberSlice = createSlice({
-    name:'members',
-    initialState : {
-        members : [],
-        status : null,
+    name: 'members',
+    initialState: {
+        members: [],
+        status: null,
     },
-    extraReducers : {
-        [getMembers.pending] : (state) => {
+    extraReducers: {
+        [getMembers.pending]: (state) => {
             state.status = "loading"
         },
 
-        [getMembers.fulfilled] : (state,{payload}) => {
+        [getMembers.fulfilled]: (state, { payload }) => {
             state.members = payload.data
             state.status = "success"
         },
 
-        [getMembers.rejected] : (state) => {
+        [getMembers.rejected]: (state) => {
             state.status = "failed"
         },
     },
