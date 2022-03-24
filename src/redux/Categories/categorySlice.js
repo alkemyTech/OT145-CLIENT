@@ -3,7 +3,9 @@ import { getCATEGORIES, getCATEGORIESID,postCATEGORY, deleteCATEGORY, putCATEGOR
 
 
 export const getCategories = createAsyncThunk(
-    "category/getCategories",getCATEGORIES
+    "category/getCategories",()=>{
+        return getCATEGORIES();
+    }
 );
 
 export const getCategoriesById = createAsyncThunk(

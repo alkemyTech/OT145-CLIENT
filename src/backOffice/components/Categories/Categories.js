@@ -35,6 +35,7 @@ export default function CategoriesList() {
     }
   }, [status])
   
+  let orderedCategories = categories.map((e) => e).sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
 
   return (
     <Container className={classes.containerList}>
@@ -56,7 +57,7 @@ export default function CategoriesList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map(({name, image, created_at,id}) => (
+            {orderedCategories.map(({name, image, created_at,id}) => (
               <TableRow key={name} className={classes.tableRow}>
                 <TableCell component="th" className={classes.tableCell} >
                   {name}
