@@ -12,7 +12,6 @@ import {
   Paper,
   Typography,
   Box,
-  Link,
 } from '@mui/material'
 import { validationSchema } from './config/index'
 import { convertToBase64 } from '../../../helpers/base64'
@@ -24,7 +23,7 @@ import {
   putNews,
 } from '../../../redux/NewsReducers/newsReducerThunk'
 import Spinner from '../../../shared/Spinner/Spinner'
-import { AlertSucces } from '../../../Utils/AlertSucces'
+import AlertState from '../../../Utils/AlertsProps'
 
 const NewsForm = (id) => {
   const { state } = useLocation()

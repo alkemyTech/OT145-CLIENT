@@ -1,3 +1,4 @@
+import { accordionActionsClasses } from '@mui/material'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
   getAllNews,
@@ -13,6 +14,7 @@ export const getNews = createAsyncThunk('news/getNews', () => {
 })
 
 export const getNewsById = createAsyncThunk('news/getNewsById', (id) => {
+  console.log(id)
   const response = getNewById(id)
   return response
 })
@@ -40,64 +42,71 @@ const newsSlice = createSlice({
     error: null,
     newsId: {},
   },
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(getNews.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(getNews.fulfilled, (state, action) => {
+
+  extraReducers: {
+    [getNews.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [getNews.fulfilled]: (state, action) => {
+      state.status = 'success'
+      state.news = action.payload.data
+    },
+    [getNews.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    [getNewsById.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [getNewsById.fulfilled]: (state, { payload }) => {
+      console.log(payload)
+      console.log(state)
+      if (payload.success) {
+        state.newsId = payload.data
         state.status = 'success'
-        state.news = action.payload.data
-      })
-      .addCase(getNews.rejected, (state, action) => {
+      } else {
+        console.log('cayo acá')
         state.status = 'failed'
-        state.error = action.error.message
-      })
-      .addCase(getNewsById.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(getNewsById.fulfilled, (state, action) => {
-        state.status = 'success'
-        state.newsId = action.payload.data
-      })
-      .addCase(getNewsById.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
-      //delete
-      .addCase(deleteNews.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(deleteNews.fulfilled, (state) => {
-        state.status = 'deleted'
-      })
-      .addCase(deleteNews.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
-      //post
-      .addCase(postNews.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(postNews.fulfilled, (state) => {
-        state.status = 'created'
-      })
-      .addCase(postNews.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
-      //put
-      .addCase(putNews.pending, (state) => {
-        state.status = 'loading'
-      })
-      .addCase(putNews.fulfilled, (state) => {
-        state.status = 'edited'
-      })
-      .addCase(putNews.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message
-      })
+        state.error = payload.message
+      }
+    },
+    [getNewsById.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.payload.message
+    },
+    //delete
+    [deleteNews.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [deleteNews.fulfilled]: (state) => {
+      state.status = 'deleted'
+    },
+    [deleteNews.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    //post
+    [postNews.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [postNews.fulfilled]: (state) => {
+      state.status = 'created'
+    },
+    [postNews.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
+    //put
+    [putNews.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [putNews.fulfilled]: (state) => {
+      state.status = 'edited'
+    },
+    [putNews.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    },
   },
 })
 export default newsSlice.reducer
