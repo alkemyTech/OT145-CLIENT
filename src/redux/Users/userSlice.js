@@ -10,7 +10,7 @@ export const getUsersById = createAsyncThunk("users/getUsersByID", async (id) =>
 });
 
 export const patchUser = createAsyncThunk("users/patchUser", async (values) => {
-  return patchUsersService(values.id, values);
+  return postUsersService(values.id, values);
 });
 
 export const postUser = createAsyncThunk("users/postUser", async (values) => {
