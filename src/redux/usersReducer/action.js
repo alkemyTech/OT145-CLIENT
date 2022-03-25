@@ -64,7 +64,7 @@ export const registarUsuario = (name, email, password) => async (dispatch) => {
         type: LOADING_ON,
     })
     try {
-        const respuesta = await axios.post(`https://ongapi.alkemy.org/api/register`, { name, email, password });
+        const respuesta = await privatePOST(`https://ongapi.alkemy.org/api/register`, { name, email, password });
         if (respuesta.success) {
             dispatch({
                 type: REGISTER_SUCCESS,
