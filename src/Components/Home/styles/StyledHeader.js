@@ -90,8 +90,10 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.down('sm')]: {
             fontSize:30,
-        },
-        
+        },   
+    },
+    linkBack:{
+        fontSize: '15px',
     }
 
 

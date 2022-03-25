@@ -157,6 +157,13 @@ const Header = () => {
             </Box> :
               <Button onClick={handleClick}>Cerrar sesión</Button>
             }
+            {isLogin && rol_type==='Admin' &&
+              <NavLink to="/backoffice" className={classes.links}>
+              <Typography className={classes.linkBack}>
+                Ir a backoffice
+              </Typography>
+            </NavLink>
+            }
             <Box className={classes.boxLink}>
               <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks} >
