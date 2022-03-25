@@ -8,7 +8,7 @@ import useStyles from './styleSlides';
 import Editor from '../Editor/Editor'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
-import { selectSlideById, getSlideById } from '../../../redux/slides/slidesSlice'
+import { selectSlideById, getSlideById, selectSlidesStatus } from '../../../redux/slides/slidesSlice'
 
 const SlidesForm = () => {
     const classes = useStyles();
@@ -16,22 +16,24 @@ const SlidesForm = () => {
     const { pathname } = useLocation()    
     const dispatch = useDispatch()
     const slide = useSelector(selectSlideById)
-
-    const initialValues = {
-        name: slide?.name || '',
-        description: slide?.description || '',
-        order: slide?.order || 0,
-        image: slide?.image || ''
-    };
+    const slideStatus = useSelector(selectSlidesStatus)
     
     useEffect(() => {
-        if(pathname.includes('edit')){
+        if(pathname.includes('edit') && slideStatus !== 'updated'){
             dispatch(getSlideById(id))
         }
-    }, []);
+    }, [slide, slideStatus, dispatch]);
+
+    const initialValues = {
+        name: slide?.name,
+        description: slide?.description,
+        order: slide?.order,
+        image: slide?.image
+    };
     
     const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
-        initialValues: initialValues,
+        enableReinitialize: true,
+        initialValues: {...initialValues},
         validationSchema: validationSchema,
         onSubmit: ( async (values) => {
             if (slide) {
@@ -49,7 +51,7 @@ const SlidesForm = () => {
 
     return (
         <div  className={classes.containerForm}>
-            <Typography variant="h6">Crear slide</Typography>
+            <Typography variant="h6">{slide ? 'Editar Slide' : 'Crear slide'}</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField fullWidth
                     name="name" 
@@ -83,7 +85,9 @@ const SlidesForm = () => {
                     <Editor
                         id="description"
                         name="description"
-                        onChange={(event, editor)=>setFieldValue("description", editor.getData())}
+                        onChangeText={(data) => {
+                            setFieldValue("description", data);
+                        }}
                     />
                     {handleSubmit && errors.description &&  
                         <Typography variant="caption" color="error">{touched.description && errors.description}</Typography> 
