@@ -7,51 +7,45 @@ const initialState = {
   status: 'idle',
   error: null
 }
-export const sliderSlice = createSlice({
+
+const sliderSlice = createSlice({
   name: 'slider',
   initialState,
-  extraReducers(builder) {
-    builder
-    .addCase(fetchSlides.pending, (state, action) => {
+  extraReducers: {
+    [fetchSlides.pending]: (state) => {
       state.status = 'loading'
-    })
-    .addCase(fetchSlides.fulfilled, (state, action) => {
+    },
+    [fetchSlides.fulfilled]: (state, { payload }) => {
       state.status = 'succeeded'
-      state.slides = action.payload
-    })
-    .addCase(fetchSlides.rejected, (state, action) => {
+      state.slides = payload
+    },
+    [fetchSlides.rejected]: (state, { error }) => {
       state.status = 'failed'
-      state.error = action.error.message
-    })
+      state.error = error.message
+    },
 
-    .addCase(deleteSlides.pending, (state, action) => {
+    [deleteSlides.pending]: (state) => {
       state.status = 'loading'
-    })
-    .addCase(deleteSlides.fulfilled, (state, action) => {
+    },
+    [deleteSlides.fulfilled]: (state) => {
       state.status = 'updated'
-      // console.log(action)
-      // state.slides = state.slides.concat(action.payload)
-      // state.slides = state.find((elemento) => elemento.id === Number(id))
-    })
-    .addCase(deleteSlides.rejected, (state, action) => {
+    },
+    [deleteSlides.rejected]: (state, { error }) => {
       state.status = 'failed'
-      state.error = action.error.message
-    })
+      state.error = error.message
+    },
 
-    .addCase(getSlideById.pending, (state, action) => {
+    [getSlideById.pending]: (state) => {
       state.status = 'loading'
-    })
-    .addCase(getSlideById.fulfilled, (state, action) => {
+    },
+    [getSlideById.fulfilled]: (state, { payload }) => {
       state.status = 'updated'
-      // console.log(action)
-      // state.slides = state.slides.concat(action.payload)
-      // state.slides = state.find((elemento) => elemento.id === Number(id))
-      state.slideById = action.payload
-    })
-    .addCase(getSlideById.rejected, (state, action) => {
+      state.slideById = payload
+    },
+    [getSlideById.rejected]: (state, { error }) => {
       state.status = 'failed'
-      state.error = action.error.message
-    })
+      state.error = error.message
+    },
   }
 })
 
