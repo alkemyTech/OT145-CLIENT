@@ -40,15 +40,38 @@ const useStyles = makeStyles((theme) => ({
     '&:last-child td, &:last-child th': {
       border: 0,
     },
-  },
-  title: {
-    textAlign: 'center',
-    padding: '20px 0px 20px 0px',
-  },
-  icon: {
-    color: theme.palette.secondary.main,
-    cursor: 'pointer',
-  },
-}))
+    tableCell:{
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+          },
+          [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+          },
+    },
+    tableRow:{
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+          },
+          '&:last-child td, &:last-child th': {
+            border: 0,
+          },
+    },
+    title:{
+        textAlign: 'center',
+        padding: '20px 0px 20px 0px'
+    },
+    icon:{
+        color: theme.palette.secondary.main,
+        cursor: 'pointer'
+    },
+    buttonBack:{
+        margin: '15px 0px 0px 15px'
+    },
+    iconButtonBack:{
+        fontSize:30
+    }
+  }
+}));
 
 export default useStyles
