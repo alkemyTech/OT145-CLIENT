@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title:{
         textAlign: 'center',
-        padding: '20px 0px 20px 0px'
+        paddingBottom: 20
     },
     icon:{
         color: theme.palette.secondary.main,
