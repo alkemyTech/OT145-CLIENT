@@ -71,6 +71,28 @@ const sliderSlice = createSlice({
       state.status = 'failed'
       state.error = error.message
     },
+
+    [putSlides.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [putSlides.fulfilled]: (state,) => {
+      state.status = 'updated'
+    },
+    [putSlides.rejected]: (state, { error }) => {
+      state.status = 'failed'
+      state.error = error.message
+    },
+
+    [postSlides.pending]: (state) => {
+      state.status = 'loading'
+    },
+    [postSlides.fulfilled]: (state,) => {
+      state.status = 'updated'
+    },
+    [postSlides.rejected]: (state, { error }) => {
+      state.status = 'failed'
+      state.error = error.message
+    },
   }
 })
 
