@@ -157,14 +157,13 @@ const Header = () => {
 
             }
 
-
-
             <Box className={classes.boxLink}>
               <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks} >
                   Inicio
                 </Typography>
               </NavLink>
+
               <NavLink to='/Nosotros' className={classes.links} activeClassName={classes.active}>
                 <Typography variant='subtitle1' className={classes.typographyLinks}>
                   Nosotros
@@ -175,6 +174,7 @@ const Header = () => {
                   Contacto
                 </Typography>
               </NavLink>
+
               {headerData.map((value, i) => (
                 <NavLink key={i} to={value.url} className={classes.links} activeClassName={classes.active}>
                   <Typography variant='subtitle1' className={classes.typographyLinks}>{value.name}</Typography>

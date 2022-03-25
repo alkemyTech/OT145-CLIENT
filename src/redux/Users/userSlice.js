@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import privateGET, { privatePATCH, privatePOST, privateDelete} from "../../Services/privateApiService";
+import { getUsersService, getUsersIDService, postUsersService, patchUsersService, deleteUsersService } from "../../Services/userServices";
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
-  return privateGET("https://ongapi.alkemy.org/api/users");
+  return getUsersService;
 });
 
 export const getUsersById = createAsyncThunk("users/getUsersByID", async (id) => {
-    return privateGET(`https://ongapi.alkemy.org/api/users/${id}`);
+  return getUsersIDService(id);
 });
 
 export const patchUser = createAsyncThunk("users/patchUser", async (values) => {
-  return privatePATCH('https://ongapi.alkemy.org/api/users', values.id, values);
+  return patchUsersService(values.id, values);
 });
 
 export const postUser = createAsyncThunk("users/postUser", async (values) => {
-  return privatePOST("https://ongapi.alkemy.org/api/users", values);
+  return postUsersService(values);
 });
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
-  return privateDelete("https://ongapi.alkemy.org/api/users", id)
+  return deleteUsersService(id)
 })
 
 
@@ -37,7 +37,7 @@ const userSlice = createSlice({
       state.users = payload.data;
       state.status = "success";
     },
-    [getUsers.rejected]: (state, {payload}) => {
+    [getUsers.rejected]: (state, { payload }) => {
       state.status = payload.data.message;
     },
     [getUsersById.pending]: (state) => {
@@ -52,7 +52,7 @@ const userSlice = createSlice({
         state.status = payload.data.message;
       }
     },
-    [getUsersById.rejected]: (state, {payload}) => {
+    [getUsersById.rejected]: (state, { payload }) => {
       state.status = payload.data.message;
     },
     [patchUser.pending]: (state) => {
