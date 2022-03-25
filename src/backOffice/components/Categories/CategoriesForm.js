@@ -10,6 +10,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../shared/Spinner/Spinner';
 import { sweetAlertMixin } from "../../../Utils/AlertState";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { NavLink } from 'react-router-dom'
 
 
 const validationSchema = Yup.object({
@@ -81,41 +83,46 @@ const CategoriesForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className={classes.form}>
-			<TextField
-				className={classes.formElement}
-				name="name"
-				value={values.name}
-				onChange={handleChange}
-				placeholder={categoriesById ? categoriesById?.name : "Nombre de categoría"}
-				error={touched.name && errors.name}
-                label='Nombre de categoría'
-			/>
-			<Editor
-				text={values.description}
-				onChangeText={(data) => {
-					setFieldValue("description", data);
-				}}
-			/>
-			{touched.description && errors.description ? (
-				<div>{errors.description}</div>
-			) : null}
-			<TextField
-				inputProps={{
-					accept: "image/png, image/jpeg",
-					type: "file",
-				}}
-				name="defaultImage"
-				className={classes.formElement}
-				onChange={(event) => handleImageChange(event)}
-			/>
-			{touched.image && !isValidImageFormat? (
-				<div>El formato de la imágen no es válido {errors.image}</div>
-			) : null}
-			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
-			</Button>
-		</form>
+		<>	
+			<NavLink to='/backoffice/'>
+				<ArrowBackIcon/>
+			</NavLink>
+			<form onSubmit={handleSubmit} className={classes.form}>
+				<TextField
+					className={classes.formElement}
+					name="name"
+					value={values.name}
+					onChange={handleChange}
+					placeholder={categoriesById ? categoriesById?.name : "Nombre de categoría"}
+					error={touched.name && errors.name}
+					label='Nombre de categoría'
+				/>
+				<Editor
+					text={values.description}
+					onChangeText={(data) => {
+						setFieldValue("description", data);
+					}}
+				/>
+				{touched.description && errors.description ? (
+					<div>{errors.description}</div>
+				) : null}
+				<TextField
+					inputProps={{
+						accept: "image/png, image/jpeg",
+						type: "file",
+					}}
+					name="defaultImage"
+					className={classes.formElement}
+					onChange={(event) => handleImageChange(event)}
+				/>
+				{touched.image && !isValidImageFormat? (
+					<div>El formato de la imágen no es válido {errors.image}</div>
+				) : null}
+				<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
+					{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
+				</Button>
+			</form>
+		</>
 	);
 };
 
