@@ -3,10 +3,12 @@ import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { useFormik} from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
-import { patchUser, postUser } from '../../../redux/Users/userSlice';
+import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
-import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText} from '@mui/material';
+// import { registarUsuario } from '../../../redux/usersReducer/action';
+import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from './style';
 
@@ -69,11 +71,13 @@ const UserForm = () => {
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
                 values.id = userId.id
-               dispatch(patchUser(values))
+               dispatch(putUser(values))
             } else {
+                // const {name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
                 dispatch(postUser(values))
+                // dispatch(registarUsuario(name, email, password))
             }
         },
     });
@@ -91,6 +95,15 @@ const UserForm = () => {
     }, [status])
 
     return (
+    <>
+    <IconButton 
+      aria-label="upload picture" 
+      component="span" 
+      className={classes.buttonBack} 
+      onClick={() => history.push('/backoffice/users')}
+    >
+      <ArrowBackIcon className={classes.iconButtonBack} />
+    </IconButton>
         <div className={classes.containerForm}>
             <Typography variant='h6'>{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
             <form onSubmit={handleSubmit}>
@@ -145,8 +158,8 @@ const UserForm = () => {
                         onBlur={handleBlur}
                     >
                         <MenuItem value='' disabled>--Seleccione una opcion--</MenuItem>
-                        <MenuItem value={2}>Administrador</MenuItem>
-                        <MenuItem value={1}>Regular</MenuItem>
+                        <MenuItem value={1}>Administrador</MenuItem>
+                        <MenuItem value={2}>Regular</MenuItem>
                     </Select>
                     {errors.role_id && <FormHelperText>{errors.role_id}</FormHelperText>}
                 </FormControl>
@@ -168,6 +181,7 @@ const UserForm = () => {
                 </Button>
             </form>
         </div>
+        </>
     );
 }
  

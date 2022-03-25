@@ -26,7 +26,8 @@ const membersSlice = createSlice({
   initialState: {
     members: [],
     status: null,
-    memberId: null
+    memberId: null,
+    error: null
   },
   extraReducers: {
     [getMembers.pending]: (state) => {
@@ -34,6 +35,7 @@ const membersSlice = createSlice({
     },
     [getMembers.fulfilled]: (state, { payload }) => {
       state.members = payload.data;
+      state.memberId = null;
       state.status = "success";
     },
     [getMembers.rejected]: (state) => {
@@ -43,8 +45,13 @@ const membersSlice = createSlice({
       state.status = "loading";
     },
     [getMembersById.fulfilled]: (state, { payload }) => {
-      state.memberId = payload.data;
-      state.status = "success";
+      if(payload.success){
+        state.memberId = payload.data;
+        state.status = "success";
+      }else{
+        state.status = 'failed';
+        state.error = payload.message
+      }
     },
     [getMembersById.rejected]: (state) => {
       state.status = "failed";
