@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
 import useStyles from './styles/StyledHeader';
 import { Button } from '@mui/material';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cerrarSesion } from '../../redux/usersReducer/action'
 import { useHistory } from 'react-router-dom';
 
@@ -20,6 +20,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { isLogin, rol_type } = useSelector(state => state.auth)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +41,7 @@ const Header = () => {
     },
   ];
 
-  const isAuth = true;
+
 
   const handleClick = () => {
     dispatch(cerrarSesion());
@@ -126,6 +127,14 @@ const Header = () => {
                   </Box> :
                   <MenuItem><Button onClick={handleClick}>Cerrar sesión</Button></MenuItem>
                 }
+                {isLogin && rol_type==='Admin' &&
+                <MenuItem>
+                  <NavLink to="/backoffice" className={classes.links}>
+                      <Typography >
+                        Ir a backoffice
+                      </Typography>
+                    </NavLink>
+                </MenuItem>}
             </Menu>
             <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosx} />
           </Box>
