@@ -13,16 +13,16 @@ const Sidebar = ({open}) => {
     const rutasMokeadas = [
         {   
             name:"Create Activity",
-            link: "/create-activity"
+            link: "/backoffice/activities/create-activity"
         },
         
         {
             name:"Create Category",
-            link: "/create-category"
+            link: "/backoffice/categories/create"
         },
         {
             name:"Create News",
-            link: "/create-news"
+            link: "/backoffice/news/create-news"
         },
         {
             name:"Create Slide",
@@ -30,19 +30,19 @@ const Sidebar = ({open}) => {
         },
         {
             name:"Create Testimonials",
-            link: "/create-testimonials"
+            link: "/backoffice/testimonials/create"
         },
         {
             name:"Create User",
-            link: "/create-user"
+            link: "/backoffice/users/create-user"
         },
         {
             name:"Create Member",
-            link: "/create-member"
+            link: "/backoffice/members/create"
         },
         {
             name:"Create Proyect",
-            link: "/create-project"
+            link: "/backoffice/create-project`"
         }
 
     ]

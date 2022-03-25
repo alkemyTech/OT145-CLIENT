@@ -1,86 +1,101 @@
 import { makeStyles } from "@mui/styles";
-import { minHeight } from "@mui/system";
 
-const useStyles = makeStyles(theme => ({  
+const useStyles = makeStyles(theme => ({
     links: {
-        padding:'0 10px',
-        color:'#000',
+        padding: '0 10px',
+        color: '#000',
         textDecoration: 'none',
     },
     active: {
         color: '#545e6f'
     },
-    colorActivo:{
+    colorActivo: {
         color: theme.palette.secondary.main
     },
     typographyLinks: {
-        fontSize: '15px',
-        paddingRight:20,
+        fontSize: '20px',
+        paddingRight: 20,
+        [theme.breakpoints.down('md')]: {
+            fontSize: '15px',
+            paddingRight: 20
+        },
     },
     logosx: {
-        [theme.breakpoints.down('md')]: {
-            maxWidth: '20%',
-            marginLeft:'65%'
-        },
+        maxWidth: '20%',
+        marginLeft: '65%',
+        marginRight: '10%',
         [theme.breakpoints.up('md')]: {
             display: 'none',
-        },        
+        },
     },
     logosm: {
+        [theme.breakpoints.up('md')]: {
+            paddingLeft : "20px"
+            
+        },
         [theme.breakpoints.down('md')]: {
             display: 'none',
         },
-        [theme.breakpoints.up('md')]: {
-            maxWidth: '10%',
-            marginRight: '20%',
-            marginLeft: '20px',
-            alignSelf: "flex-start",
-            flexGrow: 1,
-            
-        },
+        
     },
     styledBoxSm: {
         backgroundColor: '#fff',
         flexGrow: 1,
         [theme.breakpoints.down('md')]: {
-            display:'flex', 
+            display: 'flex',
         },
         [theme.breakpoints.up('md')]: {
             display: 'none'
         },
     },
 
-    styledBoxMd:{
-        backgroundColor: '#fff',
-        flexGrow: 1, 
-        [theme.breakpoints.down('md')]: {
-            display:'none',
-
-        },
+    styledBoxMd: {
         [theme.breakpoints.up('md')]: {
-            display:'flex',
-            alignItems:'center', 
-            justifyContent: 'space-between',
-            width: '90%',
-            gap: '20px',
-
-
-
+            width : "85%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems : "flex-end" ,
+            backgroundColor: '#fff',
         },
+        [theme.breakpoints.down('md')]: {
+            display: 'none'
+        },
+        
     },
-   appbar:{
-       marginBottom: '10px'
-   },
-   bigContainer: {
-       position: 'relative',
-       paddingBottom: '150px',
-       minHeight:'100vh',
-       [theme.breakpoints.down('sm')]: {
-        paddingBottom: '200px',
+    appbar: {
+        marginBottom: '20px',
+        backgroundColor: "#fff",
+        height : "25vh",
+        [theme.breakpoints.down('sm')]: {
+            height : "15vh",
+        },
 
     },
 
-   },
+    boxLogin: {
+        display: "flex",
+    },
+    boxLink: {
+        display: "flex",
+        marginTop : "10px"
+    },
+
+    button: {
+        minWidth : "110px",
+        
+    },
+    icon: {
+        [theme.breakpoints.down('md')]: {
+            fontSize:50,
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize:30,
+        },   
+    },
+    linkBack:{
+        fontSize: '15px',
+    }
+
 
 }));
 

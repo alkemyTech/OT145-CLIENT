@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../FormStyles.css';
 import { Formik, Field, Form } from 'formik';
 import { SignupSchema } from './SignupSchema';
 import {
   Alert,
   Button,
-  Container
+  Container,
+  Box,
 } from '@mui/material';
 import useStyles from './AuthStyles';
 import { AlertSucces } from '../../Utils/AlertSucces'
+import { useDispatch } from 'react-redux';
+import { registarUsuario } from "../../redux/usersReducer/action"
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Spinner from '../../shared/Spinner/Spinner'
 
 const RegisterForm = () => {
-    const classes= useStyles()
+  const history = useHistory()
+  const { loading, isRegister } = useSelector(state => state.auth)
+  const classes = useStyles()
+  const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
 
   const userData = {
@@ -23,9 +32,18 @@ const RegisterForm = () => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    AlertSucces(values, setSubmitting)
-    setOpen(true);
+    const { firstName, email, password } = values
+      dispatch(registarUsuario(firstName, email, password))
+      AlertSucces(values, setSubmitting)
+      setOpen(true);
+
   };
+
+  useEffect(() => {
+    if (isRegister) {
+      history.push("/login")
+    }
+  }, [isRegister])
 
   const showAlert = (type, text) => {
     return <Alert severity={type}>{text}</Alert>;
@@ -93,9 +111,14 @@ const RegisterForm = () => {
             {errors.confirmPassword && touched.confirmPassword
               ? showAlert('warning', errors.confirmPassword)
               : null}
-            <Button disabled={!errors} color="secondary" variant="contained" fullWidth type="submit">
-              Register
-            </Button>
+            {loading ? <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Spinner width={30} heigth={30} color="#000" />
+            </Box> :
+              <Button disabled={!errors} color="secondary" variant="contained" fullWidth type="submit">
+                Register
+              </Button>
+            }
+
           </Form>
         )}
       </Formik>
