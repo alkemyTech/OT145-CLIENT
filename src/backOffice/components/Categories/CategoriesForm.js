@@ -37,7 +37,6 @@ const CategoriesForm = () => {
 	  }
 
 	}, [])
-
 	
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors,handleReset } = useFormik({
 		enableReinitialize: true,
@@ -84,7 +83,7 @@ const CategoriesForm = () => {
 
 	return (
 		<>	
-			<IconButton>
+			<IconButton onClick={()=>history.push('/backoffice/categories')}>
 				<ArrowBackIcon className={classes.linkAtras}/>
 			</IconButton>
 			<form onSubmit={handleSubmit} className={classes.form}>

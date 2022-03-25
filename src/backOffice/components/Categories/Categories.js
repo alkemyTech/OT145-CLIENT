@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Container, Button, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +9,7 @@ import useStyles from '../../styles/styledList'
 import DecorativeLineBW from '../../../Components/DecorativeLine/DecorativeLineBW'
 import { useHistory } from 'react-router-dom';
 import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 export default function CategoriesList() {
@@ -39,6 +40,9 @@ export default function CategoriesList() {
 
   return (
     <Container className={classes.containerList}>
+      <IconButton onClick={()=>history.push('/backoffice')}>
+				<ArrowBackIcon className={classes.linkAtras}/>
+			</IconButton>
       <div className={classes.contLink}>
         <Link to="/backoffice/categories/create" className={classes.styleLink}>
           <Typography variant="subtitle1">Crear Categoría</Typography>
