@@ -3,6 +3,7 @@ import { useSelector  } from 'react-redux'
 import { useEffect } from 'react'
 
 const PrivateRoutes = ({component: Component, rol, ...rest}) => {
+  
 
   const { rol_type } = useSelector(state => state.auth)
 
