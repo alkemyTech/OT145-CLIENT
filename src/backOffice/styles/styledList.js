@@ -1,28 +1,44 @@
-import { makeStyles } from "@mui/styles";
-import { tableCellClasses } from '@mui/material/TableCell';
+import { makeStyles } from '@mui/styles'
+import { tableCellClasses } from '@mui/material/TableCell'
 
 const useStyles = makeStyles((theme) => ({
-    containerList:{
-        minWidth: 400,
-        maxWidth: 1200,
-        margin: "auto",
-        padding:"10px 10px",
+  containerList: {
+    minWidth: 400,
+    maxWidth: 1200,
+    margin: 'auto',
+    padding: '10px 10px',
+  },
+  styleLink: {
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    cursor: 'pointer',
+  },
+  contLink: {
+    minWidth: 400,
+    maxWidth: 1200,
+    margin: 'auto',
+    padding: '10px',
+  },
+  img: {
+    minWidth: 100,
+    maxWidth: 400,
+    objectFit: 'contain',
+  },
+  tableCell: {
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
     },
-    styleLink: {
-        textDecoration: 'none',
-        color: theme.palette.primary.main,
-        cursor: "pointer",
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
     },
-    contLink: {
-        minWidth:400,
-        maxWidth:1200,
-        margin: "auto",
-        padding:"10px"
+  },
+  tableRow: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
     },
-    img: {
-        minWidth: 100,
-        maxWidth: 400,
-        objectFit: "contain",
+    '&:last-child td, &:last-child th': {
+      border: 0,
     },
     tableCell:{
         [`&.${tableCellClasses.head}`]: {
@@ -55,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
     iconButtonBack:{
         fontSize: 30
     }
+  }
 }));
 
-export default useStyles;
+export default useStyles
