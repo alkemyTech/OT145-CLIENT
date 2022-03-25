@@ -1,6 +1,31 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
 import privateGET, { privateDelete, privatePUT, privatePOST } from '../../Services/privateApiService.js'
 
+export const fetchSlides = createAsyncThunk('slider/fetchSlides', async () => {
+  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES)
+  return response.data
+})
+
+export const getSlideById = createAsyncThunk('slider/getSlideId', async (id) => {
+  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES, id)
+  return response.data
+})
+
+export const deleteSlides = createAsyncThunk('slider/deleteSlides', async (id) => {
+  const response = await privateDelete(process.env.REACT_APP_API_GET_SLIDES, id)
+  return response.data
+})
+
+export const putSlides = createAsyncThunk('slider/putSlides', async (id, values) => {
+  const response = await privatePUT(process.env.REACT_APP_API_GET_SLIDES, id, values)
+  return response.data
+})
+
+export const postSlides = createAsyncThunk('slider/postSlides', async (values) => {
+  const response = await privatePOST(process.env.REACT_APP_API_GET_SLIDES, values)
+  return response.data
+})
+
 const initialState = {
   slides: [],
   slideById: {},
@@ -47,31 +72,6 @@ const sliderSlice = createSlice({
       state.error = error.message
     },
   }
-})
-
-export const fetchSlides = createAsyncThunk('slider/fetchSlides', async () => {
-  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES)
-  return response.data
-})
-
-export const getSlideById = createAsyncThunk('slider/getSlideId', async (id) => {
-  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES, id)
-  return response.data
-})
-
-export const deleteSlides = createAsyncThunk('slider/deleteSlides', async (id) => {
-  const response = await privateDelete(process.env.REACT_APP_API_GET_SLIDES, id)
-  return response.data
-})
-
-export const putSlides = createAsyncThunk('slider/putSlides', async (id, values) => {
-  const response = await privatePUT(process.env.REACT_APP_API_GET_SLIDES, id, values)
-  return response.data
-})
-
-export const postSlides = createAsyncThunk('slider/postSlides', async (values) => {
-  const response = await privatePOST(process.env.REACT_APP_API_GET_SLIDES, values)
-  return response.data
 })
 
 export const selectAllSlides = state => state.slides.slides
