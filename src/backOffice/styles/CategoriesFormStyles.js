@@ -14,8 +14,11 @@ const useStyles = makeStyles({
     formElement: {
         width: '100%'
     },
-    linkAtras:{
-        padding:30
+    buttonBack:{
+        margin: '15px 0px 0px 15px'
+    },
+    iconButtonBack:{
+        fontSize:30
     }
 })
 

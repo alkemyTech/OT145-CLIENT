@@ -83,8 +83,11 @@ const CategoriesForm = () => {
 
 	return (
 		<>	
-			<IconButton onClick={()=>history.push('/backoffice/categories')}>
-				<ArrowBackIcon className={classes.linkAtras}/>
+			<IconButton 
+				component="span"
+				className={classes.buttonBack}
+				onClick={()=>history.push('/backoffice/categories')}>
+				<ArrowBackIcon className={classes.iconButtonBack}/>
 			</IconButton>
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<TextField

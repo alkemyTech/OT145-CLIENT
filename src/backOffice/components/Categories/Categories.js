@@ -39,55 +39,60 @@ export default function CategoriesList() {
   let orderedCategories = categories.map((e) => e).sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
 
   return (
-    <Container className={classes.containerList}>
-      <IconButton onClick={()=>history.push('/backoffice')}>
-				<ArrowBackIcon className={classes.linkAtras}/>
-			</IconButton>
-      <div className={classes.contLink}>
-        <Link to="/backoffice/categories/create" className={classes.styleLink}>
-          <Typography variant="subtitle1">Crear Categoría</Typography>
-        </Link>
-      </div>
+    <>
+      <IconButton 
+        component="span"
+				className={classes.buttonBack}
+				onClick={()=>history.push('/backoffice')}>
+        <ArrowBackIcon className={classes.iconButtonBack}/>
+      </IconButton>
+      <Container className={classes.containerList}>
+        <div className={classes.contLink}>
+          <Link to="/backoffice/categories/create" className={classes.styleLink}>
+            <Typography variant="subtitle1">Crear Categoría</Typography>
+          </Link>
+        </div>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <TableCell align='center' className={classes.tableCell}>Nombre</TableCell>
-              <TableCell align='center' className={classes.tableCell}>Imagen</TableCell>
-              <TableCell align='center' className={classes.tableCell} >Fecha</TableCell>
-              <TableCell align='center' className={classes.tableCell}>Modificar</TableCell>
-              <TableCell align='center' className={classes.tableCell}>Eliminar</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orderedCategories.map(({name, image, created_at,id}) => (
-              <TableRow key={name} className={classes.tableRow}>
-                <TableCell component="th" className={classes.tableCell} >
-                  {name}
-                </TableCell>
-                <TableCell align='center' className={classes.tableCell} >
-                  <img src={image} alt={name} className={classes.img} />
-                </TableCell>
-                <TableCell align='center' className={classes.tableCell} >
-                  {created_at}
-                </TableCell>
-                <TableCell align='center' className={classes.tableCell} >
-                  <Button variant="text" color="secondary" onClick={() => history.push(`/backoffice/categories/edit/${id}`, id)}>
-                    <EditIcon />
-                  </Button>
-                </TableCell>
-                <TableCell align='center' className={classes.tableCell} >
-                  <Button variant="text" color="secondary" onClick={() => handleDelete(id)}>
-                    <DeleteForeverIcon/>
-                  </Button>
-                </TableCell>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <TableCell align='center' className={classes.tableCell}>Nombre</TableCell>
+                <TableCell align='center' className={classes.tableCell}>Imagen</TableCell>
+                <TableCell align='center' className={classes.tableCell} >Fecha</TableCell>
+                <TableCell align='center' className={classes.tableCell}>Modificar</TableCell>
+                <TableCell align='center' className={classes.tableCell}>Eliminar</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <DecorativeLineBW></DecorativeLineBW>
-    </Container>
+            </TableHead>
+            <TableBody>
+              {orderedCategories.map(({name, image, created_at,id}) => (
+                <TableRow key={name} className={classes.tableRow}>
+                  <TableCell component="th" className={classes.tableCell} >
+                    {name}
+                  </TableCell>
+                  <TableCell align='center' className={classes.tableCell} >
+                    <img src={image} alt={name} className={classes.img} />
+                  </TableCell>
+                  <TableCell align='center' className={classes.tableCell} >
+                    {created_at}
+                  </TableCell>
+                  <TableCell align='center' className={classes.tableCell} >
+                    <Button variant="text" color="secondary" onClick={() => history.push(`/backoffice/categories/edit/${id}`, id)}>
+                      <EditIcon />
+                    </Button>
+                  </TableCell>
+                  <TableCell align='center' className={classes.tableCell} >
+                    <Button variant="text" color="secondary" onClick={() => handleDelete(id)}>
+                      <DeleteForeverIcon/>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <DecorativeLineBW></DecorativeLineBW>
+      </Container>
+    </>
   )
 }
