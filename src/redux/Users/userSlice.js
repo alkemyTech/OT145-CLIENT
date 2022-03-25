@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getUsersService, getUsersIDService, postUsersService, patchUsersService, deleteUsersService } from "../../Services/userServices";
+import { getUsersService, getUsersIDService, postUsersService, deleteUsersService, putUsersService } from "../../Services/userServices";
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
   return getUsersService();
@@ -9,8 +9,8 @@ export const getUsersById = createAsyncThunk("users/getUsersByID", async (id) =>
   return getUsersIDService(id);
 });
 
-export const patchUser = createAsyncThunk("users/patchUser", async (values) => {
-  return postUsersService(values.id, values);
+export const putUser = createAsyncThunk("users/putUser", async (values) => {
+  return putUsersService(values.id, values);
 });
 
 export const postUser = createAsyncThunk("users/postUser", async (values) => {
@@ -61,13 +61,13 @@ const userSlice = createSlice({
       state.status = payload.data.message;
     },
     //PUT
-    [patchUser.pending]: (state) => {
+    [putUser.pending]: (state) => {
       state.status = "loading";
     },
-    [patchUser.fulfilled]: (state) => {
+    [putUser.fulfilled]: (state) => {
       state.status = "edited";
     },
-    [patchUser.rejected]: (state) => {
+    [putUser.rejected]: (state) => {
       state.status = 'failed';
     },
     //POST

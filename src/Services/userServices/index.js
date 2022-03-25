@@ -24,6 +24,5 @@ export const deleteUsersService = (id) => {
 }
 
 export const putUsersService = (id,body) => {
-    // return privatePUT(USER_URL,id,body)
-    return privatePUT('https://ongapi.alkemy.org/api/userss', id, body)
+    return privatePUT(USER_URL,id,body)
 }
