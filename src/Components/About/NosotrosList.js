@@ -3,12 +3,12 @@ import CardComponent from '../Card/CardComponent'
 import { Grid } from '@mui/material'
 import useStyles from '../About/nosotrosStyles'
 
-const NosotrosList = ({ nosotrosPersons }) => {
+const NosotrosList = ({ miembros }) => {
   const classes = useStyles()
   return (
     <>
       <Grid container className={classes.cardList}>
-        {nosotrosPersons.map((person, id) => {
+        {miembros.map((person) => {
           return (
             <CardComponent
               className={classes.card}
@@ -17,9 +17,7 @@ const NosotrosList = ({ nosotrosPersons }) => {
               image={person.image}
               description={person.description}
               firstLink={person.facebookUrl}
-              textFirstLink={person.linkName1}
               secondLink={person.linkedinUrl}
-              textSecondLink={person.linkName2}
             />
           )
         })}
