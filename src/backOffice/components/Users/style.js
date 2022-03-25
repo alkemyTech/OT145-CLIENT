@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: theme.spacing(3)
+    },
+    buttonBack:{
+        margin: '15px 0px 0px 15px'
+    },
+    iconButtonBack:{
+        fontSize: 30
     }
 
 }))
