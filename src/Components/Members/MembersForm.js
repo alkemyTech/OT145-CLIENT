@@ -4,11 +4,12 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { getMembersById, putMembers, postMembers} from "../../redux/Members/membersSlice";
+import { convertToBase64 } from "../../helpers/base64";
 import Editor from "../../backOffice/components/Editor/Editor";
 import Spinner from '../../shared/Spinner/Spinner';
-import { convertToBase64 } from "../../helpers/base64";
-import { Button, Container, TextField, Typography } from "@mui/material";
-import useStyles from "../../Components/Auth/AuthStyles";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Button, Container, TextField, Typography, IconButton } from "@mui/material";
+import useStyles from "./styles/membersFormStyles";
 import "../FormStyles.css";
 import "./MembersForm.css";
 
@@ -109,6 +110,15 @@ useEffect(() => {
 
 
   return (
+  <>
+    <IconButton 
+      aria-label="upload picture" 
+      component="span" 
+      className={classes.buttonBack}
+      onClick={() => history.push('/backoffice/members')}
+    >
+      <ArrowBackIcon className={classes.iconButtonBack} />
+    </IconButton>
     <Container className={classes.containerForm}>
       <form className="form-container" onSubmit={handleSubmit}>
         <TextField
@@ -201,6 +211,7 @@ useEffect(() => {
         </Button>
       </form>
     </Container>
+    </>
   );
 };
 export default MembersForm;
