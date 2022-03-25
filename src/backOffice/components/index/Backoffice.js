@@ -15,7 +15,7 @@ const Categories = lazy(() => import('../Categories/Categories'))
 
 const NewsForm = lazy(() => import('../NewsList/NewsForm'))
 
-const SlidesForm = lazy(() => import('../../../Components/Slides/SlidesForm'))
+const SlidesForm = lazy(() => import('../Slides/SlidesForm'))
 
 const TestimonialForm = lazy(() => import('../Testimonials/TestimonialsForm'))
 
@@ -27,7 +27,7 @@ const MembersForm = lazy(() => import('../../../Components/Members/MembersForm')
 
 const ProjectsForm = lazy(() => import('../Projects/ProjectsForm'))
 
-const Slides = lazy(() => import('../../../Components/Slides/SlidesBackOffice'))
+const Slides = lazy(() => import('../Slides/SlidesBackOffice'))
 
 const ScreenDashboard = lazy(() => import('./ScreenDashboard'))
 
