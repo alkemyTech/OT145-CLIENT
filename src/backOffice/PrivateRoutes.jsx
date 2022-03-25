@@ -2,16 +2,18 @@ import { Route, Redirect } from 'react-router-dom'
 import { useSelector  } from 'react-redux'
 import { useEffect } from 'react'
 
-const PrivateRoutes = ({component: Component, rol, ...rest}) => {
+const PrivateRoutes = ({component: Component, ...rest}) => {
 
-  const { rol_type } = useSelector(state => state.auth)
+  const { rol_type, isLogin } = useSelector(state => state.auth)
+
+  console.log(isLogin)
 
     return (
         <Route
       {...rest}
       render={
         (props) => (
-          (rol_type === rol)
+          (rol_type === 'Admin' && !isLogin)
             ? (
              <Component {...props} />
             ) : (
@@ -20,7 +22,8 @@ const PrivateRoutes = ({component: Component, rol, ...rest}) => {
                   pathname: '/',
                 }}
               />
-            ))
+            )
+            )
       }
     />
     )

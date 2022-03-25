@@ -4,7 +4,6 @@ import { Box } from "@mui/system";
 import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Newsletter from './Newsletter';
-import { isLogin } from "../../Services/isUserLogged";
 
 export default function Footer() {
 	function getData() {
@@ -46,7 +45,7 @@ export default function Footer() {
 
 	return (
 		<div className={classes.insideContainer}>
-			{isLogin() &&
+			{
 				<Newsletter/>}
 			<Box className={classes.footerContainer}>
 				<Container>
