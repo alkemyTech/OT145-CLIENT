@@ -5,34 +5,37 @@ import { authMe } from '../redux/usersReducer/action'
 
 
 const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
+
   const dispatch = useDispatch();
   const { rol_type, user,token } = useSelector(state => state.auth)
+
+  console.log(user)
 
   useEffect(()=> {
     dispatch(authMe(token))
   },[])
 
+  let Renderizar = (props) => (
+    (rol_type === rol)
+      ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/',
+          }}
+        />
+      ))
+
   return (
     <Route
       {...rest}
       render={
-        (props) => (
-          (rol_type === rol && user )
-            ? (
-              <Component {...props} />
-            ) : (
-              <Redirect
-                to={{
-                  pathname: '/',
-                }}
-              />
-            )
-            )
+        Renderizar
       }
     />
   )
 
 
 }
-
 export default PrivateRoutes

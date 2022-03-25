@@ -31,7 +31,7 @@ export default function Routes() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
-        <PrivateRoutes exact path="/register" component={RegisterForm}/>
+        <Route exact path="/register" component={RegisterForm}/>
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>
