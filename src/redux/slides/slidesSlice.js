@@ -6,7 +6,7 @@ const initialState = {
   status: 'idle',
   error: null
 }
-const sliderSlice = createSlice({
+export const sliderSlice = createSlice({
   name: 'slider',
   initialState,
   reducers: {
@@ -19,7 +19,7 @@ const sliderSlice = createSlice({
     })
     .addCase(fetchSlides.fulfilled, (state, action) => {
       state.status = 'succeeded'
-      state.slides = state.slides.concat(action.payload)
+      state.slides = action.payload
     })
     .addCase(fetchSlides.rejected, (state, action) => {
       state.status = 'failed'
@@ -30,8 +30,8 @@ const sliderSlice = createSlice({
       state.status = 'loading'
     })
     .addCase(deleteSlides.fulfilled, (state, action) => {
-      state.status = 'succeeded'
-      console.log(action)
+      state.status = 'updated'
+      // console.log(action)
       // state.slides = state.slides.concat(action.payload)
       // state.slides = state.find((elemento) => elemento.id === Number(id))
     })

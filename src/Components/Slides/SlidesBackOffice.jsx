@@ -16,7 +16,7 @@ import {
 } from "../../Utils/SlidesBackOfficeStyled";
 import useStyles from "../../backOffice/styles/styledList";
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchSlides, deleteSlides } from '../../redux/slides/slidesSlice'
+import { fetchSlides, deleteSlides, sliderSlice } from '../../redux/slides/slidesSlice'
 
 function SlidesBackOffice() {
   const classes = useStyles();
@@ -59,7 +59,7 @@ function SlidesBackOffice() {
 
 	useEffect(() => {
     console.log(slideStatus)
-		if(slideStatus === 'idle'){
+		if(slideStatus === 'idle' || slideStatus === 'updated'){
 			dispatch(fetchSlides())
 		}
 	}, [slideStatus, dispatch]);
@@ -91,12 +91,12 @@ function SlidesBackOffice() {
             {slides?.map((row) => (
               <StyledTableRow key={row?.id}>
                 <StyledTableCell component="th" scope="row">
-                  {row?.Title}
+                  {row?.name}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   <img
                     src={row?.image}
-                    alt={row?.Title}
+                    alt={row?.name}
                     className={classes.img}
                   />
                 </StyledTableCell>
