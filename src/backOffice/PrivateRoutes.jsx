@@ -15,23 +15,21 @@ const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
     dispatch(authMe(token))
   },[])
 
-  let Renderizar = (props) => (
-    (rol_type === rol)
-      ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/',
-          }}
-        />
-      ))
-
   return (
     <Route
       {...rest}
       render={
-        Renderizar
+        (props) => (
+          (rol_type === rol && user)
+            ? (
+              <Component {...props} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: '/',
+                }}
+              />
+            ))
       }
     />
   )

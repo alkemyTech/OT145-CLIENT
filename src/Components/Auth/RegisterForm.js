@@ -18,7 +18,7 @@ import Spinner from '../../shared/Spinner/Spinner'
 
 const RegisterForm = () => {
   const history = useHistory()
-  const { loading, isRegister } = useSelector(state => state.auth)
+  const { loading, isRegister, isLogin } = useSelector(state => state.auth)
   const classes = useStyles()
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
@@ -44,6 +44,12 @@ const RegisterForm = () => {
       history.push("/login")
     }
   }, [isRegister])
+
+  useEffect(() => {
+    if (isLogin) {
+      history.push("/")
+    }
+  }, [isLogin])
 
   const showAlert = (type, text) => {
     return <Alert severity={type}>{text}</Alert>;
