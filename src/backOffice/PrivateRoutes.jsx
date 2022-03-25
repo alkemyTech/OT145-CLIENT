@@ -1,20 +1,23 @@
 import { Route, Redirect } from 'react-router-dom'
-import { useSelector  } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import { authMe } from '../redux/usersReducer/action'
+const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
+  const dispatch = useDispatch();
+  const { rol_type, user,token } = useSelector(state => state.auth)
 
-const PrivateRoutes = ({component: Component, rol, ...rest}) => {
-  
+  useEffect(()=> {
+    dispatch(authMe(token))
+  },[])
 
-  const { rol_type } = useSelector(state => state.auth)
-
-    return (
-        <Route
+  return (
+    <Route
       {...rest}
       render={
         (props) => (
-          (rol_type === rol)
+          (rol_type === rol && user )
             ? (
-             <Component {...props} />
+              <Component {...props} />
             ) : (
               <Redirect
                 to={{
@@ -24,9 +27,9 @@ const PrivateRoutes = ({component: Component, rol, ...rest}) => {
             ))
       }
     />
-    )
+  )
 
-    
+
 }
 
 export default PrivateRoutes

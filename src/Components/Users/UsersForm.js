@@ -5,7 +5,7 @@ import { convertToBase64 } from '../../helpers/base64'
 import {Button , TextField, Autocomplete, Typography } from '@mui/material';
 import useStyles from './style';
 import { privatePATCH, privatePOST} from '../../Services/privateApiService';
-
+import { putUser,postUser } from '../../Services/userServices';
 
 const UserForm = ({ data }) => {
     const classes = useStyles()
@@ -26,12 +26,12 @@ const UserForm = ({ data }) => {
             if (data) {
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
-                privatePATCH('https://ongapi.alkemy.org/api/users', data.id, values)
+                putUser('https://ongapi.alkemy.org/api/users', data.id, values)
             }
             else {
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
-                privatePOST('https://ongapi.alkemy.org/api/users', values);
+                postUser('https://ongapi.alkemy.org/api/users', values);
             }
         })
     })

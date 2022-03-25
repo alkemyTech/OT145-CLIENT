@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, LOGIN_FAILED, LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED, REGISTER_FAILED } from "./types"
+import { LOGIN_SUCCESS, REGISTER_SUCCESS,REGISTER_FAILED, LOGIN_FAILED, LOG_OUT, LOADING_ON, LOADING_OFF, ROL_SUCCESS, ROL_FAILED, AUTH_SUCCESS, AUTH_FAILED } from "./types"
 import axios from "axios"
 import { privatePOST } from "../../Services/privateApiService"
 import privateGET from "../../Services/privateApiService"
@@ -93,4 +93,29 @@ export const cerrarSesion = () => (dispatch) => {
     dispatch({
         type: LOG_OUT
     })
+}
+
+export const authMe = (token) => async (dispatch) => {
+    try {
+        const respuesta = await axios.get(`https://ongapi.alkemy.org/api/auth/me`, {
+            headers: {
+                "Authorization": "Bearer" + token
+            }
+        })
+        console.log(respuesta)
+        dispatch({
+            type: AUTH_SUCCESS,
+            payload: respuesta.data.data.user
+        })
+        dispatch(
+            obtenerRol(respuesta.data.data.user.role_id)
+        )
+    }
+    catch (err) {
+        console.log(err);
+        dispatch({
+            type: AUTH_FAILED,
+            payload: null
+        })
+    }
 }
