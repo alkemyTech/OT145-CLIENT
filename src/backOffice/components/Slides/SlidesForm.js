@@ -1,32 +1,43 @@
-import React from 'react';
-import { privatePATCH , privatePOST } from '../../Services/privateApiService'
+import React, { useEffect } from 'react';
+import { privatePATCH , privatePOST } from '../../../Services/privateApiService'
 import { useFormik} from 'formik';
-import { validationSchema } from './config/index';
-import { convertToBase64 } from '../../helpers/base64';
+import { validationSchema } from './config';
+import { convertToBase64 } from '../../../helpers/base64';
 import { TextField, Button, Typography } from '@mui/material';
 import useStyles from './styleSlides';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {CKEditor} from '@ckeditor/ckeditor5-react';
+import Editor from '../Editor/Editor'
+import { useParams, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch} from 'react-redux'
+import { selectSlideById, getSlideById } from '../../../redux/slides/slidesSlice'
 
-
-const SlidesForm = ({ data }) => {
+const SlidesForm = () => {
     const classes = useStyles();
+    const { id } = useParams()
+    const { pathname } = useLocation()    
+    const dispatch = useDispatch()
+    const slide = useSelector(selectSlideById)
 
     const initialValues = {
-        name: data?.name || '',
-        description: data?.description || '',
-        order: data?.order || 0,
-        image: data?.image || ''
+        name: slide?.name || '',
+        description: slide?.description || '',
+        order: slide?.order || 0,
+        image: slide?.image || ''
     };
-
+    
+    useEffect(() => {
+        if(pathname.includes('edit')){
+            dispatch(getSlideById(id))
+        }
+    }, []);
+    
     const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         onSubmit: ( async (values) => {
-            if (data) {
+            if (slide) {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePATCH('https://ongapi.alkemy.org/api/slides', data.id, values);
+                privatePATCH('https://ongapi.alkemy.org/api/slides', slide.id, values);
             }
             else {
                 const base64 = await convertToBase64(values.image)
@@ -69,11 +80,11 @@ const SlidesForm = ({ data }) => {
                     helperText={touched.image && errors.image}/>
 
                 <div className={classes.fieldForm}>
-                    <CKEditor
+                    <Editor
                         id="description"
                         name="description"
                         onChange={(event, editor)=>setFieldValue("description", editor.getData())}
-                        editor={ClassicEditor}/>
+                    />
                     {handleSubmit && errors.description &&  
                         <Typography variant="caption" color="error">{touched.description && errors.description}</Typography> 
                     }
