@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 import { useFormik} from 'formik';
 import { useLocation, useHistory } from 'react-router-dom';
-import { patchUser, postUser } from '../../../redux/Users/userSlice';
+import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
 // import { registarUsuario } from '../../../redux/usersReducer/action';
@@ -71,7 +71,7 @@ const UserForm = () => {
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
                 values.id = userId.id
-               dispatch(patchUser(values))
+               dispatch(putUser(values))
             } else {
                 // const {name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
