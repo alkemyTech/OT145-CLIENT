@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getUsersService, getUsersIDService, postUsersService, patchUsersService, deleteUsersService } from "../../Services/userServices";
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
-  return getUsersService;
+  return getUsersService();
 });
 
 export const getUsersById = createAsyncThunk("users/getUsersByID", async (id) => {

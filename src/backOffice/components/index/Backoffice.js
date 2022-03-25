@@ -3,7 +3,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 /* import CategoriesList from './Categories' */ //acomodar fran
 import Header from './Header'
 import SideBar from './Sidebar'
-import UsersList from '../../components/Users/UsersList';
+import UsersList from '../Users/UsersList';
 import Error404 from '../../../shared/Error404/Error404'
 
 
@@ -70,6 +70,7 @@ function BackOficce() {
         <Route exact path={`${match.path}/members/create`} component={MembersForm} />
 
         <Route exact path={`${match.path}/members/edit/:id`} component={MembersForm} />
+
         <Route exact path={`${match.path}/users/edit-user/:id`} component={UserForm} />
 
         <Route exact path={`${match.path}/members/edit`} component={MembersForm} />

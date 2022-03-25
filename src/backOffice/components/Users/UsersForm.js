@@ -6,6 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { patchUser, postUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
+// import { registarUsuario } from '../../../redux/usersReducer/action';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
@@ -72,9 +73,11 @@ const UserForm = () => {
                 values.id = userId.id
                dispatch(patchUser(values))
             } else {
+                // const {name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
                 dispatch(postUser(values))
+                // dispatch(registarUsuario(name, email, password))
             }
         },
     });
@@ -155,8 +158,8 @@ const UserForm = () => {
                         onBlur={handleBlur}
                     >
                         <MenuItem value='' disabled>--Seleccione una opcion--</MenuItem>
-                        <MenuItem value={2}>Administrador</MenuItem>
-                        <MenuItem value={1}>Regular</MenuItem>
+                        <MenuItem value={1}>Administrador</MenuItem>
+                        <MenuItem value={2}>Regular</MenuItem>
                     </Select>
                     {errors.role_id && <FormHelperText>{errors.role_id}</FormHelperText>}
                 </FormControl>

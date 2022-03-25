@@ -42,7 +42,7 @@ const UsersList = () => {
   }, [status])
   
   useEffect(() => {
-    const orderUsers = users.map((e) => e).sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
+    const orderUsers = users && users.map((e) => e).sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
     setUsersOrder(orderUsers);
   }, [users])
   
@@ -87,7 +87,7 @@ const UsersList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {usersOrder.length > 0 &&
+            {usersOrder && usersOrder.length > 0 &&
               usersOrder.map((user) => (
                 <TableRow key={user.id} className={classes.tableRow}>
                   <TableCell
