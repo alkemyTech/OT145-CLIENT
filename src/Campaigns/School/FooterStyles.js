@@ -4,8 +4,8 @@ export const useStyles = makeStyles((theme) => ({
     container: {
         display:'flex',
         width:'100%',
-        position: 'absolute',
-        bottom: 0,
+        /* position: 'absolute',
+        bottom: 0, */
         backgroundColor:'#cfcccc'
       },
     

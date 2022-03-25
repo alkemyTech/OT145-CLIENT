@@ -15,6 +15,9 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Foto6 from "./images/Foto6.jpg";
 import Foto7 from "./images/Foto7.jpg";
 import Manos10 from "./images/Manos10.jpg";
+import pencils from "./images/pencils.png";
+import kids from "./images/kids.png";
+import crayolas from "./images/crayolas.png";
 
 // Styles
 import useStyles from "./styles/sliderStyles.js";
@@ -33,9 +36,7 @@ const Slide = ({
 			{imgSrc ? (
 				<img className={classes.sliderImage} src={imgSrc} alt={imgLabel} />
 			) : null}
-			<Container>
-				<Typography className={classes.text}>{description}</Typography>
-			</Container>
+			
 		</Box>
 	);
 };
@@ -45,25 +46,23 @@ const defaultSliderData = [
 	{
 		id: 1,
 		name: "test2",
-		description: "test description2",
-		image: Foto6,
+		image: pencils,
 	},
 	{
 		id: 2,
 		name: "test3",
-		description: "test description3",
-		image: Foto7,
+		image: kids,
 	},
 	{
 		id: 3,
 		name: "test4",
-		description: "test description4",
-		image: Manos10,
+		image: crayolas,
 	},
 ];
 
 // Principal component
 const Slider = ({ slidersData = defaultSliderData }) => {
+	const classes = useStyles();
 	const theme = useTheme();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const maxSteps = slidersData.length;
@@ -93,13 +92,12 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 						<Slide
 							key={slideData.id}
 							imgLabel={slideData.name}
-							description={slideData.description}
 							imgSrc={slideData.image}
 						/>
 					);
 				})}
 			</AutoPlaySwipeableViews>
-			<Container>
+			<Container className={classes.arrows}>
 				<MobileStepper
 					steps={maxSteps}
 					position="static"
@@ -107,6 +105,7 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 					nextButton={
 						<Button
 							size="small"
+							color="secondary"
 							onClick={handleNext}
 							disabled={activeStep === maxSteps - 1}>
 							{theme.direction === "rtl" ? (
@@ -119,6 +118,7 @@ const Slider = ({ slidersData = defaultSliderData }) => {
 					backButton={
 						<Button
 							size="small"
+							color="secondary"
 							onClick={handleBack}
 							disabled={activeStep === 0}>
 							{theme.direction === "rtl" ? (
