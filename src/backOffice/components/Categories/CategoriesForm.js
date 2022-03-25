@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStyles from "../../styles/CategoriesFormStyles";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, IconButton } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../shared/Spinner/Spinner';
 import { sweetAlertMixin } from "../../../Utils/AlertState";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { NavLink } from 'react-router-dom'
+
 
 
 const validationSchema = Yup.object({
@@ -84,9 +84,9 @@ const CategoriesForm = () => {
 
 	return (
 		<>	
-			<NavLink to='/backoffice/'>
-				<ArrowBackIcon/>
-			</NavLink>
+			<IconButton>
+				<ArrowBackIcon className={classes.linkAtras}/>
+			</IconButton>
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<TextField
 					className={classes.formElement}
