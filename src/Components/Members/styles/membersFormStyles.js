@@ -1,24 +1,18 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
+
 
 const useStyles = makeStyles((theme) => ({
     containerForm:{      
         padding: '10px',
         maxWidth: '70%',
-        margin:'auto'
+        margin: 'auto'
     },
     fieldForm:{
-        marginTop: '10px !important',
-    },
-    txt: {
-        marginTop: '10px !important',
         marginBottom: '10px',
-        width:"100%"
+        marginTop: '10px !important',
     },
-    typographyImg: {
-        paddingLeft:15
-    },
-    button: {
-        marginTop: theme.spacing(3)
+    fieldFormInput:{
+        marginBottom:'20px'
     },
     buttonBack:{
         margin: '15px 0px 0px 15px'
@@ -26,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     iconButtonBack:{
         fontSize: 30
     }
-
 }))
 
 export default useStyles;

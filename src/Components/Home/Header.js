@@ -44,7 +44,7 @@ const Header = () => {
     },
   ];
 
-  const isAuth = true;
+
 
   const handleClick = () => {
     dispatch(cerrarSesion());
@@ -61,8 +61,6 @@ const Header = () => {
   },[isLogin,rol_type])
 
   return (
-    <>
-
       <AppBar position="static" className={classes.appbar} >
         <Toolbar disableGutters>
 
@@ -71,24 +69,25 @@ const Header = () => {
           </Box>
           <Box className={classes.styledBoxMd}>
             {!localStorage.getItem("token") ? <Box className={classes.boxLogin}>
-              <MenuItem >
-                <NavLink to="/login" className={classes.links}>
-                  <Button variant="contained" size='small' color='secondary' className={classes.button}>
-                    Log in
-                  </Button>
-                </NavLink>
-              </MenuItem>
-
-              <MenuItem >
-                <NavLink to="/register" className={classes.links}>
-                  <Button variant='outlined' color='secondary' size='small' className={classes.button}  >
-                    Registrate
-                  </Button>
-                </NavLink>
-              </MenuItem>
+              <NavLink to="/login" className={classes.links}>
+                <Button variant="contained" size='small' color='secondary' className={classes.button}>
+                  Login
+                </Button>
+              </NavLink>
+              <NavLink to="/register" className={classes.links}>
+                <Button variant='outlined' color='secondary' size='small' className={classes.button}  >
+                  Registrate
+                </Button>
+              </NavLink>
             </Box> :
               <Button onClick={handleClick}>Cerrar sesión</Button>
-
+            }
+            {isLogin && rol_type==='Admin' &&
+              <NavLink to="/backoffice" className={classes.links}>
+              <Typography className={classes.linkBack}>
+                Ir a backoffice
+              </Typography>
+            </NavLink>
             }
 
             <Box className={classes.boxLink}>
@@ -116,13 +115,9 @@ const Header = () => {
                 </NavLink>
               ))}
             </Box>
-
-
-
           </Box>
         </Toolbar>
       </AppBar>
-    </>
   );
 }
 

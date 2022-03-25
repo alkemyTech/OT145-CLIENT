@@ -31,11 +31,11 @@ export default function Footer() {
 			navigationItems: [
 				{
 					name: "Actividades",
-					url: "/",
+					url: "/Actividades",
 				},
 				{
 					name: "Novedades",
-					url: "/",
+					url: "/news",
 				},
 			],
 		};

@@ -18,6 +18,7 @@ const DetalleActividad = lazy(() =>
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
 
+
 export default function Routes() {
   const {isLogin} = useSelector(state =>state.auth)
   let match = useRouteMatch();
@@ -32,12 +33,7 @@ export default function Routes() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/register" component={RegisterForm} />
-        {/* <Route
-          exact
-          path="/register"
-          component={isLogin() ? Home : RegisterForm}
-        /> */}
+        <Route exact path="/register" component= {RegisterForm}/>
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>
