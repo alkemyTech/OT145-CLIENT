@@ -1,5 +1,5 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
-import privateGET, { privateDelete } from '../../Services/privateApiService.js'
+import privateGET, { privateDelete, privatePUT, privatePOST } from '../../Services/privateApiService.js'
 
 const initialState = {
   slides: [],
@@ -10,9 +10,6 @@ const initialState = {
 export const sliderSlice = createSlice({
   name: 'slider',
   initialState,
-  reducers: {
-    
-  },
   extraReducers(builder) {
     builder
     .addCase(fetchSlides.pending, (state, action) => {
@@ -63,13 +60,23 @@ export const fetchSlides = createAsyncThunk('slider/fetchSlides', async () => {
   return response.data
 })
 
-export const getSlideById = createAsyncThunk('slider/updateSlides', async (id) => {
+export const getSlideById = createAsyncThunk('slider/getSlideId', async (id) => {
   const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES, id)
   return response.data
 })
 
 export const deleteSlides = createAsyncThunk('slider/deleteSlides', async (id) => {
   const response = await privateDelete(process.env.REACT_APP_API_GET_SLIDES, id)
+  return response.data
+})
+
+export const putSlides = createAsyncThunk('slider/putSlides', async (id, values) => {
+  const response = await privatePUT(process.env.REACT_APP_API_GET_SLIDES, id, values)
+  return response.data
+})
+
+export const postSlides = createAsyncThunk('slider/postSlides', async (values) => {
+  const response = await privatePOST(process.env.REACT_APP_API_GET_SLIDES, values)
   return response.data
 })
 
