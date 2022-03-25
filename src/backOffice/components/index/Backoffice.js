@@ -1,9 +1,7 @@
 import React, { lazy, useState } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom' //acomodar fran
-import CategoriesList from '../Categories/Categories'
 import Header from './Header'
 import SideBar from './Sidebar'
-import UsersList from '../Users/UsersList';
 import Error404 from '../../../shared/Error404/Error404'
 
 const ActivitiesForm = lazy(() => import('../Activities/ActivitiesForm'))
