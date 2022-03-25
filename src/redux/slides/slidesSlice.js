@@ -27,8 +27,15 @@ export const postSlides = createAsyncThunk('slider/postSlides', async (values) =
 })
 
 const initialState = {
-  slides: [],
-  slideById: {},
+  slides: [
+    {
+      'name': '',
+      'description': '',
+      'order': '',
+      'image': ''
+  }
+  ],
+  // slideById: null,
   status: 'idle',
   error: null
 }
@@ -65,7 +72,7 @@ const sliderSlice = createSlice({
     },
     [getSlideById.fulfilled]: (state, { payload }) => {
       state.status = 'updated'
-      state.slideById = payload
+      state.slides = payload
     },
     [getSlideById.rejected]: (state, { error }) => {
       state.status = 'failed'

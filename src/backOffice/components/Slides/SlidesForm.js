@@ -8,14 +8,14 @@ import useStyles from './styleSlides';
 import Editor from '../Editor/Editor'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
-import { selectSlideById, getSlideById, selectSlidesStatus } from '../../../redux/slides/slidesSlice'
+import { selectAllSlides, getSlideById, selectSlidesStatus, postSlides, putSlides } from '../../../redux/slides/slidesSlice'
 
 const SlidesForm = () => {
     const classes = useStyles();
     const { id } = useParams()
     const { pathname } = useLocation()    
     const dispatch = useDispatch()
-    const slide = useSelector(selectSlideById)
+    const slide = useSelector(selectAllSlides)
     const slideStatus = useSelector(selectSlidesStatus)
     
     useEffect(() => {
@@ -36,22 +36,22 @@ const SlidesForm = () => {
         initialValues: {...initialValues},
         validationSchema: validationSchema,
         onSubmit: ( async (values) => {
-            if (slide) {
+            if (pathname.includes('edit')) {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePATCH('https://ongapi.alkemy.org/api/slides', slide.id, values);
+                dispatch(putSlides(slide.id.id, values))
             }
             else {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePOST('https://ongapi.alkemy.org/api/slides', values);
+                dispatch(postSlides(values))
             }
         })
     })
 
     return (
         <div  className={classes.containerForm}>
-            <Typography variant="h6">{slide ? 'Editar Slide' : 'Crear slide'}</Typography>
+            <Typography variant="h6">{pathname.includes('edit') ? 'Editar Slide' : 'Crear slide'}</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField fullWidth
                     name="name" 
