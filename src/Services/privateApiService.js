@@ -19,6 +19,7 @@ export const privatePUT = async (path, id, body) => {
     const response = await axios.put(`${path}/${id}`, body)
     return response.data
   } catch (error) {
+    console.log(error.response)
     console.error(error)
   }
 }
@@ -29,6 +30,7 @@ export const privatePATCH = async (path, id, body) => {
 
     return response.data
   } catch (error) {
+    console.log(error.response)
     return error.response
   }
 }
@@ -43,6 +45,7 @@ const privateGET = async (path, id) => {
       return response.data
     }
   } catch (error) {
+    console.log(error.response)
     return error.response.data
   }
 }
@@ -51,6 +54,7 @@ export const privatePOST = async (path, body) => {
     const response = await axios.post(path, body)
     return response.data
   } catch (error) {
+    console.log(error.response)
     return error.response.data
   }
 }
@@ -59,7 +63,9 @@ export const privateDelete = async (path, id) => {
   try {
     const response = await axios.delete(`${path}/${id}`)
     return response.data
-  } catch (error) {
+
+  }catch(error){
+    console.log(error.response)
     return error.response
   }
 }

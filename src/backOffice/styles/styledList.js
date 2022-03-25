@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '15px 0px 0px 15px'
     },
     iconButtonBack:{
-        fontSize:30
+        fontSize: 30
     }
   }
 }));

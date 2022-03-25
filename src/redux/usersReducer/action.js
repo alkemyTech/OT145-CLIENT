@@ -102,7 +102,6 @@ export const authMe = (token) => async (dispatch) => {
                 "Authorization": "Bearer" + token
             }
         })
-        console.log(respuesta)
         dispatch({
             type: AUTH_SUCCESS,
             payload: respuesta.data.data.user
@@ -112,7 +111,6 @@ export const authMe = (token) => async (dispatch) => {
         )
     }
     catch (err) {
-        console.log(err);
         dispatch({
             type: AUTH_FAILED,
             payload: null
