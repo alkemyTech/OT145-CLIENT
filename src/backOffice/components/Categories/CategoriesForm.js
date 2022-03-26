@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "../../styles/CategoriesFormStyles";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, IconButton } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
-import { privatePOST, privatePATCH } from "../../../Services/privateApiService"; //Cambiar por servicio custom
-import { convertToBase64 } from '../../../helpers/base64'
+import { convertToBase64 } from '../../../helpers/base64';
+import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
+import { useLocation, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import Spinner from '../../../shared/Spinner/Spinner';
+import { sweetAlertMixin } from "../../../Utils/AlertState";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -17,26 +24,50 @@ const validationSchema = Yup.object({
 	image: Yup.mixed().nullable().required("La imágen es obligatoria"),
 });
 
-const CategoriesForm = ({ category = null }) => {
+const CategoriesForm = () => {
 	const classes = useStyles();
+	const {state} = useLocation();
+	const {categoriesById, status} = useSelector(state => state.categories);
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
+	useEffect(() => {
+	  if(state){
+		dispatch(getCategoriesById(state))
+	  }
+
+	}, [])
+	
+	const { setFieldValue, handleSubmit, values, handleChange, touched, errors,handleReset } = useFormik({
+		enableReinitialize: true,
 		initialValues: {
-			name: category?.name || "",
-			description: category?.description || "",
-			image: category?.image || "",
+			name: categoriesById?.name || "",
+			description: categoriesById?.description || "",
+			image: categoriesById?.image || "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
-            if (category) {
-                privatePATCH(`${process.env.REACT_APP_API_CATEGORIES}/${category.id}`, values);
-            }
-            privatePOST(process.env.REACT_APP_API_CATEGORIES, values);
-            
+            if (categoriesById) {
+				values.id = categoriesById.id
+                dispatch(putCategory(values));
+				
+            }else{
+            	dispatch(postCategory(values));
+			}
         })
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
+	useEffect(() => {
+		if(status === 'created'){
+			sweetAlertMixin('success' ,'Creado satisfactoriamente')
+			handleReset()
+		}
+		if(status === 'edited'){
+			history.push("/backoffice/categories")
+		}
+		
+	  }, [status])
 
 	const handleImageChange = async (event) => {
 		const base64String = await convertToBase64(event.target.files[0]);
@@ -51,41 +82,49 @@ const CategoriesForm = ({ category = null }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className={classes.form}>
-			<TextField
-				className={classes.formElement}
-				name="name"
-				value={values.name}
-				onChange={handleChange}
-				placeholder={category ? category?.name : "Nombre de categoría"}
-				error={touched.name && errors.name}
-                label='Nombre de categoría'
-			/>
-			<Editor
-				text={values.description}
-				onChangeText={(data) => {
-					setFieldValue("description", data);
-				}}
-			/>
-			{touched.description && errors.description ? (
-				<div>{errors.description}</div>
-			) : null}
-			<TextField
-				inputProps={{
-					accept: "image/png, image/jpeg",
-					type: "file",
-				}}
-				name="defaultImage"
-				className={classes.formElement}
-				onChange={(event) => handleImageChange(event)}
-			/>
-			{touched.image && !isValidImageFormat? (
-				<div>El formato de la imágen no es válido {errors.image}</div>
-			) : null}
-			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				{category ? ('Actualizar') : ('Crear')}
-			</Button>
-		</form>
+		<>	
+			<IconButton 
+				component="span"
+				className={classes.buttonBack}
+				onClick={()=>history.push('/backoffice/categories')}>
+				<ArrowBackIcon className={classes.iconButtonBack}/>
+			</IconButton>
+			<form onSubmit={handleSubmit} className={classes.form}>
+				<TextField
+					className={classes.formElement}
+					name="name"
+					value={values.name}
+					onChange={handleChange}
+					placeholder={categoriesById ? categoriesById?.name : "Nombre de categoría"}
+					error={touched.name && errors.name}
+					label='Nombre de categoría'
+				/>
+				<Editor
+					text={values.description}
+					onChangeText={(data) => {
+						setFieldValue("description", data);
+					}}
+				/>
+				{touched.description && errors.description ? (
+					<div>{errors.description}</div>
+				) : null}
+				<TextField
+					inputProps={{
+						accept: "image/png, image/jpeg",
+						type: "file",
+					}}
+					name="defaultImage"
+					className={classes.formElement}
+					onChange={(event) => handleImageChange(event)}
+				/>
+				{touched.image && !isValidImageFormat? (
+					<div>El formato de la imágen no es válido {errors.image}</div>
+				) : null}
+				<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
+					{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
+				</Button>
+			</form>
+		</>
 	);
 };
 

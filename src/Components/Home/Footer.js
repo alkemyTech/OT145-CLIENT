@@ -3,9 +3,12 @@ import useStyles from "./styles/footerStyles";
 import { Box } from "@mui/system";
 import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import Newsletter from './Newsletter'
+import Newsletter from './Newsletter';
+import { useSelector } from "react-redux";
+
 
 export default function Footer() {
+	const {isLogin} = useSelector(state => state.auth)
 	function getData() {
 		// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
 
@@ -28,11 +31,11 @@ export default function Footer() {
 			navigationItems: [
 				{
 					name: "Actividades",
-					url: "/",
+					url: "/Actividades",
 				},
 				{
 					name: "Novedades",
-					url: "/",
+					url: "/news",
 				},
 			],
 		};
@@ -45,7 +48,7 @@ export default function Footer() {
 
 	return (
 		<div className={classes.insideContainer}>
-			<Newsletter/>
+			{isLogin && <Newsletter/>}
 			<Box className={classes.footerContainer}>
 				<Container>
 					<Box className={classes.footer}>

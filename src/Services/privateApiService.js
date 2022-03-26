@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { sweetAlertMixin } from '../Utils/AlertState';
 
 const getAuthorizationHeader = () => {
   const token = localStorage.getItem('token')
@@ -16,58 +17,69 @@ const config = {
 
 export const privatePUT = async (path, id, body) => {
   try {
-    const response = await axios.put(`${path}/${id}`, body, config)
+    const response = await axios.put(`${path}/${id}`, body)
     return response.data
   } catch (error) {
-    console.error(error)
+    if(error.response.data.errors.email){
+      sweetAlertMixin('error', 'El email ya se encuentra registrado')
+    }else{
+      sweetAlertMixin('error', 'No se pudo modificar, intente nuevamente')
+    }
+    return error.response
   }
 }
 
 export const privatePATCH = async (path, id, body) => {
   try {
-    const response = await axios.patch(`${path}/${id}`, body, config)
+    const response = await axios.put(`${path}/${id}`, body)
 
     return response.data
   } catch (error) {
-    console.error(error)
+    sweetAlertMixin('error', 'No se pudo modificar, intente nuevamente')
+    return error.response
   }
 }
 
 export const privateGET = async (path, id) => {
   try {
     if (id != null) {
-      const response = await axios.get(`${path}/${id}`, config)
+      const response = await axios.get(`${path}/${id}`)
       return response.data
     } else {
-      const response = await axios.get(`${path}`, config)
+      const response = await axios.get(`${path}`)
       return response.data
     }
   } catch (error) {
-    console.error(error)
+    sweetAlertMixin('error', 'Hubo un error, intente nuevamente.')
+    return error.response.data
   }
 }
 
 export const privatePOST = async (path, body) => {
   try {
-    const response = await axios.post(path, body, config)
-    return response
-    
+    const response = await axios.post(path, body)
+    return response.data
   } catch (error) {
-    console.error('Hubo un error al hacer la petición');
-    console.log(error);
+
+    if(error.response.data.errors.email){
+      sweetAlertMixin('error', 'El email ya se encuentra registrado')
+    }else{
+      sweetAlertMixin('error', 'El dato no se pudo guardar, intente nuevamente')
+    }
+    return error.response
   }
 }
 
 export const privateDelete = async (path, id) => {
-  try{
-
-    const response = await axios.delete(`${path}/${id}`, config)
+  try {
+    const response = await axios.delete(`${path}/${id}`)
     return response.data
 
   }catch(error){
-    console.error(error)
+    sweetAlertMixin('error', 'No se pudo eliminar, intente nuevamente')
+    return error.response
   }
 }
 
-
 export default privateGET
+
