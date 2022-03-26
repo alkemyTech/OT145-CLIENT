@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Box, Typography, Divider } from '@mui/material';
-import { useStyles } from './Styles/headerStyles';
+import { AppBar, Toolbar, Box, Typography, Button } from '@mui/material';
+import useStyles from '../School/StyledAppBar';
 
 
 const Header = () => {
@@ -9,25 +9,27 @@ const Header = () => {
 
   return (
     <>
-      <AppBar className={classes.appbar} color='primary'>
-          <Toolbar>
-              <Box className={classes.container__logoCampaing}>
-                <img src="/images/Logotipo-campaña-juguetes.png" alt="Campaing Logo" className={classes.img__logoCampaing} />
+    <div className={classes.line}></div>
+    <AppBar position="static" className={classes.appBar}>
+    <Toolbar className={classes.toolB} >
+    <Box className={classes.boxLogoDeOng}>
+    <img src="/images/LOGO-SOMOS-MAS.png" alt="Ong Logo" width="100"  />
+                
               </Box>
-            
-              <Divider orientation='vertical' variant="middle" flexItem className={classes.divider}/>
-
+          
+              <Box className={classes.boxLogoDeCampana}>
+              <img src="/images/Logotipo-campaña-juguetes.png" alt="Campaing Logo" className={classes.logoDeCampaña}/>
+              </Box>
               <Box>
-                <img src="/images/LOGO-SOMOS-MAS.png" alt="Ong Logo" className={classes.logoOng}/>
-              </Box>
-              
-                <Typography variant='h6' className={classes.slogan}>
-                  Juguetes por mas sonrisas.
-                </Typography>
+      <Button variant="contained"sx={{ size: { xs: 'medium', md: 'large' } }}  className={classes.button}>DONA HOY!</Button>
+    </Box>
           </Toolbar>
+          <Typography className={classes.slogan}>
+        Juguetes por mas sonrisas.
+    </Typography>
       </AppBar> 
     </>
   );
 }
- 
+
 export default Header;

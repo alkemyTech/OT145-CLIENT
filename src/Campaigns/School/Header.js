@@ -20,11 +20,9 @@ const Header = () => {
           </Box>
           <Box className={classes.boxLogoDeCampana}>
             <img src="images/logotipoCampañaEscuela.png" alt=""  className={classes.logoDeCampaña} />
-          </Box>
-        {/*   <Divider orientation="vertical" variant="middle" flexItem className={classes.divider} /> */}
-         
+          </Box> 
           <Box>
-            <Button variant="contained" size='large' className={classes.button}>DONA HOY!</Button>
+            <Button variant="contained"sx={{ size: { xs: 'medium', md: 'large' } }}  className={classes.button}>DONA HOY!</Button>
           </Box>
          
         </Toolbar>

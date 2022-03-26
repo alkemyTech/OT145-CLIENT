@@ -2,9 +2,16 @@ import React from 'react';
 import Slider from "./Slider"
 import {Box ,Typography} from '@mui/material'
 import useStyles from './styles/contentStyle'
+import CountDown from '../Toys/CountDown'
+
+const texts = {
+    titleSchool: 'CAMPAÑA DE RECOLECCIÓN DE ÚTILES ESCOLARES',
+   
+  }
 
 const Content = () => {
   const classes = useStyles();
+  
   return (
     <div>
       <Slider />
@@ -15,10 +22,14 @@ const Content = () => {
           </Typography>
         </Box>
         <Box className={classes.boxTitle}>
-          <Typography className={classes.subtitle}>
-          La cita sera el dia 14 de agosto del 2022 en Facultad de derecho de la ciudad de Buenos Aires.
-         </Typography>
-         <Typography>Todavía tenés tiempo, quedan </Typography>
+        
+        <Box className={classes.containerBox}>
+        <Typography className={classes.titleCamp}>{texts.titleSchool}</Typography> 
+        <div>
+        <CountDown />
+        </div>
+     
+    </Box>
         </Box>
 
       </Box>

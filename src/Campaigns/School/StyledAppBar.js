@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
 
   boxLogoDeCampana: {
     borderRadius: '50%',
-   /*  backgroundColor: '#f5f5f5', */
     width: '100px',
     height: '100px',
     display: 'flex',
@@ -21,17 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   logoDeCampaña: {
-    width: '70px',
     height: '70px',
   },
-
-  divider: {
-    backgroundColor:'white',
-    width: '1px',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    }
-  },
+ 
 
   boxLogoDeOng: {
     margin: '0px 0px 0px 20px',
@@ -42,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
   slogan: {
     padding: '3px 0px 3px 0px',
-  textAlign: 'center',
+    textAlign: 'center',
     backgroundColor:"#EC4C4C",
     fontSize: '1.5rem',
     fontWeight: '700',

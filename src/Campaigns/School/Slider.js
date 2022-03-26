@@ -12,9 +12,6 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 // Images
-import Foto6 from "./images/Foto6.jpg";
-import Foto7 from "./images/Foto7.jpg";
-import Manos10 from "./images/Manos10.jpg";
 import pencils from "./images/pencils.png";
 import kids from "./images/kids.png";
 import crayolas from "./images/crayolas.png";
@@ -25,7 +22,6 @@ import useStyles from "./styles/sliderStyles.js";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Slide = ({
-	description = "slide description",
 	imgLabel = "imageLabel",
 	imgSrc = null,
 }) => {
