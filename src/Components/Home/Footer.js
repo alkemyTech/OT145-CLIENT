@@ -4,10 +4,11 @@ import { Box } from "@mui/system";
 import { Container, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Newsletter from './Newsletter';
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
+
 
 export default function Footer() {
-	const { isLogin } = useSelector(state => state.auth)
+	const {isLogin} = useSelector(state => state.auth)
 	function getData() {
 		// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
 
@@ -47,8 +48,7 @@ export default function Footer() {
 
 	return (
 		<div className={classes.insideContainer}>
-			{isLogin &&
-				<Newsletter/>}
+			{isLogin && <Newsletter/>}
 			<Box className={classes.footerContainer}>
 				<Container>
 					<Box className={classes.footer}>
