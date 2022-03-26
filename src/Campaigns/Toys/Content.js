@@ -15,7 +15,7 @@ const Content = () => {
     <div>
         <div>
     
-      <Box className={classes.bigBox}>
+      <Box className={classes.bigBoxToys}>
         <Box className={classes.boxTitle}>
           <Typography className={classes.title}>
             Recibimos juguetes para repartir en nuestra red de escuelas.
@@ -23,7 +23,7 @@ const Content = () => {
         </Box>
         <Box className={classes.boxTitle}>
         
-        <Box className={classes.containerBox}>
+        <Box className={classes.containerBoxToys}>
         <Typography className={classes.titleCamp}>{texts.titleSchool}</Typography> 
         <div>
         <CountDown />

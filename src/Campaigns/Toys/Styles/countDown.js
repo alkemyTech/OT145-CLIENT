@@ -9,6 +9,9 @@ export const useStyles = makeStyles((theme) =>
       color: '#350D0D',
       fontWeight: '700',
     },
+    subtx:{
+      fontWeight: '700',
+    },
    
-   } )
+   })
 );

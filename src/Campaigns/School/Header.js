@@ -22,7 +22,7 @@ const Header = () => {
             <img src="images/logotipoCampañaEscuela.png" alt=""  className={classes.logoDeCampaña} />
           </Box> 
           <Box>
-            <Button variant="contained"sx={{ size: { xs: 'medium', md: 'large' } }}  className={classes.button}>DONA HOY!</Button>
+            <Button variant="contained"sx={{ size: { sm: 'medium', lg: 'large' } }}  className={classes.button}>DONA HOY!</Button>
           </Box>
          
         </Toolbar>

@@ -30,7 +30,7 @@ const News = () => {
   const dispatch = useDispatch()
   const { loading, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
-  console.log(news)
+  console.log(news[0])
 
   useEffect(() => {
     dispatch(getNews())
@@ -55,7 +55,7 @@ const News = () => {
           />
         ) : (
           <>
-            <Title title={NewsMock.title} imgSrc={NewsMock.image} />
+            <Title title={news[0].name} imgSrc={news[0].image} />
             <Container>
               {loading ? (
                 <Spinner color={'#C63A3B'} />

@@ -39,12 +39,27 @@ const useStyles = makeStyles(theme => ({
     fontWeight: '700',
     [theme.breakpoints.down('md')]: {
       display: 'none',
-    }
+    },
   },
+    sloganToys: {
+      padding: '3px 0px 3px 0px',
+      textAlign: 'center',
+      backgroundColor:"#5FCDC1",
+      fontSize: '1.5rem',
+      fontWeight: '700',
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+        },
+      },
   line:{
     width: '100%',
     height: '1em',
     backgroundColor:"#EC4C4C",
+  },
+  lineToys:{
+    width: '100%',
+    height: '1em',  
+    backgroundColor:'#5FCDC1',
   },
   toolB:{
     display: 'flex',

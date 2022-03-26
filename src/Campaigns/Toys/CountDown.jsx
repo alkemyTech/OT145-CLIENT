@@ -47,7 +47,7 @@ const CountDown = () => {
 
   return (
       <>
-         <Typography >
+         <Typography className={classes.subtx} >
             La cita sera el dia 14 de agosto del 2022 en Facultad de derecho de la ciudad de Buenos Aires</Typography>
           <Typography className={classes.number}>Quedan {days} Días, {hours} Horas y {minutes} Minutos</Typography>
     </>

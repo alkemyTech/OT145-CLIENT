@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-    <div className={classes.line}></div>
+    <div className={classes.lineToys}></div>
     <AppBar position="static" className={classes.appBar}>
     <Toolbar className={classes.toolB} >
     <Box className={classes.boxLogoDeOng}>
@@ -24,7 +24,7 @@ const Header = () => {
       <Button variant="contained"sx={{ size: { xs: 'medium', md: 'large' } }}  className={classes.button}>DONA HOY!</Button>
     </Box>
           </Toolbar>
-          <Typography className={classes.slogan}>
+          <Typography className={classes.sloganToys}>
         Juguetes por mas sonrisas.
     </Typography>
       </AppBar> 
