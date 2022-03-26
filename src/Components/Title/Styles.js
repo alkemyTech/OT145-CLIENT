@@ -8,8 +8,8 @@ const useStyles = makeStyles({
     }),
     title: {
         textTransform: 'uppercase',
-        fontWeight: '600',
-        padding: '10px'
+        padding: '10px',
+        fontWeight: '700',
     }
 })
 

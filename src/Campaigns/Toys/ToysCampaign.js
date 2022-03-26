@@ -10,10 +10,8 @@ const ToysCampaign = () => {
     <>
       <Header />
       <Slider />
-      <CountDown />
       <Content />
       <Footer />
-      
     </>
   );
 }

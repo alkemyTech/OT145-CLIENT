@@ -30,7 +30,6 @@ const News = () => {
   const dispatch = useDispatch()
   const { loading, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
-  console.log(news)
 
   useEffect(() => {
     dispatch(getNews())

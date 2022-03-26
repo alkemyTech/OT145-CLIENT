@@ -4,9 +4,10 @@ export const useStyles = makeStyles((theme) => ({
     container: {
         display:'flex',
         width:'100%',
-        position: 'absolute',
-        bottom: 0,
-        backgroundColor:'#cfcccc'
+        /* position: 'absolute',
+        bottom: 0, */
+        backgroundColor:'#FFF',
+        padding: "10px",
       },
     
     logo: {
@@ -42,13 +43,14 @@ export const useStyles = makeStyles((theme) => ({
     },
     
     a_Campaings:{
-        [theme.breakpoints.down('lg')]: {
+        textDecoration: 'none',
+        [theme.breakpoints.down('md')]: {
             display: 'none',
         },
         [theme.breakpoints.up('lg')]:{
             maxWidth: '40%',
             color:'inherit',
-            textDecoration: 'none'
+            
         },
     },
     typographyFb:{
