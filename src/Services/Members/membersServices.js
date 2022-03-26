@@ -1,4 +1,4 @@
-import privateGET, { privatePATCH, privatePOST, privatePUT, privateDELETE } from '../privateApiService'
+import privateGET, { privatePATCH, privatePOST, privatePUT, privateDelete } from '../privateApiService'
 
 const MEMBERS_URL = process.env.REACT_APP_API_GET_MEMBERS
 
@@ -23,7 +23,7 @@ const putMember = (id, body) => {
 }
 
 const deleteMember = (id) => {
-    return privateDELETE(MEMBERS_URL, id)
+    return privateDelete(MEMBERS_URL, id)
 }
 
 export { getAllMembers, getMemberById, postMember, patchMember, putMember, deleteMember }
