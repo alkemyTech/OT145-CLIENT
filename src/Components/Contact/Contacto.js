@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Typography, Container } from '@mui/material'
 import DecorativeLine from './../DecorativeLine/DecorativeLine'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import useStyles from './contactoStyles'
 import Title from './../Title/Title'
+import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const contactoInfo = {
   title: 'Contacto',
@@ -18,6 +20,15 @@ const contactoInfo = {
 
 const Contacto = () => {
   const classes = useStyles()
+  const {rol_type} = useSelector(state =>state.auth)
+  const history = useHistory()
+
+  useEffect(()=> {
+    if(rol_type === "Admin"){
+      history.push("/")
+    }
+  },[rol_type])
+
   return (
     <>
       <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
