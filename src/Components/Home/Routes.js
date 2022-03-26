@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { Route, Switch, useRouteMatch, Redirect } from "react-router-dom";
+import { Route, Switch, useRouteMatch, Redirect, useLocation } from "react-router-dom";
 import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
 import PrivateRoutes from '../../backOffice/PrivateRoutes'
@@ -18,7 +18,9 @@ const DetalleActividad = lazy(() =>
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
 
+
 export default function Routes() {
+
   let match = useRouteMatch();
   return (
     <LayoutHome>
@@ -31,11 +33,7 @@ export default function Routes() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
-        <PrivateRoutes
-          exact
-          path="/register"
-          component={RegisterForm}
-        />
+        <PrivateRoutes exact path="/register" component= {RegisterForm}/>
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>

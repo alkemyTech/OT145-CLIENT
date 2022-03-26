@@ -1,17 +1,18 @@
 import { Route, Redirect } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
-import { useEffect, useState} from 'react'
+import { useEffect } from 'react'
 import { authMe } from '../redux/usersReducer/action'
+
 const PrivateRoutes = ({ component: Component, path,rol,  ...rest }) => {
   const dispatch = useDispatch();
-  const { rol_type, user,token } = useSelector(state => state.auth)
+  const { rol_type, token, user } = useSelector(state => state.auth)
+
+  console.log(user, rol_type)
+  useEffect(()=> {
+    dispatch(authMe(token))
+  }, [])
 
   let entrar = false;
-  console.log(path)
-
-  /*useEffect(()=> {
-    dispatch(authMe(token))
-  },[])*/
 
   switch (rol_type) {
     case 'Admin':
