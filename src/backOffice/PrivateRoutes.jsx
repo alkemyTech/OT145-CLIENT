@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { authMe } from '../redux/usersReducer/action'
 const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
   const dispatch = useDispatch();
-  const { rol_type, user,token } = useSelector(state => state.auth)
+  const { rol_type, token } = useSelector(state => state.auth)
 
   useEffect(()=> {
     dispatch(authMe(token))
@@ -15,7 +15,7 @@ const PrivateRoutes = ({ component: Component, rol, ...rest }) => {
       {...rest}
       render={
         (props) => (
-          (rol_type === rol && user )
+          (rol_type === rol )
             ? (
               <Component {...props} />
             ) : (
