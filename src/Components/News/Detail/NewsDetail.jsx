@@ -21,9 +21,9 @@ const NewsDetail = () => {
 
   return (
     <div>
-      <Title title={newsId.name} imageUrl={newsId.image} />
       <Box component="div" className={classes.container}>
         <Box component="div" className={classes.content}>
+          <Typography variant="h4">{newsId.name}</Typography>
           <Typography variant="body1" className={classes.typographySize}>
             {newsId.content}
           </Typography>
