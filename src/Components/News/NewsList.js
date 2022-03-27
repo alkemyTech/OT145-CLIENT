@@ -6,8 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { Container, Grid } from '@mui/material'
 import useStyles from './styles/novedadesStyles';
 
-
-
 const NewsList = () => {
   const classes = useStyles()
   const [news, setNews] = useState([])

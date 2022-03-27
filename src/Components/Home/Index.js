@@ -4,6 +4,7 @@ import NewsList from '../News/NewsList'
 import React, { useState } from 'react'
 import Spinner from '../../shared/Spinner/Spinner'
 import ShowModal from '../../Utils/AlertsProps'
+import ActivitiesList from '../Activities/ActivitiesList'
 
 const Home = () => {
   const [loading, setloading] = useState(false)
@@ -22,6 +23,7 @@ const Home = () => {
       <HomeTitle />
       <Slide />
       <NewsList />
+      <ActivitiesList />
     </>
   )
 }

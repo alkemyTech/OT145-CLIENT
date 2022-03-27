@@ -1,10 +1,10 @@
 import parse from 'html-react-parser';
 
-const ActivityContent = ({ content }) => {
+const ActivityContent = ({ content, className }) => {
     return (
-        <div>
+        <>
             {parse(content)}
-        </div>
+        </>
     )
 }
 
