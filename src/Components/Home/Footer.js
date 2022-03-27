@@ -31,7 +31,7 @@ export default function Footer() {
 			navigationItems: [
 				{
 					name: "Actividades",
-					url: "/Actividades",
+					url: "/activities",
 				},
 				{
 					name: "Novedades",
