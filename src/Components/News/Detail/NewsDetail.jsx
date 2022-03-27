@@ -17,8 +17,6 @@ const NewsDetail = () => {
     dispatch(getNewsById(params.id))
   }, [])
 
-  console.log(11, newsId)
-
   return (
     <div>
       <Box component="div" className={classes.container}>
