@@ -14,18 +14,16 @@ import { useDispatch } from 'react-redux'
 const nosotrosMockInfo = {
   title: 'Nosotros',
   text:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    'Somos una organización independiente, nos autofinanciamos. Por lo tanto tu aporte sostenido en el tiempo nos permite analizar y proyectar con anticipación cómo brindarle oportunidades a cada familia de la forma más eficiente. Son un enorme sostén para nosotros y para las familias en necesidad de una vivienda adecuada. Nuestra visión es construir una cultura de la solidaridad centrada en la persona y en la necesidad de lograr mejores y más dignas condiciones de vida, de trabajo, de libertad y de participación social para todos. Nuestra aspiración es reforzar las capacidades de cada persona movilizando los recursos existentes, mediante el apoyo de una organización ágil y eficiente, dando protagonismo a la sociedad civil y promoviendo el verdadero desarrollo.',
   image:
-    'https://res.cloudinary.com/danb0chax/image/upload/v1645801942/SomosMas/Foto_6_1_dzfrhc.jpg'
+    'https://res.cloudinary.com/danb0chax/image/upload/v1648403877/SomosMas/Mask_group_i1m8td.png',
 }
-
 
 const Nosotros = () => {
   const dispatch = useDispatch()
-  const { members } = useSelector(state => state.members)
-  const [loading, setloading] = useState(false);
-  const [error, seterror] = useState(false);
-
+  const { members } = useSelector((state) => state.members)
+  const [loading, setloading] = useState(false)
+  const [error, seterror] = useState(false)
 
   useEffect(() => {
     dispatch(getMembers())
@@ -48,6 +46,6 @@ const Nosotros = () => {
         <DecorativeLine />
       </Container>
     </>
-  );
+  )
 }
 export default Nosotros
