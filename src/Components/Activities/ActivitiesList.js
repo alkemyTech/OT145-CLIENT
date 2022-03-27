@@ -1,35 +1,55 @@
-import React from 'react';
-import '../CardListStyles.css';
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react'
+import { getAllActivities } from '../../Services/Home'
+import CardComponent from '../Card/CardComponent';
+import DecorativeLine from '../DecorativeLine/DecorativeLine';
+import { useHistory } from 'react-router-dom';
+import { Container, Grid } from '@mui/material'
+import useStyles from './Styles/StyledAct'
 
 const ActivitiesList = () => {
+    const classes = useStyles()
+    const [activities, setActivities] = useState([])
+    const history = useHistory()
 
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+    const handleSubmit = (name, id) => {
+        history.push(`/activities/${id}`, { title: name })
+      }
+
+      useEffect(() => {
+        const getData = async () => {
+          const { data } = await getAllActivities();
+          setActivities(data);
+        }
+        getData();
+    }, [])
+
+    const lastActivities = activities.slice(-6)
+
     return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                                <Link to={`/Actividades/${activity.id}`}>ir a la actividad</Link>
-                            </li>
-                        )       
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
+        <div >
+          <h2>Ultimas Actividades</h2>
+          <Container className={classes.containerThree}>
+            <Grid container className={classes.cardList}>
+              {lastActivities.map((row) => {
+                return (
+                  <div key={row.id}>
+    
+                    <CardComponent
+                      key={row.id}
+                      title={row.name}
+                      image={row.image}
+                      description={row.description}
+                      leerMasLink={() => handleSubmit(row.name, row.id)}
+                    />
+                  </div>
+                )
+              })}
+            </Grid>
+          </Container>
+          <DecorativeLine />
+    
         </div>
-    );
+      );
 }
  
 export default ActivitiesList;

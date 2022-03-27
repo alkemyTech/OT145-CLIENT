@@ -1,63 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import ShowModal from '../../../Utils/AlertsProps'
-import Spinner from '../../../shared/Spinner/Spinner'
+import { useSelector, useDispatch } from 'react-redux'
+import { Box } from '@mui/material'
 import useStyles from '../Styles/StyledAct'
-import Actividad from './Actividad'
-import { privateGET } from '../../../Services/privateApiService'
-
+import Title from '../../Title/Title'
+import { getActivityById } from '../../../redux/Activities/activitySlice'
+import ActivityContent from '../AntivityContent'
+import Spinner from '../../../shared/Spinner/Spinner'
 
 const DetalleActividad = () => {
     const classes = useStyles();
-    const { id } = useParams()
-    //constantes de prueba hasta tener los endpoints
-    const [actividad, setActividad] = useState({
-        loading: true,
-		data: [],
-		error: '',
-    })
+	const dispatch = useDispatch()
+	const { activitiesId, status} = useSelector((state) => state.activities)
+	const params = useParams()
+	console.log(status)
 
-    useEffect(() => {
-		try {
-			;(async () => {
-				const response = await privateGET(`https://ongapi.alkemy.org/api/activities/${id}`)
-				if (response.success) {
-					setActividad({
-						...actividad,
-						data: response.data,
-						loading: false,
-					})
-				} else {
-					setActividad({
-						...actividad,
-						error: response.error,
-						loading: false,
-					})
-				}
-			})()
-		} catch (error) {
-			setActividad({ ...actividad, error: error, loading: false })
-		}
-	}, [])
+	useEffect(() => {
+		dispatch(getActivityById(params.id))
+	  }, [dispatch])
 
-    if (actividad.loading) {
-		return (
-			<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div>
-		)
-	}
-
-	if (actividad.error) {
-		return <ShowModal
-        icon= "error"
-        title= "Oooops..."
-        text= "Error al cargar"
-        footer= "Intente nuevamente"
-        />
-	}
-
-    return (
-        <Actividad key={actividad.data.id} titulo={actividad.data.name} descripcion={actividad.data.description} />
-    )
+	  return (
+		<div>
+		  <Title title={activitiesId.name} imageUrl={activitiesId.image} />
+		  {status !== 'success' ? (
+			  <Spinner color={'#C63A3B'} />
+		  ) : (
+			<Box component="div" className={classes.container}>
+			<Box component="div" className={classes.content}>
+				  	<ActivityContent className={classes.typographySize} content={activitiesId.description} />
+			</Box>
+			<Box component="div" className={classes.image}>
+			  <img src={activitiesId.image} alt={activitiesId.name} className={classes.photo} />
+			</Box>
+		  </Box>
+		  )}
+		</div>
+	  )
 }
 
 export default DetalleActividad

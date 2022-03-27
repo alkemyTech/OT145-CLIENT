@@ -40,7 +40,7 @@ export const privatePATCH = async (path, id, body) => {
   }
 }
 
-export const privateGET = async (path, id) => {
+const privateGET = async (path, id) => {
   try {
     if (id != null) {
       const response = await axios.get(`${path}/${id}`)

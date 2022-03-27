@@ -7,11 +7,11 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.8rem !important',
     },
   },
-  cardList:{
+  cardList: {
     justifyContent: 'flex-start',
     columnGap: '60px',
+    marginBottom: '35px',
   },
-
   iconButton: {
     cursor: 'pointer',
     position: 'end',
@@ -45,9 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
   containerThree:{
     marginBottom: '40px'
-
-
-
   }
  
 }))
