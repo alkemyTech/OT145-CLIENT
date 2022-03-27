@@ -7,7 +7,7 @@ import { Login } from "@mui/icons-material";
 // const Donacion = lazy(() => import('./Components/Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import("./Index"));
-const Actividades = lazy(() => import("../Activities/Actividades"));
+const Activities = lazy(() => import("../Activities/Actividades"));
 const News = lazy(() => import("../News/News"));
 const NewsDetail = lazy(() => import("../News/Detail/NewsDetail"));
 const Nosotros = lazy(() => import("../About/Nosotros"));
@@ -27,8 +27,8 @@ export default function Routes() {
       <Switch>
         <Route exact path={`${match.path}`} component={Home} />
         <Route exact path={`${match.path}nosotros`} component={Nosotros} />
-        <Route exact path="/Actividades" component={Actividades} />
-        <Route exact path="/Actividades/:id" component={DetalleActividad} />
+        <Route exact path="/activities" component={Activities} />
+        <Route exact path="/activities/:id" component={DetalleActividad} />
         <Route exact path="/news/:id" component={NewsDetail} />
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />

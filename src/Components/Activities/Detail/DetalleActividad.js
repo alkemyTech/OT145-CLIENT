@@ -1,46 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import ShowModal from '../../../Utils/AlertsProps'
-import Spinner from '../../../shared/Spinner/Spinner'
+import { useSelector, useDispatch } from 'react-redux'
+import { Box } from '@mui/material'
 import useStyles from '../Styles/StyledAct'
-import Actividad from './Actividad'
-import findId from './findId'
-
-
+import Title from '../../Title/Title'
+import { getActivityById } from '../../../redux/Activities/activitySlice'
+import ActivityContent from '../AntivityContent'
+import Spinner from '../../../shared/Spinner/Spinner'
 
 const DetalleActividad = () => {
     const classes = useStyles();
-    //constantes de prueba hasta tener los endpoints
-    const loading = true;
-    const error = false;
+	const dispatch = useDispatch()
+	const { activitiesId, status} = useSelector((state) => state.activities)
+	const params = useParams()
+	console.log(status)
 
-    const { id } = useParams()
-    const [actividad, setActividad] = useState([])
-    const activitiesMock = [
-        { id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-        { id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba' },
-        { id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba' }
-    ];
+	useEffect(() => {
+		dispatch(getActivityById(params.id))
+	  }, [dispatch])
 
-    useEffect(() => {
-        setActividad(...actividad, [findId(activitiesMock, id)]);
-    }, [id])
-    return (
-        <>
-            {loading?<div className={classes.contSpinner}><Spinner color="#F00F00" height={60} width={60}/></div> :(error? 
-                <ShowModal
-                icon= "error"
-                title= "Oooops..."
-                text= "Error al cargar"
-                footer= "Intente nuevamente"
-                /> :
-                <div>
-                    {actividad.length !== 0 && actividad.map(({ id, name, description }) => (
-                    <Actividad key={id} titulo={name} descripcion={description} />))}
-                </div>
-                )}
-        </>
-    )
+	  return (
+		<div>
+		  <Title title={activitiesId.name} imageUrl={activitiesId.image} />
+		  {status !== 'success' ? (
+			  <Spinner color={'#C63A3B'} />
+		  ) : (
+			<Box component="div" className={classes.container}>
+			<Box component="div" className={classes.content}>
+				  	<ActivityContent className={classes.typographySize} content={activitiesId.description} />
+			</Box>
+			<Box component="div" className={classes.image}>
+			  <img src={activitiesId.image} alt={activitiesId.name} className={classes.photo} />
+			</Box>
+		  </Box>
+		  )}
+		</div>
+	  )
 }
 
 export default DetalleActividad
