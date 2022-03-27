@@ -1,22 +1,27 @@
-import { Container, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
-import useStyles from "./Styles";
-import Logo from "../../image/logoSomosMas.png"
+import { Container, Typography } from '@mui/material'
+import { Box } from '@mui/system'
+import React from 'react'
+import useStyles from './Styles'
+import Logo from '../../image/logoSomosMas.png'
 
 export default function Title({ imgSrc = Logo, title }) {
-	let isLogo = (imgSrc !== Logo) ? false : true
+  let isLogo = imgSrc !== Logo ? false : true
 
-	const classes = useStyles({isLogo: isLogo});
+  const classes = useStyles({ isLogo: isLogo })
 
-	return (
-		<>
-			<Box component='img' className={classes.backgroundImage} src={imgSrc} alt={title} />
-			<Container>
-					<Typography variant="h3" className={classes.title}>
-						{title}
-					</Typography>
-			</Container>
-		</>
-	);
+  return (
+    <>
+      <Box
+        component="img"
+        className={classes.backgroundImage}
+        src={imgSrc}
+        alt={title}
+      />
+      <Container>
+        <Typography variant="h4" className={classes.title}>
+          {title}
+        </Typography>
+      </Container>
+    </>
+  )
 }
