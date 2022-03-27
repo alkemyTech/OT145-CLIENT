@@ -13,8 +13,6 @@ import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { cerrarSesion } from '../../redux/usersReducer/action'
 import { useHistory } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useState } from 'react'
 
 const Header = () => {
   const history = useHistory()
@@ -91,7 +89,11 @@ const Header = () => {
               </Typography>
             </NavLink>
           )}
-
+          {isLogin && rol_type === 'Standard' && (
+            <NavLink to="/donation">
+              <Button>Donar</Button>
+            </NavLink>
+          )}
           <Box className={classes.boxLink}>
             <NavLink
               exact
@@ -100,7 +102,7 @@ const Header = () => {
               activeClassName={classes.active}
             >
               <Typography
-                variant="subtitle2"
+                variant="subtitle1"
                 className={classes.typographyLinks}
               >
                 Inicio
@@ -113,21 +115,21 @@ const Header = () => {
               activeClassName={classes.active}
             >
               <Typography
-                variant="subtitle2"
+                variant="subtitle1"
                 className={classes.typographyLinks}
               >
                 Nosotros
               </Typography>
             </NavLink>
 
-            {isContacto && (
+            {isLogin && rol_type === 'Admin' ? null : (
               <NavLink
                 to="/Contacto"
                 className={classes.links}
                 activeClassName={classes.active}
               >
                 <Typography
-                  variant="subtitle2"
+                  variant="subtitle1"
                   className={classes.typographyLinks}
                 >
                   Contacto
@@ -143,7 +145,7 @@ const Header = () => {
                 activeClassName={classes.active}
               >
                 <Typography
-                  variant="subtitle2"
+                  variant="subtitle1"
                   className={classes.typographyLinks}
                 >
                   {value.name}
