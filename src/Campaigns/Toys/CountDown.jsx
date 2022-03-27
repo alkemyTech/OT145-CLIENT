@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useStyles } from "./Styles/countDown";
-import { Typography} from "@mui/material";
+import { Typography, Box} from "@mui/material";
 
 const CountDown = () => {
+  
+
   const dateTarget = new Date("08/14/2022 4:00 PM");
 
   const [days, setDays] = useState("");
@@ -44,16 +46,11 @@ const CountDown = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.containerBox}>
-      <div className={classes.containerDescription}>
-      <Typography variant="h6" className={classes.typographySize}>Campaña de Recoleccion de juguetes</Typography>
-            <p className={classes.typographySize}>Lleva un juguete nuevo o usado para un niño
-            La cita sera el dia 14 de agosto del 2022 en Facultad de derecho de la ciudad de Buenos Aires</p>
-      </div>
-      <div className={classes.ContainerCountDown}>
-          <p className={classes.CountDownTypography}>Quedan {days} Días {hours} Horas {minutes} Minutos</p>
-      </div>
-    </div>
+      <>
+         <Typography className={classes.subtx} >
+            La cita sera el dia 14 de agosto del 2022 en Facultad de derecho de la ciudad de Buenos Aires</Typography>
+          <Typography className={classes.number}>Quedan {days} Días, {hours} Horas y {minutes} Minutos</Typography>
+    </>
   );
 };
 

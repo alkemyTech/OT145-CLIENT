@@ -31,7 +31,6 @@ const News = () => {
   const dispatch = useDispatch()
   const { loading, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
- 
 
   useEffect(() => {
     dispatch(getNews())
@@ -41,7 +40,6 @@ const News = () => {
   const history = useHistory()
   const handleSubmit = (name, id) => {
     history.push(`/news/${id}`, { id: news.id })
-   
   }
 
   return (

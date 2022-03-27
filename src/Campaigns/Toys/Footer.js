@@ -33,8 +33,11 @@ const Footer = () =>  {
                   <Typography variant='subtitle1' className={classes.typographyIg}>Instagram</Typography>
               </a>
           </div>
-          <Link to='/toys-campaign' className={classes.a_Campaings}>
-              <Typography variant='subtitle1' className={classes.typographyRedes}> Toys Campaign </Typography> 
+          <Link to='/school-campaign' className={classes.a_Campaings}>
+              <Typography variant='subtitle1' className={classes.typographyRedes}> School Campaign </Typography> 
+          </Link>
+          <Link to='/' className={classes.a_Campaings}>
+              <Typography variant='subtitle1' className={classes.typographyRedes}> Home </Typography> 
           </Link>
 
       </div>
