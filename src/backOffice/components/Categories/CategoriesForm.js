@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStyles from '../../styles/newsFormStyles'
-import { TextField, Button, IconButton,   Container, Paper, Typography, Box, } from "@mui/material";
+import { TextField, Button,  Container, Paper, Typography, Box } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
@@ -10,7 +10,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../shared/Spinner/Spinner';
 import { sweetAlertMixin } from "../../../Utils/AlertState";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 
@@ -83,12 +83,6 @@ const CategoriesForm = () => {
 
 	return (
 		<Container className={classes.container}>	
-			<IconButton 
-				component="span"
-				className={classes.buttonBack}
-				onClick={()=>history.push('/backoffice/categories')}>
-				<ArrowBackIcon className={classes.iconButtonBack}/>
-			</IconButton>
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<Paper className={classes.paper} elevation={5}>
 					<Typography className={classes.title} variant="h5">{categoriesById ? 'Editar Categoria' : 'Crear Categoria'}</Typography>
@@ -130,6 +124,15 @@ const CategoriesForm = () => {
 						{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
 					</Button>
 				</Paper>
+				<Box className={classes.finalLink}>
+					<Button
+						variant="contained"
+						color="secondary"
+						onClick={() => history.goBack()}
+					>
+						Volver a la lista
+					</Button>
+				</Box>
 			</form>
 		</Container>
 	);
