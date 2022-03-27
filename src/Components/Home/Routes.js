@@ -2,9 +2,9 @@ import React, { lazy } from "react";
 import { Route, Switch, useRouteMatch, Redirect, useLocation } from "react-router-dom";
 import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
-import PrivateRoutes from '../../backOffice/PrivateRoutes'
-import { Login } from "@mui/icons-material";
-// const Donacion = lazy(() => import('./Components/Donations/Donacion'))
+
+import { useSelector } from "react-redux";
+const Donacion = lazy(() => import('../Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import("./Index"));
 const Activities = lazy(() => import("../Activities/Actividades"));
@@ -20,7 +20,6 @@ const LoginForm = lazy(() => import("../Auth/LoginForm"));
 
 
 export default function Routes() {
-
   let match = useRouteMatch();
   return (
     <LayoutHome>
@@ -33,7 +32,8 @@ export default function Routes() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
-        <PrivateRoutes exact path="/register" component= {RegisterForm}/>
+        <Route exact path="/register" component= {RegisterForm}/>
+        <Route exact path="/donation" component={Donacion} />
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>

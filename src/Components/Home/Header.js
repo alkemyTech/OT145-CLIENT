@@ -21,7 +21,6 @@ const Header = () => {
   const dispatch = useDispatch()
   const { isLogin, rol_type } = useSelector((state) => state.auth)
   const classes = useStyles()
-  const [isContacto, setIsContacto] = useState(false)
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
@@ -47,14 +46,6 @@ const Header = () => {
     dispatch(cerrarSesion())
     history.push('/')
   }
-
-  useEffect(() => {
-    if (isLogin && rol_type === 'Admin') {
-      setIsContacto(false)
-    } else {
-      setIsContacto(true)
-    }
-  }, [isLogin, rol_type])
 
   return (
     <AppBar position="static" className={classes.appbar}>
