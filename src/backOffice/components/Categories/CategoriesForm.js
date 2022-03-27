@@ -91,6 +91,7 @@ const CategoriesForm = () => {
 			</IconButton>
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<Paper className={classes.paper} elevation={5}>
+					<Typography className={classes.title} variant="h5">{categoriesById ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
 					<TextField
 						className={classes.inputs}
 						name="name"
