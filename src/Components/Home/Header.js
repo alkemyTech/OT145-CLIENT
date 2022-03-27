@@ -20,9 +20,8 @@ import { useState } from 'react';
 const Header = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { isLogin , rol_type } = useSelector(state => state.auth)
+  const { isLogin, rol_type } = useSelector(state => state.auth)
   const classes = useStyles();
-  const [isContacto,setIsContacto] = useState(false)
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
   const handleOpenNavMenu = (event) => {
@@ -51,73 +50,69 @@ const Header = () => {
     history.push("/");
   }
 
-  useEffect(()=>{
-    if(isLogin && rol_type==="Admin"){
-      setIsContacto(false)
-    }
-    else{
-      setIsContacto(true)
-    }
-  },[isLogin,rol_type])
 
   return (
-      <AppBar position="static" className={classes.appbar} >
-        <Toolbar disableGutters>
+    <AppBar position="static" className={classes.appbar} >
+      <Toolbar disableGutters>
 
-          <Box>
-            <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm} />
-          </Box>
-          <Box className={classes.styledBoxMd}>
-            {!localStorage.getItem("token") ? <Box className={classes.boxLogin}>
-              <NavLink to="/login" className={classes.links}>
-                <Button variant="contained" size='small' color='secondary' className={classes.button}>
-                  Login
-                </Button>
-              </NavLink>
-              <NavLink to="/register" className={classes.links}>
-                <Button variant='outlined' color='secondary' size='small' className={classes.button}  >
-                  Registrate
-                </Button>
-              </NavLink>
-            </Box> :
-              <Button onClick={handleClick}>Cerrar sesión</Button>
-            }
-            {isLogin && rol_type==='Admin' &&
-              <NavLink to="/backoffice" className={classes.links}>
+        <Box>
+          <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosm} />
+        </Box>
+        <Box className={classes.styledBoxMd}>
+          {!localStorage.getItem("token") ? <Box className={classes.boxLogin}>
+            <NavLink to="/login" className={classes.links}>
+              <Button variant="contained" size='small' color='secondary' className={classes.button}>
+                Login
+              </Button>
+            </NavLink>
+            <NavLink to="/register" className={classes.links}>
+              <Button variant='outlined' color='secondary' size='small' className={classes.button}  >
+                Registrate
+              </Button>
+            </NavLink>
+          </Box> :
+            <Button onClick={handleClick}>Cerrar sesión</Button>
+          }
+          {isLogin && rol_type === 'Admin' &&
+            <NavLink to="/backoffice" className={classes.links}>
               <Typography className={classes.linkBack}>
                 Ir a backoffice
               </Typography>
             </NavLink>
-            }
+          }
+          {(isLogin && rol_type === "Standard") &&
+            <NavLink to="/donation" >
+              <Button >Donar</Button>
+            </NavLink>
+          }
+          <Box className={classes.boxLink}>
+            <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
+              <Typography variant='subtitle1' className={classes.typographyLinks} >
+                Inicio
+              </Typography>
+            </NavLink>
 
-            <Box className={classes.boxLink}>
-              <NavLink exact to='/' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks} >
-                  Inicio
-                </Typography>
+            <NavLink to='/Nosotros' className={classes.links} activeClassName={classes.active}>
+              <Typography variant='subtitle1' className={classes.typographyLinks}>
+                Nosotros
+              </Typography>
+            </NavLink>
+
+            {(isLogin && rol_type === 'Admin') ? null :  <NavLink to='/Contacto' className={classes.links} activeClassName={classes.active}>
+              <Typography variant='subtitle1' className={classes.typographyLinks}>
+                Contacto
+              </Typography>
+            </NavLink>}
+
+            {headerData.map((value, i) => (
+              <NavLink key={i} to={value.url} className={classes.links} activeClassName={classes.active}>
+                <Typography variant='subtitle1' className={classes.typographyLinks}>{value.name}</Typography>
               </NavLink>
-
-              <NavLink to='/Nosotros' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
-                  Nosotros
-                </Typography>
-              </NavLink>
-
-              { isContacto && <NavLink to='/Contacto' className={classes.links} activeClassName={classes.active}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
-                  Contacto
-                </Typography>
-              </NavLink>}
-
-              {headerData.map((value, i) => (
-                <NavLink key={i} to={value.url} className={classes.links} activeClassName={classes.active}>
-                  <Typography variant='subtitle1' className={classes.typographyLinks}>{value.name}</Typography>
-                </NavLink>
-              ))}
-            </Box>
+            ))}
           </Box>
-        </Toolbar>
-      </AppBar>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

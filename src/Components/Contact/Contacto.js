@@ -5,8 +5,8 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import useStyles from './contactoStyles'
 import Title from './../Title/Title'
-import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Redirect, useLocation } from 'react-router-dom'
 
 const contactoInfo = {
   title: 'Contacto',
@@ -20,74 +20,72 @@ const contactoInfo = {
 
 const Contacto = () => {
   const classes = useStyles()
-  const {rol_type} = useSelector(state =>state.auth)
-  const history = useHistory()
+  const { rol_type, isLogin } = useSelector(state => state.auth)
 
-  useEffect(()=> {
-    if(rol_type === "Admin"){
-      history.push("/")
-    }
-  },[rol_type])
+
 
   return (
     <>
-      <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
-      <Container className={classes.container}>
-        <Typography variant="h6" className={classes.subtitle}>
-          Comunicate con nosotros para colaborar, y obtener información.
-        </Typography>
-        <Typography
-          variant="h6"
-          className={classes.mail}
-          sx={{ fontWeight: '800' }}
-        >
-          {contactoInfo.email}
-        </Typography>
-        <Typography variant="h6" className={classes.subtitle}>
-          Nuestras redes sociales:
-        </Typography>
-        <div className={classes.redes}>
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
-            <InstagramIcon fontSize="large" color="primary" />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noreferrer"
-            className={classes.icon}
-          >
-            <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-              {contactoInfo.instagram}
+      {(isLogin && rol_type === "Admin") ? <Redirect to="/" /> :
+        <>
+          <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
+          <Container className={classes.container}>
+            <Typography variant="h6" className={classes.subtitle}>
+              Comunicate con nosotros para colaborar, y obtener información.
             </Typography>
-          </a>
-          <a href="https://es-la.facebook.com" target="_blank" rel="noreferrer">
-            <FacebookIcon color="secondary" fontSize="large" />
-          </a>
-          <a
-            href="https://es-la.facebook.com"
-            target="_blank"
-            rel="noreferrer"
-            className={classes.icon}
-          >
-            <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-              {contactoInfo.facebook}
+            <Typography
+              variant="h6"
+              className={classes.mail}
+              sx={{ fontWeight: '800' }}
+            >
+              {contactoInfo.email}
             </Typography>
-          </a>
-        </div>
-        <Typography variant="h6" className={classes.subtitle}>
-          Llamanos de lunes a viernes de 8:00 a 18:00 al:
-        </Typography>
-        <Typography
-          variant="h6"
-          className={classes.mail}
-          sx={{ fontWeight: '800' }}
-        >
-          {contactoInfo.teléfono}
-        </Typography>
+            <Typography variant="h6" className={classes.subtitle}>
+              Nuestras redes sociales:
+            </Typography>
+            <div className={classes.redes}>
+              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+                <InstagramIcon fontSize="large" color="primary" />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className={classes.icon}
+              >
+                <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
+                  {contactoInfo.instagram}
+                </Typography>
+              </a>
+              <a href="https://es-la.facebook.com" target="_blank" rel="noreferrer">
+                <FacebookIcon color="secondary" fontSize="large" />
+              </a>
+              <a
+                href="https://es-la.facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className={classes.icon}
+              >
+                <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
+                  {contactoInfo.facebook}
+                </Typography>
+              </a>
+            </div>
+            <Typography variant="h6" className={classes.subtitle}>
+              Llamanos de lunes a viernes de 8:00 a 18:00 al:
+            </Typography>
+            <Typography
+              variant="h6"
+              className={classes.mail}
+              sx={{ fontWeight: '800' }}
+            >
+              {contactoInfo.teléfono}
+            </Typography>
+          </Container>
+          <DecorativeLine />
+        </>
 
-        
-      </Container>
-      <DecorativeLine />
+      }
     </>
   )
 }

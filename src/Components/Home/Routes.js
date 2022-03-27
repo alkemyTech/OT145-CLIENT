@@ -4,7 +4,7 @@ import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
 
 import { useSelector } from "react-redux";
-// const Donacion = lazy(() => import('./Components/Donations/Donacion'))
+const Donacion = lazy(() => import('../Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import("./Index"));
 const Actividades = lazy(() => import("../Activities/Actividades"));
@@ -20,7 +20,7 @@ const LoginForm = lazy(() => import("../Auth/LoginForm"));
 
 
 export default function Routes() {
-  const {isLogin} = useSelector(state =>state.auth)
+  const {isLogin,rol_type} = useSelector(state =>state.auth)
   let match = useRouteMatch();
   return (
     <LayoutHome>
@@ -34,6 +34,7 @@ export default function Routes() {
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component= {RegisterForm}/>
+        <Route exact path="/donation" component={Donacion} />
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>
