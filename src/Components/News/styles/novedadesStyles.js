@@ -7,9 +7,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.8rem !important',
     },
   },
-  cardList:{
-    justifyContent: 'flex-start',
-    columnGap: '60px',
+  cardList: {
+    justifyContent: 'space-between',
+    columnGap: '10px',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
   },
 
   iconButton: {
@@ -43,23 +46,30 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px',
   },
 
-  containerThree:{
+  containerThree: {
     marginBottom: '40px',
   },
-  containerVideo:{ 
+  containerVideo: {
     display: 'flex',
-    padding:'20px',
-    justifyContent:'space-between',
+    padding: '20px',
+    justifyContent: 'space-between',
     backgroundColor: '#000',
-    margin:'20px 0px 20px 0px',
+    margin: '20px 0px 20px 0px',
     alignItems: 'center',
   },
-  videoTitle:{
+
+  videoTitle: {
     color: '#fff',
     fontSize: '2em',
     fontWeigth: '700',
-  }
- 
+    lineHeight: '1em',
+  },
+
+  newsSpinner: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+  },
 }))
 
 export default useStyles

@@ -1,86 +1,81 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles((theme) => ({
-    container: {
-        display:'flex',
-        width:'100%',
-        /* position: 'absolute',
+  container: {
+    display: 'flex',
+
+    /* position: 'absolute',
         bottom: 0, */
-        backgroundColor:'#FFF',
-        padding: "10px",
-      },
-    
-    logo: {
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '40%',
-            paddingTop:15,
-        },
-        [theme.breakpoints.up('sm')]: {
-            maxWidth: '40%',
-        },        
-    },
-    a_Home: {
-        [theme.breakpoints.down('sm')]: {
-            display: 'none',
-        },
-        [theme.breakpoints.up('sm')]:{
-            maxWidth: '40%',
-            color:"inherit",
-            textDecoration: 'none'
-        },
-    },
-    
-    a_Redes: {
-        [theme.breakpoints.down('md')]: {
-            display: 'none',
-        },
-        [theme.breakpoints.up('md')]:{
-            paddingLeft:'5px',
-            maxWidth: '40%',
-            color:'inherit',
-            textDecoration: 'none'
-        },
-    },
-    
-    a_Campaings:{
-        textDecoration: 'none',
-        [theme.breakpoints.down('md')]: {
-            display: 'none',
-        },
-        [theme.breakpoints.up('lg')]:{
-            maxWidth: '40%',
-            color:'inherit',
-            
-        },
-    },
-    typographyFb:{
-        fontSize: '15px',
-        paddingRight:20,
-        paddingTop:45,
+    backgroundColor: '#FFF',
+    padding: '10px',
+  },
 
+  logo: {
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '40%',
+      paddingTop: 15,
     },
-    typographyRedes:{
-        fontSize: '15px',
-        paddingTop:45, 
-        paddingRight:20,
-        paddingLeft:20,
- 
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '40%',
     },
-    typographyIg:{
-        fontSize: '15px',
-        paddingRight:20,
-        paddingTop:45,
+  },
+  a_Home: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '40%',
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+  },
 
+  a_Redes: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
     },
-    typographyHom: {
-        fontSize: '15px',
-        paddingTop:45,
- 
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '5px',
+      maxWidth: '40%',
+      color: 'inherit',
+      textDecoration: 'none',
     },
-    styleFlex: {
-        display: 'flex',
+  },
+
+  a_Campaings: {
+    textDecoration: 'none',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
     },
-    icon: {
-        paddingTop:40,
-    },   
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '40%',
+      color: 'inherit',
+    },
+  },
+  typographyFb: {
+    fontSize: '15px',
+    paddingRight: 20,
+    paddingTop: 45,
+  },
+  typographyRedes: {
+    fontSize: '15px',
+    paddingTop: 45,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+  typographyIg: {
+    fontSize: '15px',
+    paddingRight: 20,
+    paddingTop: 45,
+  },
+  typographyHom: {
+    fontSize: '15px',
+    paddingTop: 45,
+  },
+  styleFlex: {
+    display: 'flex',
+  },
+  icon: {
+    paddingTop: 40,
+  },
 }))

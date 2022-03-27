@@ -12,14 +12,6 @@ import ShowModal from '../../Utils/AlertsProps'
 import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
 import { NewsVideo } from './NewsVideo'
 
-const NewsMock = {
-  title: 'Novedades',
-  text:
-    'Aqui vamos a escribir un texto acerca de las noticias que tendremos Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur ',
-  image:
-    'https://res.cloudinary.com/danb0chax/image/upload/v1646701390/SomosMas/Foto_4_gs55u8.jpg',
-}
-
 const alertText = {
   icon: 'error',
   title: 'Ups...',
@@ -29,12 +21,13 @@ const alertText = {
 
 const News = () => {
   const dispatch = useDispatch()
-  const { loading, error, news } = useSelector((state) => state.news)
+  const { status, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
 
   useEffect(() => {
     dispatch(getNews())
   }, [dispatch])
+  const lastNews = news.slice(-9)
 
   //Paso de parametros del ID de cada noticia al link de Leer Mas
   const history = useHistory()
@@ -44,7 +37,7 @@ const News = () => {
 
   return (
     <div>
-      <div className={classes.newsSpinner}>
+      <div>
         {error ? (
           <ShowModal
             icon={alertText.icon}
@@ -54,15 +47,17 @@ const News = () => {
           />
         ) : (
           <>
-            <Title title={NewsMock.title} imgSrc={NewsMock.image} />
-            <Container>
-              {loading ? (
+            {status !== 'success' ? (
+              <div className={classes.newsSpinner}>
                 <Spinner color={'#C63A3B'} />
-              ) : (
-                <>
-                  <NewsText text={NewsMock.text} />
+              </div>
+            ) : (
+              <>
+                <Title title={lastNews[0].name} imgSrc={lastNews[0].image} />
+                <Container>
+                  <NewsText text={lastNews[0].content} />
                   <Grid container className={classes.cardList}>
-                    {news.map((row) => {
+                    {lastNews.map((row) => {
                       return (
                         <div key={row.id}>
                           <CardComponent
@@ -78,9 +73,9 @@ const News = () => {
                   </Grid>
                   <NewsVideo />
                   <DecorativeLine />
-                </>
-              )}
-            </Container>
+                </Container>
+              </>
+            )}
           </>
         )}
       </div>

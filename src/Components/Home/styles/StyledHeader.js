@@ -1,102 +1,97 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles'
 
-const useStyles = makeStyles(theme => ({
-    links: {
-        padding: '0 10px',
-        color: '#000',
-        textDecoration: 'none',
+const useStyles = makeStyles((theme) => ({
+  links: {
+    padding: '0 10px',
+    color: '#000',
+    textDecoration: 'none',
+  },
+  active: {
+    color: '#545e6f',
+  },
+  colorActivo: {
+    color: theme.palette.secondary.main,
+  },
+  typographyLinks: {
+    fontSize: '20px',
+    paddingRight: 20,
+    [theme.breakpoints.down('md')]: {
+      fontSize: '15px',
+      paddingRight: 20,
     },
-    active: {
-        color: '#545e6f'
+  },
+  logosx: {
+    maxWidth: '20%',
+    marginLeft: '65%',
+    marginRight: '10%',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
-    colorActivo: {
-        color: theme.palette.secondary.main
+  },
+  logosm: {
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: '20px',
+      maxWidth: '75%',
     },
-    typographyLinks: {
-        fontSize: '20px',
-        paddingRight: 20,
-        [theme.breakpoints.down('md')]: {
-            fontSize: '15px',
-            paddingRight: 20
-        },
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
     },
-    logosx: {
-        maxWidth: '20%',
-        marginLeft: '65%',
-        marginRight: '10%',
-        [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
+  },
+  styledBoxSm: {
+    backgroundColor: '#fff',
+    flexGrow: 1,
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
     },
-    logosm: {
-        [theme.breakpoints.up('md')]: {
-            paddingLeft : "20px"
-            
-        },
-        [theme.breakpoints.down('md')]: {
-            display: 'none',
-        },
-        
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
-    styledBoxSm: {
-        backgroundColor: '#fff',
-        flexGrow: 1,
-        [theme.breakpoints.down('md')]: {
-            display: 'flex',
-        },
-        [theme.breakpoints.up('md')]: {
-            display: 'none'
-        },
-    },
+  },
 
-    styledBoxMd: {
-        [theme.breakpoints.up('md')]: {
-            width : "85%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems : "flex-end" ,
-            backgroundColor: '#fff',
-        },
-        [theme.breakpoints.down('md')]: {
-            display: 'none'
-        },
-        
+  styledBoxMd: {
+    [theme.breakpoints.up('md')]: {
+      width: '85%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      backgroundColor: '#fff',
     },
-    appbar: {
-        marginBottom: '20px',
-        backgroundColor: "#fff",
-        height : "25vh",
-        [theme.breakpoints.down('sm')]: {
-            height : "15vh",
-        },
-
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
     },
-
-    boxLogin: {
-        display: "flex",
+  },
+  appbar: {
+    marginBottom: '20px',
+    backgroundColor: '#fff',
+    height: '18vh',
+    [theme.breakpoints.down('sm')]: {
+      height: '15vh',
     },
-    boxLink: {
-        display: "flex",
-        marginTop : "10px"
+  },
+
+  boxLogin: {
+    display: 'flex',
+    marginRight: '20px',
+  },
+  boxLink: {
+    display: 'flex',
+    marginTop: '10px',
+  },
+
+  button: {
+    minWidth: '100px',
+  },
+  icon: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 50,
     },
-
-    button: {
-        minWidth : "110px",
-        
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 30,
     },
-    icon: {
-        [theme.breakpoints.down('md')]: {
-            fontSize:50,
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize:30,
-        },   
-    },
-    linkBack:{
-        fontSize: '15px',
-    }
+  },
+  linkBack: {
+    fontSize: '15px',
+  },
+}))
 
-
-}));
-
-export default useStyles;
+export default useStyles
