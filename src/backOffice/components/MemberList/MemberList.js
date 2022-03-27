@@ -51,11 +51,6 @@ const MemberList = () => {
         >
             <ArrowBackIcon className={classes.iconButtonBack} />
         </IconButton>
-        <Box className={classes.title}>
-            <Typography variant='h4'>
-                Miembros
-            </Typography>
-        </Box>
         <Box className={classes.contLink}>
             <Link to='/backoffice/members/create' className={classes.styleLink}>
                 <Button color='secondary' variant='contained'>Crear Miembro</Button>

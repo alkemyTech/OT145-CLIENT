@@ -91,6 +91,7 @@ const ActivitiesForm = ({ data }) => {
       <Container className={classes.container}>
         <form onSubmit={handleSubmit} className={classes.form}>
           <Paper className={classes.paper} elevation={5}> 
+          <Typography className={classes.title} variant="h5">{activitiesId ? 'Editar Actividad' : 'Crear Actividad'}</Typography>
             <TextField
                 className={classes.inputs}
                 type="text"
