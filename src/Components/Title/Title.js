@@ -13,7 +13,7 @@ export default function Title({ imgSrc = Logo, title }) {
 		<>
 			<Box component='img' className={classes.backgroundImage} src={imgSrc} alt={title} />
 			<Container>
-					<Typography variant="h3" className={classes.title}>
+					<Typography variant="h2" className={classes.title}>
 						{title}
 					</Typography>
 			</Container>

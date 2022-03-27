@@ -44,10 +44,20 @@ const useStyles = makeStyles((theme) => ({
   },
 
   containerThree:{
-    marginBottom: '40px'
-
-
-
+    marginBottom: '40px',
+  },
+  containerVideo:{ 
+    display: 'flex',
+    padding:'20px',
+    justifyContent:'space-between',
+    backgroundColor: '#000',
+    margin:'20px 0px 20px 0px',
+    alignItems: 'center',
+  },
+  videoTitle:{
+    color: '#fff',
+    fontSize: '2em',
+    fontWeigth: '700',
   }
  
 }))

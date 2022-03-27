@@ -10,6 +10,7 @@ import Spinner from '../../shared/Spinner/Spinner'
 import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import ShowModal from '../../Utils/AlertsProps'
 import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
+import { NewsVideo } from './NewsVideo'
 
 const NewsMock = {
   title: 'Novedades',
@@ -30,7 +31,7 @@ const News = () => {
   const dispatch = useDispatch()
   const { loading, error, news } = useSelector((state) => state.news)
   const classes = useStyles()
-  console.log(news)
+ 
 
   useEffect(() => {
     dispatch(getNews())
@@ -40,7 +41,7 @@ const News = () => {
   const history = useHistory()
   const handleSubmit = (name, id) => {
     history.push(`/news/${id}`, { id: news.id })
-    console.log(id)
+   
   }
 
   return (
@@ -77,6 +78,7 @@ const News = () => {
                       )
                     })}
                   </Grid>
+                  <NewsVideo />
                   <DecorativeLine />
                 </>
               )}
