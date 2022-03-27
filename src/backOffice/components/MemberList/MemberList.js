@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, Button, IconButton } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Button, IconButton } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import { getMembers, deleteMembers } from '../../../redux/Members/membersSlice';
 import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm';
@@ -47,7 +47,7 @@ const MemberList = () => {
             aria-label="upload picture" 
             component="span" 
             className={classes.buttonBack}
-            onClick={() => history.push('/backoffice')}
+            onClick={() => history.goBack()}
         >
             <ArrowBackIcon className={classes.iconButtonBack} />
         </IconButton>

@@ -7,8 +7,7 @@ import { getMembersById, putMembers, postMembers} from "../../redux/Members/memb
 import { convertToBase64 } from "../../helpers/base64";
 import Editor from "../../backOffice/components/Editor/Editor";
 import Spinner from '../../shared/Spinner/Spinner';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Button, Container, TextField, Typography, IconButton, Paper,Box } from "@mui/material";
+import { Button, Container, TextField, Typography, Paper,Box } from "@mui/material";
 import useStyles from '../../backOffice/styles/newsFormStyles'
 
 
@@ -109,14 +108,6 @@ useEffect(() => {
 
   return (
   <Container className={classes.container}>
-    <IconButton 
-      aria-label="upload picture" 
-      component="span" 
-      className={classes.buttonBack}
-      onClick={() => history.push('/backoffice/members')}
-    >
-      <ArrowBackIcon className={classes.iconButtonBack} />
-    </IconButton>
       <form className={classes.form} onSubmit={handleSubmit}>
         <Paper className={classes.paper} elevation={5}>
           <Typography className={classes.title} variant="h5">
