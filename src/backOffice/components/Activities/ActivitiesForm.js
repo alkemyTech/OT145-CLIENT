@@ -1,7 +1,6 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, Box, Paper, Container } from '@mui/material';
 import React, { useEffect } from 'react'
-/* import '../FormStyles.css'; */
-import useStyles from '../../../Components/Auth/AuthStyles';
+import useStyles from '../../styles/newsFormStyles'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { getActivityById,
@@ -89,9 +88,11 @@ const ActivitiesForm = ({ data }) => {
     }, [status]);
   
     return (
-        <form onSubmit={handleSubmit} className={classes.containerForm}>
+      <Container className={classes.container}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+          <Paper className={classes.paper} elevation={5}> 
             <TextField
-                className={classes.fieldForm}
+                className={classes.inputs}
                 type="text"
                 placeholder="Activity Title"
                 fullWidth
@@ -106,10 +107,10 @@ const ActivitiesForm = ({ data }) => {
             }} />
 
             {handleSubmit && errors.description &&
-                <Typography sx={{ paddingLeft: "11px" }} variant="caption" color="error">{touched.description && errors.description ? errors.description : null}</Typography>
+                <Typography className={classes.errorCkEditor} variant="caption" color="error">{touched.description && errors.description ? errors.description : null}</Typography>
             }
             <TextField
-                className={classes.fieldForm}
+                className={classes.inputs}
                 type="file"
                 name='image'
                 onChange={(e) => setFieldValue('image', e.target.files[0])}
@@ -131,14 +132,19 @@ const ActivitiesForm = ({ data }) => {
               'Enviar'
             )}
           </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => history.goBack()}
-          >
-            Volver a la lista
-          </Button>
+          </Paper>
+          <Box>
+            <Button
+              className={classes.finalLink}
+              variant="contained"
+              color="secondary"
+              onClick={() => history.goBack()}
+            >
+              Volver a la lista
+            </Button>
+          </Box>
         </form>
+      </Container>
     );
 }
 
