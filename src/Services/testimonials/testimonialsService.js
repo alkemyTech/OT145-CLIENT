@@ -2,7 +2,7 @@ import privateGET, {
 	privatePATCH,
 	privatePOST,
 	privatePUT,
-	privateDELETE,
+	privateDelete,
 } from "../privateApiService";
 
 const TESTIMONIALS_URL = process.env.REACT_APP_API_GET_TESTIMONIALS;
@@ -28,7 +28,7 @@ const putTestimonial = async (id, body) => {
 };
 
 const deleteTestimonial = async (id) => {
-	return await privateDELETE(TESTIMONIALS_URL, id);
+	return await privateDelete(TESTIMONIALS_URL, id);
 };
 
 export {

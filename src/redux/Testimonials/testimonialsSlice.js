@@ -1,30 +1,30 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { 	
     getAllTestimonials,
-	getTestimonialsById,
-	postTestimonials,
-	putTestimonials,
-	deleteTestimonials, 
+	getTestimonialById,
+	postTestimonial,
+	putTestimonial,
+	deleteTestimonial, 
 } from '../../Services/testimonials/testimonialsService'
 
 export const getTestimonials = createAsyncThunk('testimonials/getTestimonials', () => {
   return getAllTestimonials()
 })
 
-export const getTestimonialById = createAsyncThunk('testimonials/getTestimonialById', (id) => {
-  return getTestimonialsById(id)
+export const getTestimonialsById = createAsyncThunk('testimonials/getTestimonialsById', (id) => {
+  return getTestimonialById(id)
 })
 
-export const deleteTestimonial = createAsyncThunk('testimonials/deleteTestimonial', (id) => {
-  return deleteTestimonials(id)
+export const deleteTestimonials = createAsyncThunk('testimonials/deleteTestimonials', (id) => {
+  return deleteTestimonial(id)
 })
 
-export const postTestimonial = createAsyncThunk('testimonials/postTestimonial', (values) => {
-  return postTestimonials(values)
+export const postTestimonials = createAsyncThunk('testimonials/postTestimonials', (values) => {
+  return postTestimonial(values)
 })
 
-export const putTestimonial = createAsyncThunk('testimonials/putTestimonial', (values) => {
-  return putTestimonials(values.id, values)
+export const putTestimonials = createAsyncThunk('testimonials/putTestimonials', (values) => {
+  return putTestimonial(values.id, values)
 })
 
 const initialState = {
@@ -33,7 +33,6 @@ const initialState = {
 			{
 				name: "",
 				description: "",
-				order: "",
 				image: "",
 			},
 		],
@@ -52,58 +51,61 @@ const testimonialsSlice = createSlice({
     },
     [getTestimonials.fulfilled]: (state, { payload }) => {
       state.status = 'succeeded'
-      state.testimonials = payload
+      state.testimonials.data = payload.data
     },
     [getTestimonials.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
 
-    [deleteTestimonial.pending]: (state) => {
+    [deleteTestimonials.pending]: (state) => {
       state.status = 'loading'
     },
-    [deleteTestimonial.fulfilled]: (state) => {
+    [deleteTestimonials.fulfilled]: (state) => {
       state.status = 'updated'
     },
-    [deleteTestimonial.rejected]: (state, { error }) => {
+    [deleteTestimonials.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
 
-    [getTestimonialById.pending]: (state) => {
+    [getTestimonialsById.pending]: (state) => {
       state.status = 'loading'
     },
-    [getTestimonialById.fulfilled]: (state, { payload }) => {
+    [getTestimonialsById.fulfilled]: (state, { payload }) => {
       state.status = 'updated'
       state.testimonials.data = payload.data
     },
-    [getTestimonialById.rejected]: (state, { error }) => {
+    [getTestimonialsById.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
 
-    [putTestimonial.pending]: (state) => {
+    [putTestimonials.pending]: (state) => {
       state.status = 'loading'
     },
-    [putTestimonial.fulfilled]: (state,) => {
+    [putTestimonials.fulfilled]: (state,) => {
       state.status = 'updated'
     },
-    [putTestimonial.rejected]: (state, { error }) => {
+    [putTestimonials.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
 
-    [postTestimonial.pending]: (state) => {
+    [postTestimonials.pending]: (state) => {
       state.status = 'loading'
     },
-    [postTestimonial.fulfilled]: (state,) => {
+    [postTestimonials.fulfilled]: (state,) => {
       state.status = 'updated'
     },
-    [postTestimonial.rejected]: (state, { error }) => {
+    [postTestimonials.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
   }
 })
+
+export const selectAllTestimonials = state => state.testimonials.testimonials.data
+export const selectTestimonialsStatus = state => state
 
 export default testimonialsSlice.reducer
