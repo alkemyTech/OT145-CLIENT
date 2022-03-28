@@ -6,7 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
-import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton, Container, Paper} from '@mui/material';
+import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton, Container, Paper, Box} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from '../../styles/newsFormStyles'
@@ -95,14 +95,6 @@ const UserForm = () => {
 
 return (
     <Container className={classes.container}>
-        <IconButton 
-        aria-label="upload picture" 
-        component="span" 
-        className={classes.buttonBack} 
-        onClick={() => history.push('/backoffice/users')}
-        >
-        <ArrowBackIcon className={classes.iconButtonBack} />
-        </IconButton>
         <form onSubmit={handleSubmit} className={classes.form}>
             <Paper className={classes.paper} elevation={5}>
                 <Typography className={classes.title} variant="h5">{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
@@ -179,6 +171,15 @@ return (
                     }
                 </Button>
             </Paper>
+            <Box className={classes.finalLink}>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => history.goBack()}
+            >
+                Volver a la lista
+            </Button>
+            </Box>
         </form>
     </Container>
     );
