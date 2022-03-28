@@ -56,44 +56,6 @@ const Header = () => {
           />
         </Box>
         <Box className={classes.styledBoxMd}>
-          {!localStorage.getItem('token') ? (
-            <Box className={classes.boxLogin}>
-              <NavLink to="/login" className={classes.links}>
-                <Button
-                  variant="contained"
-                  size="small"
-                  color="secondary"
-                  className={classes.button}
-                >
-                  Login
-                </Button>
-              </NavLink>
-              <NavLink to="/register" className={classes.links}>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  size="small"
-                  className={classes.button}
-                >
-                  Registrate
-                </Button>
-              </NavLink>
-            </Box>
-          ) : (
-            <Button onClick={handleClick}>Cerrar sesión</Button>
-          )}
-          {isLogin && rol_type === 'Admin' && (
-            <NavLink to="/backoffice" className={classes.links}>
-              <Typography className={classes.linkBack}>
-                Ir a backoffice
-              </Typography>
-            </NavLink>
-          )}
-          {isLogin && rol_type === 'Standard' && (
-            <NavLink to="/donation">
-              <Button>Donar</Button>
-            </NavLink>
-          )}
           <Box className={classes.boxLink}>
             <NavLink
               exact
@@ -152,6 +114,71 @@ const Header = () => {
                 </Typography>
               </NavLink>
             ))}
+
+            {!isLogin && (
+              <>
+                <NavLink to="/login" className={classes.links}>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="secondary"
+                    className={classes.button}
+                  >
+                    Login
+                  </Button>
+                </NavLink>
+                <NavLink to="/register" className={classes.links}>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    className={classes.button}
+                  >
+                    Registrate
+                  </Button>
+                </NavLink>
+              </>
+            )}
+
+            {isLogin && rol_type === 'Admin' && (
+              <NavLink to="/backoffice" className={classes.links}>
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  size="small"
+                  color="secondary"
+                >
+                  Backoffice
+                </Button>
+              </NavLink>
+            )}
+
+            {isLogin && (
+              <NavLink to="/" className={classes.links}>
+                <Button
+                  className={classes.button}
+                  onClick={handleClick}
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                >
+                  Log out
+                </Button>
+              </NavLink>
+            )}
+
+            {isLogin && rol_type === 'Standard' && (
+              <NavLink to="/donation" className={classes.links}>
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                >
+                  Donar
+                </Button>
+              </NavLink>
+            )}
           </Box>
         </Box>
       </Toolbar>

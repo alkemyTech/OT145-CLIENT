@@ -11,6 +11,7 @@ import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import ShowModal from '../../Utils/AlertsProps'
 import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
 import { NewsVideo } from './NewsVideo'
+import ActivityContent from '../Activities/AntivityContent'
 
 const alertText = {
   icon: 'error',
@@ -28,6 +29,7 @@ const News = () => {
     dispatch(getNews())
   }, [dispatch])
   const lastNews = news.slice(-9)
+  console.log(news)
 
   //Paso de parametros del ID de cada noticia al link de Leer Mas
   const history = useHistory()
@@ -53,9 +55,14 @@ const News = () => {
               </div>
             ) : (
               <>
-                <Title title={lastNews[0].name} imgSrc={lastNews[0].image} />
+                <Title
+                  title={<ActivityContent content={lastNews[8].name} />}
+                  imgSrc={lastNews[8].image}
+                />
                 <Container>
-                  <NewsText text={lastNews[0].content} />
+                  <NewsText
+                    text={<ActivityContent content={lastNews[8].content} />}
+                  />
                   <Grid container className={classes.cardList}>
                     {lastNews.map((row) => {
                       return (
@@ -64,7 +71,9 @@ const News = () => {
                             key={row.id}
                             title={row.name}
                             image={row.image}
-                            description={row.createdAt}
+                            description={
+                              <ActivityContent content={row.content} />
+                            }
                             leerMasLink={() => handleSubmit(row.name, row.id)}
                           />
                         </div>
