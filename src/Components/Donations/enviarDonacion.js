@@ -8,7 +8,7 @@ export const enviarDonacion = async (values) => {
       {
         "title": "Donación ONG Somos más",
         "quantity": 1,
-        "unit_price": values.ammount,
+        "unit_price": values,
       },
     ],
     back_urls: {
@@ -30,7 +30,7 @@ export const enviarDonacion = async (values) => {
 
   const headers = {
     Authorization:
-      "Bearer TEST-5811521037381417-032702-ddd7190a2ab6ede60894be7bb76a8bc1-162205422",
+      "Bearer APP_USR-5811521037381417-032702-76bc4d6c51dc182ae690dd2e7a06e68c-162205422",
     "Content-Type": "application/json",
   };
 

@@ -6,7 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
-// import { registarUsuario } from '../../../redux/usersReducer/action';
+import { registarUsuario } from '../../../redux/usersReducer/action';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
@@ -55,6 +55,10 @@ const UserForm = () => {
         }
     }, [])
 
+    useEffect(() => {
+        console.log(userId)
+    }, [userId])
+
     
     const {handleChange, handleSubmit, handleReset, handleBlur, values, setFieldValue, touched, errors} = useFormik({
         enableReinitialize: true,
@@ -73,11 +77,11 @@ const UserForm = () => {
                 values.id = userId.id
                dispatch(putUser(values))
             } else {
-                // const {name, email, password } = values;
+                const {name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
+                dispatch(registarUsuario(name, email, password))
                 dispatch(postUser(values))
-                // dispatch(registarUsuario(name, email, password))
             }
         },
     });
