@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
+import * as Yup from 'yup';
+import { enviarDonacion } from './enviarDonacion';
 import { Box, Button, Typography } from '@mui/material';
 import useStyles from './styles/donancionStyles';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { TextField } from '@mui/material';
-import axios from 'axios';
+
 
 const Donacion = () => {
 
     const classes = useStyles();
+
 
     // useEffect(() => {
     //     const mercadopago = document.querySelector('#mercadopago')
@@ -21,49 +23,7 @@ const Donacion = () => {
     //     mercadopago.appendChild(script)
     // }, [])
 
-    const enviarDonacion = async (values) => {
-
-        const URL = "https://api.mercadopago.com/checkout/preferences";
-    
-        const data = {
-          "items": [
-            {
-              "title": "Donación ONG 'Somos más'",
-              "quantity": 1,
-              "unit_price": values.ammount
-            }
-          ],
-          "back_urls": {
-            "success": "http://localhost:3000/gracias"
-          },
-          "payment_methods": {
-            "excluded_payment_methods": [
-              {
-                "id": "atm"
-              }
-            ],
-            "excluded_payment_types": [
-              {
-                "id": "ticket"
-              }
-            ],
-          },
-        };
-    
-        const headers = { 
-          "Authorization": "Bearer TEST-5811521037381417-032702-ddd7190a2ab6ede60894be7bb76a8bc1-162205422",
-          "Content-Type": "application/json"
-        };
-    
-        axios.post(URL, data, { headers })
-          .then(response => {
-            console.log(response);
-            window.location.href = response.data.sandbox_init_point;
-          })
-          .catch(err => console.log(err))
-      };
-
-    const {handleChange, handleSubmit, handleReset, handleBlur, values, setFieldValue, touched, errors} = useFormik({
+    const {handleChange, handleSubmit, handleBlur, values, setFieldValue, touched, errors} = useFormik({
         enableReinitialize: true,
         initialValues: {
             ammount: ''
@@ -83,17 +43,22 @@ const Donacion = () => {
 
     return(
         <Box className={classes.container}>
-        {/* //     <Typography variant='h4'>Doná</Typography>
-        //     <Box id='mercadopago'></Box> */}
-            <form onSubmit={handleSubmit}>
+        <Typography variant='h4'>¡Contribuye!</Typography>
+        {/* <Box id='mercadopago'></Box> */}
+            <form 
+              onSubmit={handleSubmit}
+              className={classes.formulario}
+            >
             <TextField 
                 name='ammount'
                 type='number'
+                label="Importe"
                 value={values.ammount}
                 onChange={handleChange}
                 onBlur={handleBlur}
             />
-            <Button type='submit' color='mercadopago' variant='contained'>Donar</Button></form>
+            <Button type='submit' color='mercadopago' variant='contained' className={classes.buttonDonar}>Contribuir</Button>
+            </form>
         </Box>
     );
 };
