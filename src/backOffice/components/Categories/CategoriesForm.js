@@ -33,7 +33,7 @@ const CategoriesForm = () => {
 
 	useEffect(() => {
 	  if(state){
-		dispatch(getCategoriesById(state.id))
+		dispatch(getCategoriesById(state))
 	  }
 
 	}, [])
