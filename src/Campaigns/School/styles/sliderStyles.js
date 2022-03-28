@@ -4,11 +4,11 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
 	sliderContainer: {
 		display: "flex",
-		height: "500px",
+	/* 	height: "500px", */
 		color: "#fff",
 		flexDirection: "column",
 		width: "100%",
-		background: "#323232",
+		
 	},
 	text: {
 		width: "100%",
@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		width: "100px",
 	},
+	arrows:{
+		marginTop: '-50px',
+	}
 }));
 
 export default useStyles;

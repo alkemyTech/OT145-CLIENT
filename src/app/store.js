@@ -5,6 +5,7 @@ import userReducer from '../redux/Users/userSlice'
 import newsReducer from '../redux/NewsReducers/newsReducerThunk'
 import nosotrosReducer from '../redux/NosotrosReducer/nosotrosReducer'
 import categorySlice from '../redux/Categories/categorySlice'
+import activityReducer from '../redux/Activities/activitySlice'
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     news: newsReducer,
     nosotros: nosotrosReducer,
     categories : categorySlice,
+    activities: activityReducer,
   },
 })
