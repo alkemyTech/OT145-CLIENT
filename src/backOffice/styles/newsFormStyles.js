@@ -2,7 +2,10 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      width:"100vw",
+    },
   },
   form: {
     padding: '10px',
@@ -29,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
   finalLink: {
     marginTop: '20px',
   },
+  img: {
+    width:250,
+    height:250,
+    objectFit: 'contain',
+    [theme.breakpoints.down('md')]: {
+      width:100,
+      height:100,
+    },
+  }
 }))
 
 export default useStyles

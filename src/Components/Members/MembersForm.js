@@ -182,6 +182,7 @@ useEffect(() => {
           <img
             src={memberId ? memberId.image : imageExample}
             alt="profile images"
+            className={classes.img}
           />
           <Button
             type="submit"

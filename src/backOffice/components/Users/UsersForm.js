@@ -7,7 +7,6 @@ import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
 import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton, Container, Paper, Box} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Spinner from '../../../shared/Spinner/Spinner';
 import useStyles from '../../styles/newsFormStyles'
 
