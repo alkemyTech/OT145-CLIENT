@@ -1,29 +1,24 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit'
-import privateGET, { privateDelete, privatePUT, privatePOST } from '../../Services/privateApiService.js'
+import { getAllSlides, getSlideById, deleteSlide, putSlide, postSlide } from '../../Services/slider/slidesService'
 
-export const fetchSlides = createAsyncThunk('slider/fetchSlides', async () => {
-  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES)
-  return response.data
+export const fetchSlides = createAsyncThunk('slider/fetchSlides', () => {
+  return getAllSlides()
 })
 
-export const getSlideById = createAsyncThunk('slider/getSlideId', async (id) => {
-  const response = await privateGET(process.env.REACT_APP_API_GET_SLIDES, id)
-  return response.data
+export const getSlidesById = createAsyncThunk('slider/getSlideId', (id) => {
+  return getSlideById(id)
 })
 
-export const deleteSlides = createAsyncThunk('slider/deleteSlides', async (id) => {
-  const response = await privateDelete(process.env.REACT_APP_API_GET_SLIDES, id)
-  return response.data
+export const deleteSlides = createAsyncThunk('slider/deleteSlides', (id) => {
+  return deleteSlide(id)
 })
 
-export const putSlides = createAsyncThunk('slider/putSlides', async (id, values) => {
-  const response = await privatePUT(process.env.REACT_APP_API_GET_SLIDES, id, values)
-  return response.data
+export const putSlides = createAsyncThunk('slider/putSlides', (id, values) => {
+  return putSlide(id, values)
 })
 
-export const postSlides = createAsyncThunk('slider/postSlides', async (values) => {
-  const response = await privatePOST(process.env.REACT_APP_API_GET_SLIDES, values)
-  return response.data
+export const postSlides = createAsyncThunk('slider/postSlides', (values) => {
+  return postSlide(values)
 })
 
 const initialState = {
