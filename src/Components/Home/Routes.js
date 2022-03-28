@@ -17,6 +17,8 @@ const DetalleActividad = lazy(() =>
 );
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
+const Donations = lazy(() => import('../Donations/Donacion'));
+const Gracias = lazy(() => import('../Donations/Gracias'));
 
 
 export default function Routes() {
@@ -34,6 +36,8 @@ export default function Routes() {
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component= {RegisterForm}/>
+        <Route exact path="/donations" component= {Donations}/>
+        <Route exact path="/gracias" component= {Gracias}/>
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>
