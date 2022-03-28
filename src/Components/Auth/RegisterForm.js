@@ -15,8 +15,10 @@ import { registarUsuario } from "../../redux/usersReducer/action"
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Spinner from '../../shared/Spinner/Spinner'
+import TerminosyCondiciones from '../Pdf/TerminosyCondiciones'
 
 const RegisterForm = () => {
+  const [acceptTerms, setAcceptTerms] = useState(false)
   const history = useHistory()
   const { loading, isRegister } = useSelector(state => state.auth)
   const classes = useStyles()
@@ -29,15 +31,18 @@ const RegisterForm = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    acceptTerms: false
   };
 
+ 
   const handleSubmit = (values, { setSubmitting }) => {
+    setSubmitting(false)
     const { firstName, email, password } = values
       dispatch(registarUsuario(firstName, email, password))
       AlertSucces(values, setSubmitting)
       setOpen(true);
-
   };
+  const handleChangeCheckbox = () => setAcceptTerms(!acceptTerms)
 
   useEffect(() => {
     if (isRegister) {
@@ -111,6 +116,22 @@ const RegisterForm = () => {
             {errors.confirmPassword && touched.confirmPassword
               ? showAlert('warning', errors.confirmPassword)
               : null}
+              <div className={classes.termsContainer}>
+								<Field
+									type="checkbox"
+									onChange={handleChangeCheckbox}
+                  name="acceptTerms"
+                  id="acceptTerms"
+                  className="input-field"
+								/>
+								<label htmlFor="acceptTerms" className="terms-text">
+									Aceptar Terminos y condiciones de uso
+								</label>
+                {errors.acceptTerms 
+              ? showAlert('warning', 'Los terminos y condiciones son obligatorios')
+              : null}
+							</div>
+              <TerminosyCondiciones />
             {loading ? <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Spinner width={30} heigth={30} color="#000" />
             </Box> :

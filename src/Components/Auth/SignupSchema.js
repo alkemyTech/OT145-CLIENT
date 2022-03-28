@@ -19,4 +19,5 @@ export const SignupSchema = Yup.object().shape({
       'Password needs to contain at least one character, one number and one special character',
     )
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+    acceptTerms: Yup.bool().oneOf([true], 'Accept Terms & Conditions is required')
 });
