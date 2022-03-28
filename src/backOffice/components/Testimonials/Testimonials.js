@@ -122,13 +122,13 @@ function SlidesBackOffice() {
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									{row.description}
 								</TableCell>
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									<IconButton
 										component={Link}
 										to={`/backoffice/testimonials/edit/${row.id}`}
@@ -140,7 +140,7 @@ function SlidesBackOffice() {
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									<IconButton
 										onClick={() => deleteItem(row)}
 										color="secondary"
