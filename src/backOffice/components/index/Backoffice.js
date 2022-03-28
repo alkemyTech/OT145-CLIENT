@@ -156,6 +156,12 @@ function BackOficce() {
           component={ActivitiesForm}
         />
 
+      <Route
+          exact
+          path={`${match.path}/activities/edit-activity`}
+          component={ActivitiesForm}
+        />
+
         <Route exact path={`${match.path}/users`} component={UsersList} />
 
         <Route exact path={`${match.path}/members`} component={MemberList} />

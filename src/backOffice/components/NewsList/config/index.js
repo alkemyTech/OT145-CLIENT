@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png']
 
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -6,12 +7,16 @@ export const validationSchema = Yup.object().shape({
     .min(4, 'Debe tener minimo 4 caracteres'),
   image: Yup.mixed()
     .required('La imagen es obligatorio')
-    .test('type', 'Solo imagenes png y jpg', (value) => {
-      return (
-        value &&
-        (['image/jpg'].includes(value.type) ||
-          ['image/png'].includes(value.type))
-      )
-    }),
+    .test(
+      'file size',
+      'image',
+      (value) => !value || (value && value.size <= 1024 * 1024),
+    )
+    .test(
+      'format',
+      'image',
+      (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type)),
+    ),
+
   content: Yup.string().required('El campo es obligatorio'),
 })

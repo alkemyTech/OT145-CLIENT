@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles'
 import './App.css'
 
 const Nunito = "'Nunito', sans-serif"
-const Gotic = "'Gothic A1', sans-serif"
+const Gotic = "'Fira Sans', sans-serif;"
 
 export const theme = createTheme({
   palette: {
@@ -28,8 +28,8 @@ export const theme = createTheme({
     },
     mercadopago: {
       main: '#009ee3',
-      contrastText: '#FFFFFF'
-    }
+      contrastText: '#FFFFFF',
+    },
   },
   typography: {
     h1: {
@@ -72,7 +72,7 @@ export const theme = createTheme({
       fontFamily: Nunito,
     },
   },
-  zIndex:{
-    appBar: 1250
-  }
+  zIndex: {
+    appBar: 1250,
+  },
 })
