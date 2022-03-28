@@ -8,7 +8,7 @@ import useStyles from './styleSlides';
 import Editor from '../Editor/Editor'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
-import { selectAllSlides, getSlideById, selectSlidesStatus, postSlides, putSlides } from '../../../redux/slides/slidesSlice'
+import { selectAllSlides, getSlidesById, selectSlidesStatus, postSlides, putSlides } from '../../../redux/slides/slidesSlice'
 
 const SlidesForm = () => {
     const classes = useStyles();
@@ -20,15 +20,15 @@ const SlidesForm = () => {
     
     useEffect(() => {
         if(pathname.includes('edit') && slideStatus !== 'updated'){
-            dispatch(getSlideById(id))
+            dispatch(getSlidesById(id))
         }
     }, [slide, slideStatus, dispatch]);
 
     const initialValues = {
-        name: slide?.name,
-        description: slide?.description,
-        order: slide?.order,
-        image: slide?.image
+        name: slide?.name || "" ,
+        description: slide?.description || "" ,
+        order: slide?.order || "" ,
+        image: slide?.image || "" ,
     };
     
     const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
@@ -39,7 +39,10 @@ const SlidesForm = () => {
             if (pathname.includes('edit')) {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                dispatch(putSlides(slide.id.id, values))
+                console.log(values)
+                console.log(slide)
+                values.id = slide.id
+                dispatch(putSlides(values))
             }
             else {
                 const base64 = await convertToBase64(values.image)
@@ -79,7 +82,10 @@ const SlidesForm = () => {
                     className={classes.fieldForm}
                     onChange={(e)=>setFieldValue("image", e.target.files[0])}                     
                     error={touched.image && Boolean(errors.image)}
-                    helperText={touched.image && errors.image}/>
+                    helperText={touched.image && errors.image}
+                    // value={values.image}
+                    />
+                    
 
                 <div className={classes.fieldForm}>
                     <Editor
@@ -88,6 +94,8 @@ const SlidesForm = () => {
                         onChangeText={(data) => {
                             setFieldValue("description", data);
                         }}
+                        text={values.description}
+                        
                     />
                     {handleSubmit && errors.description &&  
                         <Typography variant="caption" color="error">{touched.description && errors.description}</Typography> 

@@ -19,9 +19,9 @@ export const validationSchema = Yup.object().shape({
         //     "type",
         //     "Solo imagenes png y jpg",
 
-        //     (value) =>{
-        //         return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
-        //     )
+				//     (value) =>{
+				//         return value && (["image/jpg"].includes(value.type) || ["image/png"].includes(value.type))}
+				//     )
         .required('Es necesario ingresar una imagen'),
     
   });

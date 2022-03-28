@@ -20,14 +20,14 @@ import { Link } from "react-router-dom";
 // } from "../../Utils/SlidesBackOfficeStyled";
 import useStyles from "../../styles/styledList";
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchSlides, deleteSlides } from '../../../redux/slides/slidesSlice'
+import { fetchSlides, deleteSlides, selectAllSlides, selectSlidesStatus } from '../../../redux/slides/slidesSlice'
 
 function SlidesBackOffice() {
   const classes = useStyles();
 
   const dispatch = useDispatch()
-  const slides = useSelector(state => state.slides.slides)
-  const slideStatus = useSelector(state => state.slides.status)
+  const slides = useSelector(selectAllSlides)
+  const slideStatus = useSelector(selectSlidesStatus)
 
   useEffect(() => {
     console.log(slideStatus)
@@ -40,7 +40,7 @@ function SlidesBackOffice() {
     <Container className={classes.containerList}>
       <Box className={classes.contLink}>
         <Link
-          exact
+          exact="true"
           className={classes.styleLink}
           to="/backoffice/Slides/create"
         >

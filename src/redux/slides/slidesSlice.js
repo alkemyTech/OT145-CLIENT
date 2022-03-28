@@ -13,8 +13,9 @@ export const deleteSlides = createAsyncThunk('slider/deleteSlides', (id) => {
   return deleteSlide(id)
 })
 
-export const putSlides = createAsyncThunk('slider/putSlides', (id, values) => {
-  return putSlide(id, values)
+export const putSlides = createAsyncThunk('slider/putSlides', (values) => {
+  console.log(values)
+  return putSlide(values.id, values)
 })
 
 export const postSlides = createAsyncThunk('slider/postSlides', (values) => {
@@ -22,18 +23,20 @@ export const postSlides = createAsyncThunk('slider/postSlides', (values) => {
 })
 
 const initialState = {
-  slides: [
-    {
-      'name': '',
-      'description': '',
-      'order': '',
-      'image': ''
-  }
-  ],
-  // slideById: null,
-  status: 'idle',
-  error: null
-}
+	slides: {
+		data: [
+			{
+				name: "",
+				description: "",
+				order: "",
+				image: "",
+			},
+		],
+	},
+	// slideById: null,
+	status: "idle",
+	error: null,
+};
 
 const sliderSlice = createSlice({
   name: 'slider',
@@ -62,14 +65,14 @@ const sliderSlice = createSlice({
       state.error = error.message
     },
 
-    [getSlideById.pending]: (state) => {
+    [getSlidesById.pending]: (state) => {
       state.status = 'loading'
     },
-    [getSlideById.fulfilled]: (state, { payload }) => {
+    [getSlidesById.fulfilled]: (state, { payload }) => {
       state.status = 'updated'
-      state.slides = payload
+      state.slides.data = payload.data
     },
-    [getSlideById.rejected]: (state, { error }) => {
+    [getSlidesById.rejected]: (state, { error }) => {
       state.status = 'failed'
       state.error = error.message
     },
@@ -98,8 +101,7 @@ const sliderSlice = createSlice({
   }
 })
 
-export const selectAllSlides = state => state.slides.slides
-export const selectSlideById = state => state.slides.slideById
+export const selectAllSlides = state => state.slides.slides.data
 export const selectSlidesStatus = state => state.slides.status
 
 export default sliderSlice.reducer

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchSlides } from '../../redux/slides/slidesSlice'
+import { fetchSlides, selectAllSlides, selectSlidesStatus } from '../../redux/slides/slidesSlice'
  
 // MUI
 import { IconButton, Typography } from "@mui/material";
@@ -54,9 +54,9 @@ const Slider = () => {
 
 	const dispatch = useDispatch()
 
-	const slideStatus = useSelector(state => state.slides.status)
+	const slideStatus = useSelector(selectSlidesStatus)
 
-	const slides = useSelector(state => state.slides.slides)
+	const slides = useSelector(selectAllSlides)
 
 	useEffect(() => {
 		if(slideStatus === 'idle'){
