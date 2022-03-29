@@ -4,7 +4,6 @@ import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
 import PrivateRoutes from '../../backOffice/PrivateRoutes'
 const Donacion = lazy(() => import('../Donations/Donacion'))
-// const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import("./Index"));
 const Activities = lazy(() => import("../Activities/Actividades"));
 const News = lazy(() => import("../News/News"));
@@ -16,6 +15,7 @@ const DetalleActividad = lazy(() =>
 );
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
+const Gracias = lazy(() => import('../Donations/Gracias'));
 
 
 
@@ -30,10 +30,11 @@ export default function Routes() {
         <Route exact path="/activities/:id" component={DetalleActividad} />
         <Route exact path="/news/:id" component={NewsDetail} />
         <Route exact path="/news" component={News} />
-        <PrivateRoutes exact path="/contacto" component={Contacto} />
-        <PrivateRoutes exact path="/login" component={LoginForm} />
-        <PrivateRoutes exact path="/register" component= {RegisterForm}/>
-        <PrivateRoutes exact path="/donation" component={Donacion} />
+        <Route exact path="/contacto" component={Contacto} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/register" component= {RegisterForm}/>
+        <Route exact path="/gracias" component= {Gracias}/>
+        <Route exact path="/donation" component={Donacion} />
         <Route path="*" component={Error404} />
       </Switch>
     </LayoutHome>

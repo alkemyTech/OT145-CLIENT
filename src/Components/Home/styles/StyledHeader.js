@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appbar: {
-    marginBottom: '20px',
     backgroundColor: '#fff',
     height: '18vh',
     [theme.breakpoints.down('sm')]: {
