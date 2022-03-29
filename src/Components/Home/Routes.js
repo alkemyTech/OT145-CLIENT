@@ -2,8 +2,6 @@ import React, { lazy } from "react";
 import { Route, Switch, useRouteMatch, Redirect, useLocation } from "react-router-dom";
 import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
-
-import { useSelector } from "react-redux";
 const Donacion = lazy(() => import('../Donations/Donacion'))
 // const Gracias = lazy(() => import('./Components/Donations/Gracias'))
 const Home = lazy(() => import("./Index"));
@@ -17,6 +15,7 @@ const DetalleActividad = lazy(() =>
 );
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
+
 
 
 export default function Routes() {
