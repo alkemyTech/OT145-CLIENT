@@ -68,6 +68,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     fontWeight: '700',
   },
+  buttonInicio: {
+    marginRight: '10px',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
 }))
 
 export default useStyles
