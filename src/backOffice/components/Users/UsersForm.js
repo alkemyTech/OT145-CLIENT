@@ -80,8 +80,9 @@ const UserForm = () => {
                 const {name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
+                console.log(values);
                 dispatch(registarUsuario(name, email, password))
-                dispatch(postUser(values))
+                // dispatch(postUser(values))
             }
         },
     });

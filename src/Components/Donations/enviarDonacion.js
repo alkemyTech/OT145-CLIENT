@@ -8,7 +8,7 @@ export const enviarDonacion = async (values) => {
       {
         "title": "Donación ONG Somos más",
         "quantity": 1,
-        "unit_price": values,
+        "unit_price": values.ammount,
       },
     ],
     back_urls: {
