@@ -1,70 +1,103 @@
 import { makeStyles } from "@mui/styles";
+import { alpha } from "@mui/material/styles";
 
 // Styles
 const useStyles = makeStyles((theme) => ({
+    containerGeneral: {
+        width: '100%',
+        height: '300px',
+        position: 'relative',
+        [theme.breakpoints.up("md")]: {
+            height: "500px",
+            width: '100%'
+		},
+    },
 	sliderContainer: {
-		display: "flex",
-		height: "550px",
+        position: 'relative',
+		height: "500px",
 		color: "#fff",
-		flexDirection: "column",
 		width: "100%",
 		background: "#919191",
-        [theme.breakpoints.up("md")]: {
-            flexDirection: "row"
-		},
 	},
-	text: {
-		width: "100%",
-		alignItems: "center",
-        display: "flex",
-        color: '#000',
-		[theme.breakpoints.up("md")]: {
-		    height: "fit-content",
+    textContainer:{
+        display: 'none',
+        [theme.breakpoints.up("sm")]: {
+            position: 'absolute',
+            display:'flex',
+            flexDirection: 'column',
             justifyContent: 'center',
+            alignItems: 'flex-start',
+            bottom: '10%',
+            width: '480px',
+            padding: 20,
+            marginLeft: 100,
 		},
-	},
-    textContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        padding: '0 15px',
-        height: '100%',
-    },
-    textBoxContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        background: '#fff',
-        height: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '30%',
+        [theme.breakpoints.up("md")]:{
+            width: '800px'
         }
     },
-	sliderImage: (props) => ({
-		objectFit: props.isLogo ? "contain" :"cover",
-        height: "65%",
-		[theme.breakpoints.up("md")]: {
-            height: "100%",
-            width: '70%'
+	textTitle: {
+        fontWeight: 'bold',
+        color: '#FFF',
+        lineHeight: .9,
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 30,
 		},
-	}),
-	centerItem: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "100px",
+        [theme.breakpoints.up("md")]: {
+            fontSize: 50,
+		},
+	},
+	textDesc: {
+        fontWeight: 'bold',
+        color: '#FFF',
+        marginTop: 0,
+        lineHeight: 1,
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 13,
+		},
+        [theme.breakpoints.up("md")]: {
+            fontSize: 20,
+		},
+	},
+	sliderImage: {
+        filter: 'brightness(50%)',
+		objectFit: "cover",
+        width: '100%',
+        height: "300px",
+		[theme.breakpoints.up("md")]: {
+            height: "500px",
+            width: '100%'
+		}
 	},
     slideButtonLeft: {
         left: '10px',
         position: 'absolute',
-        top: '250px',
+        top: '50%',
+        color: "#919191",
+        backgroundColor: "#fff",
+        ":hover": {
+            backgroundColor: "#efefef",
+            color: "#818181",
+        },
     },
     slideButtonRight: {
         right: '10px',
         position: 'absolute',
-        top: '250px',
+        top: '50%',
+        color: "#919191",
+		backgroundColor: "#fff",
+		":hover": {
+		backgroundColor: "#efefef",
+		color: "#818181",
+		}
     },
     sliderDots: {
-        marginTop: '10px',
+        marginTop: '5px',
+        justifyContent: "center",
+        position: 'absolute',
+        bottom: '0',
+        left: '50%',
+        background: 'none'
     }
 }));
 

@@ -8,6 +8,7 @@ const PrivateRoutes = ({ component: Component, path,rol,  ...rest }) => {
   const { rol_type, token, user } = useSelector(state => state.auth)
 
   console.log(user, rol_type)
+  
   useEffect(()=> {
     dispatch(authMe(token))
   }, [])
@@ -22,6 +23,9 @@ const PrivateRoutes = ({ component: Component, path,rol,  ...rest }) => {
         else if (path !== '/backoffice' && user) {
           entrar = false
         }
+        else if (path === '/donation' && user) {
+          entrar = false
+        }
         break;
       case 'Standart':
         if (path === '/backoffice' && user) {
@@ -29,6 +33,9 @@ const PrivateRoutes = ({ component: Component, path,rol,  ...rest }) => {
         }
         else if (path !== '/backoffice' && user) {
           entrar = false
+        }
+        else if (path === '/donation' && user) {
+          entrar = true
         }
         break;
         case '': 

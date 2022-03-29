@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { autoPlay } from 'react-swipeable-views-utils'
 import { getSlides } from '../../Services/Home'
-import ActivitiesContent from '../Activities/AntivityContent'
+import parse from 'html-react-parser'
 
 // MUI
 import { IconButton, Typography } from '@mui/material'
@@ -17,75 +17,35 @@ import useStyles from './styles'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews)
 
-const Slide = ({
-  title = 'title',
-  description = 'slide description',
-  imgLabel = 'imageLabel',
-  imgSrc = 'images/logoSomosMas.png',
-}) => {
-  const isLogo = imgSrc === 'images/logoSomosMas.png' ? true : false
-
-  const classes = useStyles({ isLogo: isLogo })
+const Slide = ({ title, description, imgLabel, imgSrc }) => {
+  const classes = useStyles()
 
   return (
-    <Box className={classes.sliderContainer}>
+    <>
       <Box
         component="img"
         className={classes.sliderImage}
         src={imgSrc}
         alt={imgLabel}
       />
-      <Box className={classes.textBoxContainer}>
-        <Box className={classes.textContainer}>
-          <Typography variant="h3" className={classes.text}>
-            {title}
-          </Typography>
-          <Typography variant="p" className={classes.text}>
-            {<ActivitiesContent content={description} />}
-          </Typography>
-        </Box>
+      <Box className={classes.textContainer}>
+        <Typography variant="h6" className={classes.textTitle}>
+          {title}
+        </Typography>
+        <Typography variant="caption" className={classes.textDesc}>
+          {parse(description)}
+        </Typography>
       </Box>
-    </Box>
+    </>
   )
 }
 
-// Data to get from anyplace
-const defaultSliderData = [
-  {
-    id: 1,
-    name: 'Acompañamos a aprender.',
-    description:
-      "test description2Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
-    image:
-      'https://res.cloudinary.com/danb0chax/image/upload/v1646849820/SomosMas/pexels-kindel-media-7105593_cv7jcl.jpg',
-    title: 'Acompañamos a aprender.',
-  },
-  {
-    id: 2,
-    name: 'la importancia de jugar.',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-    image:
-      'https://res.cloudinary.com/danb0chax/image/upload/v1646849827/SomosMas/pexels-polesie-toys-4487869_tfd7uk.jpg',
-    title: 'La importancia de jugar.',
-  },
-  {
-    id: 3,
-    name: 'Actividad física y deporte',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
-    image:
-      'https://res.cloudinary.com/danb0chax/image/upload/v1646849812/SomosMas/pexels-bruna-saito-1805843_hormkl.jpg',
-    title: 'Actividad física y deporte.',
-  },
-]
-
 // Principal component
-const Slider = ({ slidersData = defaultSliderData }) => {
+const Slider = () => {
   const theme = useTheme()
   const [activeStep, setActiveStep] = useState(0)
   const [slides, setSlides] = useState([])
-  const maxSteps = slidersData.length
+  const maxSteps = slides.length
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -110,7 +70,7 @@ const Slider = ({ slidersData = defaultSliderData }) => {
   const classes = useStyles()
 
   return (
-    <>
+    <Box className={classes.containerGeneral}>
       <AutoPlaySwipeableViews
         enableMouseEvents
         onChangeIndex={handleStepChange}
@@ -134,15 +94,6 @@ const Slider = ({ slidersData = defaultSliderData }) => {
       {/* Slider buttons */}
       <IconButton
         className={classes.slideButtonLeft}
-        sx={{
-          color: '#919191',
-          backgroundColor: '#fff',
-          position: 'absolute',
-          ':hover': {
-            backgroundColor: '#efefef',
-            color: '#818181',
-          },
-        }}
         size="medium"
         onClick={handleBack}
         disabled={activeStep === 0}
@@ -155,15 +106,6 @@ const Slider = ({ slidersData = defaultSliderData }) => {
       </IconButton>
       <IconButton
         className={classes.slideButtonRight}
-        sx={{
-          color: '#919191',
-          backgroundColor: '#fff',
-          position: 'absolute',
-          ':hover': {
-            backgroundColor: '#efefef',
-            color: '#818181',
-          },
-        }}
         size="medium"
         onClick={handleNext}
         disabled={activeStep === maxSteps - 1}
@@ -178,14 +120,11 @@ const Slider = ({ slidersData = defaultSliderData }) => {
       {/* Slider dots */}
       <MobileStepper
         className={classes.sliderDots}
-        sx={{
-          justifyContent: 'center',
-        }}
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
       />
-    </>
+    </Box>
   )
 }
 
