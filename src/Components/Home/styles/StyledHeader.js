@@ -13,10 +13,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   typographyLinks: {
-    fontSize: '20px',
+    fontSize: '15px',
     paddingRight: 20,
     [theme.breakpoints.down('md')]: {
-      fontSize: '15px',
       paddingRight: 20,
     },
   },

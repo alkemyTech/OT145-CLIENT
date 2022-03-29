@@ -163,6 +163,8 @@ function BackOficce() {
 
         <Route exact path={`${match.path}/members`} component={MemberList} />
 
+      <Route exact path={`${match.path}/categories/edit/:id`} component={CategoriesForm} />
+
         <Route path="*" component={Error404} />
       </Switch>
     </>

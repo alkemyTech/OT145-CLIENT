@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useStyles from "../../styles/CategoriesFormStyles";
-import { TextField, Button, IconButton } from "@mui/material";
+import useStyles from '../../styles/newsFormStyles'
+import { TextField, Button,  Container, Paper, Typography, Box } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
@@ -10,7 +10,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../shared/Spinner/Spinner';
 import { sweetAlertMixin } from "../../../Utils/AlertState";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 
@@ -38,7 +38,7 @@ const CategoriesForm = () => {
 
 	}, [])
 	
-	const { setFieldValue, handleSubmit, values, handleChange, touched, errors,handleReset } = useFormik({
+	const { setFieldValue, handleSubmit, handleBlur, values, handleChange, touched, errors,handleReset } = useFormik({
 		enableReinitialize: true,
 		initialValues: {
 			name: categoriesById?.name || "",
@@ -82,49 +82,59 @@ const CategoriesForm = () => {
 	};
 
 	return (
-		<>	
-			<IconButton 
-				component="span"
-				className={classes.buttonBack}
-				onClick={()=>history.push('/backoffice/categories')}>
-				<ArrowBackIcon className={classes.iconButtonBack}/>
-			</IconButton>
+		<Container className={classes.container}>	
 			<form onSubmit={handleSubmit} className={classes.form}>
-				<TextField
-					className={classes.formElement}
-					name="name"
-					value={values.name}
-					onChange={handleChange}
-					placeholder={categoriesById ? categoriesById?.name : "Nombre de categoría"}
-					error={touched.name && errors.name}
-					label='Nombre de categoría'
-				/>
-				<Editor
-					text={values.description}
-					onChangeText={(data) => {
-						setFieldValue("description", data);
-					}}
-				/>
-				{touched.description && errors.description ? (
-					<div>{errors.description}</div>
-				) : null}
-				<TextField
-					inputProps={{
-						accept: "image/png, image/jpeg",
-						type: "file",
-					}}
-					name="defaultImage"
-					className={classes.formElement}
-					onChange={(event) => handleImageChange(event)}
-				/>
-				{touched.image && !isValidImageFormat? (
-					<div>El formato de la imágen no es válido {errors.image}</div>
-				) : null}
-				<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-					{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
-				</Button>
+				<Paper className={classes.paper} elevation={5}>
+					<Typography className={classes.title} variant="h5">{categoriesById ? 'Editar Categoria' : 'Crear Categoria'}</Typography>
+					<TextField
+						className={classes.inputs}
+						name="name"
+						type="text"
+						value={values.name}
+						onChange={handleChange}
+						onBlur={handleBlur}
+						error={touched.name && errors.name}
+						helperText={touched.name && errors.name}
+						label='Title'
+						fullWidth
+					/>
+					<Editor
+						text={values.description}
+						onChangeText={(data) => {
+							setFieldValue("description", data);
+						}}
+					/>
+					{touched.description && errors.description ? (
+						<div className={classes.errorCkEditor}>{errors.description}</div>
+					) : null}
+					<TextField
+						inputProps={{
+							accept: "image/png, image/jpeg",
+							type: "file",
+						}}
+						fullWidth
+						name="defaultImage"
+						className={classes.inputs}
+						onChange={(event) => handleImageChange(event)}
+					/>
+					{touched.image && !isValidImageFormat? (
+						<div>El formato de la imágen no es válido {errors.image}</div>
+					) : null}
+					<Button color='secondary' className={classes.button} fullWidth type="submit" variant="contained">
+						{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
+					</Button>
+				</Paper>
+				<Box className={classes.finalLink}>
+					<Button
+						variant="contained"
+						color="secondary"
+						onClick={() => history.goBack()}
+					>
+						Volver a la lista
+					</Button>
+				</Box>
 			</form>
-		</>
+		</Container>
 	);
 };
 

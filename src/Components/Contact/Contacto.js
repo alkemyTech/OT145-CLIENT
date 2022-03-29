@@ -7,6 +7,7 @@ import useStyles from './contactoStyles'
 import Title from './../Title/Title'
 import { useSelector } from 'react-redux'
 import { Redirect, useLocation } from 'react-router-dom'
+import ContactForm from '../ContactForm/ContactForm'
 
 const contactoInfo = {
   title: 'Contacto',
@@ -20,15 +21,12 @@ const contactoInfo = {
 
 const Contacto = () => {
   const classes = useStyles()
-  const { rol_type, isLogin } = useSelector(state => state.auth)
-
 
 
   return (
-    <>
-      {(isLogin && rol_type === "Admin") ? <Redirect to="/" /> :
         <>
           <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
+          <ContactForm />
           <Container className={classes.container}>
             <Typography variant="h6" className={classes.subtitle}>
               Comunicate con nosotros para colaborar, y obtener información.
@@ -84,9 +82,6 @@ const Contacto = () => {
           </Container>
           <DecorativeLine />
         </>
-
-      }
-    </>
   )
 }
 export default Contacto
