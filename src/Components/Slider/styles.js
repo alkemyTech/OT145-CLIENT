@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles'
+import { alpha } from '@mui/material/styles'
 
 // Styles
 const useStyles = makeStyles((theme) => ({
@@ -18,40 +19,32 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     background: '#919191',
   },
-
   textContainer: {
     display: 'none',
-    backgroundColor: 'rgba(141, 202, 255, 0.5)',
-    borderRadius: '15px 15px 0px 0px',
-
     [theme.breakpoints.up('sm')]: {
       position: 'absolute',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'flex-start',
-      bottom: '3px',
-      width: '200px',
+      bottom: '10%',
+      width: '480px',
       padding: 20,
-      marginLeft: 60,
+      marginLeft: 100,
     },
     [theme.breakpoints.up('md')]: {
-      width: '500px',
+      width: '800px',
     },
   },
-
   textTitle: {
     fontWeight: 'bold',
     color: '#FFF',
-    opacity: 'none',
     lineHeight: 0.9,
-    textShadow: '0px 0px 3px #334E5F',
-
     [theme.breakpoints.up('sm')]: {
       fontSize: 30,
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: 40,
+      fontSize: 50,
     },
   },
   textDesc: {
@@ -59,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFF',
     marginTop: 0,
     lineHeight: 1,
-    textShadow: '0px 0px 3px #334E5F',
     [theme.breakpoints.up('sm')]: {
       fontSize: 13,
     },
@@ -68,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sliderImage: {
-    /* filter: 'brightness(50%)', */
+    filter: 'brightness(50%)',
     objectFit: 'cover',
     width: '100%',
     height: '300px',
