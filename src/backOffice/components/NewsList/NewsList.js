@@ -10,6 +10,7 @@ import {
   Paper,
   Button,
   Container,
+  IconButton
 } from '@mui/material'
 import Delete from '@mui/icons-material/Delete'
 import ModeEdit from '@mui/icons-material/ModeEdit'
@@ -22,6 +23,7 @@ import {
 } from '../../../redux/NewsReducers/newsReducerThunk'
 import { sweetAlertConfirm } from '../../../Utils/sweetAlertConfirm'
 import { sweetAlertMixin } from '../../../Utils/AlertState'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const NewsList = () => {
   const location = useLocation()
@@ -58,10 +60,18 @@ const NewsList = () => {
 
   return (
     <>
+      <IconButton 
+        aria-label="upload picture" 
+        component="span" 
+        className={classes.buttonBack}
+        onClick={() => history.goBack()}
+      >
+        <ArrowBackIcon className={classes.iconButtonBack} />
+      </IconButton>
       <Container className={classes.containerList}>
         <Box className={classes.contLink}>
           <Link to={`${path}/create-news`} className={classes.styleLink}>
-            Crear Novedad
+            <Button color='secondary' variant='contained'>Crear Novedad</Button>
           </Link>
         </Box>
 
