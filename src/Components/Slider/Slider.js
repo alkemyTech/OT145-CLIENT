@@ -28,6 +28,7 @@ const Slide = ({ title, description, imgLabel, imgSrc }) => {
         src={imgSrc}
         alt={imgLabel}
       />
+
       <Box className={classes.textContainer}>
         <Typography variant="h6" className={classes.textTitle}>
           {title}
