@@ -19,6 +19,10 @@ const alertText = {
   text: 'Algo salió mal!',
   footer: '<a href=""> Qué fue lo que paso? </a>',
 }
+const textNews = {
+  text:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+}
 
 const News = () => {
   const dispatch = useDispatch()
@@ -55,14 +59,9 @@ const News = () => {
               </div>
             ) : (
               <>
-                <Title
-                  title={<ActivityContent content={lastNews[8].name} />}
-                  imgSrc={lastNews[8].image}
-                />
+                <Title title="Novedades" imgSrc={lastNews[0].image} />
                 <Container>
-                  <NewsText
-                    text={<ActivityContent content={lastNews[8].content} />}
-                  />
+                  <NewsText text={textNews.text} />
                   <Grid container className={classes.cardList}>
                     {lastNews.map((row) => {
                       return (
