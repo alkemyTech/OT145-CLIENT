@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { Route, Switch, useRouteMatch, Redirect, useLocation } from "react-router-dom";
 import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
+import PrivateRoutes from '../../backOffice/PrivateRoutes'
 
 import { useSelector } from "react-redux";
 const Donacion = lazy(() => import('../Donations/Donacion'))

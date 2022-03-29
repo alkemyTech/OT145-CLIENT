@@ -7,10 +7,10 @@ import { postUser, putUser } from '../../../redux/Users/userSlice';
 import { convertToBase64 } from '../../../helpers/base64';
 import { getUsersById } from '../../../redux/Users/userSlice';
 import { registarUsuario } from '../../../redux/usersReducer/action';
-import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {Button , TextField, Typography, Select, MenuItem, InputLabel, FormControl, FormHelperText, IconButton, Container, Paper, Box} from '@mui/material';
 import Spinner from '../../../shared/Spinner/Spinner';
-import useStyles from './style';
+import useStyles from '../../styles/newsFormStyles'
 
 const validationSchema = yup.object({
     email: yup
@@ -99,24 +99,16 @@ const UserForm = () => {
         }
     }, [status])
 
-    return (
-    <>
-    <IconButton 
-      aria-label="upload picture" 
-      component="span" 
-      className={classes.buttonBack} 
-      onClick={() => history.push('/backoffice/users')}
-    >
-      <ArrowBackIcon className={classes.iconButtonBack} />
-    </IconButton>
-        <div className={classes.containerForm}>
-            <Typography variant='h6'>{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
-            <form onSubmit={handleSubmit}>
+return (
+    <Container className={classes.container}>
+        <form onSubmit={handleSubmit} className={classes.form}>
+            <Paper className={classes.paper} elevation={5}>
+                <Typography className={classes.title} variant="h5">{userId ? 'Editar Usuario' : 'Crear Usuario'}</Typography>
                 <TextField
                     fullWidth
                     name="name"
                     label="Nombre"
-                    className={classes.fieldForm}
+                    className={classes.inputs}
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -128,7 +120,7 @@ const UserForm = () => {
                     fullWidth
                     name="email"
                     label="Email"
-                    className={classes.fieldForm}
+                    className={classes.inputs}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -136,7 +128,7 @@ const UserForm = () => {
                     helperText={touched.email && errors.email}
                     color="secondary"
                 />
-                <TextField className={classes.fieldForm}
+                <TextField className={classes.inputs}
                     fullWidth
                     name="password"
                     label="Contraseña"
@@ -168,8 +160,8 @@ const UserForm = () => {
                     </Select>
                     {errors.role_id && <FormHelperText>{errors.role_id}</FormHelperText>}
                 </FormControl>
-               
-                <TextField className={classes.fieldForm}
+            
+                <TextField className={classes.inputs}
                     fullWidth
                     name="profile_image"
                     type="file"
@@ -184,9 +176,18 @@ const UserForm = () => {
                         : 'Enviar'    
                     }
                 </Button>
-            </form>
-        </div>
-        </>
+            </Paper>
+            <Box className={classes.finalLink}>
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => history.goBack()}
+            >
+                Volver a la lista
+            </Button>
+            </Box>
+        </form>
+    </Container>
     );
 }
  
