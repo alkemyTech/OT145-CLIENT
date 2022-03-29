@@ -106,6 +106,6 @@ const testimonialsSlice = createSlice({
 })
 
 export const selectAllTestimonials = state => state.testimonials.testimonials.data
-export const selectTestimonialsStatus = state => state
+export const selectTestimonialsStatus = state => state.testimonials.status
 
 export default testimonialsSlice.reducer

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from "../../styles/TestimonialsFormStyles";
 import { TextField, Button } from "@mui/material";
 import { useFormik } from "formik";
@@ -6,6 +6,9 @@ import Editor from "../Editor/Editor";
 import * as Yup from "yup";
 import { privatePOST, privatePATCH } from "../../../Services/privateApiService";
 import { convertToBase64 } from '../../../helpers/base64'
+import { useParams, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllTestimonials, selectTestimonialsStatus, getTestimonialsById, putTestimonials, postTestimonials, deleteTestimonials } from '../../../redux/Testimonials/testimonialsSlice'
 
 const validationSchema = Yup.object({
 	name: Yup.string("Ingrese su nombre")
@@ -19,12 +22,24 @@ const validationSchema = Yup.object({
 
 const TestimonialForm = ({ testimonial }) => {
 	const classes = useStyles();
+	const { id } = useParams()
+    const { pathname } = useLocation()    
+    const dispatch = useDispatch()
+	const testimonials = useSelector(selectAllTestimonials)
+    const testimonialsStatus = useSelector(selectTestimonialsStatus)
+
+	useEffect(() => {
+        if(pathname.includes('edit') && testimonialsStatus !== 'updated'){
+            dispatch(getTestimonialsById(id))
+        }
+    }, [testimonials, testimonialsStatus, dispatch]);
 
 	const { setFieldValue, handleSubmit, values, handleChange, touched, errors } = useFormik({
+        enableReinitialize: true,
 		initialValues: {
-			name: testimonial?.name || "",
-			description: testimonial?.description ||"",
-			image: testimonial?.image || "",
+			name: testimonials?.name || "",
+			description: testimonials?.description ||"",
+			image: testimonials?.image || "",
 		},
 		validationSchema: validationSchema,
 		onSubmit: ( async (values) => {
@@ -32,6 +47,20 @@ const TestimonialForm = ({ testimonial }) => {
                 privatePATCH(`${process.env.REACT_APP_API_GET_TESTIMONIALS}/${testimonial.id}`, values);
             }
             privatePOST(process.env.REACT_APP_API_GET_TESTIMONIALS, values);
+
+			if (pathname.includes('edit')) {
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                console.log(values)
+                console.log(testimonials)
+                values.id = testimonials.id
+                dispatch(putTestimonials(values))
+            }
+            else {
+                const base64 = await convertToBase64(values.image)
+                values.image = base64
+                dispatch(postTestimonials(values))
+            }
             
         })
 	});
@@ -82,7 +111,7 @@ const TestimonialForm = ({ testimonial }) => {
 				<div>El formato de la imágen no es válido {errors.image}</div>
 			) : null}
 			<Button color='secondary' className={classes.formElement} type="submit" variant="contained">
-				Send
+				Enviar
 			</Button>
 		</form>
 	);

@@ -16,7 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import useStyles from "../../styles/styledList";
 import { useSelector, useDispatch } from 'react-redux'
-import { selectAllTestimonials, selectTestimonialsStatus, getTestimonials } from '../../../redux/Testimonials/testimonialsSlice'
+import { selectAllTestimonials, selectTestimonialsStatus, getTestimonials, deleteTestimonials } from '../../../redux/Testimonials/testimonialsSlice'
 
 function SlidesBackOffice() {
 	const classes = useStyles();
@@ -24,20 +24,13 @@ function SlidesBackOffice() {
     const testimonialsStatus = useSelector(selectTestimonialsStatus)
 	const dispatch = useDispatch()
 
-	// const deleteItem = (row) => {
-	// 	if (data.length >= 1) {
-	// 		const filterArray = data.filter((item) => item.id !== row.id);
-	// 		return setData(filterArray);
-	// 	}
-	// 	const filterArray = mockedData.filter((item) => item.id !== row.id);
-	// 	return setMockedData(filterArray);
-	// };
-
 	useEffect(() => {
-		if(testimonialsStatus === 'idle'){
+		if(testimonialsStatus === 'idle' || testimonialsStatus === 'updated'){
 			dispatch(getTestimonials())
 		}
 	}, [dispatch, testimonialsStatus]);
+
+	const rowValues = ['Titulo', 'Imágen', 'Descripción', 'Editar', 'Eliminar']
 
 	return (
 		<Container className={classes.containerList}>
@@ -54,21 +47,11 @@ function SlidesBackOffice() {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<TableCell align="center" className={classes.tableCell}>
-								Titulo
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Imágen
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Descripción
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Editar
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Eliminar
-							</TableCell>
+							{rowValues.map((rowName) => (
+								<TableCell align="center" className={classes.tableCell}>
+									{rowName}
+								</TableCell>
+							))}
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -111,7 +94,7 @@ function SlidesBackOffice() {
 									className={classes.tableCell}
 									>
 									<IconButton
-										// onClick={() => deleteItem(row)}
+										onClick={() => dispatch(deleteTestimonials(row.id))}
 										color="secondary"
 										sx={{ cursor: "pointer" }}>
 										<DeleteIcon />
