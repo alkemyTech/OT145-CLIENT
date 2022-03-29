@@ -6,42 +6,43 @@ import { NavLink } from "react-router-dom";
 import Newsletter from './Newsletter';
 import { useSelector } from "react-redux";
 
+function getData() {
+	// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
+
+	// Mockup parcial
+	const data = {
+		socialMedia: [
+			{
+				name: "Facebook",
+				url: "https://facebook.com",
+			},
+			{
+				name: "LinkedIn",
+				url: "https://linkedin.com",
+			},
+			{
+				name: "Instagram",
+				url: "https://instagram.com",
+			},
+		],
+		navigationItems: [
+			{
+				name: "Actividades",
+				url: "/activities",
+			},
+			{
+				name: "Novedades",
+				url: "/news",
+			},
+		],
+	};
+	return data;
+}
+
 
 export default function Footer() {
 	const {isLogin} = useSelector(state => state.auth)
-	function getData() {
-		// Obtener datos de endpoint /organization utilizando los servicios reutilizables.
-
-		// Mockup parcial
-		const data = {
-			socialMedia: [
-				{
-					name: "Facebook",
-					url: "https://facebook.com",
-				},
-				{
-					name: "LinkedIn",
-					url: "https://linkedin.com",
-				},
-				{
-					name: "Instagram",
-					url: "https://instagram.com",
-				},
-			],
-			navigationItems: [
-				{
-					name: "Actividades",
-					url: "/activities",
-				},
-				{
-					name: "Novedades",
-					url: "/news",
-				},
-			],
-		};
-		return data;
-	}
-
+	
 	const footerData = getData();
 
 	const classes = useStyles();
@@ -64,7 +65,7 @@ export default function Footer() {
 								Nuestras redes 
 								</Typography>
 								<ul className={classes.footerList}>
-									{footerData.socialMedia.map(({ name, url }, index) => (
+									{getData().socialMedia.map(({ name, url }, index) => (
 										<li key={index}>
 											<NavLink className={classes.linkItemFooterList} to={url}>
 												{name}

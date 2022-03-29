@@ -1,11 +1,14 @@
 import React from 'react';
 import { AppBar, Toolbar, Box, Typography, Button } from '@mui/material';
 import useStyles from '../School/StyledAppBar';
+import { useHistory } from 'react-router-dom';
 
 
 const Header = () => {
 
   const classes = useStyles();
+
+  const history = useHistory();
 
   return (
     <>
@@ -21,7 +24,14 @@ const Header = () => {
               <img src="/images/Logotipo-campaña-juguetes.png" alt="Campaing Logo" className={classes.logoDeCampaña}/>
               </Box>
               <Box>
-      <Button variant="contained"sx={{ size: { xs: 'medium', md: 'large' } }}  className={classes.button}>DONA HOY!</Button>
+      <Button 
+      variant="contained"
+      sx={{ size: { xs: 'medium', md: 'large' } }}  
+      className={classes.button}
+      onClick={() => history.push('/donation')}
+      >
+        DONA HOY
+      </Button>
     </Box>
           </Toolbar>
           <Typography className={classes.sloganToys}>

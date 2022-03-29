@@ -5,6 +5,8 @@ import useStyles from '../About/nosotrosStyles'
 
 const NosotrosList = ({ miembros }) => {
   const classes = useStyles()
+
+  console.log(miembros);
   return (
     <>
       <Grid container className={classes.cardList}>

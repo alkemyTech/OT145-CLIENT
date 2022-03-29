@@ -75,7 +75,7 @@ const Sidebar = ({open}) => {
                 <List> 
                     {
                         rutasMokeadas.map((element, index) => (
-                            <ListItem button key={index}>
+                            <ListItem key={index}>
                                 <Link key={index} to={element.link} className={classes.item}>{element.name}</Link>
                             </ListItem>
                             ))

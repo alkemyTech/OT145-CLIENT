@@ -5,8 +5,6 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import useStyles from './contactoStyles'
 import Title from './../Title/Title'
-import { useSelector } from 'react-redux'
-import { Redirect, useLocation } from 'react-router-dom'
 import ContactForm from '../ContactForm/ContactForm'
 
 const contactoInfo = {

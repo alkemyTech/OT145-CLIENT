@@ -26,7 +26,7 @@ const NewsList = () => {
   const lastNews = news.slice(-6)
 
   return (
-    <div >
+    <Container>
       <h2>Ultimas Novedades</h2>
       <Container className={classes.containerThree}>
         <Grid container className={classes.cardList}>
@@ -49,7 +49,7 @@ const NewsList = () => {
       </Container>
       <DecorativeLine />
 
-    </div>
+    </Container>
   );
 }
 

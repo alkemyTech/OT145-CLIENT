@@ -5,10 +5,12 @@ import Box from '@mui/system/Box'
 import AppBar from '@mui/material/AppBar'
 import { Divider, Button } from '@mui/material';
 import useStyles from './StyledAppBar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Header = () => {
   const classes = useStyles();
+
+  const history = useHistory();
 
   return (
     <>
@@ -22,7 +24,14 @@ const Header = () => {
             <img src="images/logotipoCampañaEscuela.png" alt=""  className={classes.logoDeCampaña} />
           </Box> 
           <Box>
-            <Button variant="contained"sx={{ size: { sm: 'medium', lg: 'large' } }}  className={classes.button}>DONA HOY!</Button>
+            <Button 
+              variant="contained"
+              sx={{ size: { sm: 'medium', lg: 'large' } }}  
+              className={classes.button}
+              onClick={() => history.push('/donation')}
+            >
+              DONA HOY
+            </Button>
           </Box>
          
         </Toolbar>

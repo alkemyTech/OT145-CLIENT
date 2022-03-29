@@ -13,12 +13,10 @@ import { AlertSucces } from '../../Utils/AlertSucces'
 import { useDispatch } from 'react-redux';
 import { registarUsuario } from "../../redux/usersReducer/action"
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Spinner from '../../shared/Spinner/Spinner'
 
 const RegisterForm = () => {
-  const history = useHistory()
-  const { loading, isRegister } = useSelector(state => state.auth)
+  const { loading } = useSelector(state => state.auth)
   const classes = useStyles()
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
@@ -39,11 +37,6 @@ const RegisterForm = () => {
 
   };
 
-  useEffect(() => {
-    if (isRegister) {
-      history.push("/login")
-    }
-  }, [isRegister])
 
   const showAlert = (type, text) => {
     return <Alert severity={type}>{text}</Alert>;

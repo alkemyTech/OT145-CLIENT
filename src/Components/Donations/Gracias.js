@@ -1,14 +1,13 @@
-import React from 'react';
 import { Typography, Box } from '@mui/material';
 import useStyles from './styles/graciasStyles';
 
 const Gracias = () => {
-
     const classes = useStyles();
 
     return(
         <Box className={classes.Containertexto}>
-            <Typography variant='h5'>Gracias por tu colaboracion, con tu donacion ayudaste a muchas personas</Typography>
+            <img src='/images/nenesDonacion.png' alt='Nenes felices' className={classes.image}/>
+            <Typography variant='h4' className={classes.text}>Gracias por tu colaboracion</Typography>
         </Box>
     );
 };

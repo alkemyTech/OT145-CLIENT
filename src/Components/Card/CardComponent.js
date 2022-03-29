@@ -10,6 +10,7 @@ import { useStyles } from './StylesCard';
 const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink,textFirstLink,textSecondLink, leerMasLink}) => {
   const classes = useStyles();
 
+
   return (
     <Card className={classes.container}>
       <div  className={classes.styleTitle}>
@@ -30,18 +31,10 @@ const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink
           {description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing >
-        <div className={classes.containerLink}>
-          <div>
-            <a href={firstLink} className={classes.styleLink}>{textFirstLink}</a>
-          </div>
-          <div className={classes.paddingBetweenLink}>
-            <a href={secondLink}  className={classes.styleLink}>{textSecondLink}</a>
-          </div>
-        </div>     
+      <CardActions disableSpacing >   
         { leerMasLink &&
           <div onClick={leerMasLink} className={classes.leerMas}>
-            <Typography variant="subtitle2" color="secondary">
+            <Typography variant="subtitle2" color="primary">
               Leer más
             </Typography>
         </div>}

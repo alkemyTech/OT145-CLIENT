@@ -4,7 +4,6 @@ import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
 import PrivateRoutes from '../../backOffice/PrivateRoutes'
 
-import { useSelector } from "react-redux";
 const Donacion = lazy(() => import('../Donations/Donacion'))
 const Home = lazy(() => import("./Index"));
 const Activities = lazy(() => import("../Activities/Actividades"));
@@ -31,9 +30,9 @@ export default function Routes() {
         <Route exact path="/activities/:id" component={DetalleActividad} />
         <Route exact path="/news/:id" component={NewsDetail} />
         <Route exact path="/news" component={News} />
-        <Route exact path="/contacto" component={Contacto} />
-        <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/register" component= {RegisterForm}/>
+        <PrivateRoutes exact path="/contacto" component={Contacto} />
+        <PrivateRoutes exact path="/login" component={LoginForm} />
+        <PrivateRoutes exact path="/register" component= {RegisterForm}/>
         <Route exact path="/gracias" component= {Gracias}/>
         <Route exact path="/donation" component={Donacion} />
         <Route path="*" component={Error404} />

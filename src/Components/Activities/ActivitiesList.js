@@ -26,7 +26,7 @@ const ActivitiesList = () => {
     const lastActivities = activities.slice(-6)
 
     return (
-        <div >
+        <Container>
           <h2>Ultimas Actividades</h2>
           <Container className={classes.containerThree}>
             <Grid container className={classes.cardList}>
@@ -47,8 +47,7 @@ const ActivitiesList = () => {
             </Grid>
           </Container>
           <DecorativeLine />
-    
-        </div>
+        </Container>
       );
 }
  

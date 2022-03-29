@@ -9,12 +9,13 @@ import { useEffect } from "react";
 import { authMe } from "../../redux/usersReducer/action";
 
 const LayoutHome = (props) => {
-    const {token} = useSelector(state =>state.auth);
+    const {token} = useSelector(state => state.auth);
     const dispatch = useDispatch()
     const classes = useStyles();
 
     useEffect(()=>{
         dispatch(authMe(token))
+
         
     },[])
     return (
@@ -23,11 +24,8 @@ const LayoutHome = (props) => {
             <Header />
             <Box>
                 {props.children}
-
-
             </Box>
             <Footer />
-
         </>
     );
 }

@@ -1,19 +1,30 @@
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     newsletterContainer: {
         backgroundColor: '#ebebeb',
-        padding: '20px 0',
-    },
-    content: {
+        padding: '40px 0',
         display: 'flex',
-        gap: '15px',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        gap: '15px'
     },
     form: {
         display: 'flex',
+        justifyContent:'center',
         gap: '15px'
+    },
+    text:{
+        marginTop: 8
+    },
+    inputError:{
+        backgroundColor: 'none',
+        color: '#F00'
+    },
+    inputContainer:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
     }
 }));
 

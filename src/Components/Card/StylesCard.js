@@ -30,5 +30,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   leerMas: {
     marginRight: '10px',
+    cursor: 'pointer'
   },
 }))
