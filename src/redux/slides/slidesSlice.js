@@ -14,7 +14,6 @@ export const deleteSlides = createAsyncThunk('slider/deleteSlides', (id) => {
 })
 
 export const putSlides = createAsyncThunk('slider/putSlides', (values) => {
-  console.log(values)
   return putSlide(values.id, values)
 })
 
@@ -22,32 +21,24 @@ export const postSlides = createAsyncThunk('slider/postSlides', (values) => {
   return postSlide(values)
 })
 
-const initialState = {
-	slides: {
-		data: [
-			{
-				name: "",
-				description: "",
-				order: "",
-				image: "",
-			},
-		],
-	},
-	// slideById: null,
-	status: "idle",
-	error: null,
-};
-
 const sliderSlice = createSlice({
   name: 'slider',
-  initialState,
+  initialState : {
+      slides: [],
+      status: null,
+      slidesId: null,
+      error: null,
+  }
+  ,
   extraReducers: {
     [fetchSlides.pending]: (state) => {
+
       state.status = 'loading'
     },
     [fetchSlides.fulfilled]: (state, { payload }) => {
-      state.status = 'succeeded'
-      state.slides = payload
+      state.status = 'success'
+      state.slides = payload.data
+      state.slidesId = null
     },
     [fetchSlides.rejected]: (state, { error }) => {
       state.status = 'failed'
@@ -58,7 +49,7 @@ const sliderSlice = createSlice({
       state.status = 'loading'
     },
     [deleteSlides.fulfilled]: (state) => {
-      state.status = 'updated'
+      state.status = 'deleted'
     },
     [deleteSlides.rejected]: (state, { error }) => {
       state.status = 'failed'
@@ -69,8 +60,14 @@ const sliderSlice = createSlice({
       state.status = 'loading'
     },
     [getSlidesById.fulfilled]: (state, { payload }) => {
-      state.status = 'updated'
-      state.slides.data = payload.data
+      if (payload.success) {
+        state.slidesId = payload.data
+        state.status = 'success'
+      } else {
+        state.status = 'failed';
+        state.error = payload.message
+      }
+
     },
     [getSlidesById.rejected]: (state, { error }) => {
       state.status = 'failed'
@@ -81,7 +78,7 @@ const sliderSlice = createSlice({
       state.status = 'loading'
     },
     [putSlides.fulfilled]: (state,) => {
-      state.status = 'updated'
+      state.status = 'edited'
     },
     [putSlides.rejected]: (state, { error }) => {
       state.status = 'failed'
@@ -92,7 +89,7 @@ const sliderSlice = createSlice({
       state.status = 'loading'
     },
     [postSlides.fulfilled]: (state,) => {
-      state.status = 'updated'
+      state.status = 'created'
     },
     [postSlides.rejected]: (state, { error }) => {
       state.status = 'failed'

@@ -44,19 +44,16 @@ const Slide = ({ title, description, imgLabel, imgSrc }) => {
 
 // Principal component
 const Slider = () => {
-	const dispatch = useDispatch()
-	const slideStatus = useSelector(selectSlidesStatus)
-	const slides = useSelector(selectAllSlides)
+  const dispatch = useDispatch()
+  const {slides} = useSelector(state =>state.slides)
 
-	useEffect(() => {
-		if(slideStatus === 'idle'){
-			dispatch(fetchSlides())
-		}
-	}, [slideStatus, dispatch]);
+  useEffect(() => {
+      dispatch(fetchSlides())
+  }, []);
 
-	const theme = useTheme();
-	const [activeStep, setActiveStep] = React.useState(0);
-	const maxSteps = slides?.length;
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = slides?.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -70,13 +67,13 @@ const Slider = () => {
     setActiveStep(step)
   }
 
-	// useEffect(() => {
-	// 	const getData = async () => {
-	// 		const { data } = await getSlides(3);
-	// 		setSlides(data);
-	// 	}
-	// 	getData();
-	// }, [])
+ /*  useEffect(() => {
+    const getData = async () => {
+      const { data } = await getSlides(3);
+      setSlides(data);
+    }
+    getData();
+  }, []) */
 
   const classes = useStyles()
 

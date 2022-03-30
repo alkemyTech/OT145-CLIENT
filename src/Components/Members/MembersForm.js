@@ -9,6 +9,7 @@ import Editor from "../../backOffice/components/Editor/Editor";
 import Spinner from '../../shared/Spinner/Spinner';
 import { Button, Container, TextField, Typography, Paper,Box } from "@mui/material";
 import useStyles from '../../backOffice/styles/newsFormStyles'
+import { sweetAlertMixin } from "../../Utils/AlertState";
 
 
 const MembersForm = () => {
@@ -95,12 +96,14 @@ const MembersForm = () => {
 
   useEffect(() => {
     if(status == 'created'){
+      sweetAlertMixin('success', 'Se creo correctamente')
         handleReset();
     }
 }, [status])
 
 useEffect(() => {
     if(status == 'edited'){
+      sweetAlertMixin('success', 'Se modifico correctamente')
         history.push('/backoffice/members')
     }
 }, [status])

@@ -1,18 +1,22 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-    containerForm:{      
+    containerForm: {
         padding: '10px',
         maxWidth: '50%',
-        margin:'auto'
+        margin: 'auto'
     },
-    fieldForm:{
+    fieldForm: {
         marginTop: '10px !important',
         marginBottom: '10px'
     },
     typography: {
-        paddingLeft:17
-    }
+        paddingLeft: 17
+    },
+
+    paper: {
+        padding: theme.spacing(5),
+    },
 
 }))
 

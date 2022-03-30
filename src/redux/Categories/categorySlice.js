@@ -48,6 +48,7 @@ const categorySlice = createSlice({
         [getCategories.fulfilled]: (state, {payload}) => {
             state.categories = payload.data
             state.status = 'success'
+            state.categoriesById = null
         },
         [getCategories.rejected]: (state) => {
             state.status = 'failed'

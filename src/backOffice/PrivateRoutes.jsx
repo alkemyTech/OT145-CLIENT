@@ -7,7 +7,6 @@ const PrivateRoutes = ({ component: Component, path,rol,  ...rest }) => {
   const dispatch = useDispatch();
   const { rol_type, token, user } = useSelector(state => state.auth)
 
-  console.log(user, rol_type)
   
   useEffect(()=> {
     dispatch(authMe(token))

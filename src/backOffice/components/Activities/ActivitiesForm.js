@@ -83,6 +83,7 @@ const ActivitiesForm = ({ data }) => {
   
     useEffect(() => {
       if (status === "edited") {
+        sweetAlertMixin('success', 'Se modifico correctamente')
         history.push("/backoffice/activities");
       }
     }, [status]);

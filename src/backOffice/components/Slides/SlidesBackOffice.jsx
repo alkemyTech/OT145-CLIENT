@@ -13,28 +13,30 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Link } from "react-router-dom";
-// import {
-//   TableCell,
-//   StyledTableRow,
-// } from "../../Utils/SlidesBackOfficeStyled";
+import { Link, useHistory } from "react-router-dom";
 import useStyles from "../../styles/styledList";
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchSlides, deleteSlides, selectAllSlides, selectSlidesStatus } from '../../../redux/slides/slidesSlice'
+import { sweetAlertConfirm } from "../../../Utils/sweetAlertConfirm";
 
 function SlidesBackOffice() {
   const classes = useStyles();
-
   const dispatch = useDispatch()
-  const slides = useSelector(selectAllSlides)
-  const slideStatus = useSelector(selectSlidesStatus)
+  const { slides,status } = useSelector(state => state.slides)
+  const history = useHistory()
+
+  const handleDelete = async (id) => {
+    const deleteIt = await sweetAlertConfirm();
+    if(deleteIt){
+      dispatch(deleteSlides(id))
+    }
+  }
 
   useEffect(() => {
-    console.log(slideStatus)
-    if (slideStatus === 'idle' || slideStatus === 'updated') {
+    if(status === 'deleted'){
       dispatch(fetchSlides())
     }
-  }, [slideStatus, dispatch]);
+  }, [status]);
 
   return (
     <Container className={classes.containerList}>
@@ -60,23 +62,23 @@ function SlidesBackOffice() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {slides?.map((row) => (
-              <TableRow className={classes.tableRow} key={row?.id}>
+            {slides.map((row) => (
+              <TableRow className={classes.tableRow} key={row.id}>
                 <TableCell className={classes.tableCell} component="th" scope="row">
-                  {row?.name}
+                  {row.name}
                 </TableCell>
                 <TableCell className={classes.tableCell} align="right">
                   <img
-                    src={row?.image}
-                    alt={row?.name}
+                    src={row.image}
+                    alt={row.name}
                     className={classes.img}
                   />
                 </TableCell>
-                <TableCell className={classes.tableCell} align="right">{row?.order}</TableCell>
+                <TableCell className={classes.tableCell} align="right">{row.order}</TableCell>
                 <TableCell className={classes.tableCell} align="right">
                   <IconButton
                     component={Link}
-                    to={`/backoffice/Slides/edit/${row?.id}`}
+                    onClick={() => history.push(`/backoffice/slides/edit/${row.id}`, row.id)}
                     variant="outlined"
                     color="secondary"
                   >
@@ -85,7 +87,7 @@ function SlidesBackOffice() {
                 </TableCell>
                 <TableCell className={classes.tableCell} align="right">
                   <IconButton
-                    onClick={() => dispatch(deleteSlides(row?.id))}
+                    onClick={() => handleDelete(row.id)}
                     color="secondary"
                     sx={{ cursor: "pointer" }}
                   >

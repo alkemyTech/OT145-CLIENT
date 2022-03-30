@@ -33,7 +33,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   useEffect(() => {
     if (status === 'deleted') {
       dispatch(getActivity())
-      sweetAlertMixin('success', 'Se eliminó correctamente')
     }
   }, [status])
 
