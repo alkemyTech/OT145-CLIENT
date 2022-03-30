@@ -8,9 +8,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardList: {
-    justifyContent: 'flex-start',
+    // display: 'flex',
+    justifyContent:'center',
     columnGap: '60px',
     marginBottom: '35px',
+    [theme.breakpoints.up('md')]:{
+      justifyContent: 'space-between',
+    }
+    
   },
   iconButton: {
     cursor: 'pointer',

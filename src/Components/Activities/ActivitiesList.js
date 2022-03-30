@@ -33,7 +33,7 @@ const ActivitiesList = () => {
               {lastActivities.map((row) => {
                 return (
                   <div key={row.id}>
-    
+
                     <CardComponent
                       key={row.id}
                       title={row.name}

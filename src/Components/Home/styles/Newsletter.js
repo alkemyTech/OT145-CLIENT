@@ -1,18 +1,25 @@
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     newsletterContainer: {
-        backgroundColor: '#ebebeb',
-        padding: '40px 0',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: '15px'
+        backgroundColor: '#ebebeb',
+        padding: '40px 0',
+        gap: '15px',
+        
     },
     form: {
         display: 'flex',
-        justifyContent:'center',
-        gap: '15px'
+        alignItems:'center',
+        flexDirection: 'column',
+        gap: '15px',
+        [theme.breakpoints.up('sm')]:{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'flex-start'
+        }
     },
     text:{
         marginTop: 8
