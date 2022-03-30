@@ -45,7 +45,7 @@ const Sidebar = ({ open }) => {
             link: "/backoffice/create-project`"
         },
         {
-            name: "Volver al Home",
+            name: "Volver a la ONG",
             link: "/"
         },
     ]

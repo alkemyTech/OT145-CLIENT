@@ -1,4 +1,3 @@
-import { accordionActionsClasses } from '@mui/material'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
   getAllNews,
@@ -14,7 +13,6 @@ export const getNews = createAsyncThunk('news/getNews', () => {
 })
 
 export const getNewsById = createAsyncThunk('news/getNewsById', (id) => {
-  console.log(id)
   const response = getNewById(id)
   return response
 })
@@ -50,6 +48,7 @@ const newsSlice = createSlice({
     [getNews.fulfilled]: (state, action) => {
       state.status = 'success'
       state.news = action.payload.data
+      state.newsId = {}
     },
     [getNews.rejected]: (state, action) => {
       state.status = 'failed'
@@ -59,13 +58,10 @@ const newsSlice = createSlice({
       state.status = 'loading'
     },
     [getNewsById.fulfilled]: (state, { payload }) => {
-      console.log(payload)
-      console.log(state)
       if (payload.success) {
         state.newsId = payload.data
         state.status = 'success'
       } else {
-        console.log('cayo acá')
         state.status = 'failed'
         state.error = payload.message
       }
