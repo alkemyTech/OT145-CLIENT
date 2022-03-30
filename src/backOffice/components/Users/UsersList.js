@@ -11,10 +11,12 @@ import {
   Paper,
   Container,
   Button,
-  IconButton
+  IconButton,
+  Box
 } from "@mui/material";
 import { getUsers, deleteUser } from "../../../redux/Users/userSlice";
 import { sweetAlertConfirm } from "../../../Utils/sweetAlertConfirm";
+import Spinner from '../../../shared/Spinner/Spinner';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -63,6 +65,17 @@ const UsersList = () => {
     >
       <ArrowBackIcon className={classes.iconButtonBack} />
     </IconButton>
+    {
+      status === 'loading' 
+      ? 
+      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+        <Spinner 
+          color='#000'
+          width={80}
+          height={80}
+        />
+      </Box>
+      :
     <Container className={classes.containerList}>
       <div className={classes.contLink}>
         <Link to={`${path}/create-user`} className={classes.styleLink}>
@@ -127,6 +140,7 @@ const UsersList = () => {
       </TableContainer>
       <DecorativeLineBW></DecorativeLineBW>
     </Container>
+    }
     </>
   );
 };

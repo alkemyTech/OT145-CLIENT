@@ -6,6 +6,8 @@ import ActivityContent from '../Activities/AntivityContent'
 
 const NosotrosList = ({ miembros }) => {
   const classes = useStyles()
+
+  console.log(miembros);
   return (
     <>
       <Grid container className={classes.cardList}>

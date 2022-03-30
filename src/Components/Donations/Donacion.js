@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
 import { enviarDonacion } from './enviarDonacion';
+import { sweetAlertMixin } from '../../Utils/AlertState';
 import { Box, Button, Typography } from '@mui/material';
 import useStyles from './styles/donancionStyles';
 import { useFormik } from 'formik';
-import { TextField } from '@mui/material';
+import { TextField, Tooltip, InputAdornment } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 
 
 const Donacion = () => {
 
+    const { isLogin } = useSelector((state) => state.auth);
     const classes = useStyles();
 
     const {handleChange, handleSubmit, handleBlur, values, touched, errors} = useFormik({
@@ -22,16 +26,20 @@ const Donacion = () => {
             .required('El campo es obligatorio'),
         }),
         onSubmit: async (values, {setSubmitting}) => {
-            setTimeout(() => {
+            if(isLogin){
+                setTimeout(() => {
                 enviarDonacion(values);
                 setSubmitting(false);
-              }, 400);
+            }, 400);
+            }else{
+                sweetAlertMixin('error', 'Debes estar logueado para donar')
+            }
         },
     });
 
     return(
         <Box className={classes.container}>
-        <Typography variant='h4'>¡Donar!</Typography>
+        <Typography variant='h4'>¡Doná!</Typography>
             <form 
               onSubmit={handleSubmit}
               className={classes.formulario}
@@ -45,8 +53,23 @@ const Donacion = () => {
                 onBlur={handleBlur}
                 error={touched.ammount && Boolean(errors.ammount)}
                 helperText={touched.ammount && errors.ammount}
+                InputProps={{
+                    startAdornment: 
+                    <Tooltip title='Debes estar logueado para donar'>
+                    <InputAdornment position="start">
+                        <InfoIcon color='secondary' />
+                    </InputAdornment>
+                    </Tooltip>,
+                  }}
             />
-            <Button type='submit' color='mercadopago' variant='contained' className={classes.buttonDonar}>Donar</Button>
+            <Button 
+            type='submit' 
+            color='mercadopago' 
+            variant='contained' 
+            className={classes.buttonDonar}
+            >
+                Donar
+            </Button>
             </form>
         </Box>
     );

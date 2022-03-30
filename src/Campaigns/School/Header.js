@@ -3,11 +3,14 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/system/Box'
 import AppBar from '@mui/material/AppBar'
-import { Button } from '@mui/material'
+import { Divider, Button } from '@mui/material';
+import { Link, useHistory } from 'react-router-dom';
 import useStyles from './StyledAppBar'
 
 const Header = () => {
   const classes = useStyles()
+
+  const history = useHistory();
 
   return (
     <>
@@ -27,17 +30,19 @@ const Header = () => {
           <Box>
             <Button
               variant="outlined"
-              sx={{ size: { sm: 'medium', lg: 'large' } }}
+              size='small'
               className={classes.buttonInicio}
+              onClick={() => history.push('/')}
             >
               inicio
             </Button>
             <Button
               variant="contained"
-              sx={{ size: { sm: 'medium', lg: 'large' } }}
+              size='small'
               className={classes.button}
+              onClick={() => history.push('/donation')}
             >
-              DONA HOY
+              DONA
             </Button>
           </Box>
         </Toolbar>

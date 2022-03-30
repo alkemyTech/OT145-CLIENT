@@ -1,9 +1,12 @@
 import React from 'react'
 import { AppBar, Toolbar, Box, Typography, Button } from '@mui/material'
+import { useHistory } from 'react-router-dom'
 import useStyles from '../School/StyledAppBar'
 
 const Header = () => {
   const classes = useStyles()
+
+  const history = useHistory();
 
   return (
     <>
@@ -24,17 +27,19 @@ const Header = () => {
           <Box>
             <Button
               variant="outlined"
-              sx={{ size: { sm: 'medium', lg: 'large' } }}
+              size='small'
               className={classes.buttonInicio}
+              onClick={() => history.push('/')}
             >
               inicio
             </Button>
             <Button
               variant="contained"
-              sx={{ size: { xs: 'medium', md: 'large' } }}
+              size='small'
               className={classes.button}
+              onClick={() => history.push('/donation')}
             >
-              DONA HOY
+              DONA
             </Button>
           </Box>
         </Toolbar>

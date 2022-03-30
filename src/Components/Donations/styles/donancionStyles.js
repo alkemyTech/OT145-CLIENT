@@ -6,16 +6,18 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '40vh',
         display: 'flex',
-        justifyContent: 'space-around',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
     },
     formulario: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonDonar: {
-        marginLeft: theme.spacing(3)
+        marginTop: theme.spacing(2)
     }
 }))
 

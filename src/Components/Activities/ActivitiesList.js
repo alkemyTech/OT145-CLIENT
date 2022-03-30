@@ -27,13 +27,13 @@ const ActivitiesList = () => {
   const lastActivities = activities.slice(-6)
 
   return (
-    <div>
+    <Container>
       <h2>Ultimas Actividades</h2>
       <Container className={classes.containerThree}>
         <Grid container className={classes.cardList}>
           {lastActivities.map((row) => {
             return (
-              <div key={row.id}>
+              <div className={classes.divContent} key={row.id}>
                 <CardComponent
                   key={row.id}
                   title={row.name}
@@ -47,7 +47,7 @@ const ActivitiesList = () => {
         </Grid>
       </Container>
       <DecorativeLine />
-    </div>
+    </Container>
   )
 }
 

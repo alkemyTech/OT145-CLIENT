@@ -2,18 +2,36 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
     newsletterContainer: {
-        backgroundColor: '#ebebeb',
-        padding: '20px 0',
-    },
-    content: {
         display: 'flex',
-        gap: '15px',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: '#ebebeb',
+        padding: '40px 0',
+        gap: '15px',
+        
     },
     form: {
         display: 'flex',
-        gap: '15px'
+        alignItems:'center',
+        flexDirection: 'column',
+        gap: '15px',
+        [theme.breakpoints.up('sm')]:{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'flex-start'
+        }
+    },
+    text:{
+        marginTop: 8
+    },
+    inputError:{
+        backgroundColor: 'none',
+        color: '#F00'
+    },
+    inputContainer:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
     }
 }));
 

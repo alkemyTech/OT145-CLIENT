@@ -281,7 +281,7 @@ const Header = () => {
                   color="secondary"
                   size="small"
                 >
-                  Log out
+                  Logout
                 </Button>
               </NavLink>
             )}

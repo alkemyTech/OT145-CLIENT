@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles'
-import { height } from '@mui/system'
+
 
 const useStyles = makeStyles((theme) => ({
   typographySize: {
@@ -9,12 +9,11 @@ const useStyles = makeStyles((theme) => ({
   },
   cardList: {
     justifyContent: 'space-between',
-    columnGap: '10px',
-    [theme.breakpoints.down('sm')]: {
+    columnGap: '40px',
+    [theme.breakpoints.down('lg')]: {
       justifyContent: 'center',
     },
   },
-
   iconButton: {
     cursor: 'pointer',
     position: 'end',

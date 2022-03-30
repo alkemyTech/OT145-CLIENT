@@ -16,11 +16,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '5px 20px 5px 0px',
+    margin: '5px 10px 5px 0px',
+    [theme.breakpoints.up('sm')]:{
+      margin: '5px 20px 5px 0px'
+    }
   },
 
   logoDeCampaña: {
-    height: '70px',
+    height: '55px',
+    [theme.breakpoints.up('sm')]:{
+      height: '70px',
+    }
   },
 
   boxLogoDeOng: {
@@ -63,7 +69,9 @@ const useStyles = makeStyles((theme) => ({
   toolB: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '0px 40px 0px 20px',
+    [theme.breakpoints.up('sm')]:{
+      padding: '0px 40px 0px 20px'
+    }
   },
   button: {
     fontWeight: '700',

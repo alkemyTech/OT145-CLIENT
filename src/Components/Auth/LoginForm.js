@@ -4,26 +4,24 @@ import * as yup from 'yup';
 import { Button, Container, TextField, Typography, Box } from '@mui/material';
 import useStyles from './AuthStyles';
 import { useDispatch } from 'react-redux';
-/* import { iniciarSesion,cerrarSesion } from '../../redux/usersReducer/userReducer'; */
 import { iniciarSesion } from "../../redux/usersReducer/action"
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Spinner from "../../shared/Spinner/Spinner"
+
 const validationSchema = yup.object({
   email: yup
     .string('Ingrese su mail')
     .email('Ingrese una dirección de mail válida')
     .required('Es necesario ingresar una dirección de mail'),
-  /*password: yup
-    .string('Ingrese su contraseña')
-    .min(6, 'La contraseña debe tener una longitud mínima de 6 caraceteres.')
-    .required('Es necesario ingresar una contraseña')
-    .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'),*/
+  // password: yup
+  //   .string('Ingrese su contraseña')
+  //   .min(6, 'La contraseña debe tener una longitud mínima de 6 caraceteres.')
+  //   .required('Es necesario ingresar una contraseña')
+  //   .matches(/[a-zA-Z]+(?=.*[@#$%^&+=])+(?=.*[0-9])/, 'La contraseña debe contener al menos un número, una letra y un símbolo (por ejemplo: @#$%).'),
 });
 
 const LoginForm = () => {
-  const history = useHistory()
-  const { isLogin, loading } = useSelector(state => state.auth)
+  const {  loading } = useSelector(state => state.auth)
   const dispatch = useDispatch();
   const classes = useStyles()
 
@@ -39,13 +37,6 @@ const LoginForm = () => {
 
     },
   });
-
-  useEffect(() => {
-    if (isLogin) {
-      history.push("/")
-    }
-  }, [isLogin])
-
 
   return (
     <Container className={classes.containerForm}>

@@ -77,10 +77,9 @@ const UserForm = () => {
                 values.id = userId.id
                 dispatch(putUser(values))
             } else {
-                const { name, email, password } = values;
                 const base64 = await convertToBase64(values.profile_image)
                 values.profile_image = base64
-                dispatch(registarUsuario(name, email, password))
+                dispatch(postUser(values))
             }
         },
     });
