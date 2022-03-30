@@ -48,7 +48,6 @@ const NewsList = () => {
   useEffect(() => {
     if (status === 'deleted') {
       dispatch(getNews())
-      sweetAlertMixin('success', 'Se eliminó correctamente')
     }
   }, [status])
 

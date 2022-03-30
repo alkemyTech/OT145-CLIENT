@@ -52,13 +52,10 @@ const activitySlice = createSlice({
             state.status = "loading";
           },
           [getActivityById.fulfilled]: (state, { payload }) => {
-            console.log(payload)
-            console.log(state)
             if(payload.success){
               state.activitiesId = payload.data;
               state.status = "success";
             }else{
-              console.log('cayo acá')
               state.status = 'failed';
               state.error = payload.message
             }
