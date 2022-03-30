@@ -77,82 +77,94 @@ const Header = () => {
             }}
           >
             <MenuItem>
-              <NavLink to='/' className={classes.links}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
+              <NavLink to="/" className={classes.links}>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.typographyLinks}
+                >
                   Inicio
                 </Typography>
               </NavLink>
             </MenuItem>
             <MenuItem>
-              <NavLink to='/Nosotros' className={classes.links}>
-                <Typography variant='subtitle1' className={classes.typographyLinks}>
+              <NavLink to="/Nosotros" className={classes.links}>
+                <Typography
+                  variant="subtitle1"
+                  className={classes.typographyLinks}
+                >
                   Nosotros
                 </Typography>
               </NavLink>
             </MenuItem>
             {isLogin && rol_type === 'Admin' ? null : (
               <MenuItem>
-                <NavLink to='/Contacto' className={classes.links}>
-                  <Typography variant='subtitle1' className={classes.typographyLinks}>
+                <NavLink to="/Contacto" className={classes.links}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.typographyLinks}
+                  >
                     Contacto
                   </Typography>
                 </NavLink>
-              </MenuItem>)}
+              </MenuItem>
+            )}
             {headerData.map((value, i) => (
               <MenuItem key={i} onClick={handleCloseNavMenu}>
                 <NavLink to={value.url} className={classes.links}>
-                  <Typography textAlign="center" className={classes.typographyLinks}>{value.name}</Typography>
+                  <Typography
+                    textAlign="center"
+                    className={classes.typographyLinks}
+                  >
+                    {value.name}
+                  </Typography>
                 </NavLink>
               </MenuItem>
             ))}
-            {!isLogin &&
+            {!isLogin && (
               <div>
                 <MenuItem>
                   <NavLink to="/login" className={classes.links}>
-                    <Typography >
-                      Login
-                    </Typography>
+                    <Typography>Login</Typography>
                   </NavLink>
                 </MenuItem>
                 <MenuItem>
                   <NavLink to="/register" className={classes.links}>
-                    <Typography >
-                      Registrarte
-                    </Typography>
+                    <Typography>Registrarte</Typography>
                   </NavLink>
                 </MenuItem>
               </div>
-            }
-            {isLogin && rol_type === 'Admin' &&
+            )}
+            {isLogin && rol_type === 'Admin' && (
               <MenuItem>
                 <NavLink to="/backoffice" className={classes.links}>
-                  <Typography color="secondary">
-                    Backoffice
-                  </Typography>
+                  <Typography color="secondary">Backoffice</Typography>
                 </NavLink>
-              </MenuItem>}
-            {isLogin &&
-              <NavLink to="/" className={classes.links} >
+              </MenuItem>
+            )}
+            {isLogin && (
+              <NavLink to="/" className={classes.links}>
                 <Button
                   className={classes.button}
                   onClick={handleClick}
                   color="secondary"
                 >
-                  Log out</Button>
+                  Log out
+                </Button>
               </NavLink>
-            }
-            {(isLogin && rol_type === "Standard") &&
+            )}
+            {isLogin && rol_type === 'Standard' && (
               <NavLink to="/donation" className={classes.links}>
-                <Button
-                  className={classes.button}
-                  color="primary"
-                >
+                <Button className={classes.button} color="primary">
                   Donar
                 </Button>
               </NavLink>
-            }
+            )}
           </Menu>
-          <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosx} />
+          <img
+            src="/Images/LOGO-SOMOS MAS.png"
+            alt=""
+            className={classes.logosx}
+          />
         </Box>
 
         <Box>
@@ -222,7 +234,7 @@ const Header = () => {
               </NavLink>
             ))}
 
-            {!isLogin &&
+            {!isLogin && (
               <div>
                 <NavLink to="/login" className={classes.links}>
                   <Button
@@ -245,10 +257,9 @@ const Header = () => {
                   </Button>
                 </NavLink>
               </div>
+            )}
 
-            }
-
-            {(isLogin && rol_type === "Admin") &&
+            {isLogin && rol_type === 'Admin' && (
               <NavLink to="/backoffice" className={classes.links}>
                 <Button
                   className={classes.button}
@@ -259,11 +270,10 @@ const Header = () => {
                   Backoffice
                 </Button>
               </NavLink>
+            )}
 
-            }
-
-            {isLogin &&
-              <NavLink to="/" className={classes.links} >
+            {isLogin && (
+              <NavLink to="/" className={classes.links}>
                 <Button
                   className={classes.button}
                   onClick={handleClick}
@@ -271,11 +281,12 @@ const Header = () => {
                   color="secondary"
                   size="small"
                 >
-                  Log out</Button>
-              </NavLink>}
+                  Log out
+                </Button>
+              </NavLink>
+            )}
 
-
-            {(isLogin && rol_type === "Standard") &&
+            {isLogin && rol_type === 'Standard' && (
               <NavLink to="/donation" className={classes.links}>
                 <Button
                   className={classes.button}
@@ -286,7 +297,7 @@ const Header = () => {
                   Donar
                 </Button>
               </NavLink>
-            }
+            )}
           </Box>
         </Box>
       </Toolbar>

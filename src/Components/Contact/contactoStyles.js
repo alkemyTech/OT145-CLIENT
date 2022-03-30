@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles'
+import { width } from '@mui/system'
 
 const useStyles = makeStyles((theme) => ({
   mail: {
@@ -22,9 +23,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     textDecoration: 'none',
   },
-  container:{
-    marginBottom: '35px'
-  }
+  container: {
+    marginBottom: '35px',
+  },
 }))
 
 export default useStyles

@@ -22,66 +22,66 @@ const contactoInfo = {
 const Contacto = () => {
   const classes = useStyles()
 
-
   return (
-        <>
-          <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
-          <ContactForm />
-          <Container className={classes.container}>
-            <Typography variant="h6" className={classes.subtitle}>
-              Comunicate con nosotros para colaborar, y obtener información.
+    <>
+      <Title title={contactoInfo.title} imgSrc={contactoInfo.image} />
+
+      <Container className={classes.container}>
+        <ContactForm />
+        <Typography variant="h6" className={classes.subtitle}>
+          Otras vías de comunicación:
+        </Typography>
+        <Typography
+          variant="h6"
+          className={classes.mail}
+          sx={{ fontWeight: '800' }}
+        >
+          {contactoInfo.email}
+        </Typography>
+        <Typography variant="h6" className={classes.subtitle}>
+          Nuestras redes sociales:
+        </Typography>
+        <div className={classes.redes}>
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
+            <InstagramIcon fontSize="large" color="primary" />
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.icon}
+          >
+            <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
+              {contactoInfo.instagram}
             </Typography>
-            <Typography
-              variant="h6"
-              className={classes.mail}
-              sx={{ fontWeight: '800' }}
-            >
-              {contactoInfo.email}
+          </a>
+          <a href="https://es-la.facebook.com" target="_blank" rel="noreferrer">
+            <FacebookIcon color="secondary" fontSize="large" />
+          </a>
+          <a
+            href="https://es-la.facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.icon}
+          >
+            <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
+              {contactoInfo.facebook}
             </Typography>
-            <Typography variant="h6" className={classes.subtitle}>
-              Nuestras redes sociales:
-            </Typography>
-            <div className={classes.redes}>
-              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
-                <InstagramIcon fontSize="large" color="primary" />
-              </a>
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className={classes.icon}
-              >
-                <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-                  {contactoInfo.instagram}
-                </Typography>
-              </a>
-              <a href="https://es-la.facebook.com" target="_blank" rel="noreferrer">
-                <FacebookIcon color="secondary" fontSize="large" />
-              </a>
-              <a
-                href="https://es-la.facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className={classes.icon}
-              >
-                <Typography variant="subtitle1" sx={{ fontWeight: '800' }}>
-                  {contactoInfo.facebook}
-                </Typography>
-              </a>
-            </div>
-            <Typography variant="h6" className={classes.subtitle}>
-              Llamanos de lunes a viernes de 8:00 a 18:00 al:
-            </Typography>
-            <Typography
-              variant="h6"
-              className={classes.mail}
-              sx={{ fontWeight: '800' }}
-            >
-              {contactoInfo.teléfono}
-            </Typography>
-          </Container>
-          <DecorativeLine />
-        </>
+          </a>
+        </div>
+        <Typography variant="h6" className={classes.subtitle}>
+          Llamanos de lunes a viernes de 8:00 a 18:00 al:
+        </Typography>
+        <Typography
+          variant="h6"
+          className={classes.mail}
+          sx={{ fontWeight: '800' }}
+        >
+          {contactoInfo.teléfono}
+        </Typography>
+      </Container>
+      <DecorativeLine />
+    </>
   )
 }
 export default Contacto
