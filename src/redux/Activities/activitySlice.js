@@ -33,7 +33,7 @@ const activitySlice = createSlice({
       activities: [],
       status: 'idle',
       error: null,
-      activitiesId: {},
+      activitiesId: null,
     },
     extraReducers: {
         [getActivity.pending]: (state) => {

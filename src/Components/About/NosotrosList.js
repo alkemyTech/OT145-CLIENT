@@ -18,7 +18,7 @@ const NosotrosList = ({ miembros }) => {
               key={person.id}
               title={person.name}
               image={person.image}
-              description={<ActivityContent content={person.description} />}
+              description={person.description}
               firstLink={person.facebookUrl}
               secondLink={person.linkedinUrl}
             />

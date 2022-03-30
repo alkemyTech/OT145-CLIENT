@@ -38,7 +38,7 @@ const ActivitiesList = () => {
                   key={row.id}
                   title={row.name}
                   image={row.image}
-                  description={<ActivityContent content={row.description} />}
+                  description={row.description}
                   leerMasLink={() => handleSubmit(row.name, row.id)}
                 />
               </div>
