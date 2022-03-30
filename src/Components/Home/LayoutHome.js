@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
 import DecorativeLine from "../DecorativeLine/DecorativeLine";
@@ -21,11 +21,11 @@ const LayoutHome = (props) => {
         <>
             <DecorativeLine />
             <Header />
-            <Container className={classes.bigContainer}>
+            <Box>
                 {props.children}
 
 
-            </Container>
+            </Box>
             <Footer />
 
         </>

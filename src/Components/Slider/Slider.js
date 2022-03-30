@@ -3,7 +3,9 @@ import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchSlides, selectAllSlides, selectSlidesStatus } from '../../redux/slides/slidesSlice'
- 
+import parse from 'html-react-parser';
+
+
 // MUI
 import { IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -18,34 +20,31 @@ import useStyles from "./styles";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Slide = ({
-	title = "title",
-	description = "slide description",
-	imgLabel = "imageLabel",
-	imgSrc = "images/logoSomosMas.png",
+	title,
+	description,
+	imgLabel,
+	imgSrc,
 }) => {
-	const isLogo = imgSrc === "images/logoSomosMas.png" ? true : false;
 
-	const classes = useStyles({ isLogo: isLogo });
+	const classes = useStyles();
 
 	return (
-		<Box className={classes.sliderContainer}>
+		<>
 			<Box
 				component="img"
 				className={classes.sliderImage}
 				src={imgSrc}
 				alt={imgLabel}
 			/>
-			<Box className={classes.textBoxContainer}>
 				<Box className={classes.textContainer}>
-					<Typography variant="h3" className={classes.text}>
+					<Typography variant="h6" className={classes.textTitle}>
 						{title}
 					</Typography>
-					<Typography variant="p" className={classes.text}>
-						{description}
+					<Typography variant="caption" className={classes.textDesc}>
+						{parse(description)}
 					</Typography>
 				</Box>
-			</Box>
-		</Box>
+		</>
 	);
 };
 
@@ -92,7 +91,7 @@ const Slider = () => {
 	const classes = useStyles();
 
 	return (
-		<>
+		<Box className={classes.containerGeneral}>
 			<AutoPlaySwipeableViews
 				enableMouseEvents
 				onChangeIndex={handleStepChange}
@@ -115,15 +114,6 @@ const Slider = () => {
 			{/* Slider buttons */}
 			<IconButton
 				className={classes.slideButtonLeft}
-				sx={{
-					color: "#919191",
-					backgroundColor: "#fff",
-					position: "absolute",
-					":hover": {
-						backgroundColor: "#efefef",
-						color: "#818181",
-					},
-				}}
 				size="medium"
 				onClick={handleBack}
 				disabled={activeStep === 0}>
@@ -135,15 +125,6 @@ const Slider = () => {
 			</IconButton>
 			<IconButton
 				className={classes.slideButtonRight}
-				sx={{
-					color: "#919191",
-					backgroundColor: "#fff",
-					position: "absolute",
-					":hover": {
-						backgroundColor: "#efefef",
-						color: "#818181",
-					},
-				}}
 				size="medium"
 				onClick={handleNext}
 				disabled={activeStep === maxSteps - 1}>
@@ -157,14 +138,11 @@ const Slider = () => {
 			{/* Slider dots */}
 			<MobileStepper
 				className={classes.sliderDots}
-				sx={{
-					justifyContent: "center",
-				}}
 				steps={maxSteps}
 				position="static"
 				activeStep={activeStep}
 			/>
-		</>
+		</Box>
 	);
 };
 

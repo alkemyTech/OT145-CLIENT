@@ -5,6 +5,7 @@ import DecorativeLine from '../DecorativeLine/DecorativeLine';
 import { useHistory } from 'react-router-dom';
 import { Container, Grid } from '@mui/material'
 import useStyles from './Styles/StyledAct'
+import ActivityContent from './AntivityContent';
 
 const ActivitiesList = () => {
     const classes = useStyles()
@@ -38,7 +39,7 @@ const ActivitiesList = () => {
                       key={row.id}
                       title={row.name}
                       image={row.image}
-                      description={row.description}
+                      description={<ActivityContent content={row.description} />}
                       leerMasLink={() => handleSubmit(row.name, row.id)}
                     />
                   </div>

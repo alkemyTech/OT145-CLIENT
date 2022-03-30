@@ -13,10 +13,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
   },
   typographyLinks: {
-    fontSize: '20px',
+    fontSize: '15px',
     paddingRight: 20,
     [theme.breakpoints.down('md')]: {
-      fontSize: '15px',
       paddingRight: 20,
     },
   },
@@ -61,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appbar: {
-    marginBottom: '20px',
     backgroundColor: '#fff',
     height: '18vh',
     [theme.breakpoints.down('sm')]: {

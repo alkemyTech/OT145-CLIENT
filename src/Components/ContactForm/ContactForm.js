@@ -4,6 +4,9 @@ import * as yup from 'yup';
 import { Button, TextField, Typography } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import useStyles from './StyleContactForm';
+import {postContacts} from '../../Services/ContactApiService'
+import { Modal } from '../../Utils/AlertsProps'
+import { AlertSucces } from '../../Utils/AlertSucces'
 
 
 
@@ -31,50 +34,62 @@ const validationSchema = yup.object({
 const ContactForm = () => {
   const classes= useStyles();
 
-  const formik = useFormik({
-    initialValues: {
+    const { 
+      handleSubmit,
+      touched,
+      errors,
+      values,
+      handleChange,
+    } = useFormik({
+      initialValues: {
         name:'',
         email: '',
         phone:'',
         message:''
+      }, 
+      validationSchema: validationSchema,
+      onSubmit: async (values) => {
+        try {
+          const response = await postContacts(values)
+          AlertSucces(values)
+          return response.data
+        } catch (error) {
+          return error.response
+        }
+      }
+    })
 
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      const datosContact= values
-    },
-  });
   return (
     <div className={classes.containerForm}>
       <Typography variant="h6">Contactanos</Typography>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField fullWidth
             id="name"
             name="name"
             label="Nombre"
             className={classes.fieldForm}
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            error={formik.touched.name && Boolean(formik.errors.name)}
-            helperText={formik.touched.name && formik.errors.name}/>
+            value={values.name}
+            onChange={handleChange}
+            error={touched.name && Boolean(errors.name)}
+            helperText={touched.name && errors.name}/>
           <TextField fullWidth
           id="email"
           name="email"
           label="Email"
           className={classes.fieldForm}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}/>
+          value={values.email}
+          onChange={handleChange}
+          error={touched.email && Boolean(errors.email)}
+          helperText={touched.email && errors.email}/>
           <TextField fullWidth
             id="phone"
             name="phone"
             label="Telefono"
             className={classes.fieldForm}
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            error={formik.touched.phone && Boolean(formik.errors.phone)}
-            helperText={formik.touched.phone && formik.errors.phone}/>
+            value={values.phone}
+            onChange={handleChange}
+            error={touched.phone && Boolean(errors.phone)}
+            helperText={touched.phone && errors.phone}/>
           <TextareaAutosize
             id="message"
             name="message"
@@ -82,10 +97,9 @@ const ContactForm = () => {
             aria-label="maximum height"
             placeholder="Ingrese su mensaje"
             className={classes.txt}
-            value={formik.values.message}
-            onChange={formik.handleChange}
-            error={formik.touched.message && Boolean(formik.errors.message)}/>
-            <Typography className={classes.typographyTextArea} variant="caption" color="error">{formik.touched.message && formik.errors.message}</Typography>
+            value={values.message}
+            onChange={handleChange}/>
+            <Typography className={classes.typographyTextArea} variant="caption" color="error">{touched.message && errors.message}</Typography>
           <Button color="secondary" variant="contained" fullWidth type="submit">
             Submit 
           </Button>
