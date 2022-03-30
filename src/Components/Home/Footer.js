@@ -49,7 +49,7 @@ export default function Footer() {
 			icon: Instagram,
 		},
 		{
-			url: "https://instagram.com",
+			url: "https://twitter.com",
 			icon: Twitter,
 		},
 	];
@@ -91,14 +91,14 @@ export default function Footer() {
 						<ul className={classes.footerList}>
 							{socialMediaItems.map(({ url, icon }, index) => (
 								<li className={classes.socialMediaItem} key={index}>
-									<NavLink className={classes.socialMediaLinkItem} to={url}>
+									<a href={url} target='_BLANK' className={classes.socialMediaLinkItem}>
 										<Box
 											className={classes.socialMediaItemIcon}
 											src={icon}
 											alt="Social Media"
 											component='img'
 										/>
-									</NavLink>
+									</a>
 								</li>
 							))}
 						</ul>
