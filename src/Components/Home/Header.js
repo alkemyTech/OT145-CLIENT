@@ -50,107 +50,107 @@ const Header = () => {
       <Toolbar disableGutters>
         <Box className={classes.styledBoxSm}>
           <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="default"
-            >
-            <MenuIcon className={classes.icon}/>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            color="default"
+          >
+            <MenuIcon className={classes.icon} />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{
+              display: { xs: 'block', md: 'none' },
+            }}
+          >
+            <MenuItem>
+              <NavLink to='/' className={classes.links}>
+                <Typography variant='subtitle1' className={classes.typographyLinks}>
+                  Inicio
+                </Typography>
+              </NavLink>
+            </MenuItem>
+            <MenuItem>
+              <NavLink to='/Nosotros' className={classes.links}>
+                <Typography variant='subtitle1' className={classes.typographyLinks}>
+                  Nosotros
+                </Typography>
+              </NavLink>
+            </MenuItem>
+            {isLogin && rol_type === 'Admin' ? null : (
               <MenuItem>
-                <NavLink to='/' className={classes.links}>
+                <NavLink to='/Contacto' className={classes.links}>
                   <Typography variant='subtitle1' className={classes.typographyLinks}>
-                    Inicio
+                    Contacto
                   </Typography>
                 </NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink to='/Nosotros' className={classes.links}>
-                  <Typography variant='subtitle1' className={classes.typographyLinks}>
-                    Nosotros
-                  </Typography>
+              </MenuItem>)}
+            {headerData.map((value, i) => (
+              <MenuItem key={i} onClick={handleCloseNavMenu}>
+                <NavLink to={value.url} className={classes.links}>
+                  <Typography textAlign="center" className={classes.typographyLinks}>{value.name}</Typography>
                 </NavLink>
               </MenuItem>
-              {isLogin && rol_type === 'Admin' ? null : (
+            ))}
+            {!isLogin &&
+              <div>
                 <MenuItem>
-                  <NavLink to='/Contacto' className={classes.links}>
-                    <Typography variant='subtitle1' className={classes.typographyLinks}>
-                      Contacto
+                  <NavLink to="/login" className={classes.links}>
+                    <Typography >
+                      Login
                     </Typography>
                   </NavLink>
-                </MenuItem>)}
-              {headerData.map((value, i) => (
-                <MenuItem key={i} onClick={handleCloseNavMenu}>
-                  <NavLink to={value.url} className={classes.links}>
-                    <Typography textAlign="center" className={classes.typographyLinks}>{value.name}</Typography>
-                  </NavLink>
                 </MenuItem>
-              ))}
-              {!isLogin &&
-                <div>
-                  <MenuItem>
-                    <NavLink to="/login" className={classes.links}>
-                      <Typography >
-                        Login
-                      </Typography>
-                    </NavLink>
-                  </MenuItem>
-                  <MenuItem>
+                <MenuItem>
                   <NavLink to="/register" className={classes.links}>
                     <Typography >
                       Registrarte
                     </Typography>
                   </NavLink>
-                  </MenuItem>
-                </div>
-              }
-              {isLogin && rol_type==='Admin' &&
+                </MenuItem>
+              </div>
+            }
+            {isLogin && rol_type === 'Admin' &&
               <MenuItem>
                 <NavLink to="/backoffice" className={classes.links}>
-                    <Typography color="secondary">
-                      Backoffice
-                    </Typography>
-                  </NavLink>
+                  <Typography color="secondary">
+                    Backoffice
+                  </Typography>
+                </NavLink>
               </MenuItem>}
-              {isLogin &&
-                <NavLink to="/" className={classes.links} >
-                  <Button
-                    className={classes.button}
-                    onClick={handleClick}
-                    color="secondary"
-                  >
-                    Log out</Button>
-                </NavLink>
-              }
-              {(isLogin && rol_type === "Standard") &&
-                <NavLink to="/donation" className={classes.links}>
-                  <Button
-                    className={classes.button}
-                    color="primary"
-                  >
-                    Donar
-                  </Button>
-                </NavLink>
-              }
+            {isLogin &&
+              <NavLink to="/" className={classes.links} >
+                <Button
+                  className={classes.button}
+                  onClick={handleClick}
+                  color="secondary"
+                >
+                  Log out</Button>
+              </NavLink>
+            }
+            {(isLogin && rol_type === "Standard") &&
+              <NavLink to="/donation" className={classes.links}>
+                <Button
+                  className={classes.button}
+                  color="primary"
+                >
+                  Donar
+                </Button>
+              </NavLink>
+            }
           </Menu>
           <img src="/Images/LOGO-SOMOS MAS.png" alt="" className={classes.logosx} />
         </Box>
