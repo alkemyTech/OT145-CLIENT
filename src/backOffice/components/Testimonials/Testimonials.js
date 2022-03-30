@@ -14,61 +14,23 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
-// import {
-// 	TableCell,
-// 	TableRow,
-// } from "../../styles/styledList";
 import useStyles from "../../styles/styledList";
-import privateGET from "../../../Services/privateApiService";
+import { useSelector, useDispatch } from 'react-redux'
+import { selectAllTestimonials, selectTestimonialsStatus, getTestimonials, deleteTestimonials } from '../../../redux/Testimonials/testimonialsSlice'
 
 function SlidesBackOffice() {
 	const classes = useStyles();
-
-	const [mockedData, setMockedData] = useState([
-		{
-			id: 1,
-			title: "Title 1",
-			image: "Image 1",
-			description: "Description description",
-		},
-		{
-			id: 2,
-			title: "Title 2",
-			image: "Image 2",
-			description: "Description description",
-		},
-		{
-			id: 3,
-			title: "Title 3",
-			image: "Image 3",
-			description: "Description description",
-		},
-	]);
-
-	const [data, setData] = useState([]);
-
-	const deleteItem = (row) => {
-		if (data.length >= 1) {
-			const filterArray = data.filter((item) => item.id !== row.id);
-			return setData(filterArray);
-		}
-		const filterArray = mockedData.filter((item) => item.id !== row.id);
-		return setMockedData(filterArray);
-	};
-
-	const getData = async () => {
-		try {
-			const res = await privateGET(process.env.REACT_APP_API_GET_TESTIMONIALS);
-			// console.log(res.data)
-			setData(res.data.length >= 1 ? res.data : mockedData);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+    const testimonials = useSelector(selectAllTestimonials)
+    const testimonialsStatus = useSelector(selectTestimonialsStatus)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		getData();
-	}, []);
+		if(testimonialsStatus === 'idle' || testimonialsStatus === 'updated'){
+			dispatch(getTestimonials())
+		}
+	}, [dispatch, testimonialsStatus]);
+
+	const rowValues = ['Titulo', 'Imágen', 'Descripción', 'Editar', 'Eliminar']
 
 	return (
 		<Container className={classes.containerList}>
@@ -85,50 +47,40 @@ function SlidesBackOffice() {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<TableCell align="center" className={classes.tableCell}>
-								Titulo
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Imágen
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Descripción
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Editar
-							</TableCell>
-							<TableCell align="center" className={classes.tableCell}>
-								Eliminar
-							</TableCell>
+							{rowValues.map((rowName) => (
+								<TableCell align="center" className={classes.tableCell}>
+									{rowName}
+								</TableCell>
+							))}
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{data.map((row) => (
+						{testimonials.map((row) => (
 							<TableRow className={classes.tableRow} key={row.id}>
 								<TableCell
 									align="center"
 									className={classes.tableCell}
 									component="th"
 									scope="row">
-									{row.title}
+									{row.name}
 								</TableCell>
 								<TableCell align="center">
 									<img
 										src={row.image}
-										alt={row.title}
+										alt={row.name}
 										className={classes.img}
 									/>
 								</TableCell>
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									{row.description}
 								</TableCell>
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									<IconButton
 										component={Link}
 										to={`/backoffice/testimonials/edit/${row.id}`}
@@ -140,9 +92,9 @@ function SlidesBackOffice() {
 								<TableCell
 									align="center"
 									className={classes.tableCell}
-									align="center">
+									>
 									<IconButton
-										onClick={() => deleteItem(row)}
+										onClick={() => dispatch(deleteTestimonials(row.id))}
 										color="secondary"
 										sx={{ cursor: "pointer" }}>
 										<DeleteIcon />

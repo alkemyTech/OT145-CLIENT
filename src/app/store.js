@@ -7,6 +7,7 @@ import newsReducer from '../redux/NewsReducers/newsReducerThunk'
 import nosotrosReducer from '../redux/NosotrosReducer/nosotrosReducer'
 import categorySlice from '../redux/Categories/categorySlice'
 import activityReducer from '../redux/Activities/activitySlice'
+import testimonialsSlice from '../redux/Testimonials/testimonialsSlice'
 
 export default configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export default configureStore({
     categories : categorySlice,
     slides: slidesReducer,
     activities: activityReducer,
+    testimonials: testimonialsSlice,
   },
 })
