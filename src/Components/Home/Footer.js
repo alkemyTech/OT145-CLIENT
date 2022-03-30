@@ -96,6 +96,7 @@ export default function Footer() {
 											className={classes.socialMediaItemIcon}
 											src={icon}
 											alt="Social Media"
+											component='img'
 										/>
 									</NavLink>
 								</li>
