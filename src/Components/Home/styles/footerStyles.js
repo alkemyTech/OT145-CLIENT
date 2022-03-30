@@ -35,10 +35,12 @@ const useStyles = makeStyles((theme) => ({
 		listStyle: "none",
 		padding: "0",
 		textAlign: "center",
+		display: 'flex',
+    	gap: '18px',
 	},
 	linkItemFooterList: {
 		textDecoration: "none",
-		color: "#000",
+		color: '#000'
 	},
 	footerListTitle: {
 		textDecoration: "underline",
@@ -57,6 +59,28 @@ const useStyles = makeStyles((theme) => ({
 			alignItems: "flex-start",
 		},
 	},
+	socialMediaItemIcon: {
+		width: '25px',
+		height: '25px',
+		padding: '15px',
+		margin: 'auto',
+	},
+	socialMediaItem: {
+		backgroundColor: '#fff',
+		borderRadius: '32px',
+		width: '50px',
+		height: '50px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	socialMediaList: {
+		display: 'flex',
+		justifyContent: 'center',
+	},
+	socialMediaLinkItem: {
+		textDecoration: 'none',
+	}
 }));
 
 export default useStyles;
