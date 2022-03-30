@@ -83,7 +83,6 @@ const NewsForm = (id) => {
         values.image = base64
         dispatch(postNews(values))
       }
-      console.log(values)
     },
   })
 

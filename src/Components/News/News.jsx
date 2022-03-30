@@ -11,12 +11,17 @@ import DecorativeLine from '../DecorativeLine/DecorativeLine'
 import ShowModal from '../../Utils/AlertsProps'
 import { getNews } from '../../redux/NewsReducers/newsReducerThunk'
 import { NewsVideo } from './NewsVideo'
+import ActivityContent from '../Activities/AntivityContent'
 
 const alertText = {
   icon: 'error',
   title: 'Ups...',
   text: 'Algo salió mal!',
   footer: '<a href=""> Qué fue lo que paso? </a>',
+}
+const textNews = {
+  text:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
 }
 
 const News = () => {
@@ -53,9 +58,9 @@ const News = () => {
               </div>
             ) : (
               <>
-                <Title title={lastNews[0].name} imgSrc={lastNews[0].image} />
+                <Title title="Novedades" imgSrc={lastNews[0].image} />
                 <Container>
-                  <NewsText text={lastNews[0].content} />
+                  <NewsText text={textNews.text} />
                   <Grid container className={classes.cardList}>
                     {lastNews.map((row) => {
                       return (
@@ -64,7 +69,9 @@ const News = () => {
                             key={row.id}
                             title={row.name}
                             image={row.image}
-                            description={row.createdAt}
+                            description={
+                              <ActivityContent content={row.content} />
+                            }
                             leerMasLink={() => handleSubmit(row.name, row.id)}
                           />
                         </div>
