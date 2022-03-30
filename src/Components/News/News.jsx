@@ -33,7 +33,6 @@ const News = () => {
     dispatch(getNews())
   }, [dispatch])
   const lastNews = news.slice(-9)
-  console.log(news)
 
   //Paso de parametros del ID de cada noticia al link de Leer Mas
   const history = useHistory()
