@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: '25vw',
+    width: '25vw',
     minWidth: '230px',
     margin: 'auto',
     marginTop: 30,
