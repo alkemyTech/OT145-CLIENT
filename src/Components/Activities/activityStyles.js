@@ -8,11 +8,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardList: {
-    justifyContent: 'space-between',
-    columnGap: '10px',
-    [theme.breakpoints.down('sm')]: {
+    // justifyContent: 'space-between',
+    columnGap: '40px',
+    [theme.breakpoints.down('lg')]: {
       justifyContent: 'center',
     },
+  },
+  divContent:{
+    [theme.breakpoints.down('lg')]:{
+      margin: 'auto'
+    }
   },
   iconButton: {
     cursor: 'pointer',

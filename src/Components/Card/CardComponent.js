@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useStyles } from './StylesCard';
 
 
-const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink,textFirstLink,textSecondLink, leerMasLink}) => {
+const CardComponent = ({title,image,placeHolder,description,leerMasLink}) => {
   const classes = useStyles();
 
 
@@ -37,7 +37,8 @@ const CardComponent = ({title,image,placeHolder,description,firstLink,secondLink
             <Typography variant="subtitle2" color="primary">
               Leer más
             </Typography>
-        </div>}
+        </div>
+        }
       </CardActions>
     </Card>
   );

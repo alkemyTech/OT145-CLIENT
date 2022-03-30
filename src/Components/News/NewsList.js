@@ -25,7 +25,7 @@ const NewsList = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h2>Ultimas Novedades</h2>
       <Container className={classes.containerThree}>
         <Grid container className={classes.cardList}>
@@ -45,7 +45,7 @@ const NewsList = () => {
         </Grid>
       </Container>
       <DecorativeLine />
-    </div>
+    </Container>
   )
 }
 

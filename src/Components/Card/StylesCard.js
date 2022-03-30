@@ -2,10 +2,14 @@ import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles((theme) => ({
   container: {
-    width: '25vw',
+    maxWidth: '320px',
     minWidth: '230px',
+    height: '450px',
     margin: 'auto',
     marginTop: 30,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   styleTitle: {
     paddingLeft: 10,
@@ -29,6 +33,12 @@ export const useStyles = makeStyles((theme) => ({
     paddingLeft: 20,
   },
   leerMas: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginBottom: "0px",
     marginRight: '10px',
     cursor: 'pointer'
   },
