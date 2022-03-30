@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -28,7 +29,7 @@ const CardComponent = ({title,image,placeHolder,description,leerMasLink}) => {
       />
       <CardContent>
         <Typography variant="subtitle2" className={classes.styleDescription}>
-          {description}
+        {parse(`${description}`)}
         </Typography>
       </CardContent>
       <CardActions disableSpacing >   

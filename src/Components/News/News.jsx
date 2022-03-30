@@ -69,9 +69,7 @@ const News = () => {
                             key={row.id}
                             title={row.name}
                             image={row.image}
-                            description={
-                              <ActivityContent content={row.content} />
-                            }
+                            description={row.content}
                             leerMasLink={() => handleSubmit(row.name, row.id)}
                           />
                         </div>

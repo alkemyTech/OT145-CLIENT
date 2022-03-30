@@ -84,6 +84,7 @@ export default function authReducer(state = initialValues, action) {
                 token: "",
                 isLogin: false,
                 isError: false,
+                rol_type: ''
             }
         default:
             return state;

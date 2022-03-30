@@ -40,10 +40,10 @@ const Sidebar = ({ open }) => {
             name: "Crear Miembro",
             link: "/backoffice/members/create"
         },
-        {
-            name: "Crear Proyecto",
-            link: "/backoffice/create-project`"
-        },
+        // {
+        //     name: "Crear Proyecto",
+        //     link: "/backoffice/create-project`"
+        // },
         {
             name: "Volver a la ONG",
             link: "/"

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import parse from 'html-react-parser';
 import { useSelector, useDispatch } from 'react-redux'
 import { Typography, Box } from '@mui/material'
 import useStyles from '../styles/novedadesStyles'
@@ -21,7 +22,7 @@ const NewsDetail = () => {
       <Box component="div" className={classes.container}>
         <Box component="div" className={classes.content}>
           <Typography variant="h4">{newsId.name}</Typography>
-          <Typography variant="body1">{newsId.content}</Typography>
+          <Typography variant="body1">{parse(`${newsId.content}`)}</Typography>
         </Box>
         <Box component="div" className={classes.image}>
           <img src={newsId.image} alt={newsId.name} className={classes.photo} />

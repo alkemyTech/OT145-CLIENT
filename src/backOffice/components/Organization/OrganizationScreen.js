@@ -68,7 +68,7 @@ const OrganizationScreen = () => {
     </TableContainer>
       </Box>
       <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <EditHomeForm />
+        {/* <EditHomeForm /> */}
       </Box>
     </>
   );

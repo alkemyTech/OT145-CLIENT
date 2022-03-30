@@ -25,6 +25,10 @@ function SlidesBackOffice() {
   const { slides,status } = useSelector(state => state.slides)
   const history = useHistory()
 
+  useEffect(() => {
+    dispatch(fetchSlides());
+  }, [])
+
   const handleDelete = async (id) => {
     const deleteIt = await sweetAlertConfirm();
     if(deleteIt){
