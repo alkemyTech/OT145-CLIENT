@@ -3,12 +3,17 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
     title:{
-        margin: 'auto',
-        backgroundColor: theme.palette.secondary.main,
         color: '#000',
-        padding: '10px',
+        margin: 0,
         textAlign: 'center',
-       
+        fontSize: 20,
+        padding: 5,
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 30
+		},
+        [theme.breakpoints.up("md")]: {
+            fontSize: 40
+        }
     },
 
 }))

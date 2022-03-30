@@ -59,7 +59,7 @@ const UsersList = () => {
       aria-label="upload picture" 
       component="span" 
       className={classes.buttonBack} 
-      onClick={() => history.push('/backoffice')}
+      onClick={() => history.goBack()}
     >
       <ArrowBackIcon className={classes.iconButtonBack} />
     </IconButton>

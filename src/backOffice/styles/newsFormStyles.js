@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     maxWidth: '70%',
     margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '100%',
+    },
   },
   paper: {
     padding: theme.spacing(5),
@@ -29,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
   finalLink: {
     marginTop: '20px',
   },
+  img: {
+    width:250,
+    height:250,
+    objectFit: 'contain',
+    [theme.breakpoints.down('md')]: {
+      width:100,
+      height:100,
+    },
+  }
 }))
 
 export default useStyles
