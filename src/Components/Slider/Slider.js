@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
-import SwipeableViews from 'react-swipeable-views'
-import { autoPlay } from 'react-swipeable-views-utils'
-import { getSlides } from '../../Services/Home'
-import parse from 'html-react-parser'
+import React, { useEffect } from "react";
+import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchSlides, selectAllSlides, selectSlidesStatus } from '../../redux/slides/slidesSlice'
+import parse from 'html-react-parser';
+
 
 // MUI
 import { IconButton, Typography } from '@mui/material'
@@ -28,7 +30,6 @@ const Slide = ({ title, description, imgLabel, imgSrc }) => {
         src={imgSrc}
         alt={imgLabel}
       />
-
       <Box className={classes.textContainer}>
         <Typography variant="h6" className={classes.textTitle}>
           {title}
@@ -43,10 +44,19 @@ const Slide = ({ title, description, imgLabel, imgSrc }) => {
 
 // Principal component
 const Slider = () => {
-  const theme = useTheme()
-  const [activeStep, setActiveStep] = useState(0)
-  const [slides, setSlides] = useState([])
-  const maxSteps = slides.length
+	const dispatch = useDispatch()
+	const slideStatus = useSelector(selectSlidesStatus)
+	const slides = useSelector(selectAllSlides)
+
+	useEffect(() => {
+		if(slideStatus === 'idle'){
+			dispatch(fetchSlides())
+		}
+	}, [slideStatus, dispatch]);
+
+	const theme = useTheme();
+	const [activeStep, setActiveStep] = React.useState(0);
+	const maxSteps = slides?.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -60,13 +70,13 @@ const Slider = () => {
     setActiveStep(step)
   }
 
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await getSlides(3)
-      setSlides(data)
-    }
-    getData()
-  }, [])
+	// useEffect(() => {
+	// 	const getData = async () => {
+	// 		const { data } = await getSlides(3);
+	// 		setSlides(data);
+	// 	}
+	// 	getData();
+	// }, [])
 
   const classes = useStyles()
 

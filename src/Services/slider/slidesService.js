@@ -1,4 +1,4 @@
-import privateGET, { privatePATCH, privatePOST, privatePUT, privateDELETE } from '../privateApiService'
+import privateGET, { privatePATCH, privatePOST, privatePUT, privateDelete } from '../privateApiService'
 
 const SLIDES_URL = process.env.REACT_APP_API_GET_SLIDES
 
@@ -23,7 +23,7 @@ const putSlide = async (id, body) => {
 }
 
 const deleteSlide = async (id) => {
-    return await privateDELETE(SLIDES_URL, id)
+    return await privateDelete(SLIDES_URL, id)
 }
 
 export { getAllSlides, getSlideById, postSlide, patchSlide, putSlide, deleteSlide }
