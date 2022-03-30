@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useStyles from '../../styles/newsFormStyles'
-import { TextField, Button,  Container, Paper, Typography, Box } from "@mui/material";
+import { TextField, Button, Container, Paper, Typography, Box } from "@mui/material";
 import { useFormik } from "formik";
 import Editor from "../Editor/Editor";
 import * as Yup from "yup";
 import { convertToBase64 } from '../../../helpers/base64';
-import { getCategoriesById ,postCategory ,putCategory} from '../../../redux/Categories/categorySlice'
+import { getCategoriesById, postCategory, putCategory } from '../../../redux/Categories/categorySlice'
 import { useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../shared/Spinner/Spinner';
@@ -26,19 +26,19 @@ const validationSchema = Yup.object({
 
 const CategoriesForm = () => {
 	const classes = useStyles();
-	const {state} = useLocation();
-	const {categoriesById, status} = useSelector(state => state.categories);
+	const { state } = useLocation();
+	const { categoriesById, status } = useSelector(state => state.categories);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	useEffect(() => {
-	  if(state){
-		dispatch(getCategoriesById(state))
-	  }
+		if (state) {
+			dispatch(getCategoriesById(state))
+		}
 
 	}, [])
-	
-	const { setFieldValue, handleSubmit, handleBlur, values, handleChange, touched, errors,handleReset } = useFormik({
+
+	const { setFieldValue, handleSubmit, handleBlur, values, handleChange, touched, errors, handleReset } = useFormik({
 		enableReinitialize: true,
 		initialValues: {
 			name: categoriesById?.name || "",
@@ -46,28 +46,28 @@ const CategoriesForm = () => {
 			image: categoriesById?.image || "",
 		},
 		validationSchema: validationSchema,
-		onSubmit: ( async (values) => {
-            if (categoriesById) {
+		onSubmit: (async (values) => {
+			if (categoriesById) {
 				values.id = categoriesById.id
-                dispatch(putCategory(values));
-				
-            }else{
-            	dispatch(postCategory(values));
+				dispatch(putCategory(values));
+			} else {
+				dispatch(postCategory(values));
 			}
-        })
+		})
 	});
 
 	const [isValidImageFormat, setIsValidImageFormat] = useState(false);
 	useEffect(() => {
-		if(status === 'created'){
-			sweetAlertMixin('success' ,'Creado satisfactoriamente')
+		if (status === 'created') {
+			sweetAlertMixin('success', 'Creado satisfactoriamente')
 			handleReset()
 		}
-		if(status === 'edited'){
+		if (status === 'edited') {
+			sweetAlertMixin('success', 'Se modifico correctamente')
 			history.push("/backoffice/categories")
 		}
-		
-	  }, [status])
+
+	}, [status])
 
 	const handleImageChange = async (event) => {
 		const base64String = await convertToBase64(event.target.files[0]);
@@ -82,7 +82,7 @@ const CategoriesForm = () => {
 	};
 
 	return (
-		<Container className={classes.container}>	
+		<Container className={classes.container}>
 			<form onSubmit={handleSubmit} className={classes.form}>
 				<Paper className={classes.paper} elevation={5}>
 					<Typography className={classes.title} variant="h5">{categoriesById ? 'Editar Categoria' : 'Crear Categoria'}</Typography>
@@ -117,11 +117,11 @@ const CategoriesForm = () => {
 						className={classes.inputs}
 						onChange={(event) => handleImageChange(event)}
 					/>
-					{touched.image && !isValidImageFormat? (
+					{touched.image && !isValidImageFormat ? (
 						<div>El formato de la imágen no es válido {errors.image}</div>
 					) : null}
 					<Button color='secondary' className={classes.button} fullWidth type="submit" variant="contained">
-						{status === 'loading' ? <Spinner width={30} height={30} color='#FFF'/> : 'Enviar'}
+						{status === 'loading' ? <Spinner width={30} height={30} color='#FFF' /> : 'Enviar'}
 					</Button>
 				</Paper>
 				<Box className={classes.finalLink}>

@@ -83,7 +83,6 @@ const NewsForm = (id) => {
         values.image = base64
         dispatch(postNews(values))
       }
-      console.log(values)
     },
   })
 
@@ -96,6 +95,7 @@ const NewsForm = (id) => {
 
   useEffect(() => {
     if (status === 'edited') {
+      sweetAlertMixin('success', 'Se modifico correctamente')
       history.push('/backoffice/news')
     }
   }, [status])
