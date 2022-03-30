@@ -6,68 +6,71 @@ import useStyles from '../../styles/sideBarStyles';
 
 
 
-const Sidebar = ({open}) => {
+const Sidebar = ({ open }) => {
 
     const classes = useStyles();
 
     const rutasMokeadas = [
-        {   
-            name:"Create Activity",
+        {
+            name: "Crear Actividad",
             link: "/backoffice/activities/create-activity"
         },
-        
+
         {
-            name:"Create Category",
+            name: "Crear Categoría",
             link: "/backoffice/categories/create"
         },
         {
-            name:"Create News",
+            name: "Crear Novedad",
             link: "/backoffice/news/create-news"
         },
         {
-            name:"Create Slide",
-            link: "/backoffice/create-slide"
+            name: "Crear Slide",
+            link: "/backoffice/slides/create"
         },
         {
-            name:"Create Testimonials",
+            name: "Crear Testimonio",
             link: "/backoffice/testimonials/create"
         },
         {
-            name:"Create User",
+            name: "Crear Usuario",
             link: "/backoffice/users/create-user"
         },
         {
-            name:"Create Member",
+            name: "Crear Miembro",
             link: "/backoffice/members/create"
         },
         {
-            name:"Create Proyect",
+            name: "Crear Proyecto",
             link: "/backoffice/create-project`"
-        }
-
+        },
+        {
+            name: "Volver al Home",
+            link: "/"
+        },
     ]
 
-    return(
-        
-        <Drawer 
+    return (
+
+        <Drawer
             variant="temporary"
-            anchor="left" 
-            open={open} 
+            anchor="left"
+            open={open}
             PaperProps={{
                 sx: {
-                width: {
-                    xs: '100vw',
-                    sm: "100vw",
-                    md: "30vw",
-                    xl: "20vw"
+                    width: {
+                        xs: '100vw',
+                        sm: "100vw",
+                        md: "30vw",
+                        xl: "20vw"
+                    }
                 }
-                }
-          }}
+            }}
         >
             <Toolbar></Toolbar>
             <Box>
                 <Box className={classes.containerText}>
-                    <img src="/images/LOGO-SOMOS-MAS.png" alt='Logo Ong' className={classes.logoOng}/>
+                    <img src="/images/LOGO-SOMOS-MAS.png" alt='Logo Ong' className={classes.logoOng} />
                     <Typography variant='h6' className={classes.headerText}>Somos Mas</Typography>
                 </Box>
             </Box>

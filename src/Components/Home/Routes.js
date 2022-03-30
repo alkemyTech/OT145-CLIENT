@@ -3,7 +3,6 @@ import { Route, Switch, useRouteMatch, Redirect, useLocation } from "react-route
 import LayoutHome from "./LayoutHome";
 import Error404 from "../../shared/Error404/Error404";
 import PrivateRoutes from '../../backOffice/PrivateRoutes'
-
 const Donacion = lazy(() => import('../Donations/Donacion'))
 const Home = lazy(() => import("./Index"));
 const Activities = lazy(() => import("../Activities/Actividades"));
@@ -17,6 +16,7 @@ const DetalleActividad = lazy(() =>
 const RegisterForm = lazy(() => import("../Auth/RegisterForm"));
 const LoginForm = lazy(() => import("../Auth/LoginForm"));
 const Gracias = lazy(() => import('../Donations/Gracias'));
+
 
 
 export default function Routes() {

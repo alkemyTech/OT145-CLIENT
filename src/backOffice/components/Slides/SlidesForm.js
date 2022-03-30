@@ -1,44 +1,60 @@
-import React from 'react';
-import { privatePATCH , privatePOST } from '../../Services/privateApiService'
+import React, { useEffect } from 'react';
+import { privatePATCH , privatePOST } from '../../../Services/privateApiService'
 import { useFormik} from 'formik';
-import { validationSchema } from './config/index';
-import { convertToBase64 } from '../../helpers/base64';
+import { validationSchema } from './config';
+import { convertToBase64 } from '../../../helpers/base64';
 import { TextField, Button, Typography } from '@mui/material';
 import useStyles from './styleSlides';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {CKEditor} from '@ckeditor/ckeditor5-react';
+import Editor from '../Editor/Editor'
+import { useParams, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch} from 'react-redux'
+import { selectAllSlides, getSlidesById, selectSlidesStatus, postSlides, putSlides } from '../../../redux/slides/slidesSlice'
 
-
-const SlidesForm = ({ data }) => {
+const SlidesForm = () => {
     const classes = useStyles();
+    const { id } = useParams()
+    const { pathname } = useLocation()    
+    const dispatch = useDispatch()
+    const slide = useSelector(selectAllSlides)
+    const slideStatus = useSelector(selectSlidesStatus)
+    
+    useEffect(() => {
+        if(pathname.includes('edit') && slideStatus !== 'updated'){
+            dispatch(getSlidesById(id))
+        }
+    }, [slide, slideStatus, dispatch]);
 
     const initialValues = {
-        name: data?.name || '',
-        description: data?.description || '',
-        order: data?.order || 0,
-        image: data?.image || ''
+        name: slide?.name || "" ,
+        description: slide?.description || "" ,
+        order: slide?.order || "" ,
+        image: slide?.image || "" ,
     };
-
+    
     const { handleSubmit, handleChange, handleBlur, touched, errors, setFieldValue, values } = useFormik({
-        initialValues: initialValues,
+        enableReinitialize: true,
+        initialValues: {...initialValues},
         validationSchema: validationSchema,
         onSubmit: ( async (values) => {
-            if (data) {
+            if (pathname.includes('edit')) {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePATCH('https://ongapi.alkemy.org/api/slides', data.id, values);
+                console.log(values)
+                console.log(slide)
+                values.id = slide.id
+                dispatch(putSlides(values))
             }
             else {
                 const base64 = await convertToBase64(values.image)
                 values.image = base64
-                privatePOST('https://ongapi.alkemy.org/api/slides', values);
+                dispatch(postSlides(values))
             }
         })
     })
 
     return (
         <div  className={classes.containerForm}>
-            <Typography variant="h6">Crear slide</Typography>
+            <Typography variant="h6">{pathname.includes('edit') ? 'Editar Slide' : 'Crear slide'}</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField fullWidth
                     name="name" 
@@ -66,14 +82,21 @@ const SlidesForm = ({ data }) => {
                     className={classes.fieldForm}
                     onChange={(e)=>setFieldValue("image", e.target.files[0])}                     
                     error={touched.image && Boolean(errors.image)}
-                    helperText={touched.image && errors.image}/>
+                    helperText={touched.image && errors.image}
+                    // value={values.image}
+                    />
+                    
 
                 <div className={classes.fieldForm}>
-                    <CKEditor
+                    <Editor
                         id="description"
                         name="description"
-                        onChange={(event, editor)=>setFieldValue("description", editor.getData())}
-                        editor={ClassicEditor}/>
+                        onChangeText={(data) => {
+                            setFieldValue("description", data);
+                        }}
+                        text={values.description}
+                        
+                    />
                     {handleSubmit && errors.description &&  
                         <Typography variant="caption" color="error">{touched.description && errors.description}</Typography> 
                     }

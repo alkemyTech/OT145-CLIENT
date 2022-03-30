@@ -8,14 +8,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardList: {
-    // display: 'flex',
-    justifyContent:'center',
-    columnGap: '60px',
-    marginBottom: '35px',
-    [theme.breakpoints.up('md')]:{
-      justifyContent: 'space-between',
-    }
-    
+    justifyContent: 'space-between',
+    columnGap: '10px',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
   },
   iconButton: {
     cursor: 'pointer',
@@ -48,10 +45,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px',
   },
 
-  containerThree:{
-    marginBottom: '40px'
-  }
- 
+  containerThree: {
+    marginBottom: '40px',
+  },
 }))
 
 export default useStyles
